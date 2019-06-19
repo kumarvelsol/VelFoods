@@ -1,9 +1,18 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ItemCategoryComponent } from './item-category/item-category.component';
+import { ItemNamesComponent } from './item-names/item-names.component';
 
 const routes: Routes = [{
   path:'',pathMatch:'full',redirectTo:'restaurant'},
-  {path:'restaurant',loadChildren:'./'}
+
+  {path:'itemCategory',component:ItemCategoryComponent},
+  {path:'itemNames',component:ItemNamesComponent},
+  // {path:'restaurant',loadChildren:'./'}
+  
+
+  {path:'restaurant',loadChildren:'./restaurant/restaurant.module#RestaurantModule'},
+
 ];
   
 @NgModule({
