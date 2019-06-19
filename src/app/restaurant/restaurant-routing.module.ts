@@ -13,7 +13,6 @@ const routes: Routes = [
   {path:'Paidouts',component:PaidoutsmiscolComponent},
 
 ];
-
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]

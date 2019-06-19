@@ -15,6 +15,7 @@ import { TaxpageComponent } from './taxpage/taxpage.component';
   declarations: [LoginpageComponent, PropertyComponent, TaxpageComponent,TabledefinitionComponent, PaidoutsmiscolComponent],
 
 
+
   imports: [
     CommonModule,
     RestaurantRoutingModule,

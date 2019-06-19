@@ -14,16 +14,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
-
+import { ManagerComponent } from './manager/manager.component';
+import { RestaurantsComponent } from './restaurants/restaurants.component';
 import { ItemCategoryComponent } from './item-category/item-category.component';
 import { ItemNamesComponent } from './item-names/item-names.component';
-
 import { RestaurantModule } from './restaurant/restaurant.module';
-
 
 @NgModule({
   declarations: [
     AppComponent,
+    ManagerComponent,
+    RestaurantsComponent,
     ItemCategoryComponent,
     ItemNamesComponent
   ],
