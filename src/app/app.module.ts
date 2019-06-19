@@ -15,8 +15,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
+
 import { ItemCategoryComponent } from './item-category/item-category.component';
 import { ItemNamesComponent } from './item-names/item-names.component';
+
+import { RestaurantModule } from './restaurant/restaurant.module';
+
 
 @NgModule({
   declarations: [
@@ -27,9 +31,19 @@ import { ItemNamesComponent } from './item-names/item-names.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+
     BrowserAnimationsModule,FormsModule,MatFormFieldModule,MatInputModule,FormsModule,MatIconModule,MatCardModule,MatTableModule,
     BrowserAnimationsModule,CommonModule,MatSelectModule,MatDatepickerModule,MatRadioModule,
-    CoreModule
+    CoreModule,
+
+    
+    CoreModule,
+    BrowserModule,
+    AppRoutingModule,
+    
+    CoreModule,
+    RestaurantModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

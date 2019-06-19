@@ -5,10 +5,14 @@ import { ItemNamesComponent } from './item-names/item-names.component';
 
 const routes: Routes = [{
   path:'',pathMatch:'full',redirectTo:'restaurant'},
+
   {path:'itemCategory',component:ItemCategoryComponent},
-  {path:'itemNames',component:ItemNamesComponent}
+  {path:'itemNames',component:ItemNamesComponent},
   // {path:'restaurant',loadChildren:'./'}
   
+
+  {path:'restaurant',loadChildren:'./restaurant/restaurant.module#RestaurantModule'},
+
 ];
   
 @NgModule({
