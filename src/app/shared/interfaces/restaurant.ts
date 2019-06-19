@@ -1,2 +1,4 @@
-export interface Restaurant {
+export interface Restaurant 
+{
+    
 }

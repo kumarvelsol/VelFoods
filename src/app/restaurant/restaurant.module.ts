@@ -6,11 +6,15 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { MaterialModule } from '../shared/material.module';
 import { LoginpageComponent } from './loginpage/loginpage.component';
+import { TabledefinitionComponent } from './tabledefinition/tabledefinition.component';
+import { PaidoutsmiscolComponent } from './paidoutsmiscol/paidoutsmiscol.component';
 import { PropertyComponent } from './property/property.component';
 import { TaxpageComponent } from './taxpage/taxpage.component';
 
 @NgModule({
-  declarations: [LoginpageComponent, PropertyComponent, TaxpageComponent],
+  declarations: [LoginpageComponent, PropertyComponent, TaxpageComponent,TabledefinitionComponent, PaidoutsmiscolComponent],
+
+
   imports: [
     CommonModule,
     RestaurantRoutingModule,
