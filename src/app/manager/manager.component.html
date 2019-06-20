@@ -1,0 +1,116 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6">
+      <mat-card class="col-lg-12 row example-card parent">
+        <div class="block child">
+          <p style="margin-top: 20px;">Manager Details</p>
+          <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray">
+            <!-- <mat-icon style="color :gray" matSuffix>subject</mat-icon> -->
+            <mat-label style="color :gray">Manager Name</mat-label>
+            <input style="color :gray" [(ngModel)]="name" type="text" name="name"  matInput>
+            <!-- <mat-hint color="primary">Hint</mat-hint> -->
+          </mat-form-field>
+          <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray">
+            <!-- <mat-icon style="color:gray;" matSuffix>code</mat-icon> -->
+            <mat-label style="color :gray">Mobile No</mat-label>
+            <input style="color:gray;" matInput [(ngModel)]="code" type="text" name="code">
+            <!-- <mat-hint color="primary">Hint</mat-hint> -->
+          </mat-form-field>
+          <mat-form-field class="col-md-12 mat-form-wrap"  style="color:gray;">
+            <!-- <mat-icon style="color:gray;" matSuffix>description</mat-icon> -->
+            <mat-label style="color:gray;">Contact No</mat-label>
+            <input style="color:gray;" matInput [(ngModel)]="description" type="text" name="description">
+            <!-- <mat-hint color="primary">Hint</mat-hint> -->
+          </mat-form-field>
+          <mat-form-field class="col-md-12 mat-form-wrap">
+            <mat-label>Id Proof</mat-label>
+            <mat-select>
+              <mat-option>Voter Id</mat-option>
+              <mat-option>Aadhar</mat-option>
+              <mat-option>Driving Licence</mat-option>
+              <mat-option>PanCard</mat-option>
+              <mat-option>Passport</mat-option>
+            </mat-select>
+            <!-- <mat-select [(ngModel)] = "classSelected">
+              <mat-option>Class</mat-option>
+              <mat-option *ngFor="let class of classes" [value]="class.class_id">{{class.class_name}}</mat-option>
+            </mat-select> -->
+          </mat-form-field>
+          <mat-form-field class="col-md-12 mat-form-wrap"  style="color:gray;">
+            <!-- <mat-icon style="color:gray;" matSuffix>description</mat-icon> -->
+            <mat-label style="color:gray;">Id Proof No</mat-label>
+            <input style="color:gray;" matInput [(ngModel)]="description" type="text" name="description">
+            <!-- <mat-hint color="primary">Hint</mat-hint> -->
+          </mat-form-field>
+          <mat-form-field class="col-md-12 mat-form-wrap">
+            <mat-label>Restaurant</mat-label>
+            <mat-select>
+              <mat-option>My Kitchen</mat-option>
+              <mat-option>The Patio</mat-option>
+            </mat-select>
+            <!-- <mat-select [(ngModel)] = "classSelected">
+              <mat-option>Class</mat-option>
+              <mat-option *ngFor="let class of classes" [value]="class.class_id">{{class.class_name}}</mat-option>
+            </mat-select> -->
+          </mat-form-field>
+          <mat-radio-group aria-label="Select an option">
+            <mat-label style="color:gray;" style="margin-left: 0px; font-size: 25;font-weight: bold">Status</mat-label>
+            <mat-radio-button style="margin-left: 25px" value="1">Active</mat-radio-button>
+            <mat-radio-button style="margin-left: 25px" value="2">In-Active</mat-radio-button>
+          </mat-radio-group>
+          <div class="col-md-12">
+              <button mat-raised-button class="btn-style" (click)="onsaveclick()">{{buttoncontent}}</button>
+              <button mat-icon-button class="clearbtn-style" (click)="onclearclick()">
+                  <mat-icon>clear_all</mat-icon>
+              </button>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+    <div class="col-lg-6">
+      <div class="example-container mat-elevation-z1">
+        <table mat-table [dataSource]="dataSource">
+          <!--Id Column-->
+          <!-- <ng-container matColumnDef="subjects">
+            <th mat-header-cell *matHeaderCellDef colspan="5"> Subjects </th>
+          </ng-container> -->
+          <ng-container matColumnDef="Id">
+            <th mat-header-cell *matHeaderCellDef> Id </th>
+            <td mat-cell *matCellDef="let element"> {{element.Id}} </td>
+          </ng-container>
+          <!-- Name Column -->
+          <ng-container matColumnDef="Manager">
+            <th mat-header-cell *matHeaderCellDef> Manager Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.Manager}} </td>
+          </ng-container>
+          <ng-container matColumnDef="AltRestaurant">
+            <th mat-header-cell *matHeaderCellDef> Restaurant </th>
+            <td mat-cell *matCellDef="let element"> {{element.AltRestaurant}} </td>
+          </ng-container>
+          <!-- Code Column -->
+          <ng-container matColumnDef="Mobile">
+            <th mat-header-cell *matHeaderCellDef> Mobile No </th>
+            <td mat-cell *matCellDef="let element"> {{element.Mobile}} </td>
+          </ng-container>
+          <!-- Description Column -->
+          <ng-container matColumnDef="Status">
+            <th mat-header-cell *matHeaderCellDef> Status </th>
+            <td mat-cell *matCellDef="let element"> {{element.Status}} </td>
+          </ng-container>
+          <!-- actions -->
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>Edit</th>
+            <td mat-cell *matCellDef="let element; let i=index;"> 
+              <button mat-icon-button style="color:gray;margin-right: 10px;">
+                <mat-icon aria-label="Edit">edit</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+          <!-- <tr mat-header-row *matHeaderRowDef="displayedHeading; sticky: true"></tr> -->
+          <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
