@@ -9,7 +9,8 @@ import { TaxpageComponent } from './taxpage/taxpage.component';
 const routes: Routes = [
   {path:'',pathMatch:'full',component:LoginpageComponent},
   {path:'property',component:PropertyComponent},
-  {path:'tax',component:TaxpageComponent},{path:'tabledefinition',component:TabledefinitionComponent,pathMatch: 'full'},
+  {path:'tax',component:TaxpageComponent},
+  {path:'tabledefinition',component:TabledefinitionComponent,pathMatch: 'full'},
   {path:'Paidouts',component:PaidoutsmiscolComponent},
 
 ];
