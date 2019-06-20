@@ -5,13 +5,17 @@ import { TabledefinitionComponent } from './tabledefinition/tabledefinition.comp
 import { PaidoutsmiscolComponent } from './paidoutsmiscol/paidoutsmiscol.component';
 import { PropertyComponent } from './property/property.component';
 import { TaxpageComponent } from './taxpage/taxpage.component';
+import { RestaurantsComponent} from '../restaurants/restaurants.component';
+import { ManagerComponent } from '../manager/manager.component';
 
 const routes: Routes = [
   {path:'',pathMatch:'full',component:LoginpageComponent},
   {path:'property',component:PropertyComponent},
-  {path:'tax',component:TaxpageComponent},{path:'tabledefinition',component:TabledefinitionComponent,pathMatch: 'full'},
+  {path:'tax',component:TaxpageComponent},
+  {path:'restaurants',component:RestaurantsComponent},
+  {path:'managers',component:ManagerComponent},
+  {path:'tabledefinition',component:TabledefinitionComponent,pathMatch: 'full'},
   {path:'Paidouts',component:PaidoutsmiscolComponent},
-
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],
