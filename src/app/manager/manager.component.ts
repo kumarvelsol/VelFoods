@@ -16,14 +16,10 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./manager.component.css']
 })
 export class ManagerComponent implements OnInit {
-
   constructor() { }
-
   ngOnInit() {
   }
   displayedColumns: string[] = ['Id', 'Manager', 'AltRestaurant', 'Mobile','Status','actions'];
   dataSource = ELEMENT_DATA;
-  
   buttoncontent:string = "Add";
-
 }
