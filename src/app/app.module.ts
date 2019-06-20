@@ -7,7 +7,7 @@ import {MatSelectModule} from '@angular/material/select';
 import { CommonModule } from '@angular/common';
 import {MatCardModule} from '@angular/material/card'
 import {MatIconModule} from '@angular/material/icon';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule,ReactiveFormsModule }   from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { AppRoutingModule } from './app-routing.module';
@@ -31,7 +31,7 @@ import { RestaurantModule } from './restaurant/restaurant.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-
+    ReactiveFormsModule,
     BrowserAnimationsModule,FormsModule,MatFormFieldModule,MatInputModule,FormsModule,MatIconModule,MatCardModule,MatTableModule,
     BrowserAnimationsModule,CommonModule,MatSelectModule,MatDatepickerModule,MatRadioModule,
     CoreModule,
