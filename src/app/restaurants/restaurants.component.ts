@@ -16,13 +16,10 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./restaurants.component.css']
 })
 export class RestaurantsComponent implements OnInit {
-
   constructor() { }
-
   ngOnInit() {
   }
   displayedColumns: string[] = ['Id', 'Restaurant', 'Contact', 'Manager','Status'];
   dataSource = ELEMENT_DATA;
-  
   buttoncontent:string = "Add";
 }
