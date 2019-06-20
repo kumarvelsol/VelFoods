@@ -4,6 +4,8 @@ import { ItemCategoryComponent } from './item-category/item-category.component';
 import { ItemNamesComponent } from './item-names/item-names.component';
 import { RestaurantsComponent} from './restaurants/restaurants.component'
 import { ManagerComponent } from './manager/manager.component';
+import { RestaurantModule } from './restaurant/restaurant.module';
+
 const routes: Routes = [{
   path:'',pathMatch:'full',redirectTo:'restaurant'},
 
@@ -13,7 +15,7 @@ const routes: Routes = [{
   {path:'managers',component:ManagerComponent},
   {path:'restaurant',loadChildren:'./restaurant/restaurant.module#RestaurantModule'},
 ];
-  
+
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
