@@ -16,7 +16,6 @@ const routes: Routes = [
   {path:'managers',component:ManagerComponent},
   {path:'tabledefinition',component:TabledefinitionComponent,pathMatch: 'full'},
   {path:'Paidouts',component:PaidoutsmiscolComponent},
-
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],
