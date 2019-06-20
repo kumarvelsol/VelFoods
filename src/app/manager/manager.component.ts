@@ -21,7 +21,7 @@ export class ManagerComponent implements OnInit {
 
   ngOnInit() {
   }
-  displayedColumns: string[] = ['Id', 'Manager', 'AltRestaurant', 'Mobile','Status'];
+  displayedColumns: string[] = ['Id', 'Manager', 'AltRestaurant', 'Mobile','Status','actions'];
   dataSource = ELEMENT_DATA;
   
   buttoncontent:string = "Add";
