@@ -11,7 +11,7 @@ export class PropertyComponent implements OnInit {
   state:string;pincode:number;
   country:string;contactno:number;
   landline:number;email:string;
-  website:string;gst:string;
+  website:string;gst:string;buttoncontent:string;
   constructor() { }
 
   ngOnInit() {
@@ -27,11 +27,14 @@ export class PropertyComponent implements OnInit {
     this.email ="velsol@gmail.com";
     this.website ="www.velsol.com";
     this.gst ="1234ABCDE2ZA";
-  }
-  onclear()
-  {
-    this.propertyname="";this.address="";this.landmark="";this.city="";
-    this.state="";this.pincode=null;this.country="";this.contactno=null;this.landline=null;
-    this.email="";this.website="";this.gst=null;
+    if(this.propertyname=="" && this.address=="" && this.landmark=="" && this.city=="" && this.state=="" &&
+    this.pincode==null && this.country=="" && this.contactno==null && this.landline==null && this.email=="" && this.website=="" && this.gst=="")
+    {
+      this.buttoncontent = "Save";
+    }
+    else
+    {
+      this.buttoncontent = "Modify";
+    }
   }
 }

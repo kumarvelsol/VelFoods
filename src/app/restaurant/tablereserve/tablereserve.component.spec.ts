@@ -1,19 +1,24 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { ManagerComponent } from './manager.component';
-describe('ManagerComponent', () => {
-  let component: ManagerComponent;
-  let fixture: ComponentFixture<ManagerComponent>;
+
+import { TablereserveComponent } from './tablereserve.component';
+
+describe('TablereserveComponent', () => {
+  let component: TablereserveComponent;
+  let fixture: ComponentFixture<TablereserveComponent>;
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ManagerComponent ]
+      declarations: [ TablereserveComponent ]
     })
     .compileComponents();
   }));
+
   beforeEach(() => {
-    fixture = TestBed.createComponent(ManagerComponent);
+    fixture = TestBed.createComponent(TablereserveComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
+
   it('should create', () => {
     expect(component).toBeTruthy();
   });
