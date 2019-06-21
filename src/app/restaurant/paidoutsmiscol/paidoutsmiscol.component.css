@@ -20,7 +20,7 @@ table {
     height: 50px;
     left: 0px;
     margin-bottom: 15px;
-    margin-top: 15px;
+    margin-top: 0px;
     font-size: 18px;
   }
   .clearbtn-style{
@@ -30,7 +30,7 @@ table {
     height: 50px;
     margin-left: 10px;
     margin-bottom: 15px;
-    margin-top: 15px;
+    margin-top: 0px;
   }
   .parent{
     text-align:center;

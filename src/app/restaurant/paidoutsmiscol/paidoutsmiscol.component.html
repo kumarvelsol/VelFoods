@@ -46,7 +46,6 @@
   </mat-card>
 </div>
 <div class="row">
-  <mat-card class="row example-card child">
   <div class="row col-md-12">
   <div class="col-md-6 mat-form-wrap">
         <mat-checkbox  formControlName="Cash" [required]="true" style="margin-left: 20px;">Cash</mat-checkbox>
@@ -59,33 +58,38 @@
       </mat-form-field>
     </div>
     </div>
-  </mat-card>
 </div>
 <div class="row">
-    <mat-card class="row example-card child">
     <div class="row col-md-12">
-    <div class="col-md-4 mat-form-wrap">
+    <div class="col-md-3 mat-form-wrap">
           <mat-checkbox  formControlName="Cash" [required]="true" style="margin-left: 20px;">Card</mat-checkbox>
       </div>
-      <div class="col-md-4 mat-form-wrap">
-        <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray;width:70%;margin-left: 183px;">
+      <div class="col-md-3 mat-form-wrap">
+        <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray"  >
+            <mat-label style="color :gray">Bank Name</mat-label>
+             <mat-select > 
+                <mat-option>Department</mat-option>
+              <mat-option *ngFor="let dname of delist" [value]="dname.departmant_id">{{dname.departmant_name}}</mat-option> 
+            </mat-select>
+          </mat-form-field>
+    </div>
+      <div class="col-md-3 mat-form-wrap">
+        <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray">
           <mat-icon style="color :gray" matSuffix>developer_board</mat-icon>
           <mat-label style="color :gray">Transaction Id</mat-label>
           <input style="color :gray"   type="text" name="total_marks"  matInput>
         </mat-form-field>
       </div>
-      <div class="col-md-4 mat-form-wrap">
-          <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray;width:70%;margin-left: 100px;">
+      <div class="col-md-3 mat-form-wrap">
+          <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray">
             <mat-icon style="color :gray" matSuffix>developer_board</mat-icon>
             <mat-label style="color :gray">Amount</mat-label>
             <input style="color :gray"   type="text" name="total_marks"  matInput>
           </mat-form-field>
         </div>
       </div>
-      </mat-card>
   </div>
   <div class="row">
-      <mat-card class="row example-card child">
       <div class="row col-md-12">
       <div class="col-md-3 mat-form-wrap">
             <mat-checkbox  formControlName="Cash" [required]="true" style="margin-left: 20px;">Online</mat-checkbox>
@@ -100,14 +104,12 @@
               </mat-form-field>
         </div>
         <div class="col-md-3 mat-form-wrap">
-            <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray"  >
-                <mat-label style="color :gray">Acc No</mat-label>
-                 <mat-select > 
-                    <mat-option>Department</mat-option>
-                  <mat-option *ngFor="let dname of delist" [value]="dname.departmant_id">{{dname.departmant_name}}</mat-option> 
-                </mat-select>
-              </mat-form-field>
-          </div>
+        <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray">
+          <mat-icon style="color :gray" matSuffix>developer_board</mat-icon>
+          <mat-label style="color :gray">Transaction Id</mat-label>
+          <input style="color :gray"   type="text" name="total_marks"  matInput>
+        </mat-form-field>
+      </div>
           <div class="col-md-3 mat-form-wrap">
               <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray">
                 <mat-icon style="color :gray" matSuffix>developer_board</mat-icon>
@@ -116,10 +118,8 @@
               </mat-form-field>
             </div>
         </div>
-        </mat-card>
     </div>
     <div class="row">
-        <mat-card class="row example-card child">
         <div class="row col-md-12">
         <div class="col-md-3 mat-form-wrap">
               <mat-checkbox  formControlName="Cash" [required]="true" style="margin-left: 20px;">Wallet</mat-checkbox>
@@ -148,10 +148,8 @@
                 </mat-form-field>
               </div>
           </div>
-          </mat-card>
       </div>
       <div class="row">
-          <mat-card class="row example-card child">
           <div class="row col-md-12">
           <div class="col-md-3 mat-form-wrap">
                 <mat-checkbox  formControlName="Cash" [required]="true" style="margin-left: 20px;">Cheque</mat-checkbox>
@@ -178,15 +176,12 @@
                   </mat-form-field>
                 </div>
             </div>
-            </mat-card>
         </div>
         <div class="row">
-          <mat-card class="row example-card child">
         <button mat-raised-button class="btn-style" (click)="onsubmitclick()">Save</button>
         <button mat-icon-button class="clearbtn-style" (click)="onclearclick()">
           <mat-icon>clear_all</mat-icon>
         </button>
-      </mat-card>
         </div>
 </div>
 

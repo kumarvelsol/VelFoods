@@ -11,5 +11,8 @@ export class PaidoutsmiscolComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  public onsubmitclick()
+  {
+    
+  }
 }

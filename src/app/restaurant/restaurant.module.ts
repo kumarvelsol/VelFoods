@@ -13,9 +13,11 @@ import { TaxpageComponent } from './taxpage/taxpage.component';
 import { BankwallettabbarComponent } from './BanksWallets/bankwallettabbar/bankwallettabbar.component';
 import { BanksComponent } from './BanksWallets/banks/banks.component';
 import { WalletsComponent } from './BanksWallets/wallets/wallets.component';
+import { TablereserveComponent } from './tablereserve/tablereserve.component';
+
 
 @NgModule({
-  declarations: [LoginpageComponent, PropertyComponent, TaxpageComponent,TabledefinitionComponent, PaidoutsmiscolComponent, BankwallettabbarComponent, BanksComponent, WalletsComponent],
+  declarations: [LoginpageComponent, PropertyComponent, TaxpageComponent,TabledefinitionComponent, PaidoutsmiscolComponent, BankwallettabbarComponent, BanksComponent, WalletsComponent,TablereserveComponent],
 
 
 
