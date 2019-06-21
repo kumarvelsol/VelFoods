@@ -10,9 +10,10 @@ import { TabledefinitionComponent } from './tabledefinition/tabledefinition.comp
 import { PaidoutsmiscolComponent } from './paidoutsmiscol/paidoutsmiscol.component';
 import { PropertyComponent } from './property/property.component';
 import { TaxpageComponent } from './taxpage/taxpage.component';
+import { TablereserveComponent } from './tablereserve/tablereserve.component';
 
 @NgModule({
-  declarations: [LoginpageComponent, PropertyComponent, TaxpageComponent,TabledefinitionComponent, PaidoutsmiscolComponent],
+  declarations: [LoginpageComponent, PropertyComponent, TaxpageComponent,TabledefinitionComponent, PaidoutsmiscolComponent, TablereserveComponent],
 
 
 
