@@ -10,10 +10,14 @@ import { TabledefinitionComponent } from './tabledefinition/tabledefinition.comp
 import { PaidoutsmiscolComponent } from './paidoutsmiscol/paidoutsmiscol.component';
 import { PropertyComponent } from './property/property.component';
 import { TaxpageComponent } from './taxpage/taxpage.component';
+import { BankwallettabbarComponent } from './BanksWallets/bankwallettabbar/bankwallettabbar.component';
+import { BanksComponent } from './BanksWallets/banks/banks.component';
+import { WalletsComponent } from './BanksWallets/wallets/wallets.component';
 import { TablereserveComponent } from './tablereserve/tablereserve.component';
 
+
 @NgModule({
-  declarations: [LoginpageComponent, PropertyComponent, TaxpageComponent,TabledefinitionComponent, PaidoutsmiscolComponent, TablereserveComponent],
+  declarations: [LoginpageComponent, PropertyComponent, TaxpageComponent,TabledefinitionComponent, PaidoutsmiscolComponent, BankwallettabbarComponent, BanksComponent, WalletsComponent,TablereserveComponent],
 
 
 
