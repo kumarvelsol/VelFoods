@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule, MatCheckboxModule,MatToolbarModule,MatSidenavModule,MatStepperModule,
   MatIconModule,MatListModule,MatInputModule,MatCardModule,MatTabsModule,MatSnackBarModule,
-  MatExpansionModule,MatFormFieldModule,MatDatepickerModule,MatNativeDateModule,
+  MatExpansionModule,MatFormFieldModule,MatDatepickerModule,MatNativeDateModule,MatDividerModule,
   MatRadioModule,MatSelectModule,MatPaginatorModule,MatTableModule, MatGridListModule} from '@angular/material';
 import {LayoutModule} from '@angular/cdk/layout';
 
@@ -11,13 +11,13 @@ import {LayoutModule} from '@angular/cdk/layout';
   imports: [
     CommonModule, MatButtonModule, MatCheckboxModule,MatToolbarModule,MatSidenavModule,
     MatIconModule,MatListModule,MatInputModule,MatCardModule,MatTabsModule,MatSnackBarModule,
-    MatExpansionModule,LayoutModule,MatFormFieldModule,MatDatepickerModule,
+    MatExpansionModule,LayoutModule,MatFormFieldModule,MatDatepickerModule,MatDividerModule,
     MatNativeDateModule,MatRadioModule,MatSelectModule,MatPaginatorModule,MatTableModule,MatStepperModule,
     MatGridListModule
   ],
   exports:[ MatButtonModule, MatCheckboxModule,MatToolbarModule,MatSidenavModule,
     MatIconModule,MatListModule,MatInputModule,MatCardModule,MatTabsModule,MatSnackBarModule,
-    MatExpansionModule,LayoutModule, MatFormFieldModule,MatDatepickerModule,
+    MatExpansionModule,LayoutModule, MatFormFieldModule,MatDatepickerModule,MatDividerModule,
     MatNativeDateModule,MatRadioModule,MatSelectModule,MatPaginatorModule,MatTableModule,MatStepperModule,
     MatGridListModule]
 
