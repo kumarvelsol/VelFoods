@@ -15,10 +15,12 @@
                 <mat-label style="color :gray">Bank Name</mat-label>
                 <input style="color :gray" [(ngModel)]="bankname" type="text" matInput required>
               </mat-form-field>
-              <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" >
-                <mat-icon style="color:gray;" matSuffix>person</mat-icon>
-                <mat-label style="color :gray">ReportingName</mat-label>
-                <input style="color :gray" [(ngModel)]="reportname" type="text" matInput required>
+              <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray">
+                <mat-label style="color :gray">Employee Name</mat-label>
+                  <mat-select style="color :gray" [(ngModel)]="reportname" disableRipple>
+                    <mat-option style="color :gray" value="Dharani">Dharani</mat-option>
+                    <mat-option style="color :gray" value="Karthik">Karthik</mat-option>
+                  </mat-select>
               </mat-form-field>
               <div class="col-md-12">
                     <mat-label style="color :gray;margin-left: -60px;">Status  :  </mat-label>&nbsp;&nbsp;
