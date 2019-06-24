@@ -45,5 +45,4 @@ export class BanksComponent implements OnInit {
     this.reportname = reportname;
     this.status = status;
   }
-
 }
