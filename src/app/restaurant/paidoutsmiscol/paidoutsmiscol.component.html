@@ -3,16 +3,12 @@
   <div class = "row">
       <mat-card class="row example-card child">
     <div class="row col-md-12">
-      <div class="col-md-6 mat-form-wrap">
-        <mat-radio-group style="margin-bottom: 60px;margin-top: 60px; margin-left: 100px;" required>
-          <mat-radio-button value="Paidouts">Paidouts</mat-radio-button>
+      <div class="col-md-12 mat-form-wrap">
+        <mat-radio-group style="margin-bottom: 60px;margin-top: 60px; " required>
+          <mat-radio-button value="Paidouts" style="margin-left: 100px;">Paidouts</mat-radio-button>
+          <mat-radio-button value="MisCollections"  style="margin-left: 500px;">MisCollections</mat-radio-button>
         </mat-radio-group>
     </div>
-    <div class="col-md-6 mat-form-wrap">
-      <mat-radio-group style="margin-bottom: 60px;margin-top: 60px;margin-left: 100px;" required>
-        <mat-radio-button value="MisCollections">MisCollections</mat-radio-button>
-      </mat-radio-group>
-  </div>
   </div>
   </mat-card>
   </div>
@@ -48,7 +44,7 @@
 <div class="row">
   <div class="row col-md-12">
   <div class="col-md-6 mat-form-wrap">
-        <mat-checkbox  formControlName="Cash" [required]="true" style="margin-left: 20px;">Cash</mat-checkbox>
+        <mat-checkbox   [required]="true" style="margin-left: 20px;">Cash</mat-checkbox>
     </div>
     <div class="col-md-6 mat-form-wrap">
       <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray;width:50%;margin-left:265px;">
@@ -62,7 +58,7 @@
 <div class="row">
     <div class="row col-md-12">
     <div class="col-md-3 mat-form-wrap">
-          <mat-checkbox  formControlName="Cash" [required]="true" style="margin-left: 20px;">Card</mat-checkbox>
+          <mat-checkbox  [required]="true" style="margin-left: 20px;">Card</mat-checkbox>
       </div>
       <div class="col-md-3 mat-form-wrap">
         <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray"  >
@@ -92,7 +88,7 @@
   <div class="row">
       <div class="row col-md-12">
       <div class="col-md-3 mat-form-wrap">
-            <mat-checkbox  formControlName="Cash" [required]="true" style="margin-left: 20px;">Online</mat-checkbox>
+            <mat-checkbox   [required]="true" style="margin-left: 20px;">Online</mat-checkbox>
         </div>
         <div class="col-md-3 mat-form-wrap">
             <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray"  >
@@ -122,7 +118,7 @@
     <div class="row">
         <div class="row col-md-12">
         <div class="col-md-3 mat-form-wrap">
-              <mat-checkbox  formControlName="Cash" [required]="true" style="margin-left: 20px;">Wallet</mat-checkbox>
+              <mat-checkbox   [required]="true" style="margin-left: 20px;">Wallet</mat-checkbox>
           </div>
           <div class="col-md-3 mat-form-wrap">
               <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray"  >
@@ -152,7 +148,7 @@
       <div class="row">
           <div class="row col-md-12">
           <div class="col-md-3 mat-form-wrap">
-                <mat-checkbox  formControlName="Cash" [required]="true" style="margin-left: 20px;">Cheque</mat-checkbox>
+                <mat-checkbox   [required]="true" style="margin-left: 20px;">Cheque</mat-checkbox>
             </div>
             <div class="col-md-3 mat-form-wrap">
                 <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray"  >
@@ -166,7 +162,7 @@
             <div class="col-md-3 mat-form-wrap">
                 <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray">
                   <mat-icon style="color :gray" matSuffix>developer_board</mat-icon>
-                  <mat-label style="color :gray">Transaction Id</mat-label>
+                  <mat-label style="color :gray">Cheque No</mat-label>
                   <input style="color :gray"   type="text" name="total_marks"  matInput>
                 </mat-form-field>
               </div>
