@@ -16,10 +16,10 @@ import { WalletsComponent } from './BanksWallets/wallets/wallets.component';
 import { TablereserveComponent } from './tablereserve/tablereserve.component';
 
 
+
+
 @NgModule({
-  declarations: [LoginpageComponent, PropertyComponent, TaxpageComponent,TabledefinitionComponent, PaidoutsmiscolComponent, BankwallettabbarComponent, BanksComponent, WalletsComponent,TablereserveComponent],
-
-
+  declarations: [LoginpageComponent, PropertyComponent, TaxpageComponent,TabledefinitionComponent, PaidoutsmiscolComponent, BankwallettabbarComponent, BanksComponent, WalletsComponent,TablereserveComponent, ],
 
   imports: [
     CommonModule,
