@@ -5,8 +5,8 @@
     <div class="row col-md-12">
       <div class="col-md-12 mat-form-wrap">
         <mat-radio-group style="margin-bottom: 60px;margin-top: 60px; " required>
-          <mat-radio-button value="Paidouts" style="margin-left: 100px;">Paidouts</mat-radio-button>
-          <mat-radio-button value="MisCollections"  style="margin-left: 500px;">MisCollections</mat-radio-button>
+          <mat-radio-button value="Paidouts" style="margin-left: 100px;" [(ngModel)]="rpaid">Paidouts</mat-radio-button>
+          <mat-radio-button value="MisCollections"  style="margin-left: 500px;" [(ngModel)]="rmis">MisCollections</mat-radio-button>
         </mat-radio-group>
     </div>
   </div>

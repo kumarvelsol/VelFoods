@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavigationExtras, Router } from '@angular/router';
 
 
 export interface Restaurant {
@@ -23,7 +24,7 @@ export class TablereserveComponent implements OnInit {
   displayedColumns: string[] = ["date", "time","name", "pax","phoneno","restaurant","actions"];
   buttoncontent : string;abDatasource;
   date : string;time : string;name :string;pax:string;phoneno :number;restaurant : string;advance:number;
-  constructor() { }
+  constructor(private router: Router,) { }
   
   ngOnInit() {
   this.buttoncontent = "Save";
@@ -42,6 +43,21 @@ export class TablereserveComponent implements OnInit {
     {
 
     }
+  }
+  public NavigateClick(j,date:string,time:string,name:string,pax:string,restaurant:string,phoneno:number,advance:number)
+  {
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        "date":this.date = date,
+        "time":this.time = time,
+        "name":this.name= name,
+        "pax":this.pax = pax,
+        "restaurant":this.restaurant = restaurant,
+        "phoneno":this.phoneno = phoneno,
+        "advance":this.advance = advance,
+      }
+    };
+    this.router.navigate(['/home'],navigationExtras); 
   }
 
 }
