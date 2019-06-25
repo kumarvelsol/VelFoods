@@ -6,7 +6,6 @@ table {
   /* background-color: #33B5E5; */
   margin-top: 20px;
   width: 100%;
-  margin-left: 0px;
 }
 .mat-form-wrap{
   width: 100%;
@@ -35,8 +34,8 @@ table {
 }
 .parent{
   text-align:center;
-  height:650px;
-  margin-left: 20px;
+  height:550px;
+  margin-left: 10px;
 }
 .block {
   width: 80%;
@@ -45,7 +44,7 @@ table {
   margin:auto;
 }
 .example-container {
-  height: 650px;
+  height: 550px;
   overflow: auto; 
   margin-top: 20px;
   border-radius: 5px;

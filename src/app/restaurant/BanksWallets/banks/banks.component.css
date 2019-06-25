@@ -1,3 +1,4 @@
+
 table {
     width: 100%;
   }
@@ -5,7 +6,6 @@ table {
     /* background-color: #33B5E5; */
     margin-top: 20px;
     width: 100%;
-    margin-left: 0px;
   }
   .mat-form-wrap{
     width: 100%;
@@ -20,7 +20,7 @@ table {
     height: 50px;
     left: 0px;
     margin-bottom: 15px;
-    margin-top: 0px;
+    margin-top: 15px;
     font-size: 18px;
   }
   .clearbtn-style{
@@ -30,12 +30,12 @@ table {
     height: 50px;
     margin-left: 10px;
     margin-bottom: 15px;
-    margin-top: 0px;
+    margin-top: 15px;
   }
   .parent{
     text-align:center;
-    height:100px;
-    
+    height:500px;
+    margin-left: 10px;
   }
   .block {
     width: 80%;
@@ -49,9 +49,6 @@ table {
     margin-top: 20px;
     border-radius: 5px;
     margin-bottom: 20px;
-  }
-  .container {
-    color : black;
   }
   p{
     text-align: center;

@@ -4,11 +4,6 @@
       <mat-card class="row example-card parent">
         <div class="block child">
           <p style="margin-top: 20px; margin-left: 15px; color: gray; font-size: 24px;">Tax Definition</p>
-          <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" >
-              <mat-icon style="color :gray" matSuffix>code</mat-icon>
-              <mat-label style="color :gray">Tax Id</mat-label>
-              <input style="color :gray" [(ngModel)]="taxid" type="text" matInput required>
-            </mat-form-field>
             <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" >
               <mat-icon style="color:gray;" matSuffix>code</mat-icon>
               <mat-label style="color :gray">Tax Name</mat-label>
@@ -19,10 +14,12 @@
               <mat-label style="color :gray">Percentage</mat-label>
               <input style="color :gray" [(ngModel)]="percentage" type="text" matInput required>
             </mat-form-field>
-            <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" >
-              <mat-icon style="color:gray;" matSuffix>person</mat-icon>
-              <mat-label style="color :gray">ReportingName</mat-label>
-              <input style="color :gray" [(ngModel)]="reportname" type="text" matInput required>
+            <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray">
+              <mat-label style="color :gray">Employee Name</mat-label>
+                <mat-select style="color :gray" [(ngModel)]="reportname" disableRipple>
+                  <mat-option style="color :gray" value="Dharani">Dharani</mat-option>
+                  <mat-option style="color :gray" value="Karthik">Karthik</mat-option>
+                </mat-select>
             </mat-form-field>
             <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" >
               <mat-label style="color :gray">Active From</mat-label>
@@ -77,6 +74,9 @@
               <button mat-icon-button style="color:gray;margin-right: 10px;" (click)="RowSelected(i,element.taxid,element.taxname,element.percentage,element.reportname,element.activefrom,element.status)">
                 <mat-icon aria-label="Edit">edit</mat-icon>
               </button>
+              <!-- <button mat-icon-button style="color:gray;margin-right: 10px;" (click)="RowDelete(i,element.taxid,element.taxname,element.percentage,element.reportname,element.activefrom,element.status)">
+                <mat-icon aria-label="Edit">delete</mat-icon>
+              </button> -->
             </td>
           </ng-container>
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

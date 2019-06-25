@@ -11,9 +11,14 @@ import { PaidoutsmiscolComponent } from './paidoutsmiscol/paidoutsmiscol.compone
 import { PropertyComponent } from './property/property.component';
 import { TaxpageComponent } from './taxpage/taxpage.component';
 import { OffersComponent } from './offers/offers.component';
+import { BankwallettabbarComponent } from './BanksWallets/bankwallettabbar/bankwallettabbar.component';
+import { BanksComponent } from './BanksWallets/banks/banks.component';
+import { WalletsComponent } from './BanksWallets/wallets/wallets.component';
+import { TablereserveComponent } from './tablereserve/tablereserve.component';
 
 @NgModule({
-  declarations: [LoginpageComponent, PropertyComponent, TaxpageComponent,TabledefinitionComponent, PaidoutsmiscolComponent, OffersComponent],
+  declarations: [LoginpageComponent, PropertyComponent, TaxpageComponent,TabledefinitionComponent, PaidoutsmiscolComponent, OffersComponent, BankwallettabbarComponent, BanksComponent, WalletsComponent,TablereserveComponent],
+
   imports: [
     CommonModule,
     RestaurantRoutingModule,

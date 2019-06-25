@@ -20,7 +20,7 @@ table {
     height: 50px;
     left: 0px;
     margin-bottom: 15px;
-    margin-top: 0px;
+    margin-top: 15px;
     font-size: 18px;
   }
   .clearbtn-style{
@@ -30,12 +30,11 @@ table {
     height: 50px;
     margin-left: 10px;
     margin-bottom: 15px;
-    margin-top: 0px;
+    margin-top: 15px;
   }
   .parent{
     text-align:center;
-    height:100px;
-    
+    height:900px;
   }
   .block {
     width: 80%;
@@ -44,14 +43,12 @@ table {
     margin:auto;
   }
   .example-container {
-    height: 500px;
+    height: 900px;
     overflow: auto; 
     margin-top: 20px;
     border-radius: 5px;
     margin-bottom: 20px;
-  }
-  .container {
-    color : black;
+    color: black;
   }
   p{
     text-align: center;

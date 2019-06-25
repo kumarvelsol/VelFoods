@@ -1,11 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 
+export interface Captain {
+  cid: string;
+  cname: string;
+};
+export interface Steward {
+  sid: string;
+  sname: string;
+};
+
 @Component({
   selector: 'app-tabledefinition',
   templateUrl: './tabledefinition.component.html',
   styleUrls: ['./tabledefinition.component.css']
 })
 export class TabledefinitionComponent implements OnInit {
+  cap : Captain[] = [
+    {cid : '1',cname:'abc'},
+    {cid : '2',cname:'xyz'}
+  ];
+  ste : Steward[]  = [
+    {sid : '1',sname:'aa'},
+    {sid : '2',sname:'bb'}
+  ]
   rows: Array<{tableid:string,pax:string,reporting:string,status:string,view:string,captain:string,steward:string}> = [];
   buttoncontent : string;abDatasource;
   tableid:string;pax:string;reporting:string;status:string;view:string;captain :string;steward : string;
