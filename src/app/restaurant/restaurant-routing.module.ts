@@ -7,6 +7,7 @@ import { PropertyComponent } from './property/property.component';
 import { TaxpageComponent } from './taxpage/taxpage.component';
 import { RestaurantsComponent} from '../restaurants/restaurants.component';
 import { ManagerComponent } from '../manager/manager.component';
+import { OffersComponent } from './offers/offers.component';
 
 const routes: Routes = [
   {path:'',pathMatch:'full',component:LoginpageComponent},
@@ -14,6 +15,7 @@ const routes: Routes = [
   {path:'tax',component:TaxpageComponent},
   {path:'restaurants',component:RestaurantsComponent},
   {path:'managers',component:ManagerComponent},
+  {path:'offers',component:OffersComponent},
   {path:'tabledefinition',component:TabledefinitionComponent,pathMatch: 'full'},
   {path:'Paidouts',component:PaidoutsmiscolComponent},
 ];

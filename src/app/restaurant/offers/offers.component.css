@@ -1,0 +1,27 @@
+.example-card{
+    width: 100%;
+    height: 500px;
+    overflow: auto;
+    margin-left: auto;
+    margin-top: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+.mat-form-wrap{
+    width: 100%;
+    margin: 0px;
+}
+.slidetoggle_wrap{
+    position: absolute;
+    width: 100px;
+    right: 0;
+}
+p{
+    text-align: center;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color : darkslategray;
+    font-family: "Montserrat", sans-serif;
+    text-shadow: 0 1px 2px rgba(black,.15);
+}

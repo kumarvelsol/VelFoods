@@ -1,0 +1,150 @@
+<div class="container">
+  <div class="row">
+    <mat-card class="example-card">
+      <div class="col-12 mat-form-wrap">
+        <div class="main">
+          <p style="margin-top: 20px;">Offer Adding</p>
+        </div>
+        <div class="row col-md-12">
+          <mat-form-field class="col-md-4 mat-form-wrap" style="color: gray;margin-left: 0px;margin-right: 0px;">
+            <mat-label style="color: gray;">Offer Name</mat-label>
+            <input style="color: gray;" [(ngModel)]="In_name" type="text" name="In_name" matInput >
+            <mat-icon style="color: gray;" matSuffix>business</mat-icon>
+            <!-- <mat-hint style="color: gray;">Hint</mat-hint> -->
+          </mat-form-field>
+        </div>
+        <!-- FromDate To ToDate -->
+        <div class="row" style="padding-top: 10px;padding-bottom: 10px; color: black">
+          <div class="col-6">
+            <label>Offer Details</label>
+          </div>
+          <div class="col-6" style="position: relative">
+            <mat-slide-toggle class="slidetoggle_wrap" [color]="color" [checked]="checked" [disabled]="disabled"></mat-slide-toggle>
+          </div>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="row col-md-12">
+          <mat-form-field class="col-md-4 mat-form-wrap" style="color: gray;margin-left: 0px;margin-right: 0px;">
+            <mat-label style="color: gray;">From Date</mat-label>
+            <input style="color: gray;" [(ngModel)]="In_name" type="text" name="In_name" matInput >
+            <mat-icon style="color: gray;" matSuffix>business</mat-icon>
+            <!-- <mat-hint style="color: gray;">Hint</mat-hint> -->
+          </mat-form-field>
+          <mat-form-field class="col-md-4 mat-form-wrap" style="color: gray;margin-left: 0px;margin-right: 0px;">
+            <mat-label style="color: gray;">To Date</mat-label>
+            <input style="color: gray;" [(ngModel)]="In_name" type="text" name="In_name" matInput >
+            <mat-icon style="color: gray;" matSuffix>business</mat-icon>
+            <!-- <mat-hint style="color: gray;">Hint</mat-hint> -->
+          </mat-form-field>
+        </div>
+        <mat-divider></mat-divider>
+
+        <!-- FromTime ToTime -->
+        <div class="row" style="padding-top: 10px;padding-bottom: 10px; color: black">
+          <div class="col-6">
+            <label>FromTime ToTime</label>
+          </div>
+          <div class="col-6" style="position: relative">
+            <mat-slide-toggle class="slidetoggle_wrap" [color]="color" [checked]="checked" [disabled]="disabled"></mat-slide-toggle>
+          </div>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="row col-md-12">
+          <mat-form-field class="col-md-4 mat-form-wrap" style="color: gray;margin-left: 0px;margin-right: 0px;">
+            <mat-label style="color: gray;">From Time</mat-label>
+            <input style="color: gray;" [(ngModel)]="In_name" type="text" name="In_name" matInput >
+            <mat-icon style="color: gray;" matSuffix>business</mat-icon>
+            <!-- <mat-hint style="color: gray;">Hint</mat-hint> -->
+          </mat-form-field>
+          <mat-form-field class="col-md-4 mat-form-wrap" style="color: gray;margin-left: 0px;margin-right: 0px;">
+            <mat-label style="color: gray;">To Time</mat-label>
+            <input style="color: gray;" [(ngModel)]="In_name" type="text" name="In_name" matInput >
+            <mat-icon style="color: gray;" matSuffix>business</mat-icon>
+            <!-- <mat-hint style="color: gray;">Hint</mat-hint> -->
+          </mat-form-field>
+        </div>
+        <mat-divider></mat-divider>
+        <!-- Days Selection -->
+        <div class="row" style="padding-top: 10px;padding-bottom: 10px; color: black">
+          <div class="col-6">
+            <label>Days Selection</label>
+          </div>
+          <div class="col-6" style="position: relative">
+            <mat-slide-toggle class="slidetoggle_wrap" [color]="color" [checked]="checked" [disabled]="disabled"></mat-slide-toggle>
+          </div>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="row col-md-12">
+          <mat-form-field class="col-md-12 mat-form-wrap">
+            <mat-label>Select Type</mat-label>
+            <mat-select style="color :gray" [(ngModel)]="proof" disableRipple>
+              <mat-option style="color :gray" value="VoterId">WeekEnds</mat-option>
+              <mat-option style="color :gray" value="Aadhar">WeekDays</mat-option>
+              <mat-option style="color :gray" value="DrivingLicence">AllDays</mat-option>
+              <mat-option style="color :gray" value="PanCard">SelectDays</mat-option>
+            </mat-select>
+            <!-- <mat-select [(ngModel)] = "classSelected">
+              <mat-option>Class</mat-option>
+              <mat-option *ngFor="let class of classes" [value]="class.class_id">{{class.class_name}}</mat-option>
+            </mat-select> -->
+          </mat-form-field>
+        </div>
+        <mat-divider></mat-divider>
+      </div>
+    </mat-card>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <mat-card class="col-lg-12 row example-card parent">
+        <div class="container">
+          <div class="row col-md-12">
+            <div class="col-md-12">
+              <div class="main">
+                <p style="margin-top: 20px;">Offer Details</p>
+              </div>
+            </div>
+            <div class="col-md-12 mat-form-wrap">
+              <mat-form-field class="col-md-6 mat-form-wrap" style="color: gray;margin-left: 0px;margin-right: 0px;" appearance="outline">
+                <mat-label style="color: gray;">From Date</mat-label>
+                <input style="color: gray;" [(ngModel)]="In_name" type="text" name="In_name" matInput >
+                <mat-icon style="color: gray;" matSuffix>business</mat-icon>
+                <!-- <mat-hint style="color: gray;">Hint</mat-hint> -->
+              </mat-form-field>
+            </div>
+            <div class="col-md-3 mat-form-wrap">
+              <mat-label style="color: gray;">Applicable From :</mat-label>
+            </div>
+            <div class="col-md-9 mat-form-wrap">
+              <div class="row">
+                <div class="col-md-6 mat-form-wrap">
+                  <mat-form-field class="mat-form-wrap" style="color: gray;" appearance="outline">
+                    <mat-label style="color: gray;">From Date</mat-label>
+                    <input style="color: gray;" [(ngModel)]="In_name" type="text" name="In_name" matInput >
+                    <mat-icon style="color: gray;" matSuffix>business</mat-icon>
+                    <!-- <mat-hint style="color: gray;">Hint</mat-hint> -->
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6 mat-form-wrap">
+                  <mat-form-field class="mat-form-wrap" style="color: gray;" appearance="outline">
+                    <mat-label style="color: gray;">To Date</mat-label>
+                    <input style="color: gray;" [(ngModel)]="In_name" type="text" name="In_name" matInput >
+                    <mat-icon style="color: gray;" matSuffix>business</mat-icon>
+                    <!-- <mat-hint style="color: gray;">Hint</mat-hint> -->
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12 mat-form-wrap">
+              <div class="row">
+                <div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>

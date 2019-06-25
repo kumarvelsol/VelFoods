@@ -10,12 +10,10 @@ import { TabledefinitionComponent } from './tabledefinition/tabledefinition.comp
 import { PaidoutsmiscolComponent } from './paidoutsmiscol/paidoutsmiscol.component';
 import { PropertyComponent } from './property/property.component';
 import { TaxpageComponent } from './taxpage/taxpage.component';
+import { OffersComponent } from './offers/offers.component';
 
 @NgModule({
-  declarations: [LoginpageComponent, PropertyComponent, TaxpageComponent,TabledefinitionComponent, PaidoutsmiscolComponent],
-
-
-
+  declarations: [LoginpageComponent, PropertyComponent, TaxpageComponent,TabledefinitionComponent, PaidoutsmiscolComponent, OffersComponent],
   imports: [
     CommonModule,
     RestaurantRoutingModule,
