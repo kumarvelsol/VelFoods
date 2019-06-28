@@ -14,7 +14,7 @@ import { RestaurantModule } from './restaurant/restaurant.module';
 import { MaterialModule } from './shared/material.module';
 import { AmazingTimePickerModule } from 'amazing-time-picker';
 @NgModule({
-  declarations: [
+  declarations: [ 
     AppComponent,
     ManagerComponent,
     RestaurantsComponent,
