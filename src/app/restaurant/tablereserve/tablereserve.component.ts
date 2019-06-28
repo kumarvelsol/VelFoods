@@ -23,7 +23,7 @@ export class TablereserveComponent implements OnInit {
   rows: Array<{id:string,date:string,time:string,name:string,pax:string,phoneno:number,restaurant:string}> = [];
   displayedColumns: string[] = ["id","date", "time","name", "pax","phoneno","restaurant","actions"];
   buttoncontent : string;abDatasource;id:string;
-  date : string;time : string;name :string;pax:string;phoneno :number;restaurant : string;advance:number;
+  date : string;time : string;name :string;pax:string;phoneno :number;restaurant : string;advance:number;splins:string;
   constructor(private router: Router,) { }
   
   ngOnInit() {
@@ -33,7 +33,11 @@ export class TablereserveComponent implements OnInit {
   }
   public onsubmitclick()
   {
-    if(this.buttoncontent == "Save")
+    if(this.name == "" || this.pax == "" || this.phoneno == null)
+    {
+      alert("Please fill all fields");
+    }
+    else if(this.buttoncontent == "Save")
     {
       this.rows.push({id : "3",date:this.date,time:this.time,name:this.name,pax:this.pax,phoneno:this.phoneno,restaurant:this.restaurant});
       this.abDatasource = this.rows;

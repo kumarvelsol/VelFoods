@@ -48,9 +48,16 @@ export class TabledefinitionComponent implements OnInit {
   }
   public onSaveclick()
   {
+    if(this.tableid == "" || this.pax == "")
+    {
+      alert("Please fill all fields");
+    }
+    else if(this.buttoncontent == "Save")
+    {
     this.rows.push({tableid:this.tableid, pax:this.pax,reporting:this.reporting,view:this.view,captain:this.captain,steward:this.steward,status:this.status});
     this.abDatasource = this.rows;
     console.log(this.abDatasource);
+    }
   }
   public RowSelected(j:number,tableid:string,pax:string,reporting:string,status:string,view:string,captain:string,steward:string)
   {

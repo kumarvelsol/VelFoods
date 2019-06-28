@@ -144,15 +144,15 @@ export class OffersComponent implements OnInit {
   onsaveclick(){
     if(this.dates_slide == true){
       if(this.from_date == null || this.to_date == null){
-        alert("Please Enter Minimum Bill Amount Or Switch off the Min Bill Section");
+        alert("Please Enter Dates Or Switch off the Dates Section");
       }
     }else{
       this.from_date = null;
       this.to_date = null;
     }
     if(this.times_slide == true){
-      if(this.minbill_amount == null){
-        alert("Please Enter Minimum Bill Amount Or Switch off the Min Bill Section");
+      if(this.from_time == null || this.to_time == null){
+        alert("Please Enter Time fields Or Switch off the Time Section");
       }
     }else{
       this.from_time = null;
@@ -162,6 +162,9 @@ export class OffersComponent implements OnInit {
     }else{
     }
     if(this.per_slide == true){
+      if(this.percentage == null){
+        alert("Please Enter Percentage Or Switch off the Percentage Section");
+      }
     }else{
       this.percentage == "";
     }
@@ -181,7 +184,20 @@ export class OffersComponent implements OnInit {
     }
   }
   onclearclick(){
-    
+    this.dates_slide = false;
+    this.onDatesValid();
+    this.times_slide = false;
+    this.onTimesValid();
+    this.days_slide = false;
+    this.onDaysValid();
+    this.maxdis_slide = false;
+    this.onMaxDisValid();
+    this.per_slide = false;
+    this.onPerValid();
+    this.minbill_slide = false;
+    this.onMinBillValid();
+    this.maxdis_slide = false;
+    this.onMaxDisValid();
   }
   public enable_checkboxes(){
     this.monday = false;
