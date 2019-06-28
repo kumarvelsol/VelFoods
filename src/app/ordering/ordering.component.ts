@@ -23,7 +23,7 @@ export class OrderingComponent implements OnInit {
    colorrs : 'green';
    orn :'orange';
    redd :'red';
-
+   colorr:string;
    //mystyles :string;
   colorFlag: any;
    //rooms :any ={};
@@ -34,44 +34,21 @@ export class OrderingComponent implements OnInit {
   
     this._roomservice.roomno().subscribe((data : order) =>
     {
-      //debugger;
       this.userlist=data;
-      this.rooms = this.userlist.Data;
-       
+      this.rooms = this.userlist.Data;       
       for(let i=0; i<this.rooms.length ; i++){
-        // if(this.rooms[i].BACKGROUND_COLOR =="Green")
-        // {
-        //   var aa = this.rooms[i].ROOM_NO.toString();
-        //    aa =this.colorFlag? '':'green';
-        //    return aa;
-        // }
-        // else if(this.rooms[i].BACKGROUND_COLOR =="Orange")
-        // {
-        //   var bb = this.rooms[i].ROOM_NO.toString();
-        //   // NgStyle :[
-        //      bb =this.colorFlag? 'background-color': 'orange' ;
-
-        //  //  ]
-        //    return bb  ;
-        // }
-        if(this.rooms[i].BACKGROUND_COLOR == "Green"){
-          //alert('green');
-         // this.colors =this.rooms[i].ROOM_NO.toString();
-         // return { 'background-color':this.colors?'': 'primary' };
-         
-         //this.colors = this.rooms[i].ROOM_NO.toString();
-         // var aa ='green' //  this.colors = this.colorFlag?'':'green';  
-       //  return this.rooms[i].ROOM_NO = style[ this.colorFlag? 'background-color':'green'];
-       //return this.rooms[i].ROOM_NO =NgStyle ["{'background-color':'green' }"]
-       //this.colors =this.rooms[i]
+        if(this.rooms[i].BACKGROUND_COLOR == "Green")
+        {
+          //this.colorr ='#FF5733';
         }
         else if(this.rooms[i].BACKGROUND_COLOR == "Orange")
         {
-          alert('orange');
+         // alert('orange');
         }
         else if(this.rooms[i].BACKGROUND_COLOR =="Red")
         {
-          alert('red');
+          this.colorr ='#FF5737';
+         // alert('red');
         }
        }
        
@@ -79,81 +56,15 @@ export class OrderingComponent implements OnInit {
     });
   }
   onbuttonclick($event,ROOM_NO){
-     
-   // alert(ROOM_NO);
+    this.colorr ;
+    alert(ROOM_NO);
   }
-  // getmystyle(greens , orange , Red ,yellow){
-
-  //   for(let i=0; i<this.rooms.length ; i++){
-  //     this.roomnos =this.rooms[i].ROOM_NO.toString();
-  //     if(this.rooms[i].BACKGROUND_COLOR =="Green")
-  //     {     
-  //      // this.roomnos = this.colorFlag? '':'green';
-  //      greens ={
-  //        // 'background-color':this.colorFlag? '':'green', 
-  //        NgStyle: [
-  //          this.roomnos = this.colorFlag? '':'green',
-  //        ]
-  //       }
-  //       return greens;
-  //     }
-  //     else if(this.rooms[i].BACKGROUND_COLOR =="Orange")
-  //     {
-  //       this.roomnos = this.colorFlag? '':'orange'
-  //      orange ={
-  //       'background-color':this.colorFlag? '':'orange',   
-  //      } 
-  //      return orange;
-  //     }
-  //     else if(this.rooms[i].BACKGROUND_COLOR =="Red")
-  //     {
-  //       this.roomnos =this.colorFlag? '':'red';
-  //       Red ={
-  //         'background-color':this.colorFlag? '':'red',   
-  //       }
-  //       return Red;
-       
-  //     }
-  //    }
-  // //  let mystyles = {
-     
-  // //   'background-color':this.colorFlag? '':'green',
-  // //  //'color': this.colorFlag ? 'black' : 'green',
-  // //  } ;
-  // //  return mystyles;      
- // }
+  
  getmystyles()
  {
-   //debugger;
-    //let mystyles;
-    //for(let i=0; i<this.;i++)
-    //{
-      //if( this.rooms[i].BACKGROUND_COLOR == 'Green')
-      //{
-        
-      //   this.colors = this.rooms[i].ROOM_NO;
-      // // var aa ='green' //  this.colors = this.colorFlag?'':'green';  
-      // return this.rooms[i].ROOM_NO =NgStyle[ this.colorFlag? '':'green'];   
-      //}
-      
+ 
     }
-    
-// }
-//  color(){
-//    for(let i=0; i<this.rooms.length;i++){
-     
-//     if(this.colorrs == this.rooms[i].BACKGROUND_COLOR){
-//       alert('green');
-//     }
-//     else if(this.orn ==this.rooms[i].BACKGROUND_COLOR)
-//     {
-//       alert('orange');
-//     }
-//     else if(this.redd ==this.rooms[i].BACKGROUND_COLOR)
-//     {
-//       alert('red');
-//     }
-//    }
-   
-//  }
+  
+
+
 }
