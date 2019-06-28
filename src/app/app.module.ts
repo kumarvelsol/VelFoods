@@ -16,7 +16,7 @@ import { LoginComponent } from './login/login.component';
 import { OrderingComponent } from './ordering/ordering.component';
 import { AmazingTimePickerModule } from 'amazing-time-picker';
 @NgModule({
-  declarations: [
+  declarations: [ 
     AppComponent,
     ManagerComponent,
     RestaurantsComponent,
