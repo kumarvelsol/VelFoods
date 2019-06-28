@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ItemcategoryServiceService } from '../itemcategory-service.service';
 import { NgForm } from '@angular/forms';
-import { PeriodicElement } from '../item-category/item-category.component';
 
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Non-veg', weight: "Employee 1", symbol: 'Active'},
-  {position: 2, name: 'fried rice', weight: "Employee 2", symbol: 'InActive'},
-  {position: 3, name: 'snacks', weight: "Employee 3", symbol: 'Active'},
-  {position: 4, name: 'Rice', weight: "Employee 1", symbol: 'Active'},
-  {position: 5, name: 'noodles', weight: "Employee 5", symbol: 'Active'},
+
+const ELEMENT_DATA: PeriodicElements[] = [
+  {position: 1, name: 'Non-veg', weight: "Employee 1", DineINN:"100",Tax:"5",TakeAway:"100", Tax1:"6",HomeDelivery:"100",Tax2:"7",DeliveryCharge:"100",symbol: 'Active'},
+  {position: 2, name: 'veg', weight: "Employee 2", DineINN:"100",Tax:"5",TakeAway:"100", Tax1:"6",HomeDelivery:"100",Tax2:"7",DeliveryCharge:"100",symbol: 'Active'},
+  {position: 3, name: 'Non-veg', weight: "Employee 1", DineINN:"100",Tax:"5",TakeAway:"100", Tax1:"6",HomeDelivery:"100",Tax2:"7",DeliveryCharge:"100",symbol: 'Active'},
+  {position: 4, name: 'veg', weight: "Employee 2", DineINN:"100",Tax:"5",TakeAway:"100", Tax1:"6",HomeDelivery:"100",Tax2:"7",DeliveryCharge:"100",symbol: 'Active'},
+  {position: 5, name: 'veg', weight: "Employee 1", DineINN:"100",Tax:"5",TakeAway:"100", Tax1:"6",HomeDelivery:"100",Tax2:"7",DeliveryCharge:"100",symbol: 'Active'},
 ];
 
 @Component({
@@ -17,17 +17,30 @@ const ELEMENT_DATA: PeriodicElement[] = [
   templateUrl: './item-names.component.html',
   styleUrls: ['./item-names.component.css']
 })
-export class ItemNamesComponent implements OnInit {
-
+export class ItemNamesComponent implements OnInit 
+{
+  selected:any;
+  selectedTakeaway:any;
+  spinnerDineInn:any;
+  dineInnInputss:number;
+  takeawayInputss:number;
+  selectedDeliveryss:any;
+  ss:number;
+  homeDeliveryLabel1:number;
+  homeDeliveryTax1:number;
+  
+  addingsss:number;
+  
   seasons: string[] = ['Active', 'InActive'];
   constructor(public service:ItemcategoryServiceService) { }
 
   
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  displayedColumns: string[] = ['position', 'name', 'weight','DineINN','Tax','TakeAway','Tax1','HomeDelivery','Tax2','DeliveryCharge', 'symbol'];
   dataSource = ELEMENT_DATA;
 
   ngOnInit() {
     this.resetForm();
+
   }
 
 
@@ -74,4 +87,68 @@ export class ItemNamesComponent implements OnInit {
     this.service.itemNames.description=null;
   }
 
+
+  onKey(event: any)
+  {
+
+    console.log(event.target.value);
+  }
+
+  onDineInnLabel(event: any)
+  {
+    this.dineInnInputss=event.target.value;
+    console.log(this.dineInnInputss);
+
+    // this.spinnerDineInn=this.selected;
+    // this.selected=''+(event.target.value*this.spinnerDineInn);
+  }
+
+  selectOption(value)
+  {
+
+    this.selected=Number.parseFloat((this.dineInnInputss*value).toString())+Number.parseInt(this.dineInnInputss.toString());
+  }
+
+  onTakeAwayLabel(event:any)
+  {
+    this.takeawayInputss=event.target.value;
+  }
+  selectTakeAway(value)
+  {    
+    
+    this.selectedTakeaway=Number.parseFloat((this.takeawayInputss*value).toString())+Number.parseInt(this.takeawayInputss.toString());
+  }
+
+  onHDeliveryLabel(event:any)
+  {
+    this.homeDeliveryLabel1=event.target.value;
+  }
+
+  selectHDelivery(value)
+  {
+    this.homeDeliveryTax1=value;
+  }
+
+  onHDeliveryChargeLabel(event:any)
+  {         
+    this.ss =(this.homeDeliveryLabel1*this.homeDeliveryTax1);
+    this.addingsss=Number.parseFloat(this.ss.toString())+Number.parseInt(this.homeDeliveryLabel1.toString())
+    this.selectedDeliveryss=Number.parseFloat((this.addingsss).toString())+ Number.parseInt(event.target.value.toString());
+    
+  }
+
+}
+export interface PeriodicElements {
+  name: string;
+  position: number;
+  weight: string;
+  DineINN:string;
+  Tax:String;
+  Tax1:String;
+  Tax2:String;
+  TakeAway:string;
+  HomeDelivery:string;
+  DeliveryCharge:string;
+  symbol: string;
+ 
 }

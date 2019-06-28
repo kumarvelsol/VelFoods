@@ -1,0 +1,80 @@
+
+   <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <mat-card class="row example-card parent">
+          <div class="block child">
+            <p style="margin-top: 20px; margin-left: 15px; color: gray; font-size: 24px;">Wallets Definition</p>
+              <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" >
+                <mat-icon style="color:gray;" matSuffix>code</mat-icon>
+                <mat-label style="color :gray">Wallet Code</mat-label>
+                <input style="color :gray" [(ngModel)]="walletcode" type="text" matInput required>
+              </mat-form-field>
+              <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" >
+                <mat-icon style="color:gray;" matSuffix>account_balance_wallet</mat-icon>
+                <mat-label style="color :gray">Wallet Name</mat-label>
+                <input style="color :gray" [(ngModel)]="walletname" type="text" matInput required>
+              </mat-form-field>
+              <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray">
+                <mat-label style="color :gray">Employee Name</mat-label>
+                  <mat-select style="color :gray" [(ngModel)]="reportname" disableRipple>
+                    <mat-option style="color :gray" value="Dharani">Dharani</mat-option>
+                    <mat-option style="color :gray" value="Karthik">Karthik</mat-option>
+                  </mat-select>
+              </mat-form-field>
+              <div class="col-md-12">
+                    <mat-label style="color :gray;margin-left: -60px;">Status  :  </mat-label>&nbsp;&nbsp;
+                    <mat-radio-group style="margin-bottom: 60px;margin-top: 60px;" [(ngModel)]="status" aria-label="Status" required>
+                      <mat-radio-button value="Active">Active</mat-radio-button>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <mat-radio-button value="InActive">InActive</mat-radio-button>
+                    </mat-radio-group>
+              </div>
+              <button mat-raised-button style="margin-top: 10px;" class="btn-style" (click)="onsave()">{{buttoncontent}}</button>&nbsp;&nbsp;
+              <button mat-raised-button class="clearbtn-style" (click)="onclear()">
+              <mat-icon>clear_all</mat-icon>
+              </button>
+          </div>
+        </mat-card>
+      </div>
+      <div class="col-md-6">
+        <div class="example-container mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource">
+                <ng-container matColumnDef="walletid">
+                  <th mat-header-cell *matHeaderCellDef> S.No  </th>
+                  <td mat-cell *matCellDef="let element"> {{element.walletid}} </td>
+                </ng-container>
+                <ng-container matColumnDef="walletcode">
+                  <th mat-header-cell *matHeaderCellDef> Wallet Code </th>
+                  <td mat-cell *matCellDef="let element"> {{element.walletcode}} </td>
+                </ng-container>
+                <ng-container matColumnDef="walletname">
+                  <th mat-header-cell *matHeaderCellDef> Wallet Name </th>
+                  <td mat-cell *matCellDef="let element"> {{element.walletname}} </td>
+                </ng-container>
+                <ng-container matColumnDef="reportname">
+                  <th mat-header-cell *matHeaderCellDef> Reporting Name </th>
+                  <td mat-cell *matCellDef="let element"> {{element.reportname}} </td>
+                </ng-container>
+                <ng-container matColumnDef="status">
+                  <th mat-header-cell *matHeaderCellDef> Status </th>
+                  <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+                </ng-container>
+                <ng-container matColumnDef="actions">
+                  <th mat-header-cell *matHeaderCellDef>Edit</th>
+                  <td mat-cell *matCellDef="let element; let i=index;">
+                    <button mat-icon-button style="color:gray;margin-right: 10px;" (click)="RowSelected(i,element.walletcode,element.walletname,element.reportname,element.status)">
+                      <mat-icon aria-label="Edit">edit</mat-icon>
+                    </button>
+                    <!-- <button mat-icon-button style="color:gray;margin-right: 10px;" (click)="RowDeleted(i,element.taxid,element.taxname,element.percentage,element.reportname,element.activefrom,element.status)">
+                      <mat-icon aria-label="Edit">delete</mat-icon>
+                    </button> -->
+                  </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  

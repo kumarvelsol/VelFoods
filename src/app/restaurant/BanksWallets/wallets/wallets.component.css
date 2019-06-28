@@ -1,3 +1,4 @@
+
 table {
     width: 100%;
   }
@@ -5,7 +6,6 @@ table {
     /* background-color: #33B5E5; */
     margin-top: 20px;
     width: 100%;
-    margin-left: 0px;
   }
   .mat-form-wrap{
     width: 100%;
@@ -34,7 +34,8 @@ table {
   }
   .parent{
     text-align:center;
-    height:900px;
+    height:500px;
+    margin-left: 10px;
   }
   .block {
     width: 80%;
@@ -43,12 +44,11 @@ table {
     margin:auto;
   }
   .example-container {
-    height: 900px;
+    height: 500px;
     overflow: auto; 
     margin-top: 20px;
     border-radius: 5px;
     margin-bottom: 20px;
-    color: black;
   }
   p{
     text-align: center;

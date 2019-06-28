@@ -13,7 +13,6 @@ const routes: Routes = [{
   {path:'login',component:LoginComponent},
   {path:'ordering',component:OrderingComponent},
 ];
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
