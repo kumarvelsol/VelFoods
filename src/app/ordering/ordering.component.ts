@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ServiceService} from '../service.service';
-import { order, room } from 'src/Model/ordermodel';
+import { order, room } from '../Model/ordermodel';
 import { NgStyle } from '@angular/common';
 import { style } from '@angular/animations';
 import { Button } from 'protractor';
