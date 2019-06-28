@@ -33,7 +33,11 @@ export class TablereserveComponent implements OnInit {
   }
   public onsubmitclick()
   {
-    if(this.buttoncontent == "Save")
+    if(this.name == "" || this.pax == "" || this.phoneno == null)
+    {
+      alert("Please fill all fields");
+    }
+    else if(this.buttoncontent == "Save")
     {
       this.rows.push({id : "3",date:this.date,time:this.time,name:this.name,pax:this.pax,phoneno:this.phoneno,restaurant:this.restaurant});
       this.abDatasource = this.rows;
