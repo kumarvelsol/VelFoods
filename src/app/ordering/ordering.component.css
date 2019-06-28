@@ -1,0 +1,38 @@
+.mat-divider{
+    border-top-color:black;
+    border-top-width: 1px;
+    margin-bottom: 200px;
+}
+.wrap{
+    height: 500px;
+    width: 500px;
+    margin-top: 80px;
+    margin-left: 120px;
+}
+.subwrap{
+    height: 500px;
+    width: 500px;
+    margin-top:80px;
+    margin-right: 200px;
+}
+.left{
+    float: left;
+}
+.right{
+    float: right;
+}
+.sidecard{
+    width: 100%;
+}
+.button-style{
+    width: 100px;
+    height: 45px;
+    margin-right: 15px;
+    margin-bottom: 15px;
+
+}
+.btn-count{
+    margin-right: 15px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}

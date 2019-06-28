@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavigationExtras, Router } from '@angular/router';
 
 
 export interface Restaurant {
@@ -19,22 +20,26 @@ export class TablereserveComponent implements OnInit {
     {id: '2', rname: 'Daspalla'}
   ];
 
-  rows: Array<{date:string,time:string,name:string,pax:string,phoneno:number,restaurant:string}> = [];
-  displayedColumns: string[] = ["date", "time","name", "pax","phoneno","restaurant","actions"];
-  buttoncontent : string;abDatasource;
-  date : string;time : string;name :string;pax:string;phoneno :number;restaurant : string;advance:number;
-  constructor() { }
+  rows: Array<{id:string,date:string,time:string,name:string,pax:string,phoneno:number,restaurant:string}> = [];
+  displayedColumns: string[] = ["id","date", "time","name", "pax","phoneno","restaurant","actions"];
+  buttoncontent : string;abDatasource;id:string;
+  date : string;time : string;name :string;pax:string;phoneno :number;restaurant : string;advance:number;splins:string;
+  constructor(private router: Router,) { }
   
   ngOnInit() {
   this.buttoncontent = "Save";
-  this.rows = [{date :"21/06/2019",time:"12:00 PM",name:"ani",pax :"4",phoneno :9494963284,restaurant :"BBQ"},{date :"22/06/2019",time:"11:00 PM",name:"anisha",pax :"6",phoneno :9494963284,restaurant :"Daspalla"}];
+  this.rows = [{id:"1",date :"21/06/2019",time:"12:00 PM",name:"ani",pax :"4",phoneno :9494963284,restaurant :"BBQ"},{id:"2",date :"22/06/2019",time:"11:00 PM",name:"anisha",pax :"6",phoneno :9494963284,restaurant :"Daspalla"}];
     this.abDatasource = this.rows;
   }
   public onsubmitclick()
   {
-    if(this.buttoncontent == "Save")
+    if(this.name == "" || this.pax == "" || this.phoneno == null)
     {
-      this.rows.push({date:this.date,time:this.time,name:this.name,pax:this.pax,phoneno:this.phoneno,restaurant:this.restaurant});
+      alert("Please fill all fields");
+    }
+    else if(this.buttoncontent == "Save")
+    {
+      this.rows.push({id : "3",date:this.date,time:this.time,name:this.name,pax:this.pax,phoneno:this.phoneno,restaurant:this.restaurant});
       this.abDatasource = this.rows;
       console.log(this.abDatasource);
     }
@@ -42,6 +47,32 @@ export class TablereserveComponent implements OnInit {
     {
 
     }
+  }
+  public RowSelected(j,date:string,time:string,name:string,pax:string,restaurant:string,phoneno:number,advance:number)
+  {
+    this.buttoncontent = "Update";
+    this.date = date;
+    this.time = time;
+    this.name= name;
+    this.pax = pax;
+    this.restaurant = restaurant;
+    this.phoneno = phoneno;
+    this.advance = advance;
+  }
+  public NavigateClick(j,date:string,time:string,name:string,pax:string,restaurant:string,phoneno:number,advance:number)
+  {
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        "date":this.date = date,
+        "time":this.time = time,
+        "name":this.name= name,
+        "pax":this.pax = pax,
+        "restaurant":this.restaurant = restaurant,
+        "phoneno":this.phoneno = phoneno,
+        "advance":this.advance = advance,
+      }
+    };
+    this.router.navigate(['/home'],navigationExtras); 
   }
 
 }
