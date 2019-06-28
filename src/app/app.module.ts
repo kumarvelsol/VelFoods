@@ -12,6 +12,7 @@ import { ItemCategoryComponent } from './item-category/item-category.component';
 import { ItemNamesComponent } from './item-names/item-names.component';
 import { RestaurantModule } from './restaurant/restaurant.module';
 import { MaterialModule } from './shared/material.module';
+import { AmazingTimePickerModule } from 'amazing-time-picker';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +26,7 @@ import { MaterialModule } from './shared/material.module';
     BrowserModule,AppRoutingModule,
     ReactiveFormsModule,FormsModule,
     BrowserAnimationsModule,RestaurantModule,
-    CoreModule,
+    CoreModule,AmazingTimePickerModule,
     CommonModule,
   ],
   providers: [],
