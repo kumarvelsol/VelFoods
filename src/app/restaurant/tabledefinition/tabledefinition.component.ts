@@ -8,7 +8,10 @@ export interface Steward {
   sid: string;
   sname: string;
 };
-
+export interface Status {
+  stid: string;
+  stname: string;
+};
 @Component({
   selector: 'app-tabledefinition',
   templateUrl: './tabledefinition.component.html',
@@ -23,22 +26,38 @@ export class TabledefinitionComponent implements OnInit {
     {sid : '1',sname:'aa'},
     {sid : '2',sname:'bb'}
   ]
+  sta : Status[]  = [
+    {stid : '1',stname:'Active'},
+    {stid : '2',stname:'Inactive'}
+  ]
   rows: Array<{tableid:string,pax:string,reporting:string,status:string,view:string,captain:string,steward:string}> = [];
-  buttoncontent : string;abDatasource;
-  tableid:string;pax:string;reporting:string;status:string;view:string;captain :string;steward : string;
-  displayedColumns: string[] = ['tableid','pax','reporting','status','actions'];
+  buttoncontent : string;abDatasource;listcount : number;
+  tableid:string;pax:string;reporting:string;status:string;view:string;captain :string;steward : string;tid : any = {};
+  displayedColumns: string[] = ['tableid','pax','reporting','status','view','captain','steward','actions'];
   constructor() { }
 
   ngOnInit() {
+    this.listcount = 7;
+        for (let i = 0; i < this.listcount; i++) 
+        {
+          this.tid[i] = i;
+        }
     this.buttoncontent = "Save";
     this.rows = [{tableid :"1",pax :"4",reporting :"Anisha",status :"Active",view:"balcony",captain:"Anisha",steward:"aa"},{tableid :"2",pax :"6",reporting :"Anisha",status :"Active",view:"balcony",captain:"Anisha",steward:"aa"}];
     this.abDatasource = this.rows;
   }
   public onSaveclick()
   {
+    if(this.tableid == "" || this.pax == "")
+    {
+      alert("Please fill all fields");
+    }
+    else if(this.buttoncontent == "Save")
+    {
     this.rows.push({tableid:this.tableid, pax:this.pax,reporting:this.reporting,view:this.view,captain:this.captain,steward:this.steward,status:this.status});
     this.abDatasource = this.rows;
     console.log(this.abDatasource);
+    }
   }
   public RowSelected(j:number,tableid:string,pax:string,reporting:string,status:string,view:string,captain:string,steward:string)
   {
