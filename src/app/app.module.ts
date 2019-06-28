@@ -12,13 +12,17 @@ import { ItemCategoryComponent } from './item-category/item-category.component';
 import { ItemNamesComponent } from './item-names/item-names.component';
 import { RestaurantModule } from './restaurant/restaurant.module';
 import { MaterialModule } from './shared/material.module';
+import { LoginComponent } from './login/login.component';
+import { OrderingComponent } from './ordering/ordering.component';
 @NgModule({
   declarations: [
     AppComponent,
     ManagerComponent,
     RestaurantsComponent,
     ItemCategoryComponent,
-    ItemNamesComponent
+    ItemNamesComponent,
+    LoginComponent,
+    OrderingComponent
   ],
   imports: [
     MaterialModule,
