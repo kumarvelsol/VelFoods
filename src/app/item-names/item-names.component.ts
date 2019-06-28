@@ -74,11 +74,8 @@ export class ItemNamesComponent implements OnInit
       this.service.itemNames.description=null;
       this.service.itemNames.reportingName=null;
       this.service.itemNames.activeFrom=null;
-      this.service.itemNames.status=null;
-
-      console.log(ss.value);
-    }
-    
+      this.service.itemNames.status=null;      
+    }    
   }
 
   onclearclick()
@@ -90,22 +87,21 @@ export class ItemNamesComponent implements OnInit
 
   onKey(event: any)
   {
-
     console.log(event.target.value);
   }
 
   onDineInnLabel(event: any)
   {
     this.dineInnInputss=event.target.value;
-    console.log(this.dineInnInputss);
 
+    console.log(this.dineInnInputss);
+    
     // this.spinnerDineInn=this.selected;
     // this.selected=''+(event.target.value*this.spinnerDineInn);
   }
 
   selectOption(value)
   {
-
     this.selected=Number.parseFloat((this.dineInnInputss*value).toString())+Number.parseInt(this.dineInnInputss.toString());
   }
 
@@ -113,9 +109,9 @@ export class ItemNamesComponent implements OnInit
   {
     this.takeawayInputss=event.target.value;
   }
+
   selectTakeAway(value)
-  {    
-    
+  {        
     this.selectedTakeaway=Number.parseFloat((this.takeawayInputss*value).toString())+Number.parseInt(this.takeawayInputss.toString());
   }
 
@@ -132,20 +128,20 @@ export class ItemNamesComponent implements OnInit
   onHDeliveryChargeLabel(event:any)
   {         
     this.ss =(this.homeDeliveryLabel1*this.homeDeliveryTax1);
-    this.addingsss=Number.parseFloat(this.ss.toString())+Number.parseInt(this.homeDeliveryLabel1.toString())
-    this.selectedDeliveryss=Number.parseFloat((this.addingsss).toString())+ Number.parseInt(event.target.value.toString());
-    
+    this.addingsss=Number.parseFloat(this.ss.toString())+Number.parseInt(this.homeDeliveryLabel1.toString());
+    this.selectedDeliveryss=Number.parseFloat((this.addingsss).toString())+ Number.parseInt(event.target.value.toString());    
   }
 
 }
-export interface PeriodicElements {
+export interface PeriodicElements 
+{
   name: string;
   position: number;
   weight: string;
   DineINN:string;
-  Tax:String;
-  Tax1:String;
-  Tax2:String;
+  Tax:string;
+  Tax1:string;
+  Tax2:string;
   TakeAway:string;
   HomeDelivery:string;
   DeliveryCharge:string;
