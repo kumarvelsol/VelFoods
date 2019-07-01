@@ -36,7 +36,7 @@ export class OrderingComponent implements OnInit {
     {
       this.userlist=data;
       this.rooms = this.userlist.Data;       
-      for(let i=0; i<this.rooms.length ; i++){
+      for(let i=0; i<this.rooms.length ; i++){ 
         if(this.rooms[i].BACKGROUND_COLOR == "Green")
         {
 
