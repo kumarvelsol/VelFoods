@@ -15,6 +15,8 @@ import { MaterialModule } from './shared/material.module';
 import { LoginComponent } from './login/login.component';
 import { OrderingComponent } from './ordering/ordering.component';
 import { AmazingTimePickerModule } from 'amazing-time-picker';
+
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [ 
     AppComponent,
@@ -31,7 +33,7 @@ import { AmazingTimePickerModule } from 'amazing-time-picker';
     ReactiveFormsModule,FormsModule,
     BrowserAnimationsModule,RestaurantModule,
     CoreModule,AmazingTimePickerModule,
-    CommonModule,
+    CommonModule,HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
