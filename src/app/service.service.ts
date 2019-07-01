@@ -7,7 +7,7 @@ import{ order} from './Model/ordermodel'
   providedIn: 'root'
 })
  export class ServiceService {
- Baseurl='http://localhost:50586/';
+ Baseurl='http://veledu.edujinni.in/';
 httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json'
