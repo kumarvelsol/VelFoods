@@ -76,96 +76,132 @@
 
 
 
-                    <div class="row col-md-12">
-                      <label style="color: blue"> DineInn</label>
+
+
+
+
+
+                    <div class="border_wrap">
+
+                      <div class="row heading_wrap">
+                        <div class="col-6">
+                          <label class="labels_style" style="color: blue">DineInn :</label>
+                        </div>
+                        <div class="col-6" style="position: relative">
+                        </div>  
+                      </div>  
+                     
+                      <div class="row col-md-12" style="margin: 15px; padding-right: 15px;">
+                        <mat-form-field  class="col-md-6"  style="color: gray;">
+                          <mat-label style="color: gray;">enter amount</mat-label>
+                          <mat-icon style="color :gray" matSuffix>developer_board</mat-icon>          
+                          <input matInput (keyup)="onDineInnLabel($event)"    name="description" #description="ngModel" [ngModel]="service.itemNames.description" required>
+                          <!-- <mat-hint style="color: gray;">Hint</mat-hint> -->
+                        </mat-form-field>
+                        <mat-form-field  class="col-md-6" >
+                          <mat-label>Select Tax</mat-label>
+                          <mat-select [(value)]="selected"  (selectionChange)="selectOption($event.value)"  >
+                            <mat-option>None</mat-option>
+                            <mat-option value="0.05">5</mat-option>
+                            <mat-option value="0.06">6</mat-option>
+                            <mat-option value="0.07">7</mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                      <div class="row col-md-12">
+                          <label  style="margin-left: 50px;"> Total: {{selected}} </label>  
+                      </div>
+                
+                  </div>
+
+
+
+
+                  <div class="border_wrap">
+
+                    <div class="row heading_wrap">
+                      <div class="col-6">
+                        <label class="labels_style" style="color: blue">Take Away :</label>
+                      </div>
+                      <div class="col-6" style="position: relative">
+                      </div>  
+                    </div>  
+                   
+                    <div class="row col-md-12" style="margin: 15px;">
+                      <mat-form-field   class="col-md-6" style="color: gray;">
+                          <mat-label style="color: gray;">amount</mat-label>
+                          <mat-icon style="color :gray" matSuffix>developer_board</mat-icon>          
+                          <input matInput  (keyup)="onTakeAwayLabel($event)"   name="description" #description="ngModel" [ngModel]="service.itemNames.description" required>
+                          <!-- <mat-hint style="color: gray;">Hint</mat-hint> -->
+                        </mat-form-field>
+                        <mat-form-field  class="col-md-6" >
+                            <mat-label>Select Tax</mat-label>
+                            <mat-select [(value)]="selectedTakeaway"  (selectionChange)="selectTakeAway($event.value)"  >
+                              <mat-option>None</mat-option>
+                              <mat-option value="0.05">5</mat-option>
+                              <mat-option value="0.06">6</mat-option>
+                              <mat-option value="0.07">7</mat-option>
+                            </mat-select>
+                          </mat-form-field> 
+                  </div>
+                  <div class="row col-md-12">
+                      <label style="margin-left: 50px;"> Total: {{selectedTakeaway}} </label>  
+                  </div>
+              
+                </div>
+
+                  
+                
+
+
+
+                <div class="border_wrap">
+
+                  <div class="row heading_wrap">
+                    <div class="col-6">
+                      <label class="labels_style"  style="color: blue">Home Delivery :</label>
                     </div>
-                    <mat-divider></mat-divider>
-                    <div class="row col-md-12" style="margin: 15px; padding-right: 15px;">
-                      <mat-form-field  class="col-md-6"  style="color: gray;">
-                        <mat-label style="color: gray;">enter amount</mat-label>
+                    <div class="col-6" style="position: relative">
+                    </div>  
+                  </div>  
+                 
+                  <div class="row col-md-12" style="margin: 15px;">
+                    <mat-form-field class="col-md-4" style="color: gray;">
+                        <mat-label style="color: gray;">amount</mat-label>
                         <mat-icon style="color :gray" matSuffix>developer_board</mat-icon>          
-                        <input matInput (keyup)="onDineInnLabel($event)"    name="description" #description="ngModel" [ngModel]="service.itemNames.description" required>
+                        <input matInput   (keyup)="onHDeliveryLabel($event)"  name="description" #description="ngModel" [ngModel]="service.itemNames.description" required>
                         <!-- <mat-hint style="color: gray;">Hint</mat-hint> -->
                       </mat-form-field>
-                      <mat-form-field  class="col-md-6" >
+                    <mat-form-field class="col-md-4">
                         <mat-label>Select Tax</mat-label>
-                        <mat-select [(value)]="selected"  (selectionChange)="selectOption($event.value)"  >
+                        <mat-select [(value)]="selectedDelivery" (selectionChange)="selectHDelivery($event.value)"  >
                           <mat-option>None</mat-option>
                           <mat-option value="0.05">5</mat-option>
                           <mat-option value="0.06">6</mat-option>
                           <mat-option value="0.07">7</mat-option>
                         </mat-select>
                       </mat-form-field>
-                    </div>
-                    <div class="row col-md-12">
-                        <label  style="margin-left: 15px;"> Total: {{selected}} </label>  
-                    </div>
-                    <mat-divider></mat-divider> 
+
+                      <mat-form-field class="col-md-4" style="color: gray; ">
+                          <mat-label style="color: gray;">Delivery Charge</mat-label>
+                          <mat-icon style="color :gray" matSuffix>developer_board</mat-icon>          
+                          <input  matInput   (keyup)="onHDeliveryChargeLabel($event)" (keyup)="onKey($event)"  >
+                          <!-- <mat-hint style="color: gray;">Hint</mat-hint> -->
+                        </mat-form-field>
+                </div>
+            <div class="row col-md-12">
+                <label  style="margin-left: 50px;"> Total: {{selectedDeliveryss}} </label>  
+            </div>
+            
+              </div>
                     
 
 
 
-                    <div class="row col-md-12" style="margin-top:15px; ">
-                        <label style="color: blue"> TakeAway : </label>
-                      </div>
-                      <mat-divider></mat-divider>
-                      <div class="row col-md-12" style="margin: 15px;">
-                          <mat-form-field   class="col-md-6" style="color: gray;">
-                              <mat-label style="color: gray;">amount</mat-label>
-                              <mat-icon style="color :gray" matSuffix>developer_board</mat-icon>          
-                              <input matInput  (keyup)="onTakeAwayLabel($event)"   name="description" #description="ngModel" [ngModel]="service.itemNames.description" required>
-                              <!-- <mat-hint style="color: gray;">Hint</mat-hint> -->
-                            </mat-form-field>
-                            <mat-form-field  class="col-md-6" >
-                                <mat-label>Select Tax</mat-label>
-                                <mat-select [(value)]="selectedTakeaway"  (selectionChange)="selectTakeAway($event.value)"  >
-                                  <mat-option>None</mat-option>
-                                  <mat-option value="0.05">5</mat-option>
-                                  <mat-option value="0.06">6</mat-option>
-                                  <mat-option value="0.07">7</mat-option>
-                                </mat-select>
-                              </mat-form-field> 
-                      </div>
-                      <div class="row col-md-12">
-                          <label style="margin-left: 15px;"> Total: {{selectedTakeaway}} </label>  
-                      </div>
-                      <mat-divider></mat-divider>
+                    
 <!-- -->
 
-
-                        <div class="row col-md-12" style="margin-top:15px;">
-                          <label style="color: blue"> Home Delivery : </label>
-                        </div>
-                        <mat-divider></mat-divider>
-                            <div class="row col-md-12" style="margin: 15px;">
-                                <mat-form-field class="col-md-4" style="color: gray;">
-                                    <mat-label style="color: gray;">amount</mat-label>
-                                    <mat-icon style="color :gray" matSuffix>developer_board</mat-icon>          
-                                    <input matInput   (keyup)="onHDeliveryLabel($event)"  name="description" #description="ngModel" [ngModel]="service.itemNames.description" required>
-                                    <!-- <mat-hint style="color: gray;">Hint</mat-hint> -->
-                                  </mat-form-field>
-                                <mat-form-field class="col-md-4">
-                                    <mat-label>Select Tax</mat-label>
-                                    <mat-select [(value)]="selectedDelivery" (selectionChange)="selectHDelivery($event.value)"  >
-                                      <mat-option>None</mat-option>
-                                      <mat-option value="0.05">5</mat-option>
-                                      <mat-option value="0.06">6</mat-option>
-                                      <mat-option value="0.07">7</mat-option>
-                                    </mat-select>
-                                  </mat-form-field>
-
-                                  <mat-form-field class="col-md-4" style="color: gray; ">
-                                      <mat-label style="color: gray;">Delivery Charge</mat-label>
-                                      <mat-icon style="color :gray" matSuffix>developer_board</mat-icon>          
-                                      <input  matInput   (keyup)="onHDeliveryChargeLabel($event)" (keyup)="onKey($event)"  >
-                                      <!-- <mat-hint style="color: gray;">Hint</mat-hint> -->
-                                    </mat-form-field>
-                            </div>
-                        <div class="row col-md-12">
-                            <label  style="margin-left: 30px;"> Total: {{selectedDeliveryss}} </label>  
-                        </div>
-                        <mat-divider></mat-divider>
-                                                                                                                                                                                                                                  
+                                                                                                                                                                                                                                                          
 
               <div class="col-md-12">
                 <button button type="submit" class="btn-style" style="margin: 15px;" >Save</button>
