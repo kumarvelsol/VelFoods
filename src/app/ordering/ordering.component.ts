@@ -23,15 +23,16 @@ export class OrderingComponent implements OnInit {
    colorrs : 'green';
    orn :'orange';
    redd :'red';
-   colorr:string;
+   colorr:any = {};
    //mystyles :string;
   colorFlag: any;
    //rooms :any ={};
+   ROOM_NO : any ={};
   constructor(private _roomservice : ServiceService) {
    }
   
   ngOnInit() {
-  
+  debugger;
     this._roomservice.roomno().subscribe((data : order) =>
     {
       this.userlist=data;
