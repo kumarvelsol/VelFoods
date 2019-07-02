@@ -25,14 +25,13 @@ export class OrderingComponent implements OnInit {
   redd :'red';
   colorr:any = {};
   //mystyles :string;
- colorFlag: any;
+  colorFlag: any;
   //rooms :any ={};
   ROOM_NO : any ={};
- constructor(private _roomservice : ServiceService) {
+  constructor(private _roomservice : ServiceService) {
   }
-
- ngOnInit() {
-  debugger;
+  ngOnInit() {
+    debugger;
     this._roomservice.roomno().subscribe((data : order) =>
     {
       this.userlist=data;
@@ -61,7 +60,7 @@ export class OrderingComponent implements OnInit {
   this.getmystyles(this.aa);
   }
   onbuttonclick($event,ROOM_NO){
-    this.colorr ;
+    this.colorr;
     alert(ROOM_NO);
   }
   public  aa : string;
