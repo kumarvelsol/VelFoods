@@ -19,6 +19,9 @@ const ELEMENT_DATA: PeriodicElements[] = [
 })
 export class ItemNamesComponent implements OnInit 
 {
+  taxOnAmount:any;
+  taxOnTakeAwayAmount:any;
+  taxOnHDlryAmount:any;
   selected:any;
   selectedTakeaway:any;
   spinnerDineInn:any;
@@ -94,7 +97,7 @@ export class ItemNamesComponent implements OnInit
   {
     this.dineInnInputss=event.target.value;
 
-    console.log(this.dineInnInputss);
+    
     
     // this.spinnerDineInn=this.selected;
     // this.selected=''+(event.target.value*this.spinnerDineInn);
@@ -103,16 +106,19 @@ export class ItemNamesComponent implements OnInit
   selectOption(value)
   {
     this.selected=Number.parseFloat((this.dineInnInputss*value).toString())+Number.parseInt(this.dineInnInputss.toString());
+    this.taxOnAmount=Number.parseFloat((this.dineInnInputss*value).toString());
   }
 
   onTakeAwayLabel(event:any)
   {
     this.takeawayInputss=event.target.value;
   }
-
+  
   selectTakeAway(value)
   {        
     this.selectedTakeaway=Number.parseFloat((this.takeawayInputss*value).toString())+Number.parseInt(this.takeawayInputss.toString());
+
+    this.taxOnTakeAwayAmount=Number.parseFloat((this.takeawayInputss*value).toString());
   }
 
   onHDeliveryLabel(event:any)
@@ -123,6 +129,7 @@ export class ItemNamesComponent implements OnInit
   selectHDelivery(value)
   {
     this.homeDeliveryTax1=value;
+    this.taxOnHDlryAmount=(this.homeDeliveryLabel1*this.homeDeliveryTax1);        
   }
 
   onHDeliveryChargeLabel(event:any)
