@@ -32,61 +32,57 @@ export class OrderingComponent implements OnInit {
   }
 
  ngOnInit() {
- debugger;
-   this._roomservice.roomno().subscribe((data : order) =>
-   {
-     this.userlist=data;
-     this.rooms = this.userlist.Data;
-     for(let i=0; i<this.rooms.length ; i++){
-       if(this.rooms[i].BACKGROUND_COLOR == "Green")
-       {
-
+  debugger;
+    this._roomservice.roomno().subscribe((data : order) =>
+    {
+      this.userlist=data;
+      this.rooms = this.userlist.Data;
+      for(let i=0; i<this.rooms.length ; i++){
+      if(this.rooms[i].BACKGROUND_COLOR == "Green")
+      {
          // this.colorr = this.rooms[i].ROOM_NO.toString();
          // //this.colorr ='#FF5733';
          // return this.colorr = NgStyle [ 'green']
-       }
-       if(this.rooms[i].BACKGROUND_COLOR == "Orange")
-       {
-        // alert('orange');
-       }
-       if(this.rooms[i].BACKGROUND_COLOR =="Red")
-       {
-         //this.colors =this.rooms[i].ROOM_NO.toString();
-         //this.colorr ='#FF5737';
-        // this.colors =this.colorFlag? 'back-ground' :'green';
-        // alert('red');
-       }
       }
-
-     console.log(this.userlist.Data);
-   });
-   this.getmystyles(this.aa);
- }
- onbuttonclick($event,ROOM_NO){
-   this.colorr ;
-   alert(ROOM_NO);
- }
-
- public  aa : string ;
-getmystyles(aa)
-{
-//   this._roomservice.roomno().subscribe((data : order) =>
-//   {
-//   this.userlist=data;
-//   this.rooms = this.userlist.Data;
-//   for(let i=0; i<this.rooms.length ; i++){
-//   var s =  this.rooms[i].ROOM_NO.toString()
-//     switch(aa){
-
-//      case this.rooms[i].BACKGROUND_COLOR ='Green':
-//        return s ='green';
-//        case this.rooms[i].BACKGROUND_COLOR ='orange':
-//           return s ='orage';
-//           case this.rooms[i].BACKGROUND_COLOR ='Red':
-//               return s ='red';
-//     }
-//   }
-//   console.log(this.userlist.Data);
-//     });
- }
+      if(this.rooms[i].BACKGROUND_COLOR == "Orange")
+      {
+      // alert('orange');
+      }
+      if(this.rooms[i].BACKGROUND_COLOR =="Red")
+      {
+        //this.colors =this.rooms[i].ROOM_NO.toString();
+        //this.colorr ='#FF5737';
+        //this.colors =this.colorFlag? 'back-ground' :'green';
+        //alert('red');
+      }
+    }
+    console.log(this.userlist.Data);
+  });
+  this.getmystyles(this.aa);
+  }
+  onbuttonclick($event,ROOM_NO){
+    this.colorr ;
+    alert(ROOM_NO);
+  }
+  public  aa : string;
+  getmystyles(aa)
+  {
+  //   this._roomservice.roomno().subscribe((data : order) =>
+  //   {
+  //   this.userlist=data;
+  //   this.rooms = this.userlist.Data;
+  //   for(let i=0; i<this.rooms.length ; i++){
+  //   var s =  this.rooms[i].ROOM_NO.toString()
+  //     switch(aa){
+  //      case this.rooms[i].BACKGROUND_COLOR ='Green':
+  //        return s ='green';
+  //        case this.rooms[i].BACKGROUND_COLOR ='orange':
+  //           return s ='orage';
+  //           case this.rooms[i].BACKGROUND_COLOR ='Red':
+  //               return s ='red';
+  //     }
+  //   }
+  //   console.log(this.userlist.Data);
+  //     });
+  }
 }
