@@ -21,7 +21,7 @@
           <mat-form-field class="col-md-4 mat-form-wrap" style="color: gray;margin-left: 0px;margin-right: 0px;">
             <mat-label style="color: gray;">Description</mat-label>
             <input style="color: gray;" [(ngModel)]="In_name" type="text" name="In_name" matInput >
-            <mat-icon style="color: gray;" matSuffix>business</mat-icon>
+            <mat-icon style="color: gray;" matSuffix>description</mat-icon>
             <!-- <mat-hint style="color: gray;">Hint</mat-hint> -->
           </mat-form-field>
         </div>
@@ -35,6 +35,7 @@
               <mat-slide-toggle class="slidetoggle_wrap" name="dates_slide" [(ngModel)]="dates_slide" [color]="color" (change)="onDatesValid()"></mat-slide-toggle>
             </div>
           </div>
+
           <div class="row col-md-12" style="padding-top: 10px;padding-bottom:5px;">
             <mat-form-field class="col-md-4 mat-form-wrap" style="color :gray">
               <mat-label style="color :gray">From Date</mat-label>
@@ -42,12 +43,14 @@
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
+
             <mat-form-field class="col-md-4 mat-form-wrap" style="color :gray">
               <mat-label style="color :gray">To Date</mat-label>
               <input style="color :gray" [matDatepicker]="picker2" [(ngModel)]="to_date" name="to_date" [disabled]="to_date_disable" matInput>
               <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
               <mat-datepicker #picker2></mat-datepicker>
             </mat-form-field>
+            
           </div>
         </div>
         <!-- FromTime ToTime -->
@@ -67,6 +70,7 @@
               <input matInput type="time" atp-time-picker name="from_time" style="color: gray;" #from_time="ngModel" [ngModel]="from_time" [disabled]="from_time_disable">
               <!-- <mat-hint style="color: gray;">Hint</mat-hint> -->
             </mat-form-field>
+            
             <mat-form-field class="col-md-4 mat-form-wrap" style="color: gray;margin-left: 0px;margin-right: 0px;">
               <mat-label style="color: gray;">To Time</mat-label>
               <mat-icon style="color: gray;" matSuffix>timer</mat-icon>
@@ -141,7 +145,7 @@
             <mat-form-field class="col-md-4 mat-form-wrap" style="color: gray;margin-left: 0px;margin-right: 0px;">
               <mat-label style="color: gray;">Min Billing Amount</mat-label>
               <input style="color: gray;" [(ngModel)]="minbill_amount" type="text" name="minbill_amount" matInput [disabled]="minbill_disable">
-              <mat-icon style="color: gray;" matSuffix>business</mat-icon>
+              <mat-icon style="color: gray;" matSuffix>monetization_on</mat-icon>
               <!-- <mat-hint style="color: gray;">Hint</mat-hint> -->
             </mat-form-field>
           </div>
@@ -159,7 +163,7 @@
             <mat-form-field class="col-md-4 mat-form-wrap" style="color: gray;margin-left: 0px;margin-right: 0px;">
               <mat-label style="color: gray;">Maximum Amount</mat-label>
               <input style="color: gray;" [(ngModel)]="maxdis_amount" type="text" name="maxdis_amount" matInput [disabled]="maxdis_disable">
-              <mat-icon style="color: gray;" matSuffix>business</mat-icon>
+              <mat-icon style="color: gray;" matSuffix>monetization_on</mat-icon>
               <!-- <mat-hint style="color: gray;">Hint</mat-hint> -->
             </mat-form-field>
           </div>

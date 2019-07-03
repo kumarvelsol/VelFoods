@@ -3,12 +3,11 @@
     <div class="col-lg-6">
       <mat-card class="example-card">
         <div class="row col-lg-12">
-          <mat-card-title style="font-size: 20px; font-weight:bold;">Tableview</mat-card-title>
+          <mat-card-title style="font-size: 20px;font-weight:bold;">Tableview</mat-card-title>
           <mat-divider style="font-size: 1px; margin-top: 26px; " class="mat-divider"></mat-divider>
           <div class="col-md-12" style="padding-top: 10px;overflow: auto; height: 300px;">
             <button *ngFor="let room of rooms" [ngClass]="getmystyles()"   [ngStyle]="{'background-color':room.BACKGROUND_COLOR}"  mat-raised-button  class="button-style colors" name="room.ROOM_NO" (click)="onbuttonclick($event,room.ROOM_NO)">{{room.ROOM_NO}}</button>
           </div>
-
           <div class="col-4 mat-form-wrap" style="text-align: center">
             <button mat-mini-fab color="warn" class="col-12">1</button>
             <mat-label class="mat-form-field col-12" style="font-size: 20px; text-align: center;margin-top: 5px; font-weight:bold;">Repair</mat-label>
@@ -26,8 +25,8 @@
             <mat-label class="mat-form-field col-12" style="font-size: 20px; text-align: center;margin-top: 5px; font-weight:bold;">Billing</mat-label>
           </div>
           <div class="col-4 mat-form-wrap" style="text-align: center">
-            <button mat-mini-fab color="accent" class="col-12">1</button>
-            <mat-label class="mat-form-field col-12" style="font-size: 20px; text-align: center;margin-top: 5px; font-weight:bold;">Reservation</mat-label>
+            <button mat-mini-fab [ngStyle]="{'background-color':'white'}" class="col-12">1</button>
+            <mat-label class="mat-form-field col-12" style="font-size: 20px; text-align: center;margin-top: 5px; font-weight:bold; ">Reservation</mat-label>
           </div>
         </div>
         <!-- <mat-button-toggle-group name="fontStyle" ([ngModel])="roomselected" aria-label="Font Style">
@@ -72,47 +71,52 @@
             </mat-select>
           </mat-form-field>
         </div>
-        <mat-divider style="font-size: 1px; " class="mat-divider"></mat-divider>
-        <div class="row col-md-12 mat-form-field">
-          <div class="col-md-3 mat-form-field">
-              <mat-label class="mat-form-field" style="font-size: 20px; font-weight:bold;">Item Name</mat-label>
+        <button class="col-12" mat-button (click)="openDialog('Add',{})" mat-flat-button color="primary">Add Row</button>
+        <div class="col-12">
+          <div class="example-container mat-elevation-z1">
+            <table mat-table [dataSource]="dataSource">
+              <!--- Note that these columns can be defined in any order.
+                  The actual rendered columns are set as a property on the row definition" -->
+              <!-- ItemName Column -->
+              <ng-container matColumnDef="ItemName">
+                <th mat-header-cell *matHeaderCellDef> ItemName </th>
+                <td mat-cell *matCellDef="let element"> {{element.ItemName}} </td>
+              </ng-container>
+              <!-- Rate Column -->
+              <ng-container matColumnDef="Rate">
+                <th mat-header-cell *matHeaderCellDef> Rate </th>
+                <td mat-cell *matCellDef="let element"> {{element.Rate}} </td>
+              </ng-container>
+              <!-- Quantity Column -->
+              <ng-container matColumnDef="Quantity">
+                <th mat-header-cell *matHeaderCellDef> Quantity </th>
+                <td mat-cell *matCellDef="let element"> {{element.Quantity}} </td>
+              </ng-container>
+              <ng-container matColumnDef="Totalamount">
+                <th mat-header-cell *matHeaderCellDef> Totalamount </th>
+                <td mat-cell *matCellDef="let element"> {{element.Totalamount}} </td>
+              </ng-container>
+              <!-- Action Column -->
+              <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef> Action </th>
+                <td mat-cell *matCellDef="let element" class="action-link"> 
+                  <button mat-icon-button style="color:gray" (click)="openDialog('Update',element)">
+                    <mat-icon aria-label="Edit">edit</mat-icon>
+                  </button>|
+                  <button mat-icon-button style="color:gray" (click)="openDialog('Delete',element)">
+                    <mat-icon aria-label="delete">delete</mat-icon>
+                  </button>
+                  <!-- <a (click)="openDialog('Update',element)">Edit</a> | 
+                  <a (click)="openDialog('Delete',element)">Delete</a>   -->
+                </td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
           </div>
-          <div class="col-md-3 mat-form-field">
-              <mat-label class="mat-form-field" style="font-size: 20px; font-weight:bold; ">Item Id</mat-label>
-          </div>
-          <div class="col-md-2 mat-form-field">
-              <mat-label class="mat-form-field" style="font-size: 20px; font-weight:bold;">Price</mat-label>
-          </div>
-          <div class="col-md-2 mat-form-field">
-              <mat-label class="mat-form-field" style="font-size: 20px; font-weight:bold;">Qty</mat-label>
-          </div>
-          <div class="col-md-2 mat-form-field">
-              <mat-label class="mat-form-field" style="font-size: 20px; font-weight:bold;">Total</mat-label>
-          </div>
-        </div>
-        <mat-divider style="font-size: 1px; " class="mat-divider"></mat-divider>
-        <div class="col-md-12 mat-form-field">
-          <input type="text" placeholder="biryani" style="width: 100px; margin-top:5px; margin-left: 33px;">
-          <input type="text" placeholder="1" style="width: 50px; margin-top:5px; margin-left: 28px;">
-          <input type="text" placeholder="100.00" style="width: 50px; margin-top:5px; margin-left: 21px;">
-          <input type="text" placeholder="2" style="width: 50px; margin-top:5px; margin-left: 31px;">
-          <input type="text" placeholder="200.00" style="width: 50px; margin-top:5px; margin-left: 25px;">
-        </div>
-        <div class="col-md-12 mat-form-field">
-          <input type="text" placeholder="manchuria" style="width: 100px; margin-top:5px; margin-left: 33px;">
-          <input type="text" placeholder="2" style="width: 50px; margin-top:5px; margin-left: 28px;">
-          <input type="text" placeholder="200.00" style="width: 50px; margin-top:5px; margin-left: 21px;">
-          <input type="text" placeholder="2" style="width: 50px; margin-top:5px; margin-left: 31px;">
-          <input type="text" placeholder="400.00" style="width: 50px; margin-top:5px; margin-left: 25px;">
-        </div>
-        <div class="col-md-12 mat-form-field">
-          <input type="text" placeholder="keema" style="width: 100px; margin-top:5px; margin-left: 33px;">
-          <input type="text" placeholder="3" style="width: 50px; margin-top:5px; margin-left: 28px;">
-          <input type="text" placeholder="500.00" style="width: 50px; margin-top:5px; margin-left: 21px;">
-          <input type="text" placeholder="2" style="width: 50px; margin-top:5px; margin-left: 31px;">
-          <input type="text" placeholder="1000.00" style="width: 50px; margin-top:5px; margin-left: 25px;">
         </div>
       </mat-card>
     </div>
-  </div>
-</div>
+    </div>
+    </div>
+    
