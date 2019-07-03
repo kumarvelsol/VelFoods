@@ -23,11 +23,11 @@ const ELEMENT_DATA: UsersData[] = [
 ];
 
 @Component({
-  selector: 'app-ordering',
-  templateUrl: './ordering.component.html',
-  providers:[ServiceService],
-  styleUrls: ['./ordering.component.css'],
- })
+ selector: 'app-ordering',
+ templateUrl: './ordering.component.html',
+ providers:[ServiceService],
+ styleUrls: ['./ordering.component.css'],
+})
 export class OrderingComponent implements OnInit {
   displayedColumns: string[] = ['ItemName', 'Rate', 'Quantity', 'Totalamount', 'action'];
   dataSource = ELEMENT_DATA;
@@ -50,42 +50,41 @@ export class OrderingComponent implements OnInit {
   constructor(private _roomservice : ServiceService,public dialog: MatDialog) {
    }
   
-  ngOnInit() {
-  
+ ngOnInit() {
+    debugger;
     this._roomservice.roomno().subscribe((data : order) =>
     {
       this.userlist=data;
-      this.rooms = this.userlist.Data;       
-      for(let i=0; i<this.rooms.length ; i++){
+      this.rooms = this.userlist.Data;
+      for(let i=0; i<this.rooms.length ; i++)
+      {
         if(this.rooms[i].BACKGROUND_COLOR == "Green")
         {
-
           // this.colorr = this.rooms[i].ROOM_NO.toString();
           // //this.colorr ='#FF5733';
           // return this.colorr = NgStyle [ 'green']
         }
         if(this.rooms[i].BACKGROUND_COLOR == "Orange")
         {
-         // alert('orange');
+        // alert('orange');
         }
         if(this.rooms[i].BACKGROUND_COLOR =="Red")
         {
           //this.colors =this.rooms[i].ROOM_NO.toString();
           //this.colorr ='#FF5737';
-         // this.colors =this.colorFlag? 'back-ground' :'green';
-         // alert('red');
+          //this.colors =this.colorFlag? 'back-ground' :'green';
+          //alert('red');
         }
-       }
-       
+      }
       console.log(this.userlist.Data);
     });
     this.getmystyles(this.aa);
   }
   onbuttonclick($event,ROOM_NO){
-    this.colorr ;
+    this.colorr;
     alert(ROOM_NO);
   }
-  openDialog(action,obj) {
+openDialog(action,obj) {
     obj.action = action;
     const dialogRef = this.dialog.open(DialogBoxComponent, {
       width: '250px',
