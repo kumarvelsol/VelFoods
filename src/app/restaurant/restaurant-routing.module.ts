@@ -10,6 +10,8 @@ import { RestaurantsComponent} from '../restaurants/restaurants.component';
 import { ManagerComponent } from '../manager/manager.component';
 import { OffersComponent } from './offers/offers.component';
 import { TablereserveComponent } from './tablereserve/tablereserve.component';
+import { SettledbillsComponent } from './settledbills/settledbills.component';
+import { BillpaymentComponent } from './billpayment/billpayment.component';
 const routes: Routes = [
   {path:'',pathMatch:'full',component:LoginpageComponent},
   {path:'property',component:PropertyComponent},
@@ -21,6 +23,8 @@ const routes: Routes = [
   {path:'Paidouts',component:PaidoutsmiscolComponent},
   {path:'bankswallets',component:BankwallettabbarComponent},
   {path:'tablebooking',component:TablereserveComponent},
+  // {path:'SettledBills',component:SettledbillsComponent},
+  {path:'BillPayment',component:BillpaymentComponent},
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],

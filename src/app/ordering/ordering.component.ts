@@ -57,7 +57,6 @@ export class OrderingComponent implements OnInit {
          // alert('red');
         }
        }
-       
       console.log(this.userlist.Data);
     });
     this.getmystyles(this.aa);

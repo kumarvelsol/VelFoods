@@ -72,7 +72,7 @@ export class TablereserveComponent implements OnInit {
         "advance":this.advance = advance,
       }
     };
-    this.router.navigate(['/home'],navigationExtras); 
+    this.router.navigate(['/ordering'],navigationExtras); 
   }
 
 }
