@@ -2,10 +2,6 @@ import { Component, OnInit, ViewChild  } from '@angular/core';
 import {ServiceService} from '../service.service';
 import { order, room } from '../Model/ordermodel';
 import { MatDialog, MatTable } from '@angular/material';
-import { NgStyle } from '@angular/common';
-import { style } from '@angular/animations';
-import { Button } from 'protractor';
-import { templateJitUrl } from '@angular/compiler';
 import { DialogBoxComponent } from '../dialog-box/dialog-box.component';
 
 export interface UsersData {
