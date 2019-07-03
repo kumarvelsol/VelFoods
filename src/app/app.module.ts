@@ -15,8 +15,9 @@ import { MaterialModule } from './shared/material.module';
 import { LoginComponent } from './login/login.component';
 import { OrderingComponent } from './ordering/ordering.component';
 import { AmazingTimePickerModule } from 'amazing-time-picker';
-
+//import { DialogBoxComponent } from './dialog-box/dialog-box.component';
 import { HttpClientModule } from '@angular/common/http';
+import { DialogBoxComponent } from './dialog-box/dialog-box.component';
 @NgModule({
   declarations: [ 
     AppComponent,
@@ -25,7 +26,8 @@ import { HttpClientModule } from '@angular/common/http';
     ItemCategoryComponent,
     ItemNamesComponent,
     LoginComponent,
-    OrderingComponent
+    OrderingComponent,
+    DialogBoxComponent,
   ],
   imports: [
     MaterialModule,
@@ -34,6 +36,9 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,RestaurantModule,
     CoreModule,AmazingTimePickerModule,
     CommonModule,HttpClientModule,
+  ],
+  entryComponents: [
+    DialogBoxComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

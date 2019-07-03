@@ -16,8 +16,13 @@
     margin-top: 20px;
     width: 100%;
     margin-left: auto;
-    height : 600px;
+    height : auto;
     margin-bottom: 20px;
+}
+.example-card3{
+    width: 100%;
+    margin-left:700px;
+    height : auto;
 }
 .mat-form-wrap{
     width: 100%;
@@ -38,4 +43,11 @@
     margin-right: 15px;
     margin-top: 10px;
     margin-bottom: 15px;
+}
+.example-container {
+    width: 100%;
+    /* overflow-y: hidden; */
+    margin-top: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
 }

@@ -1,10 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild  } from '@angular/core';
 import {ServiceService} from '../service.service';
 import { order, room } from '../Model/ordermodel';
+import { MatDialog, MatTable } from '@angular/material';
 import { NgStyle } from '@angular/common';
 import { style } from '@angular/animations';
 import { Button } from 'protractor';
 import { templateJitUrl } from '@angular/compiler';
+import { DialogBoxComponent } from '../dialog-box/dialog-box.component';
+
+export interface UsersData {
+  id:number;
+  ItemName: string;
+  Rate: number;
+  Quantity : number;
+  Totalamount : number;
+}
+const ELEMENT_DATA: UsersData[] = [
+  {id:1,ItemName: 'Chicken Family',Rate : 290,Quantity : 2, Totalamount : 580},
+  {id:2,ItemName: 'Mutton Family',Rate : 360,Quantity : 1, Totalamount : 360},
+  {id:3,ItemName: 'Gongura Chicken',Rate : 120,Quantity : 1, Totalamount : 120},
+  {id:4,ItemName: 'Chicken 65',Rate : 150,Quantity : 2, Totalamount : 300}
+];
 
 @Component({
   selector: 'app-ordering',
@@ -13,21 +29,25 @@ import { templateJitUrl } from '@angular/compiler';
   styleUrls: ['./ordering.component.css'],
  })
 export class OrderingComponent implements OnInit {
-   userlist:order;
-   datasource;
-   rooms : room[];
-   name:string;
-   roomnos :string;
-   colors :string;
-   BACKGROUND_COLOR:string;
-   colorrs : 'green';
-   orn :'orange';
-   redd :'red';
-   colorr:string;
-   //mystyles :string;
+  displayedColumns: string[] = ['ItemName', 'Rate', 'Quantity', 'Totalamount', 'action'];
+  dataSource = ELEMENT_DATA;
+  userlist:order;
+  datasource;
+  rooms : room[];
+  name:string;
+  roomnos :string;
+  colors :string;
+  BACKGROUND_COLOR:string;
+  colorrs : 'green';
+  orn :'orange';
+  redd :'red';
+  colorr:string;
+  //mystyles :string;
   colorFlag: any;
-   //rooms :any ={};
-  constructor(private _roomservice : ServiceService) {
+  //rooms :any ={};
+  
+  @ViewChild(MatTable) table: MatTable<any>; //,{static:true}
+  constructor(private _roomservice : ServiceService,public dialog: MatDialog) {
    }
   
   ngOnInit() {
@@ -65,27 +85,53 @@ export class OrderingComponent implements OnInit {
     this.colorr ;
     alert(ROOM_NO);
   }
-  
-  public  aa : string ;
- getmystyles(aa)
- {
-//   this._roomservice.roomno().subscribe((data : order) =>
-//   {
-//   this.userlist=data;
-//   this.rooms = this.userlist.Data;       
-//   for(let i=0; i<this.rooms.length ; i++){
-//   var s =  this.rooms[i].ROOM_NO.toString()
-//     switch(aa){
+  openDialog(action,obj) {
+    obj.action = action;
+    const dialogRef = this.dialog.open(DialogBoxComponent, {
+      width: '250px',
+      data:obj
+    });
+ 
+    dialogRef.afterClosed().subscribe(result => {
+      if(result.event == 'Add'){
+        this.addRowData(result.data);
+      }else if(result.event == 'Update'){
+        this.updateRowData(result.data);
+      }else if(result.event == 'Delete'){
+        this.deleteRowData(result.data);
+      }
+    });
+  }
+ 
+  addRowData(row_obj){
+    var d = new Date();
+    this.dataSource.push({
+       id:d.getTime(),
+      ItemName:row_obj.ItemName,
+      Rate:row_obj.Rate,
+      Quantity:row_obj.Quantity,
+      Totalamount:row_obj.Totalamount
+    });
+    this.table.renderRows();
+    
+  }
+  updateRowData(row_obj){
+    this.dataSource = this.dataSource.filter((value,key)=>{
+      if(value.id == row_obj.id){
+        value.ItemName = row_obj.ItemName;
+      }
+      return true;
+    });
+  }
+  deleteRowData(row_obj){
+    this.dataSource = this.dataSource.filter((value,key)=>{
+      return value.id != row_obj.id;
+    });
+  }
 
-//      case this.rooms[i].BACKGROUND_COLOR ='Green':
-//        return s ='green';
-//        case this.rooms[i].BACKGROUND_COLOR ='orange':
-//           return s ='orage';
-//           case this.rooms[i].BACKGROUND_COLOR ='Red':
-//               return s ='red';
-//     }
-//   }
-//   console.log(this.userlist.Data);
-//     });
+
+  public  aa : string ;
+  getmystyles(aa)
+  {
   }
 }
