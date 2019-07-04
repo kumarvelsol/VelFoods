@@ -5,7 +5,7 @@
         <div class="block child">
           <p style="margin-top: 20px; margin-left: 15px; color: gray; font-size: 24px;">Table Booking</p>
           <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" >
-            <mat-icon  style=color:gray matSuffix>developer_board</mat-icon>
+            <mat-icon  style=color:gray matSuffix>person</mat-icon>
             <mat-label style="color :gray">Name</mat-label>
             <input style="color :gray"  type="text" [(ngModel)]="name" name="name"  matInput>
           </mat-form-field>
@@ -15,12 +15,12 @@
             <input style="color :gray"  type="text" [(ngModel)]="pax" name="pax"  matInput>
           </mat-form-field>
           <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" >
-            <mat-icon  style=color:gray matSuffix>format_list_numbered</mat-icon>
+            <mat-icon  style=color:gray matSuffix>call</mat-icon>
             <mat-label style="color :gray">Mobile</mat-label> 
             <input style="color :gray"  type="text" [(ngModel)]="phoneno" name="phoneno"  matInput>
           </mat-form-field>
           <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" >
-              <mat-icon  style=color:gray matSuffix>format_list_numbered</mat-icon>
+              <mat-icon  style=color:gray matSuffix>monetization_on</mat-icon>
               <mat-label style="color :gray">Advance</mat-label> 
               <input style="color :gray"  type="text" [(ngModel)]="advance" name="advance"  matInput>
             </mat-form-field>
@@ -43,7 +43,7 @@
             </mat-select>
           </mat-form-field>
           <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" >
-            <mat-icon  style=color:gray matSuffix>format_list_numbered</mat-icon>
+            <mat-icon  style=color:gray matSuffix>note_add</mat-icon>
             <mat-label style="color :gray">Spl Instructions</mat-label> 
             <input style="color :gray"  type="text" [(ngModel)]="splins" name="splins"  matInput>
           </mat-form-field>
@@ -57,6 +57,10 @@
     <div class="col-md-6">
       <div class="example-container mat-elevation-z1">
         <table mat-table [dataSource]="abDatasource">
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef>SNo</th>
+                <td mat-cell *matCellDef="let i"> {{i.id}} </td>
+              </ng-container>
             <ng-container matColumnDef="date">
                 <th mat-header-cell *matHeaderCellDef>Date</th>
                 <td mat-cell *matCellDef="let i"> {{i.date}} </td>
@@ -86,12 +90,12 @@
             <ng-container matColumnDef="actions">
               <th mat-header-cell *matHeaderCellDef class="textSizes">Actions</th>
               <td mat-cell *matCellDef="let i; let j=index;"> 
-                <button mat-icon-button style="color:gray;margin-right: 10px;" (click)="RowSelected(j,i.tableid,i.pax,i.reporting,i.status,i.view,i.captain,i.steward)">
+                <button mat-icon-button style="color:gray;margin-right: 10px;" (click)="RowSelected(j,i.date,i.time,i.name,i.pax,i.restaurant,i.phoneno,i.advance)">
                   <mat-icon aria-label="Edit">edit</mat-icon>
                 </button>
       
-                <button mat-icon-button style="color:gray;margin-right: 10px;" (click)="deletes(j,i.designation_id,i.departmant_id,i.designation_code,i.designation_name,i.designation_description)">
-                  <mat-icon aria-label="Edit">delete</mat-icon>
+                <button mat-icon-button style="color:gray;margin-right: 10px;" (click)="NavigateClick(j,i.date,i.time,i.name,i.pax,i.restaurant,i.phoneno,i.advance)" routerLink="/ordering" routerLinkActive = "active">
+                  <mat-icon >open_in_new</mat-icon>
                 </button>
               </td>
             </ng-container>

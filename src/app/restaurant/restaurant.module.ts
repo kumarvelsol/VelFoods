@@ -15,9 +15,12 @@ import { BankwallettabbarComponent } from './BanksWallets/bankwallettabbar/bankw
 import { BanksComponent } from './BanksWallets/banks/banks.component';
 import { WalletsComponent } from './BanksWallets/wallets/wallets.component';
 import { TablereserveComponent } from './tablereserve/tablereserve.component';
+import { SettledbillsComponent } from './settledbills/settledbills.component';
+import { BillpaymentComponent } from './billpayment/billpayment.component';
+import { TableStatusComponent } from './table-status/table-status.component';
 
 @NgModule({
-  declarations: [LoginpageComponent, PropertyComponent, TaxpageComponent,TabledefinitionComponent, PaidoutsmiscolComponent, OffersComponent, BankwallettabbarComponent, BanksComponent, WalletsComponent,TablereserveComponent],
+  declarations: [LoginpageComponent, PropertyComponent, TaxpageComponent,TabledefinitionComponent, PaidoutsmiscolComponent, OffersComponent, BankwallettabbarComponent, BanksComponent, WalletsComponent,TablereserveComponent, TableStatusComponent, SettledbillsComponent, BillpaymentComponent],
 
   imports: [
     CommonModule,

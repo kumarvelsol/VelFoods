@@ -12,21 +12,33 @@ import { ItemCategoryComponent } from './item-category/item-category.component';
 import { ItemNamesComponent } from './item-names/item-names.component';
 import { RestaurantModule } from './restaurant/restaurant.module';
 import { MaterialModule } from './shared/material.module';
+import { LoginComponent } from './login/login.component';
+import { OrderingComponent } from './ordering/ordering.component';
+import { AmazingTimePickerModule } from 'amazing-time-picker';
+//import { DialogBoxComponent } from './dialog-box/dialog-box.component';
+import { HttpClientModule } from '@angular/common/http';
+import { DialogBoxComponent } from './dialog-box/dialog-box.component';
 @NgModule({
-  declarations: [
+  declarations: [ 
     AppComponent,
     ManagerComponent,
     RestaurantsComponent,
     ItemCategoryComponent,
-    ItemNamesComponent
+    ItemNamesComponent,
+    LoginComponent,
+    OrderingComponent,
+    DialogBoxComponent,
   ],
   imports: [
     MaterialModule,
     BrowserModule,AppRoutingModule,
     ReactiveFormsModule,FormsModule,
     BrowserAnimationsModule,RestaurantModule,
-    CoreModule,
-    CommonModule,
+    CoreModule,AmazingTimePickerModule,
+    CommonModule,HttpClientModule,
+  ],
+  entryComponents: [
+    DialogBoxComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

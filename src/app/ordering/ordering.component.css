@@ -1,0 +1,55 @@
+table {
+    width: 100%;
+}
+.mat-divider{
+    border-top-color:black;
+    border-top-width: 1px;
+    margin-bottom: 200px;
+}
+.example-card{
+    /* background-color: #33B5E5; */
+    margin-top: 20px;
+    width: 100%;
+    height : 600px;
+    margin-left: auto;
+    margin-bottom: 20px;
+}
+.example-card2{
+    /* background-color: #33B5E5; */
+    margin-top: 20px;
+    width: 100%;
+    margin-left: auto;
+    height : auto;
+    margin-bottom: 20px;
+}
+.example-card3{
+    width: 100%;
+    margin-left:700px;
+    height : auto;
+}
+.mat-form-wrap{
+    width: 100%;
+    margin: 0px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.sidecard{
+    width: 100%;
+}
+.button-style{
+    height: 40px;
+    margin-right: 15px;
+    margin-bottom: 15px;
+}
+.btn-count{
+    margin-right: 15px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+.example-container {
+    width: 100%;
+    /* overflow-y: hidden; */
+    margin-top: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
