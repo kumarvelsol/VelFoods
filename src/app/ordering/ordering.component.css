@@ -1,3 +1,6 @@
+table {
+    width: 100%;
+}
 .mat-divider{
     border-top-color:black;
     border-top-width: 1px;

@@ -47,13 +47,13 @@
           </mat-form-field>
 
           <!-- <button *ngFor="let id of tid; let j = index;" mat-raised-button class="btn-style" matInput>{{tid[j]}}</button> -->
-          <button mat-raised-button class="btn-style" (click)="onSaveclick()">{{buttoncontent}}</button>
+          <button mat-raised-button class="btn-style" [style.backgroundColor]="buttonColor" (click)="onSaveclick()">{{buttoncontent}}</button>
           <button mat-icon-button class="clearbtn-style" (click)="onclearclick()">
             <mat-icon>clear_all</mat-icon>
           </button>
         </div>
       </mat-card>
-    </div>
+    </div> 
     <div class="col-md-6">
       <div class="example-container mat-elevation-z1">
         <table mat-table [dataSource]="abDatasource">

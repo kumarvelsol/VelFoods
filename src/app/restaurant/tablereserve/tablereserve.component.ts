@@ -31,7 +31,7 @@ export class TablereserveComponent implements OnInit {
   this.rows = [{id:"1",date :"21/06/2019",time:"12:00 PM",name:"ani",pax :"4",phoneno :9494963284,restaurant :"BBQ"},{id:"2",date :"22/06/2019",time:"11:00 PM",name:"anisha",pax :"6",phoneno :9494963284,restaurant :"Daspalla"}];
     this.abDatasource = this.rows;
   }
-  public onsubmitclick()
+  public onsubmitclick() 
   {
     if(this.name == "" || this.pax == "" || this.phoneno == null)
     {
@@ -72,7 +72,7 @@ export class TablereserveComponent implements OnInit {
         "advance":this.advance = advance,
       }
     };
-    this.router.navigate(['/home'],navigationExtras); 
+    this.router.navigate(['/ordering'],navigationExtras); 
   }
 
 }

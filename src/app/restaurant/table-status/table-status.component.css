@@ -1,8 +1,42 @@
-.example-card{
+table {
+    width: 100%;
+}
+.button-style{
+    height: 40px;
+    margin-right: 15px;
+    margin-bottom: 15px;
+}
+.example-card {
     width: 100%;
     overflow: auto;
+    height: 100%;
     margin-left: auto;
     margin-top: 20px;
     border-radius: 5px;
     margin-bottom: 20px;
+}
+.example-container {
+    height: 400px;
+    overflow: auto;
+    /* overflow-y: hidden; */
+    border-radius: 5px;
+    margin-top: 10px;
+}
+.btn-styleoffer{
+    background-color: #33B5E5;
+    color: white;
+    width : 180px;
+    height: 40px;
+    margin-bottom: 15px;
+    margin-top: 25px;
+    font-size: 18px;
+}
+.btn-style{
+    background-color: #33B5E5;
+    color: white;
+    width : 120px;
+    height: 40px;
+    margin-bottom: 15px;
+    margin-top: 25px;
+    font-size: 18px;
 }

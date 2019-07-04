@@ -31,7 +31,7 @@ export class TabledefinitionComponent implements OnInit {
     {stid : '2',stname:'Inactive'}
   ]
   rows: Array<{tableid:string,pax:string,reporting:string,status:string,view:string,captain:string,steward:string}> = [];
-  buttoncontent : string;abDatasource;listcount : number;
+  buttoncontent : string;abDatasource;listcount : number; buttonColor : string;
   tableid:string;pax:string;reporting:string;status:string;view:string;captain :string;steward : string;tid : any = {};
   displayedColumns: string[] = ['tableid','pax','reporting','status','view','captain','steward','actions'];
   constructor() { }
@@ -48,6 +48,7 @@ export class TabledefinitionComponent implements OnInit {
   }
   public onSaveclick()
   {
+    this.buttonColor = "#33B510";
     if(this.tableid == "" || this.pax == "")
     {
       alert("Please fill all fields");
@@ -61,6 +62,7 @@ export class TabledefinitionComponent implements OnInit {
   }
   public RowSelected(j:number,tableid:string,pax:string,reporting:string,status:string,view:string,captain:string,steward:string)
   {
+    this.buttonColor = "#33B";
       this.buttoncontent="Modify";
       this.tableid = tableid;
       this.pax =  pax;
