@@ -7,6 +7,8 @@ import { style } from '@angular/animations';
 import { Button } from 'protractor';
 import { templateJitUrl } from '@angular/compiler';
 import { DialogBoxComponent } from '../dialog-box/dialog-box.component';
+import { LOCALE_DATA } from '@angular/common/src/i18n/locale_data';
+import { element } from '@angular/core/src/render3';
 
 export interface UsersData {
   id:number;
@@ -16,10 +18,10 @@ export interface UsersData {
   Totalamount : number;
 }
 const ELEMENT_DATA: UsersData[] = [
-  {id:1,ItemName: 'Chicken Family',Rate : 290,Quantity : 2, Totalamount : 580},
-  {id:2,ItemName: 'Mutton Family',Rate : 360,Quantity : 1, Totalamount : 360},
-  {id:3,ItemName: 'Gongura Chicken',Rate : 120,Quantity : 1, Totalamount : 120},
-  {id:4,ItemName: 'Chicken 65',Rate : 150,Quantity : 2, Totalamount : 300}
+  {id:1,ItemName: 'Chicken Family', Rate : 290,Quantity :   2, Totalamount : 580},
+  {id:2,ItemName: 'Mutton Family',  Rate : 360,Quantity :   1, Totalamount : 360},
+  {id:3,ItemName: 'Gongura Chicken',Rate : 120,Quantity :   1, Totalamount : 120},
+  {id:4,ItemName: 'Chicken 65',     Rate : 150,Quantity :   2, Totalamount : 300}
 ];
 
 @Component({
@@ -29,7 +31,8 @@ const ELEMENT_DATA: UsersData[] = [
  styleUrls: ['./ordering.component.css'],
 })
 export class OrderingComponent implements OnInit {
-  displayedColumns: string[] = ['ItemName', 'Rate', 'Quantity', 'Totalamount', 'action'];
+  local_data:any;
+  displayedColumns: string[] = ['ItemName','Rate', 'Quantity','Totalamount', 'action'];
   dataSource = ELEMENT_DATA;
   userlist:order;
   datasource;
@@ -132,5 +135,8 @@ openDialog(action,obj) {
   public  aa : string ;
   getmystyles(aa)
   {
+  }
+  save(){
+    alert("Items saved successfully");
   }
 }
