@@ -1,0 +1,60 @@
+table {
+    width: 100%;
+  }
+  .example-card{
+    /* background-color: #33B5E5; */
+    margin-top: 20px;
+    width: 100%;
+    margin-left: 0px;
+  }
+  .mat-form-wrap{
+    width: 100%;
+    margin: 0px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+  .btn-style{
+    background-color: white;
+    width : 20px;
+    height: 40px;
+    margin-top: -200px;
+    margin-left:720px;
+    font-size: 18px;
+  }
+  .parent{
+    height:540px;
+    width: 100%;
+  }
+  .block {
+    width: 80%;
+  }
+  .child {
+    margin:auto;
+  }
+  .example-container {
+    margin-left: 0px;
+    margin-top: 20px;
+    height:70px;
+    width: 1150px;
+    /* overflow: auto; */
+  }
+  .example-containerr {
+    margin-left: 0px;
+    margin-top: 0px;
+    height:350px;
+    width: 100%;
+    float: left;
+    /* overflow: auto; */
+  }
+  p{
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    color : darkslategray;
+    font-family: 'Times New Roman', Times, serif;
+  }
+  .maticon{
+    text-align: left;
+    margin-left: 500px;
+    margin-bottom: 20px;
+  }

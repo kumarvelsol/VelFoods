@@ -43,8 +43,8 @@ table {
   .example-containerr {
     margin-left: 0px;
     margin-top: 20px;
-    height:370px;
-    width: 1150px;
+    height:460px;
+    width: 100%;
     float: left;
     /* overflow: auto; */
   }
