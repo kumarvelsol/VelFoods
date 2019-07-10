@@ -1,0 +1,63 @@
+<div class="container card">
+  <div class="row">
+    <div class="row col-md-12">
+        <div class="col-md-6 mat-form-wrap">
+            <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" appearance="outline">
+              <mat-label style="color :gray">Search based on BillNo</mat-label>
+              <mat-icon style="color :gray" matSuffix>search</mat-icon>
+              <input type="text" placeholder="Search" aria-label="Search"  name="sid"  matInput>
+            </mat-form-field>
+        </div>
+        <div class="col-md-6 mat-form-wrap">
+          <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray"  appearance="outline">
+            <mat-label style="color :gray">Search based on Date</mat-label>
+            <input style="color :gray" [matDatepicker]="picker" matInput>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="example-containerr mat-elevation-z8">
+      <div class="row col-md-12">
+        <table mat-table [dataSource]="dataSource">
+          <ng-container matColumnDef="billno">
+            <th mat-header-cell *matHeaderCellDef >BillNo</th>
+            <td mat-cell *matCellDef="let i"> {{i.billno}} </td>
+          </ng-container>
+          <ng-container matColumnDef="table">
+            <th mat-header-cell *matHeaderCellDef >Table</th>
+            <td mat-cell *matCellDef="let i"> {{i.table}} </td>
+          </ng-container>
+          <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef >Date</th>
+            <td mat-cell *matCellDef="let i"> {{i.date}} </td>
+          </ng-container>
+          <ng-container matColumnDef="Total">
+            <th mat-header-cell *matHeaderCellDef >Total</th>
+            <td mat-cell *matCellDef="let i"> {{i.Total}} </td> 
+          </ng-container>
+          <ng-container matColumnDef="Tax">
+            <th mat-header-cell *matHeaderCellDef >Tax</th>
+            <td mat-cell *matCellDef="let i"> {{i.Tax}} </td>
+          </ng-container>
+          <ng-container matColumnDef="Discounttype"> 
+            <th mat-header-cell *matHeaderCellDef >Discount Type</th>
+            <td mat-cell *matCellDef="let i"> {{i.Discounttype}} </td>
+          </ng-container>
+          <ng-container matColumnDef="Discount">
+            <th mat-header-cell *matHeaderCellDef >Discount</th>
+            <td mat-cell *matCellDef="let i"> {{i.Discount}} </td>
+          </ng-container> 
+          <ng-container matColumnDef="Status">
+            <th mat-header-cell *matHeaderCellDef >Status</th>
+            <td mat-cell *matCellDef="let i"> {{i.Status}} </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openDialog()"></tr>
+        </table>
+      </div>
+    </div>
+  </div>          
+</div>
