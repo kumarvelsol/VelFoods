@@ -18,6 +18,8 @@ import { AmazingTimePickerModule } from 'amazing-time-picker';
 //import { DialogBoxComponent } from './dialog-box/dialog-box.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DialogBoxComponent } from './dialog-box/dialog-box.component';
+import { EmployeedepartmentComponent } from './employeedepartment/employeedepartment.component';
+import { EmployeeregistrationComponent } from './employeeregistration/employeeregistration.component';
 @NgModule({
   declarations: [ 
     AppComponent,
@@ -28,6 +30,8 @@ import { DialogBoxComponent } from './dialog-box/dialog-box.component';
     LoginComponent,
     OrderingComponent,
     DialogBoxComponent,
+    EmployeedepartmentComponent,
+    EmployeeregistrationComponent,
   ],
   imports: [
     MaterialModule,

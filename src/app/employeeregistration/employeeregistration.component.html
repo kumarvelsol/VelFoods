@@ -1,0 +1,112 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6">
+      <mat-card class="col-lg-12 example-card parent">
+        <div class="block child">
+          <p>Employee Registration</p>
+          <mat-form-field class="col-md-12">
+            <mat-label> Emp Id </mat-label>
+            <input matInput ([ngModel])="EmpId">
+          </mat-form-field>
+          <mat-form-field class="col-md-12">
+              <mat-label> Emp Name </mat-label>
+              <input matInput ([ngModel])="EmpName" required>
+            </mat-form-field>
+            <mat-form-field class="col-md-12">
+                <mat-label> Contact No </mat-label>
+                <input matInput ([ngModel])="ContactNo" required>
+              </mat-form-field>
+              <mat-form-field class="col-md-12">
+                  <mat-label> Email Id </mat-label>
+                  <input matInput ([ngModel])="EmailId" required>
+                </mat-form-field>
+                <mat-form-field appearance="legacy" class="col-md-12" >
+                    <mat-label> --Select Idproof --</mat-label>
+                    <mat-select  matNativeControl requireds>
+                        <mat-option value="Aadhar">Aadhar</mat-option>
+                        <mat-option value="Voterid">voterid</mat-option>
+                        <mat-option value="Pancard">Pancard</mat-option>
+                        <mat-option value="Drivinglicence">Pancard</mat-option>
+                        <mat-option value="Govid">Govid</mat-option>
+                      </mat-select>
+                  </mat-form-field>
+                  <mat-form-field class="col-md-12">
+                      <mat-label> IdData </mat-label>
+                      <input matInput ([ngModel])="IdData" required>
+                    </mat-form-field>
+                    <mat-form-field class="col-md-12">
+                        <mat-label> Address </mat-label>
+                        <input matInput ([ngModel])="Address" required>
+                      </mat-form-field>
+                      <mat-form-field appearance="legacy" class="col-md-12" >
+                          <mat-label> --Select Department--</mat-label>
+                          <mat-select  matNativeControl requireds>
+                              <mat-option value="Admin">Admin</mat-option>
+                              <mat-option value="manger">manger</mat-option>
+                              <mat-option value="Cashier">Cashier</mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                          <div class="col-md-12">
+                              <mat-label style="margin-left:15px;"> Status : </mat-label>
+                              <mat-radio-group aria-label="Select an option">
+                                  <mat-radio-button value="1">Active</mat-radio-button>
+                                  <mat-radio-button style="margin-left:10px;" value="2">InActive</mat-radio-button>
+                                </mat-radio-group>
+                              </div>
+                              <div class="col-md-12">
+                                  <mat-label style="margin-left:18px;"> Login : </mat-label>
+                                  <mat-radio-group aria-label="Select an option">
+                                      <mat-radio-button  value="1">Enable</mat-radio-button>
+                                      <mat-radio-button style="margin-left:10px;" value="2">Disable</mat-radio-button>
+                                    </mat-radio-group>
+                              </div>
+                              <div class="col-md-12">
+                              <mat-form-field class="col-md-12">
+                                  <mat-label> Username </mat-label>
+                                  <input matInput ([ngModel])="Username" required>
+                                </mat-form-field>
+                              </div>
+                                <div class="col-md-12">
+                                <mat-form-field class="col-md-12">
+                                    <mat-label> Password </mat-label>
+                                    <input matInput ([ngModel])="Password" required>
+                                  </mat-form-field>
+                                </div>
+                                <div class="col-md-12">
+                                  <button>save</button>
+                                  <button>clear</button>
+                                </div>
+                              </div>
+                             </mat-card>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="example-container mat-elevation-z1">
+                                <table mat-table [dataSource]="dataSource">
+                                    <ng-container matColumnDef="departmentd">
+                                      <th mat-header-cell *matHeaderCellDef> departmentId </th>
+                                      <td mat-cell *matCellDef="let element"> {{element.departmentId}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="departmentname">
+                                      <th mat-header-cell *matHeaderCellDef>departmentname </th>
+                                      <td mat-cell *matCellDef="let element"> {{element.departmentname}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="Contact">
+                                      <th mat-header-cell *matHeaderCellDef> departmentstatus </th>
+                                      <td mat-cell *matCellDef="let element"> {{element.departmentstatus}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="actions">
+                                      <th mat-header-cell *matHeaderCellDef>Edit</th>
+                                      <td mat-cell *matCellDef="let element; let i=index;"> 
+                                        <button mat-icon-button style="color:gray;margin-right: 10px;" >
+                                          <mat-icon aria-label="Edit">edit</mat-icon>
+                                        </button>
+                                      </td>
+                                    </ng-container>
+                                    <!-- <tr mat-header-row *matHeaderRowDef="displayedHeading; sticky: true"></tr> -->
+                                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                                  </table>    
+                            </div>
+                        </div>
+                      </div>
+                    </div>
