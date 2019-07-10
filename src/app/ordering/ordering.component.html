@@ -3,7 +3,7 @@
     <div class="col-lg-6">
       <mat-card class="example-card">
         <div class="row col-lg-12">
-          <mat-card-title style="font-size: 20px;font-weight:bold;">Tableview</mat-card-title>
+          <mat-card-title style="font-size: 20px; text-align:center; margin-left: 170px; font-weight:bold;">Tableview</mat-card-title>
           <mat-divider style="font-size: 1px; margin-top: 26px; " class="mat-divider"></mat-divider>
           <div class="col-md-12" style="padding-top: 10px;overflow: auto; height: 300px;">
             <button *ngFor="let room of rooms" [ngClass]="getmystyles()"   [ngStyle]="{'background-color':room.BACKGROUND_COLOR}"  mat-raised-button  class="button-style colors" name="room.ROOM_NO" (click)="onbuttonclick($event,room.ROOM_NO)">{{room.ROOM_NO}}</button>
@@ -114,6 +114,9 @@
               <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>
           </div>
+        </div>
+        <div class="col-12">
+          <button style="margin-left: 180px; width: 100px; " mat-botton mat-flat-button color="primary" (click)="save()" >save</button>
         </div>
       </mat-card>
     </div>
