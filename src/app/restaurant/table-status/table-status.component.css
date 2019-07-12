@@ -16,9 +16,27 @@ table {
     margin-bottom: 20px;
 }
 .example-container {
-    height: 600px;
+    height: 400px;
     overflow: auto;
     /* overflow-y: hidden; */
     border-radius: 5px;
     margin-top: 10px;
+}
+.btn-styleoffer{
+    background-color: #33B5E5;
+    color: white;
+    width : 180px;
+    height: 40px;
+    margin-bottom: 15px;
+    margin-top: 25px;
+    font-size: 18px;
+}
+.btn-style{
+    background-color: #33B5E5;
+    color: white;
+    width : 120px;
+    height: 40px;
+    margin-bottom: 15px;
+    margin-top: 25px;
+    font-size: 18px;
 }

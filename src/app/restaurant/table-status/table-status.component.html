@@ -2,11 +2,11 @@
   <div class="row">
     <mat-card class="example-card">
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6" >
           <div class="col-12 text-center">
             <p>Running Tables</p>
           </div>
-          <div class="col-md-12" style="padding-top: 10px;overflow: auto; height: 300px;">
+          <div class="col-md-12" style="padding-top: 10px;overflow: auto; height: 400px;">
             <button *ngFor="let room of rooms" [ngStyle]="{'background-color':room.BACKGROUND_COLOR}"  mat-raised-button  class="button-style colors" name="room.ROOM_NO" (click)="onbuttonclick($event,room.ROOM_NO)">{{room.ROOM_NO}}</button>
           </div>
         </div>
@@ -17,7 +17,7 @@
             <label class="col-4">Total Amount :</label>
             <label class="col-2">885</label>
           </div>
-          <div class="example-container mat-elevation-z2">
+          <div class="example-container mat-elevation-z1">
             <table mat-table [dataSource]="dataSource">
               <!-- ItemName Column -->
               <ng-container matColumnDef="ItemName">
@@ -49,6 +49,12 @@
               <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
             </table>
           </div>
+        </div>
+        <div class="col-6 text-center">
+          <button mat-raised-button class="btn-styleoffer" (click)="onofferclick()">Available Offers</button>
+        </div>
+        <div class="col-6 text-center">
+          <button mat-raised-button class="btn-style" (click)="onsaveclick()">Print</button>
         </div>
       </div>
     </mat-card>

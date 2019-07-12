@@ -5,8 +5,8 @@ import { ItemNamesComponent } from './item-names/item-names.component';
 import { LoginComponent } from './login/login.component';
 import { OrderingComponent } from './ordering/ordering.component';
 import { TableStatusComponent } from './restaurant/table-status/table-status.component';
-const routes: Routes = [{
-  path:'',pathMatch:'full',redirectTo:'restaurant'},
+const routes: Routes = [
+  {path:'',pathMatch:'full',redirectTo:'restaurant'},
   {path:'itemCategory',component:ItemCategoryComponent},
   {path:'itemNames',component:ItemNamesComponent},
   {path:'restaurant',loadChildren:'./restaurant/restaurant.module#RestaurantModule'},

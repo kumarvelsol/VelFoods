@@ -18,6 +18,7 @@ import { AmazingTimePickerModule } from 'amazing-time-picker';
 //import { DialogBoxComponent } from './dialog-box/dialog-box.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DialogBoxComponent } from './dialog-box/dialog-box.component';
+import { BillsettledailogComponent } from './restaurant/Billsettle/billsettledailog/billsettledailog.component';
 @NgModule({
   declarations: [ 
     AppComponent,
@@ -38,7 +39,8 @@ import { DialogBoxComponent } from './dialog-box/dialog-box.component';
     CommonModule,HttpClientModule,
   ],
   entryComponents: [
-    DialogBoxComponent
+    DialogBoxComponent,
+    BillsettledailogComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

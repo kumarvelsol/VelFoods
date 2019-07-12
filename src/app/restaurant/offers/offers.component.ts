@@ -10,7 +10,6 @@ export class OffersComponent implements OnInit {
   dates_slide : boolean = false;
   times_slide : boolean = false;
   days_slide : boolean = false;
-  per_slide : boolean = false;
   minbill_slide : boolean = false;
   maxdis_slide : boolean = false;
   from_date : Date;
@@ -33,7 +32,6 @@ export class OffersComponent implements OnInit {
   fri_disable : boolean;  friday : boolean;
   sat_disable : boolean;  saturday : boolean;
   sun_disable : boolean;  sunday : boolean;
-  per_disable : boolean;
   minbill_disable : boolean;
   maxdis_disable : boolean;
   buttoncontent : string = "Save";
@@ -43,7 +41,6 @@ export class OffersComponent implements OnInit {
     this.to_time_disable = true;
     this.from_time_disable = true;
     this.daysSelected_disable = true;
-    this.per_disable = true;
     this.minbill_disable = true;
     this.maxdis_disable = true;
     this.disablecheckbox();
@@ -83,15 +80,6 @@ export class OffersComponent implements OnInit {
       this.daysSelected = "";
       this.daysSelected_disable = true;
       this.disablecheckbox();
-    }
-  }
-  onPerValid(){
-    if(this.per_slide == true){
-      this.percentage = "";
-      this.per_disable = false;
-    }else{
-      this.percentage = "";
-      this.per_disable = true;
     }
   }
   onMinBillValid(){
@@ -161,13 +149,13 @@ export class OffersComponent implements OnInit {
     if(this.days_slide == true){
     }else{
     }
-    if(this.per_slide == true){
-      if(this.percentage == null){
-        alert("Please Enter Percentage Or Switch off the Percentage Section");
-      }
-    }else{
-      this.percentage == "";
-    }
+    // if(this.per_slide == true){
+    //   if(this.percentage == null){
+    //     alert("Please Enter Percentage Or Switch off the Percentage Section");
+    //   }
+    // }else{
+    //   this.percentage == "";
+    // }
     if(this.minbill_slide == true){
       if(this.minbill_amount == null){
         alert("Please Enter Minimum Bill Amount Or Switch off the Min Bill Section");
@@ -192,8 +180,6 @@ export class OffersComponent implements OnInit {
     this.onDaysValid();
     this.maxdis_slide = false;
     this.onMaxDisValid();
-    this.per_slide = false;
-    this.onPerValid();
     this.minbill_slide = false;
     this.onMinBillValid();
     this.maxdis_slide = false;
