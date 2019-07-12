@@ -24,7 +24,7 @@ export class RestaurantService {
     return this.http.post(this.Baseurl+"getproperty",prpt_get);
   }
   public createproperty(prpt_in:Property){
-      return this.http.post(`${this.Baseurl+"addingproperty"}`,prpt_in);
+    return this.http.post(`${this.Baseurl+"addingproperty"}`,prpt_in);
   }
   public updateproperty(prpt_up: Property){
     return this.http.post(`${this.Baseurl+"updatingproperty"}`,prpt_up);

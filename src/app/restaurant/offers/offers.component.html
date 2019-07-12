@@ -85,7 +85,7 @@
               <mat-slide-toggle class="slidetoggle_wrap" name="days_slide" [(ngModel)]="days_slide" [color]="color" (change)="onDaysValid()"></mat-slide-toggle>
             </div>
           </div>
-          <div class="row col-md-12" style="padding-top: 10px;padding-bottom:5px;">
+          <div class="row col-md-12" style="padding-top: 10px;padding-bottom: 5px;">
             <mat-form-field class="col-md-4 mat-form-wrap">
               <mat-label>Select Type</mat-label>
               <mat-select style="color :gray" [(ngModel)] = "daysSelected" (ngModelChange)="ondayschanged($event)" [disabled]="daysSelected_disable" disableRipple>
