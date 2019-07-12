@@ -15,18 +15,21 @@ export class PropertyComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.propertyname = "Resto";
-    this.address = "1/256, Masjid banda, Kondapur";
-    this.landmark ="Near Aadharsh Cooperative bank";
-    this.city ="Hyderabad";
-    this.state ="Telangana";
-    this.pincode =500084;
-    this.country ="India";
-    this.contactno =7894561235;
-    this.landline =256415;
-    this.email ="velsol@gmail.com";
-    this.website ="www.velsol.com";
-    this.gst ="1234ABCDE2ZA";
+    // this.propertyname = "Resto";
+    // this.address = "1/256, Masjid banda, Kondapur";
+    // this.landmark ="Near Aadharsh Cooperative bank";
+    // this.city ="Hyderabad";
+    // this.state ="Telangana";
+    // this.pincode =500084;
+    // this.country ="India";
+    // this.contactno =7894561235;
+    // this.landline =256415;
+    // this.email ="velsol@gmail.com";
+    // this.website ="www.velsol.com";
+    // this.gst ="1234ABCDE2ZA";
+
+    
+
     if(this.propertyname=="" && this.address=="" && this.landmark=="" && this.city=="" && this.state=="" &&
     this.pincode==null && this.country=="" && this.contactno==null && this.landline==null && this.email=="" && this.website=="" && this.gst=="")
     {

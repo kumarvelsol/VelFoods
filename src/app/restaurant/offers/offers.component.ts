@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Time } from '@angular/common';
+import { Offers } from 'src/app/shared/interfaces/offers';
+import { RestaurantService } from '../restaurant.service';
 @Component({
   selector: 'app-offers',
   templateUrl: './offers.component.html',
   styleUrls: ['./offers.component.css']
 })
 export class OffersComponent implements OnInit {
-  constructor() { }
+  constructor(public service : RestaurantService) { }
   dates_slide : boolean = false;
   times_slide : boolean = false;
   days_slide : boolean = false;
@@ -16,6 +18,8 @@ export class OffersComponent implements OnInit {
   to_date : Date;
   from_time : Time;
   to_time : Time;
+  promo_name : string;
+  promo_code : string;
   percentage : string;
   daysSelected : string;
   minbill_amount : string;
@@ -129,46 +133,95 @@ export class OffersComponent implements OnInit {
       this.enable_checkboxes();
     }
   }
+  dates : boolean = true;
+  times : boolean = true;
+  days : boolean = true;
+  minbill : boolean = true;
+  maxbill : boolean = true;
   onsaveclick(){
+    //dates slide
     if(this.dates_slide == true){
       if(this.from_date == null || this.to_date == null){
+        this.dates = false;
         alert("Please Enter Dates Or Switch off the Dates Section");
+      }else{
+        this.dates = true;
       }
     }else{
       this.from_date = null;
       this.to_date = null;
     }
+    //times slide
     if(this.times_slide == true){
       if(this.from_time == null || this.to_time == null){
+        this.times = false;
         alert("Please Enter Time fields Or Switch off the Time Section");
+      }else{
+        this.times = true;
       }
     }else{
       this.from_time = null;
       this.to_time = null;
     }
+    //days slide
     if(this.days_slide == true){
-    }else{
+      this.days = false;
     }
-    // if(this.per_slide == true){
-    //   if(this.percentage == null){
-    //     alert("Please Enter Percentage Or Switch off the Percentage Section");
-    //   }
-    // }else{
-    //   this.percentage == "";
-    // }
+    else{
+      this.days = true;
+    }
+    //minbillslide
     if(this.minbill_slide == true){
       if(this.minbill_amount == null){
+        this.minbill = false;
         alert("Please Enter Minimum Bill Amount Or Switch off the Min Bill Section");
+      }else{
+        this.minbill = true;
       }
     }else{
       this.minbill_amount == "";
     }
+    //max discount slide
     if(this.maxdis_slide == true){
       if(this.maxdis_amount == null){
+        this.maxbill = false;
         alert("Please Enter Max Discount Amount Or Switch off the Max Discount Section");
+      }else{
+        this.maxbill = true;
       }
     }else{
+      this.maxbill = true;
       this.maxdis_amount == "";
+    }
+    if(this.maxbill == false || this.minbill == false || this.dates == false || this.times == false || this.days == false){
+    }else{
+      let offers : Offers = {
+        promo_code_name : this.promo_name,
+        promo_code : this.promo_code,
+        promo_code_description : '',
+        Active_dare_status : this.dates_slide+"",
+        from_date : this.from_date+"",
+        to_date : this.to_date+"",
+        Active_time_status : this.times_slide+"",
+        from_time : this.from_time+"",
+        to_time : this.to_time+"",
+        Day_status : this.days_slide+"",
+        Days : "",
+        Day_type : this.daysSelected,
+        percentage : this.percentage,
+        minbill_status : this.minbill_slide+"",
+        minbill_amount : this.minbill_amount,
+        maximum_bill_status : this.maxdis_slide+"",
+        maximum_bill_amount : this.maxdis_amount,
+        restaurent_id : 1,
+      }
+      this.service.AddOffer(offers).subscribe(data=>{
+        if(data.code == 200){
+          alert(data.message);
+        }else{
+          alert(data.message);
+        }
+      });
     }
   }
   onclearclick(){
