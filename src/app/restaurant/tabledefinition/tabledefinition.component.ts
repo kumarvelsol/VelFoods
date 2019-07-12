@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { RestaurantService } from '../restaurant.service';
+import { Jsresponse } from 'src/app/shared/jsresponse';
+import { Apiresponse } from 'src/app/shared/apiresponse';
+import { Data } from 'src/app/shared/data';
+import { MatTableDataSource } from '@angular/material';
+import { Tabledefinition } from 'src/app/shared/tabledefinition';
 
 export interface Captain {
   cid: string;
@@ -31,47 +37,81 @@ export class TabledefinitionComponent implements OnInit {
     {stid : '2',stname:'Inactive'}
   ]
   rows: Array<{tableid:string,pax:string,reporting:string,status:string,view:string,captain:string,steward:string}> = [];
-  buttoncontent : string;abDatasource;listcount : number; buttonColor : string;
-  tableid:string;pax:string;reporting:string;status:string;view:string;captain :string;steward : string;tid : any = {};
-  displayedColumns: string[] = ['tableid','pax','reporting','status','view','captain','steward','actions'];
-  constructor() { }
+  buttoncontent : string;abDatasource;listcount : number; buttonColor : string; tabledatalist : Apiresponse; tabledata : Data[];
+  table_defination_id : number;    table_capatain : string;    table_description: string;
+    table_name: string;    table_pax: number;    table_status: string; 
+    table_steward: string;    table_view : string; jsRes : Jsresponse;
+  displayedColumns: string[] = ['table_name','table_pax','table_status','actions']; //'view','captain','steward',
+  constructor(public service1 : RestaurantService) { }
 
   ngOnInit() {
-    this.listcount = 7;
-        for (let i = 0; i < this.listcount; i++) 
-        {
-          this.tid[i] = i;
-        }
-    this.buttoncontent = "Save";
-    this.rows = [{tableid :"1",pax :"4",reporting :"Anisha",status :"Active",view:"balcony",captain:"Anisha",steward:"aa"},{tableid :"2",pax :"6",reporting :"Anisha",status :"Active",view:"balcony",captain:"Anisha",steward:"aa"}];
-    this.abDatasource = this.rows;
+
+    this.service1.gettabledata().subscribe((data:Apiresponse)=> {
+      this.tabledatalist = data;
+      this.abDatasource = new MatTableDataSource(this.tabledatalist.Data);
+
+    });
   }
   public onSaveclick()
   {
-    this.buttonColor = "#33B510";
-    if(this.tableid == "" || this.pax == "")
+    if(this.table_name == "" || this.table_pax == null)
     {
       alert("Please fill all fields");
     }
     else if(this.buttoncontent == "Save")
     {
-    this.rows.push({tableid:this.tableid, pax:this.pax,reporting:this.reporting,view:this.view,captain:this.captain,steward:this.steward,status:this.status});
-    this.abDatasource = this.rows;
-    console.log(this.abDatasource);
+      let a : Tabledefinition = {
+          table_defination_id : this.table_defination_id,
+          table_capatain : this.table_capatain,
+          table_description: this.table_description,
+          table_name: this.table_name,
+          table_pax: this.table_pax,
+          table_status: this.table_status,
+          table_steward: this.table_steward,
+          table_view : this.table_steward,
+      }
+       this.service1.createtable(a).subscribe((data : Jsresponse) => {
+
+        this.jsRes = data;
+        if(this.jsRes.code==200)
+            {
+              alert("Table Added Succesfully.!");
+            }else{ alert("Failed to Insert data");}
+       });
+    }
+    else if(this.buttoncontent == "Update")
+    {
+      let a : Tabledefinition = {
+        table_defination_id : this.table_defination_id,
+        table_capatain : this.table_capatain,
+        table_description: this.table_description,
+        table_name: this.table_name,
+        table_pax: this.table_pax,
+        table_status: this.table_status,
+        table_steward: this.table_steward,
+        table_view : this.table_steward,
+    }
+     this.service1.updatetable(a).subscribe((data : Jsresponse) => {
+
+      this.jsRes = data;
+      if(this.jsRes.code==200)
+          {
+            alert("Table Updated Succesfully.!");
+          }else{ alert("Failed to Update data");}
+     });
     }
   }
-  public RowSelected(j:number,tableid:string,pax:string,reporting:string,status:string,view:string,captain:string,steward:string)
+  public RowSelected(j:number,table_name:string,table_pax:number,table_description:string,table_status:string,table_view:string,table_capatain:string,table_steward:string)
   {
-    this.buttonColor = "#33B";
       this.buttoncontent="Modify";
-      this.tableid = tableid;
-      this.pax =  pax;
-      this.reporting = reporting;
-      this.status = status;
-      this.view = view;
-      this.captain = captain;
-      this.steward = steward;
-      console.log(this.tableid);console.log(this.pax);
-      console.log(this.reporting);console.log(this.status);
+      this.table_name = table_name;
+      this.table_pax =  table_pax;
+      this.table_description = table_description;
+      this.table_status = table_status;
+      this.table_steward = table_steward;
+      this.table_view = table_view;
+      this.table_capatain = table_capatain;
+      console.log(this.table_name);console.log(this.table_pax);
+      console.log(this.table_description);console.log(this.table_status);
   }
 }
