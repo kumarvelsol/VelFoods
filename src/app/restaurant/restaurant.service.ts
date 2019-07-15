@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Offers } from '../shared/interfaces/offers';
-import { JsResponse } from '../shared/JsResponse';
+import { JsResponse, Responce } from '../shared/JsResponse';
 import { Property } from '../shared/property';
+import { EmployeeCategory, EmployeeRegistration } from '../shared/interfaces/empcate';
 
 @Injectable({
   providedIn: 'root'
@@ -28,5 +29,28 @@ export class RestaurantService {
   }
   public updateproperty(prpt_up: Property){
     return this.http.post(`${this.Baseurl+"updatingproperty"}`,prpt_up);
+  }
+  public addempcate(empcate : EmployeeCategory)
+  {
+    return this.http.post<JsResponse>(`${this.Baseurl+"empdeptinsert"}`,empcate);
+  }
+  public updateempcategory(empcate:EmployeeCategory){
+    return this.http.post<JsResponse>(`${this.Baseurl+"empdeptupdate"}`,empcate);
+  }
+  public getempcategory(restaurent_id:number){
+    let parms =new HttpParams();
+    parms =parms.append('restaurent_id', restaurent_id+"")
+    return this.http.post<Responce>(`${this.Baseurl+"getempdepartments"}`,parms);
+  }
+  public addempreg(empcate :EmployeeRegistration){
+    return this.http.post<JsResponse>(`${this.Baseurl+"empreginsert"}`,empcate);
+  }
+  public updateempreg(empcate :EmployeeRegistration){
+    return this.http.post<JsResponse>(`${this.Baseurl+"empregupdate"}`,empcate);
+  }
+  public getempreg(restaurent_id:number){
+    let parms =new HttpParams();
+    parms =parms.append('restaurent_id', restaurent_id+"")
+    return this.http.post<Responce>(`${this.Baseurl+"empregvalues"}`,parms);
   }
 }

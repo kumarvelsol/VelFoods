@@ -7,22 +7,22 @@
             <!-- <mat-divider style="font-size: 2px; font-weight:bold; " class="mat-divider"></mat-divider> -->
             <mat-form-field class="col-md-12" style="color:gray">
               <mat-label> Department_id </mat-label>
-              <input matInput [(ngModel)]="departmentid"  required>
+              <input matInput [(ngModel)]="empdepartement_id"  required>
             </mat-form-field>
             <mat-form-field class="col-md-12" style="color:gray">
                 <mat-label> Department_name </mat-label>
-                <input matInput [(ngModel)]="departmentname"  required>
+                <input matInput [(ngModel)]="empdepartement_name"  required>
               </mat-form-field>
         </div>
         <div class="block child">
           <mat-label style="margin-left:15px;"> Status : </mat-label>
-          <mat-radio-group aria-label="Select an option">
-              <mat-radio-button value="1">Active</mat-radio-button>
-              <mat-radio-button value="2">InActive</mat-radio-button>
+          <mat-radio-group aria-label="Select an option" [(ngModel)]="empdepartement_status">
+              <mat-radio-button value="Active">Active</mat-radio-button>
+              <mat-radio-button value="InActive">InActive</mat-radio-button>
             </mat-radio-group>
         </div>
         <div class="block child" >
-            <button button type="submit" style="margin: 10px; margin-left: 80px;" class="btn-style" (click)="onsaveclick()" >Save</button>
+          <button mat-raised-button style="margin-top: 10px;" class="btn-style" (click)="onsaveclick()">{{buttoncontent}}</button>&nbsp;&nbsp;
             <button  style="margin: 10px;" class="btn-style" (click)="onclearclick()">clear</button>
         </div>
       </mat-card>
@@ -30,22 +30,22 @@
     <div class="col-lg-6">
       <div class="example-container mat-elevation-z1">
           <table mat-table [dataSource]="dataSource">
-              <ng-container matColumnDef="departmentd">
-                <th mat-header-cell *matHeaderCellDef> departmentId </th>
-                <td mat-cell *matCellDef="let element"> {{element.departmentId}} </td>
+              <ng-container matColumnDef="empdepartement_id">
+                <th mat-header-cell *matHeaderCellDef> DepartmentId </th>
+                <td mat-cell *matCellDef="let element"> {{element.empdepartement_id}} </td>
               </ng-container>
-              <ng-container matColumnDef="departmentname">
-                <th mat-header-cell *matHeaderCellDef>departmentname </th>
-                <td mat-cell *matCellDef="let element"> {{element.departmentname}} </td>
+              <ng-container matColumnDef="empdepartement_name">
+                <th mat-header-cell *matHeaderCellDef> DepartmentName </th>
+                <td mat-cell *matCellDef="let element"> {{element.empdepartement_name}} </td>
               </ng-container>
-              <ng-container matColumnDef="Contact">
-                <th mat-header-cell *matHeaderCellDef> departmentstatus </th>
-                <td mat-cell *matCellDef="let element"> {{element.departmentstatus}} </td>
+              <ng-container matColumnDef="empdepartement_status">
+                <th mat-header-cell *matHeaderCellDef> DepartmentStatus </th>
+                <td mat-cell *matCellDef="let element"> {{element.empdepartement_status}} </td>
               </ng-container>
               <ng-container matColumnDef="actions">
                 <th mat-header-cell *matHeaderCellDef>Edit</th>
                 <td mat-cell *matCellDef="let element; let i=index;"> 
-                  <button mat-icon-button style="color:gray;margin-right: 10px;" >
+                  <button mat-icon-button style="color:gray;margin-right: 10px;" (click)="RowSelected(i,element.empdepartement_id,element.empdepartement_name,element.empdepartement_status)" >
                     <mat-icon aria-label="Edit">edit</mat-icon>
                   </button>
                 </td>
