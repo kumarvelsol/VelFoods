@@ -7,7 +7,6 @@ import { Property } from '../shared/property';
 @Injectable({
   providedIn: 'root'
 })
-
 export class RestaurantService {
   Baseurl = 'http://localhost:57649/';
   httpOptions = {
@@ -18,6 +17,11 @@ export class RestaurantService {
   constructor(private http:HttpClient) { }
   public AddOffer (offer : Offers){
     return this.http.post<JsResponse>(`${this.Baseurl+"OfferAdding"}`,offer);
+  }
+  public OffersList (restaurent_id : number){
+    let params = new HttpParams();
+    params = params.append('restaurent_id', restaurent_id+"");
+    return this.http.post<JsResponse>(`${this.Baseurl+""}`,params);
   }
   public getproperty(prpt_get : Property)
   {
