@@ -1,14 +1,14 @@
-export interface JsResponse{
+export interface JsResponse {
     message : string;
     code    : number;
     Data    : string;
 }
-export interface Responce{
+export interface Responce {
     message : string;
     code    : number;
     Data    : Data[];
 }
-export interface Data{
+export interface Data {
     empdepartement_id:number;
     empdepartement_name:string;
     empdepartement_status:string;
@@ -24,4 +24,10 @@ export interface Data{
     empregistration_login_type:string;
     Username:string;
     password:string;
+    tax_id : number;
+    tax_name : string;
+    tax_percentage : number;
+    tax_Active_from : string;
+    tax_status : string;
+    tax_employeename : string;
 }
