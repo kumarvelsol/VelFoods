@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { RestaurantService } from '../restaurant.service';
+import { Tax } from 'src/app/shared/interfaces/tax';
+import { MatTableDataSource } from '@angular/material';
 
 @Component({
   selector: 'app-taxpage',
@@ -8,21 +11,26 @@ import { Component, OnInit } from '@angular/core';
 export class TaxpageComponent implements OnInit {
   rows: Array<{taxid:number, taxname:string,percentage:number,reportname:string,activefrom:string,status:string}> = [];
   //data: any = [{taxid:1, taxname:"Five",percentage:5,reportname:"Dharani",status:"Active"}, {taxid:2, taxname:"Three",percentage:3,reportname:"Dharani",status:"Active"} ];
-  dataSource;buttoncontent:string;
-  taxid:number;taxname:string;percentage:number;reportname:string;activefrom:string;status:string;
-  displayedColumns: string[] = ["taxid", "taxname","percentage", "reportname","activefrom","status","actions"];
-  constructor() { }
-
+  dataSource;buttoncontent : string = "Save";
+  taxid : number; taxname : string; percentage : number; reportname : string; activefrom : string; status : string;
+  displayedColumns : string[] = ["tax_id", "tax_name","tax_percentage", "tax_employeename","tax_Active_from","tax_status","actions"];
+  constructor(public service : RestaurantService){}
   ngOnInit() {
-    this.buttoncontent = "Save";
-    this.rows = [{taxid:1, taxname:"Five",percentage:5,reportname:"Dharani",activefrom:"6/19/2019",status:"Active"},
-                   {taxid:2, taxname:"Three",percentage:3,reportname:"Dharani",activefrom:"6/18/2019",status:"InActive"}];
-    this.dataSource = this.rows;
+    this.LoadingList();
+    // this.rows = [{taxid:1, taxname:"Five",percentage:5,reportname:"Dharani",activefrom:"6/19/2019",status:"Active"},
+    //             {taxid:2, taxname:"Three",percentage:3,reportname:"Dharani",activefrom:"6/18/2019",status:"InActive"}];
+    // this.dataSource = this.rows;
   }
   onclear()
   {
-    this.taxname="";this.percentage=null;this.reportname="";this.activefrom = "";this.status="";
+    this.taxname = "";
+    this.percentage = null;
+    this.reportname = "";
+    this.activefrom = "";
+    this.status = "";
     this.buttoncontent = "Save";
+    this.LoadingList();
+    this.taxid = 0;
   }
   onsave()
   {
@@ -32,20 +40,51 @@ export class TaxpageComponent implements OnInit {
     }
     else
     {
-      this.rows.push({taxid:this.taxid, taxname:this.taxname,percentage:this.percentage,reportname:this.reportname,activefrom:this.activefrom,status:this.status});
-      this.dataSource = this.rows;
-      console.log(this.dataSource);
+      if(this.buttoncontent == "Save"){
+        let tax : Tax = {
+          tax_name : this.taxname,
+          tax_percentage : this.percentage,
+          tax_Active_from : this.activefrom,
+          tax_status : this.status,
+          restaurent_id : 1,
+          tax_employeename : this.reportname,
+        }
+        this.service.AddTax(tax).subscribe(data=>{
+          if(data.code == 200){
+            alert(data.message);
+            this.onclear();
+          }else{
+            alert(data.message);
+          }
+        });
+      }else if(this.buttoncontent == "Update"){
+        this.service.UpdateTax(this.taxid,this.taxname,this.percentage,this.activefrom,this.status,1,this.reportname).subscribe(data=>{
+          if(data.code == 200){
+            alert(data.message);
+            this.onclear();
+          }else{
+            alert(data.message);
+          }
+        });
+      }
     }
     this.onclear();
   }
-  public RowSelected(i:number,taxid:number,taxname:string,percentage:number,reportname:string,activefrom:string,status:string)
+  public LoadingList(){
+    this.service.TaxList(1).subscribe(data =>{
+      this.dataSource = new MatTableDataSource(data.Data);
+    });
+  }
+  index : number;
+  public RowSelected(i:number,tax_id:number,tax_name:string,tax_percentage:number,tax_employeename:string,tax_Active_from:string,tax_status:string)
   {
-    this.buttoncontent="Update";
-    this.taxid = taxid;
-    this.taxname =  taxname;
-    this.percentage = percentage;
-    this.reportname = reportname;
-    this.activefrom = activefrom;
-    this.status = status;
+    this.index = i;
+    this.buttoncontent = "Update";
+    this.taxid = tax_id;
+    this.taxname =  tax_name;
+    this.percentage = tax_percentage;
+    this.reportname = tax_employeename;
+    this.activefrom = tax_Active_from;
+    this.status = tax_status;
   }
 }

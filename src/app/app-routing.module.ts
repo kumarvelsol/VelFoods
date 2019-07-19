@@ -5,6 +5,8 @@ import { ItemNamesComponent } from './item-names/item-names.component';
 import { LoginComponent } from './login/login.component';
 import { OrderingComponent } from './ordering/ordering.component';
 import { TableStatusComponent } from './restaurant/table-status/table-status.component';
+import { EmployeedepartmentComponent } from './employeedepartment/employeedepartment.component';
+import {EmployeeregistrationComponent} from './employeeregistration/employeeregistration.component'
 const routes: Routes = [
   {path:'',pathMatch:'full',redirectTo:'restaurant'},
   {path:'itemCategory',component:ItemCategoryComponent},
@@ -12,7 +14,9 @@ const routes: Routes = [
   {path:'restaurant',loadChildren:'./restaurant/restaurant.module#RestaurantModule'},
   {path:'login',component:LoginComponent},
   {path:'ordering',component:OrderingComponent},
-  {path:'tablestatus',component:TableStatusComponent}
+  {path:'tablestatus',component:TableStatusComponent},
+  {path:'employeedepartment',component:EmployeedepartmentComponent},
+  {path:'employeeregistration',component:EmployeeregistrationComponent}
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
