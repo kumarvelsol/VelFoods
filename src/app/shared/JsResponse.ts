@@ -30,4 +30,23 @@ export interface Data {
     tax_Active_from : string;
     tax_status : string;
     tax_employeename : string;
+
+    offers_id : number;
+    promo_code_name : string;
+    promo_code : string;
+    promo_code_description : string;
+    percentage : string;
+    Active_dare_status : string;
+    from_date : string;
+    to_date : string;
+    Active_time_status : string;
+    from_time : string;
+    to_time : string;
+    Day_status : string;
+    Days : string;
+    Day_type : string;
+    minbill_status : string;
+    minbill_amount : string;
+    maximum_bill_status : string;
+    maximum_bill_amount : string;
 }

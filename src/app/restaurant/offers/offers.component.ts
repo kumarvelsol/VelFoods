@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Time } from '@angular/common';
 import { Offers } from 'src/app/shared/interfaces/offers';
 import { RestaurantService } from '../restaurant.service';
+import { MatTableDataSource } from '@angular/material';
 @Component({
   selector: 'app-offers',
   templateUrl: './offers.component.html',
@@ -39,6 +40,8 @@ export class OffersComponent implements OnInit {
   minbill_disable : boolean;
   maxdis_disable : boolean;
   buttoncontent : string = "Save";
+  displayedColumns : string[] = ["offers_id","promo_code_name","promo_code","percentage","from_date","to_date","from_time","to_time","minbill_amount","maximum_bill_amount"];
+  dataSource;
   ngOnInit() {
     this.to_date_disable = true;
     this.from_date_disable = true;
@@ -48,6 +51,7 @@ export class OffersComponent implements OnInit {
     this.minbill_disable = true;
     this.maxdis_disable = true;
     this.disablecheckbox();
+    this.LoadingList();
   }
   onDatesValid(){
     if(this.dates_slide == true){
@@ -157,6 +161,7 @@ export class OffersComponent implements OnInit {
     if(this.times_slide == true){
       if(this.from_time == null || this.to_time == null){
         this.times = false;
+        console.log(this.from_time+" "+this.to_time);
         alert("Please Enter Time fields Or Switch off the Time Section");
       }else{
         this.times = true;
@@ -311,5 +316,10 @@ export class OffersComponent implements OnInit {
     this.fri_disable = true;
     this.sat_disable = true;
     this.sun_disable = true;
+  }
+  public LoadingList(){
+    this.service.OffersList(1).subscribe(data =>{
+      this.dataSource = new MatTableDataSource(data.Data);
+    });
   }
 }

@@ -23,7 +23,7 @@ export class RestaurantService {
   public OffersList (restaurent_id : number){
     let params = new HttpParams();
     params = params.append('restaurent_id', restaurent_id+"");
-    return this.http.post<JsResponse>(`${this.Baseurl+""}`,params);
+    return this.http.post<Responce>(`${this.Baseurl+"OffersList"}`,params);
   }
   public getproperty(prpt_get : Property)
   {
