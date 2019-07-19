@@ -4,7 +4,7 @@ import { Property } from 'src/app/shared/property';
 import { Apiresponse } from 'src/app/shared/apiresponse';
 import { Data } from 'src/app/shared/data';
 import { JSONP_ERR_WRONG_RESPONSE_TYPE } from '@angular/common/http/src/jsonp';
-import { Jsresponse } from 'src/app/shared/jsresponse';
+import { JsResponse } from 'src/app/shared/jsresponse';
 
 @Component({
   selector: 'app-property',
@@ -17,25 +17,11 @@ export class PropertyComponent implements OnInit {
    property_city : string;   property_email : string;   property_state : string;
    property_website : string;   property_pincode : number;   property_gst : string;
    property_country : string;   propertylist : Apiresponse;  propertydata : Data[];
-   jsRes : Jsresponse;
+   jsRes : JsResponse;
   constructor(private service1: RestaurantService) { }
 
   ngOnInit() {
-    debugger;
-    // this.propertyname = "Resto";
-    // this.address = "1/256, Masjid banda, Kondapur";
-    // this.landmark ="Near Aadharsh Cooperative bank";
-    // this.city ="Hyderabad";
-    // this.state ="Telangana";
-    // this.pincode =500084;
-    // this.country ="India";
-    // this.contactno =7894561235;
-    // this.landline =256415;
-    // this.email ="velsol@gmail.com";
-    // this.website ="www.velsol.com";
-    // this.gst ="1234ABCDE2ZA";
-
-    this.service1.getproperty().subscribe((data: Apiresponse) => 
+    this.service1.getproperty(1).subscribe((data: Apiresponse) => 
     {
       this.property_name = data.Data[0].property_name;
       this.property_address = data.Data[0].property_address;
@@ -80,7 +66,7 @@ export class PropertyComponent implements OnInit {
         property_gst : this.property_gst,
         property_country : this.property_country
       }
-      this.service1.createproperty(a).subscribe((data: Jsresponse) => 
+      this.service1.createproperty(a).subscribe((data: JsResponse) => 
       {
         this.jsRes = data;
             if(this.jsRes.code==200)
@@ -104,7 +90,7 @@ export class PropertyComponent implements OnInit {
         property_gst : this.property_gst,
         property_country : this.property_country
       }
-      this.service1.updateproperty(a).subscribe((data: Jsresponse) => 
+      this.service1.updateproperty(a).subscribe((data: JsResponse) => 
       {
         this.jsRes = data;
             if(this.jsRes.code==200)
