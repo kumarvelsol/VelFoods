@@ -19,9 +19,10 @@ import { SettledbillsComponent } from './Billsettle/settledbills/settledbills.co
 import { BillpaymentComponent } from './billpayment/billpayment.component';
 import { TableStatusComponent } from './table-status/table-status.component';
 import { BillsettledailogComponent } from './Billsettle/billsettledailog/billsettledailog.component';
+import { MiscollectionComponent } from './miscollection/miscollection.component';
 
 @NgModule({
-  declarations: [LoginpageComponent, PropertyComponent, TaxpageComponent,TabledefinitionComponent, PaidoutsmiscolComponent, OffersComponent, BankwallettabbarComponent, BanksComponent, WalletsComponent,TablereserveComponent, TableStatusComponent, SettledbillsComponent, BillpaymentComponent, BillsettledailogComponent],
+  declarations: [LoginpageComponent, PropertyComponent, TaxpageComponent,TabledefinitionComponent, PaidoutsmiscolComponent, OffersComponent, BankwallettabbarComponent, BanksComponent, WalletsComponent,TablereserveComponent, TableStatusComponent, SettledbillsComponent, BillpaymentComponent, BillsettledailogComponent, MiscollectionComponent],
 
   imports: [
     CommonModule,
