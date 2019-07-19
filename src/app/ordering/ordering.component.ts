@@ -6,6 +6,8 @@ import { DialogBoxComponent } from '../dialog-box/dialog-box.component';
 import { LOCALE_DATA } from '@angular/common/src/i18n/locale_data';
 import { element } from '@angular/core/src/render3';
 import { RestaurantService } from '../restaurant/restaurant.service';
+import { Responce } from '../shared/JsResponse';
+import { Data } from '@angular/router';
 
 export interface UsersData {
   order_id:number;
@@ -38,15 +40,16 @@ export class OrderingComponent implements OnInit {
   itemname_id:number;
   table_defination_id:number;
   order_status:string;
+  table_name:string;
   insert_by:string;
   insert_date:Date;
   kot_id:number;
   local_data:any;
   displayedColumns: string[] = ['order_id','order_itemname','order_rate', 'order_quantity','order_totalamount', 'action'];
   dataSource = ELEMENT_DATA;
-  userlist:order;
+  userlist:Responce;
   datasource;
-  rooms : room[];
+  rooms : Data[];
   name:string;
   roomnos :string;
   colors :string;
@@ -62,15 +65,15 @@ export class OrderingComponent implements OnInit {
    }
   
  ngOnInit() {
-    this._roomservice.roomno().subscribe((data : order) =>
+    this._roomservice.gettabledata(1).subscribe((data : Responce) =>
     {
       this.userlist=data;
       this.rooms = this.userlist.Data
     });
   }
-  onbuttonclick($event,ROOM_NO){
+  onbuttonclick($event,table_name){
     this.colorr;
-    alert(ROOM_NO);
+    alert(table_name);
   }
 openDialog(action,obj) {
     obj.action = action;
