@@ -6,6 +6,7 @@ import { Property } from '../shared/property';
 import { Tabledefinition } from '../shared/tabledefinition';
 import { EmployeeCategory, EmployeeRegistration } from '../shared/interfaces/empcate';
 import { Tax } from '../shared/interfaces/tax';
+import { Tablebooking } from '../shared/tablebooking';
 
 @Injectable({
   providedIn: 'root'
@@ -46,6 +47,16 @@ export class RestaurantService {
   }
   public updatetable(table_up: Tabledefinition){
     return this.http.post(`${this.Baseurl+"tableupdate"}`,table_up);
+  }
+  public gettablebooking()
+  {
+    return this.http.get(this.Baseurl+"gettablebooking");
+  }
+  public createtablebooking(table_in:Tablebooking){
+      return this.http.post(`${this.Baseurl+"addtablebooking"}`,table_in);
+  }
+  public updatetablebooking(table_up: Tablebooking){
+    return this.http.post(`${this.Baseurl+"updatetablebooking"}`,table_up);
   }
   public addempcate(empcate : EmployeeCategory)
   {
