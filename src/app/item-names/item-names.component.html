@@ -40,6 +40,170 @@
             <mat-radio-button value="Active">Active</mat-radio-button>
             <mat-radio-button style="margin-left:10px;" value="InActive">InActive</mat-radio-button>
           </mat-radio-group> <br><br>
+    <mat-card class="example-card">
+        <div class="block ">
+          <form #addingClass="ngForm" autocomplete="off" (ngSubmit)="onSubmit(addingClass)" style="margin-left: 30px;">
+              <p> Item Names </p>
+
+              <mat-form-field class="col-lg-6" >
+                <mat-label>Select category</mat-label>
+                <mat-select name="category" #category="ngModel" [ngModel]="service.itemNames.category">
+                  <mat-option>None</mat-option>
+                  <mat-option value="category1">category 1</mat-option>
+                  <mat-option value="category2">category 2</mat-option>
+                  <mat-option value="category3">category 3</mat-option>
+                </mat-select>
+              </mat-form-field>  
+              <mat-form-field class="col-lg-6" style="color: gray;">
+                <mat-label style="color: gray;">Item Name</mat-label>
+                <mat-icon style="color :gray" matSuffix>developer_board</mat-icon>          
+                <input matInput    name="name" #name="ngModel" [ngModel]="service.itemNames.name" required>
+                <!-- <mat-hint style="color: gray;">Hint</mat-hint> -->
+              </mat-form-field>
+              <br><br>
+              <mat-form-field class="col-lg-6" style="color: gray;">
+                <mat-label style="color: gray;">Item Description</mat-label>
+                <mat-icon style="color :gray" matSuffix>developer_board</mat-icon>          
+                <input matInput    name="description" #description="ngModel" [ngModel]="service.itemNames.description" required>
+                <!-- <mat-hint style="color: gray;">Hint</mat-hint> -->
+              </mat-form-field> 
+              <mat-form-field class="col-lg-6">
+                <mat-label>Select Reporting name</mat-label>
+                <mat-select name="reportingName" #reportingName="ngModel" [ngModel]="service.itemNames.reportingName" >
+                  <mat-option>None</mat-option>
+                  <mat-option value="option1">Employee 1</mat-option>
+                  <mat-option value="option2">Employee 2</mat-option>
+                  <mat-option value="option3">Employee 3</mat-option>
+                </mat-select>
+              </mat-form-field>  <br><br>
+              <mat-form-field class="col-lg-6">
+                <input matInput [matDatepicker]="picker"  name="activeFrom" #activeFrom="ngModel" [ngModel]="service.itemNames.activeFrom" placeholder="Active from" required>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>  
+              <mat-radio-group
+                    aria-labelledby="example-radio-group-label"
+                    class="col-lg-6"
+                      name="status" #status="ngModel" [ngModel]="service.itemNames.status">
+                      <label class="example-radio-button" > Status</label>
+                      <mat-radio-button class="example-radio-button" *ngFor="let season of seasons" [value]="season">
+                        {{season}}
+                      </mat-radio-button>
+                    </mat-radio-group> <br><br>
+                    <div class="border_wrap">
+                      <div class="row heading_wrap">
+                        <div class="col-6">
+                          <label class="labels_style" style="color: blue">DineInn :</label>
+                        </div>
+                        <div class="col-6" style="position: relative">
+                        </div>  
+                      </div>
+                      <div class="row col-md-12" style="margin: 15px; padding-right: 15px;">
+                        <mat-form-field  class="col-md-6"  style="color: gray;">
+                          <mat-label style="color: gray;">enter amount</mat-label>
+                          <mat-icon style="color :gray" matSuffix>monetization_on</mat-icon>          
+                          <input matInput (keyup)="onDineInnLabel($event)"    name="description" #description="ngModel" [ngModel]="service.itemNames.description" required>
+                          <!-- <mat-hint style="color: gray;">Hint</mat-hint> -->
+                        </mat-form-field>
+                        <mat-form-field  class="col-md-6" >
+                          <mat-label>Select Tax</mat-label>
+                          <mat-select [(value)]="selected"  (selectionChange)="selectOption($event.value)"  >
+                            <mat-option>None</mat-option>
+                            <mat-option value="0.05">5</mat-option>
+                            <mat-option value="0.06">6</mat-option>
+                            <mat-option value="0.07">7</mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                      <div class="row col-md-12">
+                          <label  style="margin-left: 50px;"> Total: {{selected}} </label>  
+                      </div>
+                  </div>
+                  <div class="border_wrap">
+                    <div class="row heading_wrap">
+                      <div class="col-6">
+                        <label class="labels_style" style="color: blue">Take Away :</label>
+                      </div>
+                      <div class="col-6" style="position: relative">
+                      </div>  
+                    </div>
+                    <div class="row col-md-12" style="margin: 15px;">
+                      <mat-form-field   class="col-md-6" style="color: gray;">
+                          <mat-label style="color: gray;">amount</mat-label>
+                          <mat-icon style="color :gray" matSuffix>monetization_on</mat-icon>          
+                          <input matInput  (keyup)="onTakeAwayLabel($event)"   name="description" #description="ngModel" [ngModel]="service.itemNames.description" required>
+                          <!-- <mat-hint style="color: gray;">Hint</mat-hint> -->
+                        </mat-form-field>
+                        <mat-form-field  class="col-md-6" >
+                          <mat-label>Select Tax</mat-label>
+                          <mat-select [(value)]="selectedTakeaway"  (selectionChange)="selectTakeAway($event.value)"  >
+                            <mat-option>None</mat-option>
+                            <mat-option value="0.05">5</mat-option>
+                            <mat-option value="0.06">6</mat-option>
+                            <mat-option value="0.07">7</mat-option>
+                          </mat-select>
+                        </mat-form-field> 
+                  </div>
+                  <div class="row col-md-12">
+                      <label style="margin-left: 50px;"> Total: {{selectedTakeaway}} </label>  
+                  </div>
+                </div>
+                <div class="border_wrap">
+
+                  <div class="row heading_wrap">
+                    <div class="col-6">
+                      <label class="labels_style"  style="color: blue">Home Delivery :</label>
+                    </div>
+                    <div class="col-6" style="position: relative">
+                    </div>  
+                  </div>  
+                 
+                  <div class="row col-md-12" style="margin: 15px;">
+                    <mat-form-field class="col-md-4" style="color: gray;">
+                        <mat-label style="color: gray;">amount</mat-label>
+                        <mat-icon style="color :gray" matSuffix>monetization_on</mat-icon>          
+                        <input matInput   (keyup)="onHDeliveryLabel($event)"  name="description" #description="ngModel" [ngModel]="service.itemNames.description" required>
+                        <!-- <mat-hint style="color: gray;">Hint</mat-hint> -->
+                      </mat-form-field>
+                    <mat-form-field class="col-md-4">
+                        <mat-label>Select Tax</mat-label>
+                        <mat-select [(value)]="selectedDelivery" (selectionChange)="selectHDelivery($event.value)"  >
+                          <mat-option>None</mat-option>
+                          <mat-option value="0.05">5</mat-option>
+                          <mat-option value="0.06">6</mat-option>
+                          <mat-option value="0.07">7</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+
+                      <mat-form-field class="col-md-4" style="color: gray; ">
+                          <mat-label style="color: gray;">Delivery Charge</mat-label>
+                          <mat-icon style="color :gray" matSuffix>monetization_on</mat-icon>          
+                          <input  matInput   (keyup)="onHDeliveryChargeLabel($event)" (keyup)="onKey($event)"  >
+                          <!-- <mat-hint style="color: gray;">Hint</mat-hint> -->
+                        </mat-form-field>
+                </div>
+            <div class="row col-md-12">
+                <label  style="margin-left: 50px;"> Total: {{selectedDeliveryss}} </label>  
+            </div>
+            
+              </div>
+                    
+
+
+
+                    
+<!-- -->
+
+                                                                                                                                                                                                                                                          
+
+              <div class="col-md-12">
+                <button button type="submit" class="btn-style" style="margin: 15px;" >Save</button>
+                <button  class="btn-style" (click)="onclearclick()" style="margin: 15px;">
+                    clear
+                </button>
+              </div>
+              
+              </form>
         </div>
         <div class="block child">
           <h6>DineIn:-</h6>

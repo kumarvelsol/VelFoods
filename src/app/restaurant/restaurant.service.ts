@@ -4,11 +4,11 @@ import { Offers } from '../shared/interfaces/offers';
 import { JsResponse, Responce } from '../shared/JsResponse';
 import { Property } from '../shared/property';
 import { EmployeeCategory, EmployeeRegistration, itemcategory, itemnames } from '../shared/interfaces/empcate';
+import { Tax } from '../shared/interfaces/tax';
 
 @Injectable({
   providedIn: 'root'
 })
-
 export class RestaurantService {
   Baseurl = 'http://localhost:57649/';
   httpOptions = {
@@ -19,6 +19,11 @@ export class RestaurantService {
   constructor(private http:HttpClient) { }
   public AddOffer (offer : Offers){
     return this.http.post<JsResponse>(`${this.Baseurl+"OfferAdding"}`,offer);
+  }
+  public OffersList (restaurent_id : number){
+    let params = new HttpParams();
+    params = params.append('restaurent_id', restaurent_id+"");
+    return this.http.post<Responce>(`${this.Baseurl+"OffersList"}`,params);
   }
   public getproperty(prpt_get : Property)
   {
@@ -34,7 +39,7 @@ export class RestaurantService {
   {
     return this.http.post<JsResponse>(`${this.Baseurl+"empdeptinsert"}`,empcate);
   }
-  public updateempcategory(empcate:EmployeeCategory){
+  public updateempcategory(empcate : EmployeeCategory){
     return this.http.post<JsResponse>(`${this.Baseurl+"empdeptupdate"}`,empcate);
   }
   public getempcategory(restaurent_id:number){
@@ -48,9 +53,9 @@ export class RestaurantService {
   public updateempreg(empreg :EmployeeRegistration){
     return this.http.post<JsResponse>(`${this.Baseurl+"empregupdate"}`,empreg);
   }
-  public getempreg(restaurent_id:number){
-    let parms =new HttpParams();
-    parms =parms.append('restaurent_id', restaurent_id+"")
+  public getempreg(restaurent_id : number){
+    let parms = new HttpParams();
+    parms = parms.append('restaurent_id', restaurent_id+"")
     return this.http.post<Responce>(`${this.Baseurl+"empregvalues"}`,parms);
   }
   public additemca(itemcat :itemcategory){
@@ -74,5 +79,24 @@ export class RestaurantService {
     let parms =new HttpParams();
     parms =parms.append('restaurent_id', restaurent_id+"")
     return this.http.post<Responce>(`${this.Baseurl+"getitemnames"}`,parms);
+  }
+  public AddTax(tax : Tax){
+    return this.http.post<JsResponse>(`${this.Baseurl+"TaxAdding"}`,tax);
+  }
+  public UpdateTax(tax_id: number, tax_name : string, tax_percentage : number, tax_Active_from : string, tax_status : string, restaurent_id : number, tax_employeename:string){
+    let parms = new HttpParams();
+    parms = parms.append('tax_id',tax_id+"");
+    parms = parms.append('tax_name',tax_name);
+    parms = parms.append('tax_percentage',tax_percentage+"");
+    parms = parms.append('tax_Active_from',tax_Active_from);
+    parms = parms.append('tax_status',tax_status);
+    parms = parms.append('restaurent_id',restaurent_id+"");
+    parms = parms.append('tax_employeename',tax_employeename);
+    return this.http.post<JsResponse>(`${this.Baseurl+"TaxUpdate"}`,parms);
+  }
+  public TaxList(restaurent_id : number){
+    let parms = new HttpParams();
+    parms = parms.append('restaurent_id',restaurent_id+"");
+    return this.http.post<Responce>(`${this.Baseurl+"TaxList"}`,parms);
   }
 }

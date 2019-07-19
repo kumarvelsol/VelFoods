@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Time } from '@angular/common';
 import { Offers } from 'src/app/shared/interfaces/offers';
 import { RestaurantService } from '../restaurant.service';
+import { MatTableDataSource } from '@angular/material';
 @Component({
   selector: 'app-offers',
   templateUrl: './offers.component.html',
@@ -39,6 +40,8 @@ export class OffersComponent implements OnInit {
   minbill_disable : boolean;
   maxdis_disable : boolean;
   buttoncontent : string = "Save";
+  displayedColumns : string[] = ["offers_id","promo_code_name","promo_code","percentage","from_date","to_date","from_time","to_time","minbill_amount","maximum_bill_amount"];
+  dataSource;
   ngOnInit() {
     this.to_date_disable = true;
     this.from_date_disable = true;
@@ -48,6 +51,7 @@ export class OffersComponent implements OnInit {
     this.minbill_disable = true;
     this.maxdis_disable = true;
     this.disablecheckbox();
+    this.LoadingList();
   }
   onDatesValid(){
     if(this.dates_slide == true){
@@ -138,6 +142,7 @@ export class OffersComponent implements OnInit {
   days : boolean = true;
   minbill : boolean = true;
   maxbill : boolean = true;
+  selecteddays : string = "";
   onsaveclick(){
     //dates slide
     if(this.dates_slide == true){
@@ -148,6 +153,7 @@ export class OffersComponent implements OnInit {
         this.dates = true;
       }
     }else{
+      this.dates = true;
       this.from_date = null;
       this.to_date = null;
     }
@@ -155,17 +161,52 @@ export class OffersComponent implements OnInit {
     if(this.times_slide == true){
       if(this.from_time == null || this.to_time == null){
         this.times = false;
+        console.log(this.from_time+" "+this.to_time);
         alert("Please Enter Time fields Or Switch off the Time Section");
       }else{
         this.times = true;
       }
     }else{
+      this.times = true;
       this.from_time = null;
       this.to_time = null;
     }
     //days slide
     if(this.days_slide == true){
-      this.days = false;
+      if(this.daysSelected == null){
+        this.days = false;
+      }else{
+        if(this.daysSelected == "WeekEnds"){
+          this.selecteddays = "Saturday,Sunday";
+        }else if(this.daysSelected == "WeekDays"){
+          this.selecteddays = "Monday,Tuesday,Wednesday,Thursday,Friday";
+        }else if(this.daysSelected == "AllDays"){
+          this.selecteddays = "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday";
+        }else if(this.daysSelected == "ParticularDays"){
+          if(this.monday == true){
+            this.selecteddays += "Monday,";
+          }
+          if(this.tuesday == true){
+            this.selecteddays += "Tuesday,";
+          }
+          if(this.wednesday == true){
+            this.selecteddays += "Wednesday,";
+          }
+          if(this.thursday == true){
+            this.selecteddays += "Thursday,";
+          }
+          if(this.friday == true){
+            this.selecteddays += "Friday,";
+          }
+          if(this.saturday == true){
+            this.selecteddays += "Saturday,";
+          }
+          if(this.sunday == true){
+            this.selecteddays += "Sunday";
+          }
+        }
+        this.days = true;
+      }
     }
     else{
       this.days = true;
@@ -179,6 +220,7 @@ export class OffersComponent implements OnInit {
         this.minbill = true;
       }
     }else{
+      this.minbill = true;
       this.minbill_amount == "";
     }
     //max discount slide
@@ -193,35 +235,40 @@ export class OffersComponent implements OnInit {
       this.maxbill = true;
       this.maxdis_amount == "";
     }
-    if(this.maxbill == false || this.minbill == false || this.dates == false || this.times == false || this.days == false){
+    if(this.promo_name == null || this.promo_code == null || this.percentage == null){
+      alert("Please fill all Fields");
     }else{
-      let offers : Offers = {
-        promo_code_name : this.promo_name,
-        promo_code : this.promo_code,
-        promo_code_description : '',
-        Active_dare_status : this.dates_slide+"",
-        from_date : this.from_date+"",
-        to_date : this.to_date+"",
-        Active_time_status : this.times_slide+"",
-        from_time : this.from_time+"",
-        to_time : this.to_time+"",
-        Day_status : this.days_slide+"",
-        Days : "",
-        Day_type : this.daysSelected,
-        percentage : this.percentage,
-        minbill_status : this.minbill_slide+"",
-        minbill_amount : this.minbill_amount,
-        maximum_bill_status : this.maxdis_slide+"",
-        maximum_bill_amount : this.maxdis_amount,
-        restaurent_id : 1,
-      }
-      this.service.AddOffer(offers).subscribe(data=>{
-        if(data.code == 200){
-          alert(data.message);
-        }else{
-          alert(data.message);
+      if(this.maxbill == false || this.minbill == false || this.dates == false || this.times == false || this.days == false){
+      }else{
+        alert(this.daysSelected+" "+this.selecteddays);
+        let offers : Offers = {
+          promo_code_name : this.promo_name,
+          promo_code : this.promo_code,
+          promo_code_description : '',
+          Active_dare_status : this.dates_slide+"",
+          from_date : this.from_date+"",
+          to_date : this.to_date+"",
+          Active_time_status : this.times_slide+"",
+          from_time : this.from_time+"",
+          to_time : this.to_time+"",
+          Day_status : this.days_slide+"",
+          Days : this.selecteddays,
+          Day_type : this.daysSelected,
+          percentage : this.percentage,
+          minbill_status : this.minbill_slide+"",
+          minbill_amount : this.minbill_amount,
+          maximum_bill_status : this.maxdis_slide+"",
+          maximum_bill_amount : this.maxdis_amount,
+          restaurent_id : 1,
         }
-      });
+        this.service.AddOffer(offers).subscribe(data=>{
+          if(data.code == 200){
+            alert(data.message);
+          }else{
+            alert(data.message);
+          }
+        });
+      }
     }
   }
   onclearclick(){
@@ -269,5 +316,10 @@ export class OffersComponent implements OnInit {
     this.fri_disable = true;
     this.sat_disable = true;
     this.sun_disable = true;
+  }
+  public LoadingList(){
+    this.service.OffersList(1).subscribe(data =>{
+      this.dataSource = new MatTableDataSource(data.Data);
+    });
   }
 }
