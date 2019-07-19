@@ -1,14 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ItemcategoryServiceService } from '../itemcategory-service.service';
 import { NgForm } from '@angular/forms';
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Veg', weight: "Employee 1", symbol: 'Active'},
-  {position: 2, name: 'Non-veg', weight: "Employee 2", symbol: 'InActive'},
-  {position: 3, name: 'Veg', weight: "Employee 3", symbol: 'Active'},
-  {position: 4, name: 'Veg', weight: "Employee 4", symbol: 'Active'},
-  {position: 5, name: 'Non-veg', weight: "Employee 5", symbol: 'Active'},
-];
+import { RestaurantService } from '../restaurant/restaurant.service';
+import { itemcategory } from '../shared/interfaces/empcate';
+import { toDate } from '@angular/common/src/i18n/format_date';
 
 @Component({
   selector: 'app-item-category',
@@ -16,66 +11,80 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./item-category.component.css']
 })
 export class ItemCategoryComponent implements OnInit {
-
-  seasons: string[] = ['Active', 'InActive'];
-  constructor(public itemService:ItemcategoryServiceService) { }
-
-  
-
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
+  buttoncontent:string;
+  itemcategory_id:number;
+  item_name:string;
+  item_description:string;
+  item_active_from:Date;
+  item_status:string;
+  item_reporting_name:string;
+  restaurent_id:number;
+  constructor(public service:RestaurantService) { }  
+  displayedColumns: string[] = ['itemcategory_id', 'item_name', 'item_reporting_name', 'item_status'];
+  dataSource;
   ngOnInit() {
-
-    this.resetForm();
+    this.buttoncontent ="Save";
+    this.service.getitemcate(1).subscribe(data =>
+      {
+        this.dataSource = data.Data;
+      });
   }
-
-  resetForm(form? : NgForm)
-  { 
-    if(form!=null)
-    form.reset();
-        this.itemService.itemcategoryRef={
-          name:'',
-          description:'',
-          reportingName:'',
-          Active_From:'',
-          status:'',
-        }
-  }
-
-  onSubmit(icats:NgForm)
-  {
-
-    if(icats.value.name=='' || icats.value.description =='' || icats.value.reportingName=='' || 
-    icats.value.Active_From == '' || icats.value.status=='')
-    {    
-      alert("All fields are important.")
-    }else
-    {
-      console.log(icats.value);
-      this.itemService.itemcategoryRef.name=null;
-      this.itemService.itemcategoryRef.description=null;
-      this.itemService.itemcategoryRef.reportingName=null;
-      this.itemService.itemcategoryRef.Active_From=null;
-      this.itemService.itemcategoryRef.status=null;
-  
-      alert("data Added Succesfully")
+  onsaveclick(){
+    let item:itemcategory ={
+      itemcategory_id:this.itemcategory_id,
+      item_name:this.item_name,
+      item_description:this.item_description,
+      item_active_from:this.item_active_from,
+      item_status:this.item_status,
+      item_reporting_name:this.item_reporting_name,
+      restaurent_id:1
     }
-
- 
+    if(this.buttoncontent =="Save"){
+      this.service.additemca(item).subscribe(data =>{
+        if(data.code ==200){
+          alert(data.message);
+          this.ngOnInit();
+          this.onclearclick();
+        }
+        else
+        {
+          alert(data.message);
+          this.ngOnInit();
+          this.onclearclick();
+        }
+      });
+    }
+    else
+    {
+      this.service.updateitemca(item).subscribe(data =>{
+        if(data.code ==200){
+          alert(data.message);
+          this.ngOnInit();
+          this.onclearclick();
+        }
+        else
+        {
+          alert(data.message);
+          this.ngOnInit();
+          this.onclearclick();
+        }
+      });
+    }
   }
-
-
-  onclearclick()
-  {
-    //for clears the data
-    alert("data has been completed");
+  
+  onclearclick(){
+    this.itemcategory_id =Number("");
+    this.item_name ="";
+    this.item_description  ="";
+    this.item_status ="";
+    this.item_reporting_name ="";
   }
-
-}
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: string;
-  symbol: string;
- 
+  public RowSelected(i:number,itemcategory_id:number,item_name:string,item_description:string,item_status:string,item_reporting_name:string){
+    this.buttoncontent ="Update";
+    this.itemcategory_id =itemcategory_id,
+    this.item_name =item_name,
+    this.item_description=item_description,
+    this.item_status =item_status,
+    this.item_reporting_name =item_reporting_name
+  }
 }
