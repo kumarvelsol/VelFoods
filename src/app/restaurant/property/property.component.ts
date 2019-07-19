@@ -93,9 +93,9 @@ export class PropertyComponent implements OnInit {
       this.service1.updateproperty(a).subscribe((data: JsResponse) => 
       {
         this.jsRes = data;
-            if(this.jsRes.code==200)
-            {alert("Property Updated Succesfully.!");}
-            else{alert("Failed to update data");}
+        if(this.jsRes.code==200)
+        {alert("Property Updated Succesfully.!");}
+        else{alert("Failed to update data");}
     });
     }
   }

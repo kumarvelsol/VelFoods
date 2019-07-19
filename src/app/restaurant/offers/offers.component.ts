@@ -3,22 +3,23 @@ import { Time } from '@angular/common';
 import { Offers } from 'src/app/shared/interfaces/offers';
 import { RestaurantService } from '../restaurant.service';
 import { MatTableDataSource } from '@angular/material';
+import { DatePipe } from '@angular/common'
 @Component({
   selector: 'app-offers',
   templateUrl: './offers.component.html',
   styleUrls: ['./offers.component.css']
 })
 export class OffersComponent implements OnInit {
-  constructor(public service : RestaurantService) { }
+  constructor(public service : RestaurantService,public datepipe: DatePipe) { }
   dates_slide : boolean = false;
   times_slide : boolean = false;
   days_slide : boolean = false;
   minbill_slide : boolean = false;
   maxdis_slide : boolean = false;
-  from_date : Date;
-  to_date : Date;
-  from_time : Time;
-  to_time : Time;
+  from_date : string;
+  to_date : string;
+  from_time : string;
+  to_time : string;
   promo_name : string;
   promo_code : string;
   percentage : string;
@@ -150,6 +151,9 @@ export class OffersComponent implements OnInit {
         this.dates = false;
         alert("Please Enter Dates Or Switch off the Dates Section");
       }else{
+        this.from_date = this.datepipe.transform(this.from_date,'dd-MM-yyyy');
+        this.to_date = this.datepipe.transform(this.to_date,'dd-MM-yyyy');
+        console.log(this.from_date +" "+ this.to_date);
         this.dates = true;
       }
     }else{
@@ -321,5 +325,5 @@ export class OffersComponent implements OnInit {
     this.service.OffersList(1).subscribe(data =>{
       this.dataSource = new MatTableDataSource(data.Data);
     });
-  }
+  }v
 }
