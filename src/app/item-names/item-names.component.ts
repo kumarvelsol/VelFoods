@@ -70,13 +70,13 @@ export class ItemNamesComponent implements OnInit
       this.service.additemname(itmname).subscribe(data =>{
         if(data.code ==200){
           alert(data.message);
-          //this.ngOnInit();
+          this.ngOnInit();
           this.onclearclick();
         }
         else
         {
           alert(data.message);
-          //this.ngOnInit();
+          this.ngOnInit();
           this.onclearclick();
         }
       });
