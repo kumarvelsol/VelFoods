@@ -70,4 +70,13 @@ export interface Data {
     minbill_amount : string;
     maximum_bill_status : string;
     maximum_bill_amount : string;
+    BACKGROUND_COLOR:string;
+    table_defination_id:number;
+    table_name:string;
+    table_pax:number;
+    table_view:string;
+    table_description:string;
+    table_status:string;
+    table_capatain:string;
+    table_steward:string;
 }
