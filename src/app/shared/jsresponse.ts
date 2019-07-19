@@ -69,6 +69,5 @@ export interface Data {
     minbill_status : string;
     minbill_amount : string;
     maximum_bill_status : string;
-    maximum_bill_amount : string;
-    
+    maximum_bill_amount : string;  
 }
