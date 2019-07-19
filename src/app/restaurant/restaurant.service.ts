@@ -4,6 +4,7 @@ import { Offers } from '../shared/interfaces/offers';
 import { JsResponse, Responce } from '../shared/JsResponse';
 import { Property } from '../shared/property';
 import { EmployeeCategory, EmployeeRegistration, itemcategory, itemnames } from '../shared/interfaces/empcate';
+import { Tabledefinition } from '../shared/tabledefinition';
 import { Tax } from '../shared/interfaces/tax';
 
 @Injectable({
@@ -17,6 +18,7 @@ export class RestaurantService {
     })
   };
   constructor(private http:HttpClient) { }
+  
   public AddOffer (offer : Offers){
     return this.http.post<JsResponse>(`${this.Baseurl+"OfferAdding"}`,offer);
   }
@@ -27,13 +29,25 @@ export class RestaurantService {
   }
   public getproperty(prpt_get : Property)
   {
-    return this.http.post(this.Baseurl+"getproperty",prpt_get);
+    return this.http.get(this.Baseurl+"getproperty");
   }
   public createproperty(prpt_in:Property){
     return this.http.post(`${this.Baseurl+"addingproperty"}`,prpt_in);
   }
   public updateproperty(prpt_up: Property){
     return this.http.post(`${this.Baseurl+"updatingproperty"}`,prpt_up);
+  }
+  public gettabledata(restaurent_id:number)
+  {
+    let parms =new HttpParams();
+    parms =parms.append('restaurent_id', restaurent_id+"")
+    return this.http.post(`${this.Baseurl+"gettabledefinition"}`,parms);
+  }
+  public createtable(table_in:Tabledefinition){
+      return this.http.post(`${this.Baseurl+"tableadding"}`,table_in);
+  }
+  public updatetable(table_up: Tabledefinition){
+    return this.http.post(`${this.Baseurl+"tableupdate"}`,table_up);
   }
   public addempcate(empcate : EmployeeCategory)
   {
