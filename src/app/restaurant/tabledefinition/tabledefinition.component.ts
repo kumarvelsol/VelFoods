@@ -46,7 +46,7 @@ export class TabledefinitionComponent implements OnInit {
 
   ngOnInit() {
 
-    this.service1.gettabledata().subscribe((data:Apiresponse)=> {
+    this.service1.gettabledata(1).subscribe((data:Apiresponse)=> {
       this.tabledatalist = data;
       this.abDatasource = new MatTableDataSource(this.tabledatalist.Data);
 
