@@ -3,8 +3,8 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Offers } from '../shared/interfaces/offers';
 import { JsResponse, Responce } from '../shared/JsResponse';
 import { Property } from '../shared/property';
+import { EmployeeCategory, EmployeeRegistration, itemcategory, itemnames } from '../shared/interfaces/empcate';
 import { Tabledefinition } from '../shared/tabledefinition';
-import { EmployeeCategory, EmployeeRegistration } from '../shared/interfaces/empcate';
 import { Tax } from '../shared/interfaces/tax';
 import { Tablebooking } from '../shared/tablebooking';
 
@@ -28,9 +28,11 @@ export class RestaurantService {
     params = params.append('restaurent_id', restaurent_id+"");
     return this.http.post<Responce>(`${this.Baseurl+"OffersList"}`,params);
   }
-  public getproperty(prpt_get : Property)
+  public getproperty(restaurent_id : number)
   {
-    return this.http.get(this.Baseurl+"getproperty");
+    let params = new HttpParams();
+    params = params.append('restaurent_id', restaurent_id+"");
+    return this.http.post(`${this.Baseurl+"getproperty"}`,params);
   }
   public createproperty(prpt_in:Property){
     return this.http.post(`${this.Baseurl+"addingproperty"}`,prpt_in);
@@ -38,9 +40,11 @@ export class RestaurantService {
   public updateproperty(prpt_up: Property){
     return this.http.post(`${this.Baseurl+"updatingproperty"}`,prpt_up);
   }
-  public gettabledata()
+  public gettabledata(restaurent_id:number)
   {
-    return this.http.get(this.Baseurl+"gettabledefinition");
+    let parms =new HttpParams();
+    parms =parms.append('restaurent_id', restaurent_id+"")
+    return this.http.post(`${this.Baseurl+"gettabledefinition"}`,parms);
   }
   public createtable(table_in:Tabledefinition){
       return this.http.post(`${this.Baseurl+"tableadding"}`,table_in);
@@ -70,16 +74,38 @@ export class RestaurantService {
     parms =parms.append('restaurent_id', restaurent_id+"")
     return this.http.post<Responce>(`${this.Baseurl+"getempdepartments"}`,parms);
   }
-  public addempreg(empcate :EmployeeRegistration){
-    return this.http.post<JsResponse>(`${this.Baseurl+"empreginsert"}`,empcate);
+  public addempreg(empreg :EmployeeRegistration){
+    return this.http.post<JsResponse>(`${this.Baseurl+"empreginsert"}`,empreg);
   }
-  public updateempreg(empcate :EmployeeRegistration){
-    return this.http.post<JsResponse>(`${this.Baseurl+"empregupdate"}`,empcate);
+  public updateempreg(empreg :EmployeeRegistration){
+    return this.http.post<JsResponse>(`${this.Baseurl+"empregupdate"}`,empreg);
   }
   public getempreg(restaurent_id : number){
     let parms = new HttpParams();
     parms = parms.append('restaurent_id', restaurent_id+"")
     return this.http.post<Responce>(`${this.Baseurl+"empregvalues"}`,parms);
+  }
+  public additemca(itemcat :itemcategory){
+    return this.http.post<JsResponse>(`${this.Baseurl+"itemcinsert"}`,itemcat);
+  }
+  public updateitemca(itemcat :itemcategory){
+    return this.http.post<JsResponse>(`${this.Baseurl+"itemcatupdate"}`,itemcat);
+  }
+  public getitemcate(restaurent_id:number){
+    let parms =new HttpParams();
+    parms =parms.append('restaurent_id', restaurent_id+"")
+    return this.http.post<Responce>(`${this.Baseurl+"getcategories"}`,parms);
+  }
+  public additemname(itemn:itemnames){
+    return this.http.post<JsResponse>(`${this.Baseurl+"itemnameinsert"}`,itemn);
+  }
+  public updateitemname(itemn:itemnames){
+    return this.http.post<JsResponse>(`${this.Baseurl+"itemnameupdate"}`,itemn);
+  }
+  public getitemnames(restaurent_id:number){
+    let parms =new HttpParams();
+    parms =parms.append('restaurent_id', restaurent_id+"")
+    return this.http.post<Responce>(`${this.Baseurl+"getitemnames"}`,parms);
   }
   public AddTax(tax : Tax){
     return this.http.post<JsResponse>(`${this.Baseurl+"TaxAdding"}`,tax);

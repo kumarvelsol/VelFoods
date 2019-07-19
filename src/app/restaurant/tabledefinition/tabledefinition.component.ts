@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RestaurantService } from '../restaurant.service';
-import { Jsresponse } from 'src/app/shared/jsresponse';
+import { JsResponse } from 'src/app/shared/jsresponse';
 import { Apiresponse } from 'src/app/shared/apiresponse';
 import { Data } from 'src/app/shared/data';
 import { MatTableDataSource } from '@angular/material';
@@ -40,13 +40,13 @@ export class TabledefinitionComponent implements OnInit {
   buttoncontent : string;abDatasource;listcount : number; buttonColor : string; tabledatalist : Apiresponse; tabledata : Data[];
   table_defination_id : number;    table_capatain : string;    table_description: string;
     table_name: string;    table_pax: number;    table_status: string; 
-    table_steward: string;    table_view : string; jsRes : Jsresponse;
+    table_steward: string;    table_view : string; jsRes : JsResponse;
   displayedColumns: string[] = ['table_name','table_pax','table_status','actions']; //'view','captain','steward',
   constructor(public service1 : RestaurantService) { }
 
   ngOnInit() {
 
-    this.service1.gettabledata().subscribe((data:Apiresponse)=> {
+    this.service1.gettabledata(1).subscribe((data:Apiresponse)=> {
       this.tabledatalist = data;
       this.abDatasource = new MatTableDataSource(this.tabledatalist.Data);
 
@@ -70,7 +70,7 @@ export class TabledefinitionComponent implements OnInit {
           table_steward: this.table_steward,
           table_view : this.table_steward,
       }
-       this.service1.createtable(a).subscribe((data : Jsresponse) => {
+       this.service1.createtable(a).subscribe((data : JsResponse) => {
 
         this.jsRes = data;
         if(this.jsRes.code==200)
@@ -91,7 +91,7 @@ export class TabledefinitionComponent implements OnInit {
         table_steward: this.table_steward,
         table_view : this.table_steward,
     }
-     this.service1.updatetable(a).subscribe((data : Jsresponse) => {
+     this.service1.updatetable(a).subscribe((data : JsResponse) => {
 
       this.jsRes = data;
       if(this.jsRes.code==200)
