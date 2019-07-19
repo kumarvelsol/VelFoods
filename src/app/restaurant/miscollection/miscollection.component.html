@@ -1,3 +1,185 @@
-<p>
-  miscollection works!
-</p>
+<div class="container card">
+  <!-- <p style="margin-top: 20px; margin-left: 15px; color: gray; font-size: 24px;">PaidOuts</p> -->
+  <div class = "row">
+      <mat-card class="row example-card child">
+    <div class="row col-md-12">
+      <div class="col-md-12 mat-form-wrap">
+        <mat-radio-group style="margin-bottom: 60px;margin-top: 60px; " required>
+          <mat-radio-button value="Paidouts" style="margin-left: 100px;" >Paidouts</mat-radio-button>
+          <mat-radio-button value="MisCollections"  style="margin-left: 500px;" >MisCollections</mat-radio-button>
+        </mat-radio-group>
+    </div>
+  </div>
+  </mat-card>
+  </div>
+<div class="row">
+  <mat-card class="row example-card parent">
+      <div class="row col-md-12">
+        <div class="col-md-4 mat-form-wrap">
+          <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray">
+            <mat-icon style="color :gray" matSuffix>person</mat-icon>
+            <mat-label style="color :gray">Name</mat-label>
+            <input style="color :gray"  type="text" name="first_name"  matInput>
+          </mat-form-field>
+        </div>
+        <div class="col-md-4 mat-form-wrap">
+          <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray">
+            <mat-icon style="color :gray" matSuffix>developer_board</mat-icon>
+            <mat-label style="color :gray">Particulars</mat-label>
+            <input style="color :gray"  type="text" name="student_roll_no"  matInput>
+          </mat-form-field>
+        </div>
+        <div class="col-md-4 mat-form-wrap">
+          <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray"  >
+            <mat-label style="color :gray">Reporting</mat-label>
+             <mat-select > 
+                <mat-option>Department</mat-option>
+              <mat-option *ngFor="let dname of delist" [value]="dname.departmant_id">{{dname.departmant_name}}</mat-option> 
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+  </mat-card>
+</div>
+<div class="row">
+  <div class="row col-md-12">
+  <div class="col-md-6 mat-form-wrap">
+        <mat-checkbox  [required]="true" style="margin-left: 20px;">Cash</mat-checkbox>
+    </div>
+    <div class="col-md-6 mat-form-wrap">
+      <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray;width:50%;margin-left:265px;">
+        <mat-icon style="color :gray" matSuffix>monetization_on</mat-icon>
+        <mat-label style="color :gray">Amount</mat-label>
+        <input style="color :gray"   type="text" name="total_marks"  matInput>
+      </mat-form-field>
+    </div>
+    </div>
+</div>
+<div class="row">
+    <div class="row col-md-12">
+    <div class="col-md-3 mat-form-wrap">
+          <mat-checkbox  [required]="true" style="margin-left: 20px;">Card</mat-checkbox>
+      </div>
+      <div class="col-md-3 mat-form-wrap">
+        <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray"  >
+            <mat-label style="color :gray">Bank Name</mat-label>
+             <mat-select > 
+                <mat-option>Department</mat-option>
+              <mat-option *ngFor="let dname of delist" [value]="dname.departmant_id">{{dname.departmant_name}}</mat-option> 
+            </mat-select>
+          </mat-form-field>
+    </div>
+      <div class="col-md-3 mat-form-wrap">
+        <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray">
+          <mat-icon style="color :gray" matSuffix>developer_board</mat-icon>
+          <mat-label style="color :gray">Transaction Id</mat-label>
+          <input style="color :gray"   type="text" name="total_marks"  matInput>
+        </mat-form-field>
+      </div>
+      <div class="col-md-3 mat-form-wrap">
+          <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray">
+            <mat-icon style="color :gray" matSuffix>monetization_on</mat-icon>
+            <mat-label style="color :gray">Amount</mat-label>
+            <input style="color :gray"   type="text" name="total_marks"  matInput>
+          </mat-form-field>
+        </div>
+      </div>
+  </div>
+  <div class="row">
+      <div class="row col-md-12">
+      <div class="col-md-3 mat-form-wrap">
+            <mat-checkbox   [required]="true" style="margin-left: 20px;">Online</mat-checkbox>
+        </div>
+        <div class="col-md-3 mat-form-wrap">
+            <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray"  >
+                <mat-label style="color :gray">Bank Name</mat-label>
+                 <mat-select > 
+                    <mat-option>Department</mat-option>
+                  <mat-option *ngFor="let dname of delist" [value]="dname.departmant_id">{{dname.departmant_name}}</mat-option> 
+                </mat-select>
+              </mat-form-field>
+        </div>
+        <div class="col-md-3 mat-form-wrap">
+        <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray">
+          <mat-icon style="color :gray" matSuffix>developer_board</mat-icon>
+          <mat-label style="color :gray">Transaction Id</mat-label>
+          <input style="color :gray"   type="text" name="total_marks"  matInput>
+        </mat-form-field>
+      </div>
+          <div class="col-md-3 mat-form-wrap">
+              <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray">
+                <mat-icon style="color :gray" matSuffix>monetization_on</mat-icon>
+                <mat-label style="color :gray">Amount</mat-label>
+                <input style="color :gray"   type="text" name="total_marks"  matInput>
+              </mat-form-field>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="row col-md-12">
+        <div class="col-md-3 mat-form-wrap">
+              <mat-checkbox   [required]="true" style="margin-left: 20px;">Wallet</mat-checkbox>
+          </div>
+          <div class="col-md-3 mat-form-wrap">
+              <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray"  >
+                  <mat-label style="color :gray">Wallet Name</mat-label>
+                   <mat-select > 
+                      <mat-option>Department</mat-option>
+                    <mat-option *ngFor="let dname of delist" [value]="dname.departmant_id">{{dname.departmant_name}}</mat-option> 
+                  </mat-select>
+                </mat-form-field>
+          </div>
+          <div class="col-md-3 mat-form-wrap">
+              <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray">
+                <mat-icon style="color :gray" matSuffix>developer_board</mat-icon>
+                <mat-label style="color :gray">Transaction Id</mat-label>
+                <input style="color :gray"   type="text" name="total_marks"  matInput>
+              </mat-form-field>
+            </div>
+            <div class="col-md-3 mat-form-wrap">
+                <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray">
+                  <mat-icon style="color :gray" matSuffix>monetization_on</mat-icon>
+                  <mat-label style="color :gray">Amount</mat-label>
+                  <input style="color :gray"   type="text" name="total_marks"  matInput>
+                </mat-form-field>
+              </div>
+          </div>
+      </div>
+      <div class="row">
+          <div class="row col-md-12">
+          <div class="col-md-3 mat-form-wrap">
+                <mat-checkbox   [required]="true" style="margin-left: 20px;">Cheque</mat-checkbox>
+            </div>
+            <div class="col-md-3 mat-form-wrap">
+                <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray"  >
+                    <mat-label style="color :gray">Bank Name</mat-label>
+                     <mat-select > 
+                        <mat-option>Department</mat-option>
+                      <mat-option *ngFor="let dname of delist" [value]="dname.departmant_id">{{dname.departmant_name}}</mat-option> 
+                    </mat-select>
+                  </mat-form-field>
+            </div>
+            <div class="col-md-3 mat-form-wrap">
+                <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray">
+                  <mat-icon style="color :gray" matSuffix>developer_board</mat-icon>
+                  <mat-label style="color :gray">Cheque No</mat-label>
+                  <input style="color :gray"   type="text" name="total_marks"  matInput>
+                </mat-form-field>
+              </div>
+              <div class="col-md-3 mat-form-wrap">
+                  <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray">
+                    <mat-icon style="color :gray" matSuffix>monetization_on</mat-icon>
+                    <mat-label style="color :gray">Amount</mat-label>
+                    <input style="color :gray"   type="text" name="total_marks"  matInput>
+                  </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+        <button mat-raised-button class="btn-style" (click)="onsubmitclick()">Save</button>
+        <button mat-icon-button class="clearbtn-style" (click)="onclearclick()">
+          <mat-icon>clear_all</mat-icon>
+        </button>
+        </div>
+</div>
+

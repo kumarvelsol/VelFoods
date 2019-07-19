@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { RestaurantService } from '../restaurant.service';
+import { Apiresponse } from 'src/app/shared/apiresponse';
+import { Data } from 'src/app/shared/data';
+import { MatTableDataSource } from '@angular/material';
+import { JsResponse } from 'src/app/shared/JsResponse';
+import { Tablebooking } from 'src/app/shared/tablebooking';
 
 
 export interface Restaurant {
@@ -23,7 +28,7 @@ export class TablereserveComponent implements OnInit {
 
   rows: Array<{id:string,date:string,time:string,name:string,pax:string,phoneno:number,restaurant:string}> = [];
   displayedColumns: string[] = ["id","date", "time","name", "pax","phoneno","restaurant","actions"];
-  buttoncontent : string;abDatasource;id:string;
+  buttoncontent : string;abDatasource;id:string; tabledatalist : Apiresponse; tabledata : Data[]; jsRes :JsResponse;
   table_booking_id : number;    tablebookingf_name : string;
     tablebooking_pax : number;    tablebooking_mobile_no : number;
     tablebooking_advance : number;    tablebooking_time : string;
@@ -32,7 +37,11 @@ export class TablereserveComponent implements OnInit {
   
   ngOnInit() {
   this.buttoncontent = "Save";
-  }
+  this.service1.gettablebooking(1).subscribe((data:Apiresponse)=> {
+    this.tabledatalist = data;
+    this.abDatasource = new MatTableDataSource(this.tabledatalist.Data);
+  });
+}
   public onsubmitclick() 
   {
     if(this.tablebookingf_name == "" || this.tablebooking_pax == null || this.tablebooking_mobile_no == null)
@@ -41,11 +50,47 @@ export class TablereserveComponent implements OnInit {
     }
     else if(this.buttoncontent == "Save")
     {
-      
+       let a : Tablebooking = {
+        table_booking_id : this.table_booking_id,
+        tablebooking_advance : this.tablebooking_advance,
+        tablebooking_date : this.tablebooking_date,
+        tablebooking_mobile_no : this.tablebooking_mobile_no,
+        tablebooking_pax : this.tablebooking_pax,
+        tablebooking_splinstructions : this.tablebooking_splinstructions,
+        tablebooking_time : this.tablebooking_time,
+        tablebookingf_name : this.tablebookingf_name,
+        restaurent_id : 1,
+       }
+      this.service1.createtablebooking(a).subscribe((data : JsResponse) => {
+
+        this.jsRes = data;
+        if(this.jsRes.code==200)
+            {
+              alert("Table Added Succesfully.!");
+            }else{ alert("Failed to Insert data");}
+       });
     }
     else if(this.buttoncontent == "Update")
     {
+      let a : Tablebooking = {
+        table_booking_id : this.table_booking_id,
+        tablebooking_advance : this.tablebooking_advance,
+        tablebooking_date : this.tablebooking_date,
+        tablebooking_mobile_no : this.tablebooking_mobile_no,
+        tablebooking_pax : this.tablebooking_pax,
+        tablebooking_splinstructions : this.tablebooking_splinstructions,
+        tablebooking_time : this.tablebooking_time,
+        tablebookingf_name : this.tablebookingf_name,
+        restaurent_id : 1,
+       }
+      this.service1.updatetablebooking(a).subscribe((data : JsResponse) => {
 
+        this.jsRes = data;
+        if(this.jsRes.code==200)
+            {
+              alert("Table updated Succesfully.!");
+            }else{ alert("Failed to update data");}
+       });
     }
   }
   public RowSelected(j,date:string,time:string,name:string,pax:string,restaurant:string,phoneno:number,advance:number)
