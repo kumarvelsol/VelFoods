@@ -4,7 +4,7 @@ export class order{
     message:string;
 }
 export class room{
-    ROOM_NO:number;
+    table_name:number;
     BACKGROUND_COLOR:string;
 }
 // export interface Irooms{

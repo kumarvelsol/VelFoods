@@ -7,33 +7,33 @@
           <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" >
             <mat-icon  style=color:gray matSuffix>person</mat-icon>
             <mat-label style="color :gray">Name</mat-label>
-            <input style="color :gray"  type="text" [(ngModel)]="name" name="name"  matInput>
+            <input style="color :gray"  type="text" [(ngModel)]="tablebookingf_name" name="tablebookingf_name"  matInput>
           </mat-form-field>
           <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" >
             <mat-icon  style=color:gray matSuffix>format_list_numbered</mat-icon>
             <mat-label style="color :gray">Pax</mat-label>
-            <input style="color :gray"  type="text" [(ngModel)]="pax" name="pax"  matInput>
+            <input style="color :gray"  type="text" [(ngModel)]="tablebooking_pax" name="tablebooking_pax"  matInput>
           </mat-form-field>
           <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" >
             <mat-icon  style=color:gray matSuffix>call</mat-icon>
             <mat-label style="color :gray">Mobile</mat-label> 
-            <input style="color :gray"  type="text" [(ngModel)]="phoneno" name="phoneno"  matInput>
+            <input style="color :gray"  type="text" [(ngModel)]="tablebooking_mobile_no" name="tablebooking_mobile_no"  matInput>
           </mat-form-field>
           <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" >
               <mat-icon  style=color:gray matSuffix>monetization_on</mat-icon>
               <mat-label style="color :gray">Advance</mat-label> 
-              <input style="color :gray"  type="text" [(ngModel)]="advance" name="advance"  matInput>
+              <input style="color :gray"  type="text" [(ngModel)]="tablebooking_advance" name="tablebooking_advance"  matInput>
             </mat-form-field>
           <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" >
             <mat-label style="color :gray">Date</mat-label>
-            <input style="color :gray" [(ngModel)]="activefrom" [matDatepicker]="picker" matInput required>
+            <input style="color :gray" [(ngModel)]="tablebooking_date" [matDatepicker]="picker" matInput required>
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
           <mat-form-field class="col-md-12" style="color: gray;" >
               <mat-label style="color: gray;">Time</mat-label>
               <mat-icon style="color :orange" matSuffix>timer</mat-icon>
-              <input matInput type="time" atp-time-picker  name="time"  [(ngModel)]="time" >
+              <input matInput type="time" atp-time-picker  name="tablebooking_time"  [(ngModel)]="tablebooking_time" >
             </mat-form-field>
           <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray"  >
             <mat-label style="color :gray">Restaurant</mat-label>
@@ -45,7 +45,7 @@
           <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" >
             <mat-icon  style=color:gray matSuffix>note_add</mat-icon>
             <mat-label style="color :gray">Spl Instructions</mat-label> 
-            <input style="color :gray"  type="text" [(ngModel)]="splins" name="splins"  matInput>
+            <input style="color :gray"  type="text" [(ngModel)]="tablebooking_splinstructions" name="tablebooking_splinstructions"  matInput>
           </mat-form-field>
           <button mat-raised-button class="btn-style" (click)="onsubmitclick()">{{buttoncontent}}</button>
           <button mat-icon-button class="clearbtn-style" (click)="onclearclick()">
@@ -59,29 +59,29 @@
         <table mat-table [dataSource]="abDatasource">
             <ng-container matColumnDef="id">
                 <th mat-header-cell *matHeaderCellDef>SNo</th>
-                <td mat-cell *matCellDef="let i"> {{i.id}} </td>
+                <td mat-cell *matCellDef="let i"> {{i.table_booking_id}} </td>
               </ng-container>
             <ng-container matColumnDef="date">
                 <th mat-header-cell *matHeaderCellDef>Date</th>
-                <td mat-cell *matCellDef="let i"> {{i.date}} </td>
+                <td mat-cell *matCellDef="let i"> {{i.tablebooking_date}} </td>
               </ng-container>
             <ng-container matColumnDef="time">
                 <th mat-header-cell *matHeaderCellDef>Time</th>
-                <td mat-cell *matCellDef="let i"> {{i.time}} </td>
+                <td mat-cell *matCellDef="let i"> {{i.tablebooking_time}} </td>
               </ng-container>    
             <ng-container matColumnDef="name">
               <th mat-header-cell *matHeaderCellDef>Name</th>
-              <td mat-cell *matCellDef="let i"> {{i.name}} </td>
+              <td mat-cell *matCellDef="let i"> {{i.tablebookingf_name}} </td>
             </ng-container>
             <!-- Name Column -->
             <ng-container matColumnDef="pax">
               <th mat-header-cell *matHeaderCellDef> Pax </th>
-              <td mat-cell *matCellDef="let i"> {{i.pax}} </td>
+              <td mat-cell *matCellDef="let i"> {{i.tablebooking_pax}} </td>
             </ng-container>
             <!-- Code Column -->
             <ng-container matColumnDef="phoneno">
               <th mat-header-cell *matHeaderCellDef>Phone No</th>
-              <td mat-cell *matCellDef="let i"> {{i.phoneno}} </td>
+              <td mat-cell *matCellDef="let i"> {{i.tablebooking_mobile_no}} </td>
             </ng-container>
             <ng-container matColumnDef="restaurant">
               <th mat-header-cell *matHeaderCellDef>Restaurant</th>

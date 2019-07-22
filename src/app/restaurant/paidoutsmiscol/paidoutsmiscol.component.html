@@ -19,38 +19,36 @@
           <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray">
             <mat-icon style="color :gray" matSuffix>person</mat-icon>
             <mat-label style="color :gray">Name</mat-label>
-            <input style="color :gray"  type="text" name="first_name"  matInput>
+            <input style="color :gray"  type="text" name="paidout_name" [(ngModel)] = "paidout_name" matInput>
           </mat-form-field>
         </div>
         <div class="col-md-4 mat-form-wrap">
           <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray">
             <mat-icon style="color :gray" matSuffix>developer_board</mat-icon>
             <mat-label style="color :gray">Particulars</mat-label>
-            <input style="color :gray"  type="text" name="student_roll_no"  matInput>
+            <input style="color :gray"  type="text" name="paidout_pariticular" [(ngModel)] = "paidout_pariticular"  matInput>
           </mat-form-field>
         </div>
         <div class="col-md-4 mat-form-wrap">
-          <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray"  >
-            <mat-label style="color :gray">Reporting</mat-label>
-             <mat-select > 
-                <mat-option>Department</mat-option>
-              <mat-option *ngFor="let dname of delist" [value]="dname.departmant_id">{{dname.departmant_name}}</mat-option> 
-            </mat-select>
+          <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray">
+            <mat-icon style="color :gray" matSuffix>developer_board</mat-icon>
+            <mat-label style="color :gray">ReportingName</mat-label>
+            <input style="color :gray"  type="text" name="paidout_reportingname" [(ngModel)] = "paidout_reportingname"  matInput>
           </mat-form-field>
-        </div>
       </div>
+    </div>
   </mat-card>
 </div>
 <div class="row">
   <div class="row col-md-12">
   <div class="col-md-6 mat-form-wrap">
-        <mat-checkbox  [required]="true" style="margin-left: 20px;">Cash</mat-checkbox>
+        <mat-checkbox  [required]="true" style="margin-left: 20px;" [(ngModel)] = "type_of_payment">Cash</mat-checkbox>
     </div>
     <div class="col-md-6 mat-form-wrap">
       <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray;width:50%;margin-left:265px;">
         <mat-icon style="color :gray" matSuffix>monetization_on</mat-icon>
-        <mat-label style="color :gray">Amount</mat-label>
-        <input style="color :gray"   type="text" name="total_marks"  matInput>
+        <mat-label style="color :gray" >Amount</mat-label>
+        <input style="color :gray"   type="text" name="total_marks"  [(ngModel)] = "Amoount" matInput>
       </mat-form-field>
     </div>
     </div>
@@ -58,7 +56,7 @@
 <div class="row">
     <div class="row col-md-12">
     <div class="col-md-3 mat-form-wrap">
-          <mat-checkbox  [required]="true" style="margin-left: 20px;">Card</mat-checkbox>
+          <mat-checkbox  [required]="true" style="margin-left: 20px;" [(ngModel)] = "type_of_payment">Card</mat-checkbox>
       </div>
       <div class="col-md-3 mat-form-wrap">
         <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray"  >
@@ -73,14 +71,14 @@
         <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray">
           <mat-icon style="color :gray" matSuffix>developer_board</mat-icon>
           <mat-label style="color :gray">Transaction Id</mat-label>
-          <input style="color :gray"   type="text" name="total_marks"  matInput>
+          <input style="color :gray"   type="text" name="transaction_id"  [(ngModel)] = "transaction_id" matInput>
         </mat-form-field>
       </div>
       <div class="col-md-3 mat-form-wrap">
           <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray">
             <mat-icon style="color :gray" matSuffix>monetization_on</mat-icon>
             <mat-label style="color :gray">Amount</mat-label>
-            <input style="color :gray"   type="text" name="total_marks"  matInput>
+            <input style="color :gray"   type="text" name="Amoount" [(ngModel)] = "Amoount"  matInput>
           </mat-form-field>
         </div>
       </div>
@@ -88,7 +86,7 @@
   <div class="row">
       <div class="row col-md-12">
       <div class="col-md-3 mat-form-wrap">
-            <mat-checkbox   [required]="true" style="margin-left: 20px;">Online</mat-checkbox>
+            <mat-checkbox   [required]="true" style="margin-left: 20px;" [(ngModel)] = "type_of_payment">Online</mat-checkbox>
         </div>
         <div class="col-md-3 mat-form-wrap">
             <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray"  >
@@ -103,14 +101,14 @@
         <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray">
           <mat-icon style="color :gray" matSuffix>developer_board</mat-icon>
           <mat-label style="color :gray">Transaction Id</mat-label>
-          <input style="color :gray"   type="text" name="total_marks"  matInput>
+          <input style="color :gray"   type="text" name="transaction_id" [(ngModel)] = "transaction_id"  matInput>
         </mat-form-field>
       </div>
           <div class="col-md-3 mat-form-wrap">
               <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray">
                 <mat-icon style="color :gray" matSuffix>monetization_on</mat-icon>
                 <mat-label style="color :gray">Amount</mat-label>
-                <input style="color :gray"   type="text" name="total_marks"  matInput>
+                <input style="color :gray"   type="text" name="Amoount" [(ngModel)] = "Amoount"  matInput>
               </mat-form-field>
             </div>
         </div>
@@ -118,7 +116,7 @@
     <div class="row">
         <div class="row col-md-12">
         <div class="col-md-3 mat-form-wrap">
-              <mat-checkbox   [required]="true" style="margin-left: 20px;">Wallet</mat-checkbox>
+              <mat-checkbox   [required]="true" style="margin-left: 20px;" [(ngModel)] = "type_of_payment">Wallet</mat-checkbox>
           </div>
           <div class="col-md-3 mat-form-wrap">
               <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray"  >
@@ -130,17 +128,17 @@
                 </mat-form-field>
           </div>
           <div class="col-md-3 mat-form-wrap">
-              <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray">
+              <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" >
                 <mat-icon style="color :gray" matSuffix>developer_board</mat-icon>
                 <mat-label style="color :gray">Transaction Id</mat-label>
-                <input style="color :gray"   type="text" name="total_marks"  matInput>
+                <input style="color :gray"   type="text" name="transaction_id" [(ngModel)] = "transaction_id"  matInput>
               </mat-form-field>
             </div>
             <div class="col-md-3 mat-form-wrap">
                 <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray">
                   <mat-icon style="color :gray" matSuffix>monetization_on</mat-icon>
                   <mat-label style="color :gray">Amount</mat-label>
-                  <input style="color :gray"   type="text" name="total_marks"  matInput>
+                  <input style="color :gray"   type="text" name="Amoount" [(ngModel)] = "Amoount" matInput>
                 </mat-form-field>
               </div>
           </div>
@@ -148,7 +146,7 @@
       <div class="row">
           <div class="row col-md-12">
           <div class="col-md-3 mat-form-wrap">
-                <mat-checkbox   [required]="true" style="margin-left: 20px;">Cheque</mat-checkbox>
+                <mat-checkbox   [required]="true" style="margin-left: 20px;" [(ngModel)] = "type_of_payment">Cheque</mat-checkbox>
             </div>
             <div class="col-md-3 mat-form-wrap">
                 <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray"  >
@@ -163,14 +161,14 @@
                 <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray">
                   <mat-icon style="color :gray" matSuffix>developer_board</mat-icon>
                   <mat-label style="color :gray">Cheque No</mat-label>
-                  <input style="color :gray"   type="text" name="total_marks"  matInput>
+                  <input style="color :gray"   type="text" name="transaction_id" [(ngModel)] = "transaction_id" matInput>
                 </mat-form-field>
               </div>
               <div class="col-md-3 mat-form-wrap">
                   <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray">
                     <mat-icon style="color :gray" matSuffix>monetization_on</mat-icon>
                     <mat-label style="color :gray">Amount</mat-label>
-                    <input style="color :gray"   type="text" name="total_marks"  matInput>
+                    <input style="color :gray"   type="text" name="Amoount" [(ngModel)] = "Amoount"  matInput>
                   </mat-form-field>
                 </div>
             </div>

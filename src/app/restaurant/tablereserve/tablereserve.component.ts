@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
+import { RestaurantService } from '../restaurant.service';
+import { Apiresponse } from 'src/app/shared/apiresponse';
+import { Data } from 'src/app/shared/data';
+import { MatTableDataSource } from '@angular/material';
+import { JsResponse } from 'src/app/shared/JsResponse';
+import { Tablebooking } from 'src/app/shared/tablebooking';
 
 
 export interface Restaurant {
@@ -22,57 +28,88 @@ export class TablereserveComponent implements OnInit {
 
   rows: Array<{id:string,date:string,time:string,name:string,pax:string,phoneno:number,restaurant:string}> = [];
   displayedColumns: string[] = ["id","date", "time","name", "pax","phoneno","restaurant","actions"];
-  buttoncontent : string;abDatasource;id:string;
-  date : string;time : string;name :string;pax:string;phoneno :number;restaurant : string;advance:number;splins:string;
-  constructor(private router: Router,) { }
+  buttoncontent : string;abDatasource;id:string; tabledatalist : Apiresponse; tabledata : Data[]; jsRes :JsResponse;
+  table_booking_id : number;    tablebookingf_name : string;
+    tablebooking_pax : number;    tablebooking_mobile_no : number;
+    tablebooking_advance : number;    tablebooking_time : string;
+    tablebooking_splinstructions : string;    restaurent_id : number; tablebooking_date : string;
+  constructor(private router: Router,public service1 : RestaurantService) { }
   
   ngOnInit() {
   this.buttoncontent = "Save";
-  this.rows = [{id:"1",date :"21/06/2019",time:"12:00 PM",name:"ani",pax :"4",phoneno :9494963284,restaurant :"BBQ"},{id:"2",date :"22/06/2019",time:"11:00 PM",name:"anisha",pax :"6",phoneno :9494963284,restaurant :"Daspalla"}];
-    this.abDatasource = this.rows;
-  }
+  this.service1.gettablebooking(1).subscribe((data:Apiresponse)=> {
+    this.tabledatalist = data;
+    this.abDatasource = new MatTableDataSource(this.tabledatalist.Data);
+  });
+}
   public onsubmitclick() 
   {
-    if(this.name == "" || this.pax == "" || this.phoneno == null)
+    if(this.tablebookingf_name == "" || this.tablebooking_pax == null || this.tablebooking_mobile_no == null)
     {
       alert("Please fill all fields");
     }
     else if(this.buttoncontent == "Save")
     {
-      this.rows.push({id : "3",date:this.date,time:this.time,name:this.name,pax:this.pax,phoneno:this.phoneno,restaurant:this.restaurant});
-      this.abDatasource = this.rows;
-      console.log(this.abDatasource);
+       let a : Tablebooking = {
+        table_booking_id : this.table_booking_id,
+        tablebooking_advance : this.tablebooking_advance,
+        tablebooking_date : this.tablebooking_date,
+        tablebooking_mobile_no : this.tablebooking_mobile_no,
+        tablebooking_pax : this.tablebooking_pax,
+        tablebooking_splinstructions : this.tablebooking_splinstructions,
+        tablebooking_time : this.tablebooking_time,
+        tablebookingf_name : this.tablebookingf_name,
+        restaurent_id : 1,
+       }
+      this.service1.createtablebooking(a).subscribe((data : JsResponse) => {
+
+        this.jsRes = data;
+        if(this.jsRes.code==200)
+            {
+              alert("Table Added Succesfully.!");
+            }else{ alert("Failed to Insert data");}
+       });
     }
     else if(this.buttoncontent == "Update")
     {
+      let a : Tablebooking = {
+        table_booking_id : this.table_booking_id,
+        tablebooking_advance : this.tablebooking_advance,
+        tablebooking_date : this.tablebooking_date,
+        tablebooking_mobile_no : this.tablebooking_mobile_no,
+        tablebooking_pax : this.tablebooking_pax,
+        tablebooking_splinstructions : this.tablebooking_splinstructions,
+        tablebooking_time : this.tablebooking_time,
+        tablebookingf_name : this.tablebookingf_name,
+        restaurent_id : 1,
+       }
+      this.service1.updatetablebooking(a).subscribe((data : JsResponse) => {
 
+        this.jsRes = data;
+        if(this.jsRes.code==200)
+            {
+              alert("Table updated Succesfully.!");
+            }else{ alert("Failed to update data");}
+       });
     }
   }
   public RowSelected(j,date:string,time:string,name:string,pax:string,restaurant:string,phoneno:number,advance:number)
   {
-    this.buttoncontent = "Update";
-    this.date = date;
-    this.time = time;
-    this.name= name;
-    this.pax = pax;
-    this.restaurant = restaurant;
-    this.phoneno = phoneno;
-    this.advance = advance;
+    
   }
-  public NavigateClick(j,date:string,time:string,name:string,pax:string,restaurant:string,phoneno:number,advance:number)
+  public NavigateClick(j,date:string,time:string,name:string,pax:number,restaurant:number,phoneno:number,advance:number)
   {
     let navigationExtras: NavigationExtras = {
       queryParams: {
-        "date":this.date = date,
-        "time":this.time = time,
-        "name":this.name= name,
-        "pax":this.pax = pax,
-        "restaurant":this.restaurant = restaurant,
-        "phoneno":this.phoneno = phoneno,
-        "advance":this.advance = advance,
+        "date":this.tablebooking_date = date,
+        "time":this.tablebooking_time = time,
+        "name":this.tablebookingf_name= name,
+        "pax":this.tablebooking_pax = pax,
+        "restaurant":this.restaurent_id = restaurant,
+        "phoneno":this.tablebooking_mobile_no = phoneno,
+        "advance":this.tablebooking_advance = advance,
       }
     };
     this.router.navigate(['/ordering'],navigationExtras); 
   }
-
 }

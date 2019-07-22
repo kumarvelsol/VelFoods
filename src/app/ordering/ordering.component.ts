@@ -15,14 +15,14 @@ export interface UsersData {
   order_rate:number;
   order_quantity:number;
   order_totalamount:number;
- 
 }
-const ELEMENT_DATA: UsersData[] = [
-  {order_id:1,order_itemname: 'Chicken Family', order_rate : 290,order_quantity :   2, order_totalamount : 580},
-  {order_id:2,order_itemname: 'Mutton Family',  order_rate : 360,order_quantity :   1, order_totalamount : 360},
-  {order_id:3,order_itemname: 'Gongura Chicken',order_rate : 120,order_quantity :   1, order_totalamount : 120},
-  {order_id:4,order_itemname: 'Chicken 65',     order_rate : 150,order_quantity :   2, order_totalamount : 300}
-];
+// const ELEMENT_DATA: UsersData[] = [
+//   {order_id:1,order_itemname: 'Chicken Family', order_rate : 290,order_quantity :   2, order_totalamount : 580},
+//   {order_id:2,order_itemname: 'Mutton Family',  order_rate : 360,order_quantity :   1, order_totalamount : 360},
+//   {order_id:3,order_itemname: 'Gongura Chicken',order_rate : 120,order_quantity :   1, order_totalamount : 120},
+//   {order_id:4,order_itemname: 'Chicken 65',     order_rate : 150,order_quantity :   2, order_totalamount : 300}
+// ];
+ 
 
 @Component({
  selector: 'app-ordering',
@@ -46,9 +46,9 @@ export class OrderingComponent implements OnInit {
   kot_id:number;
   local_data:any;
   displayedColumns: string[] = ['order_id','order_itemname','order_rate', 'order_quantity','order_totalamount', 'action'];
-  dataSource = ELEMENT_DATA;
+ // dataSource = ELEMENT_DATA;
+  dataSource;
   userlist:Responce;
-  datasource;
   rooms : Data[];
   name:string;
   roomnos :string;
@@ -97,25 +97,25 @@ openDialog(action,obj) {
     var d = new Date();
     this.dataSource.push({
       order_id:d.getTime(),
-      order_itemname:row_obj.ItemName,
-      order_rate:row_obj.Rate,
-      order_quantity:row_obj.Quantity,
-      order_totalamount:row_obj.Totalamount
+      order_itemname:row_obj.order_itemname,
+      order_rate:row_obj.order_rate,
+      order_quantity:row_obj.order_quantity,
+      order_totalamount:row_obj.order_totalamount
     });
     this.table.renderRows();
     
   }
   updateRowData(row_obj){
     this.dataSource = this.dataSource.filter((value,key)=>{
-      if(value.order_id == row_obj.id){
-        value.order_itemname = row_obj.ItemName;
+      if(value.order_id == row_obj.order_id){
+        value.order_itemname = row_obj.order_itemname;
       }
       return true;
     });
   }
   deleteRowData(row_obj){
     this.dataSource = this.dataSource.filter((value,key)=>{
-      return value.order_id != row_obj.id;
+      return value.order_id != row_obj.order_id;
     });
   }
 }
