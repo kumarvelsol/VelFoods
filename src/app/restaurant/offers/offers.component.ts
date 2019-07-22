@@ -325,5 +325,5 @@ export class OffersComponent implements OnInit {
     this.service.OffersList(1).subscribe(data =>{
       this.dataSource = new MatTableDataSource(data.Data);
     });
-  }v
+  }
 }
