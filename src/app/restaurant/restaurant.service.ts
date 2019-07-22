@@ -6,6 +6,9 @@ import { Property } from '../shared/property';
 import { EmployeeCategory, EmployeeRegistration, itemcategory, itemnames } from '../shared/interfaces/empcate';
 import { Tabledefinition } from '../shared/tabledefinition';
 import { Tax } from '../shared/interfaces/tax';
+import { Tablebooking } from '../shared/tablebooking';
+import { Paidouts } from '../shared/paidouts';
+import { Miscollection } from '../shared/miscollection';
 
 @Injectable({
   providedIn: 'root'
@@ -51,6 +54,38 @@ export class RestaurantService {
   public updatetable(table_up: Tabledefinition){
     return this.http.post(`${this.Baseurl+"tableupdate"}`,table_up);
   }
+  public gettablebooking(restaurent_id:number)
+  {let parms =new HttpParams();
+    parms =parms.append('restaurent_id', restaurent_id+"")
+    return this.http.post(`${this.Baseurl+"gettablebooking"}`,parms);
+  }
+  public createtablebooking(table_in:Tablebooking){
+      return this.http.post(`${this.Baseurl+"addtablebooking"}`,table_in);
+  }
+  public updatetablebooking(table_up: Tablebooking){
+    return this.http.post(`${this.Baseurl+"updatetablebooking"}`,table_up);
+  }
+  public getrestaurent(property_id:number)
+  {
+    let parms =new HttpParams();
+    parms =parms.append('property_id', property_id+"")
+    return this.http.post(`${this.Baseurl+"gettingrestaurant"}`,parms);
+  }
+  public getpaidouts(restaurent_id:number)
+  {
+    let parms =new HttpParams();
+    parms =parms.append('restaurent_id', restaurent_id+"")
+    return this.http.post(`${this.Baseurl+"getpaidouts"}`,parms);
+  }
+  public createpaidouts(table_in:Paidouts){
+      return this.http.post(`${this.Baseurl+"addingpaidouts"}`,table_in);
+  }
+  public updatepaidouts(table_up: Paidouts){
+    return this.http.post(`${this.Baseurl+"updatepaidouts"}`,table_up);
+  }
+  public createmiscollection(table_in:Miscollection){
+    return this.http.post(`${this.Baseurl+"addingmiscollection"}`,table_in);
+}
   public addempcate(empcate : EmployeeCategory)
   {
     return this.http.post<JsResponse>(`${this.Baseurl+"empdeptinsert"}`,empcate);
