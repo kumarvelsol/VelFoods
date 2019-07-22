@@ -27,7 +27,7 @@ export class TablereserveComponent implements OnInit {
   ];
 
   rows: Array<{id:string,date:string,time:string,name:string,pax:string,phoneno:number,restaurant:string}> = [];
-  displayedColumns: string[] = ["id","date", "time","name", "pax","phoneno","restaurant","actions"];
+  displayedColumns: string[] = ["table_booking_id","tablebooking_date", "tablebooking_time","tablebookingf_name", "tablebooking_pax","tablebooking_mobile_no","restaurant","actions"];
   buttoncontent : string;abDatasource;id:string; tabledatalist : Apiresponse; tabledata : Data[]; jsRes :JsResponse;
   table_booking_id : number;    tablebookingf_name : string;
     tablebooking_pax : number;    tablebooking_mobile_no : number;

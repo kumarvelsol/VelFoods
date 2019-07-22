@@ -12,6 +12,7 @@ import { OffersComponent } from './offers/offers.component';
 import { TablereserveComponent } from './tablereserve/tablereserve.component';
 import { SettledbillsComponent } from './Billsettle/settledbills/settledbills.component';
 import { BillpaymentComponent } from './billpayment/billpayment.component';
+import { PaidoutTabComponentComponent } from './paidout-tab-component/paidout-tab-component.component';
 const routes: Routes = [
   {path:'',pathMatch:'full',component:LoginpageComponent},
   {path:'property',component:PropertyComponent},
@@ -20,7 +21,7 @@ const routes: Routes = [
   {path:'managers',component:ManagerComponent},
   {path:'offers',component:OffersComponent},
   {path:'tabledefinition',component:TabledefinitionComponent,pathMatch: 'full'},
-  {path:'Paidouts',component:PaidoutsmiscolComponent},
+  {path:'Paidouts',component:PaidoutTabComponentComponent},
   {path:'bankswallets',component:BankwallettabbarComponent},
   {path:'tablebooking',component:TablereserveComponent},
   // {path:'SettledBills',component:SettledbillsComponent},
