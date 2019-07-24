@@ -27,7 +27,7 @@ export class TablereserveComponent implements OnInit {
   ];
 
   rows: Array<{id:string,date:string,time:string,name:string,pax:string,phoneno:number,restaurant:string}> = [];
-  displayedColumns: string[] = ["id","date", "time","name", "pax","phoneno","restaurant","actions"];
+  displayedColumns: string[] = ["table_booking_id","tablebooking_date", "tablebooking_time","tablebookingf_name", "tablebooking_pax","tablebooking_mobile_no","restaurant","actions"];
   buttoncontent : string;abDatasource;id:string; tabledatalist : Apiresponse; tabledata : Data[]; jsRes :JsResponse;
   table_booking_id : number;    tablebookingf_name : string;
     tablebooking_pax : number;    tablebooking_mobile_no : number;
@@ -93,15 +93,22 @@ export class TablereserveComponent implements OnInit {
        });
     }
   }
-  public RowSelected(j,date:string,time:string,name:string,pax:string,restaurant:string,phoneno:number,advance:number)
+  public RowSelected(j,date:string,time:string,name:string,pax:number,restaurant:number,phoneno:number,advance:number)
   {
-    
+    this.buttoncontent = "Update";
+    this.tablebooking_date = date;
+    this.tablebooking_time = time;
+    this.tablebookingf_name = name;
+    this.tablebooking_pax = pax;
+    this.restaurent_id = restaurant;
+    this.tablebooking_mobile_no = phoneno;
+    this.tablebooking_advance = advance;
   }
   public NavigateClick(j,date:string,time:string,name:string,pax:number,restaurant:number,phoneno:number,advance:number)
   {
     let navigationExtras: NavigationExtras = {
       queryParams: {
-        "date":this.tablebooking_date = date,
+        "date":this.tablebooking_date = date, 
         "time":this.tablebooking_time = time,
         "name":this.tablebookingf_name= name,
         "pax":this.tablebooking_pax = pax,
