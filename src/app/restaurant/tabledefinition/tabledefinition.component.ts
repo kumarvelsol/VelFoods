@@ -41,15 +41,15 @@ export class TabledefinitionComponent implements OnInit {
   table_defination_id : number;    table_capatain : string;    table_description: string;
     table_name: string;    table_pax: number;    table_status: string; 
     table_steward: string;    table_view : string; jsRes : JsResponse;
-  displayedColumns: string[] = ['table_name','table_pax','table_status','actions']; //'view','captain','steward',
+  displayedColumns: string[] = ['table_defination_id','table_name','table_pax','table_view','table_status','actions']; //'view','captain','steward',
   constructor(public service1 : RestaurantService) { }
 
   ngOnInit() {
-
+    this.buttoncontent = "Save";
     this.service1.gettabledata(1).subscribe((data:Apiresponse)=> {
       this.tabledatalist = data;
       this.abDatasource = new MatTableDataSource(this.tabledatalist.Data);
-
+      console.log(this.tabledatalist);
     });
   }
   public onSaveclick()
@@ -61,14 +61,13 @@ export class TabledefinitionComponent implements OnInit {
     else if(this.buttoncontent == "Save")
     {
       let a : Tabledefinition = {
-          table_defination_id : this.table_defination_id,
           table_capatain : this.table_capatain,
           table_description: this.table_description,
           table_name: this.table_name,
           table_pax: this.table_pax,
           table_status: this.table_status,
           table_steward: this.table_steward,
-          table_view : this.table_steward,
+          table_view : this.table_view,
       }
        this.service1.createtable(a).subscribe((data : JsResponse) => {
 
@@ -82,14 +81,13 @@ export class TabledefinitionComponent implements OnInit {
     else if(this.buttoncontent == "Update")
     {
       let a : Tabledefinition = {
-        table_defination_id : this.table_defination_id,
         table_capatain : this.table_capatain,
         table_description: this.table_description,
         table_name: this.table_name,
         table_pax: this.table_pax,
         table_status: this.table_status,
         table_steward: this.table_steward,
-        table_view : this.table_steward,
+        table_view : this.table_view,
     }
      this.service1.updatetable(a).subscribe((data : JsResponse) => {
 
@@ -101,17 +99,26 @@ export class TabledefinitionComponent implements OnInit {
      });
     }
   }
-  public RowSelected(j:number,table_name:string,table_pax:number,table_description:string,table_status:string,table_view:string,table_capatain:string,table_steward:string)
+  public RowSelected(j,table_name:string,table_pax:number,table_description:string,table_status:string,table_view:string,table_capatain:string,table_steward:string)
   {
-      this.buttoncontent="Modify";
-      this.table_name = table_name;
-      this.table_pax =  table_pax;
-      this.table_description = table_description;
-      this.table_status = table_status;
-      this.table_steward = table_steward;
-      this.table_view = table_view;
-      this.table_capatain = table_capatain;
-      console.log(this.table_name);console.log(this.table_pax);
-      console.log(this.table_description);console.log(this.table_status);
+    this.buttoncontent = "Update";
+    this.table_name = table_name;
+    this.table_pax =  table_pax;
+    this.table_description = table_description;
+    this.table_status = table_status;
+    this.table_steward = table_steward;
+    this.table_view = table_view;
+    this.table_capatain = table_capatain;
+  }
+  public onclearclick()
+  {
+    this.buttoncontent="Save";
+    this.table_name = "";
+    this.table_pax =  null;
+    this.table_description = "";
+    this.table_status = "";
+    this.table_steward = "";
+    this.table_view = "";
+    this.table_capatain = "";
   }
 }
