@@ -1,5 +1,4 @@
 export interface Tabledefinition {
-    table_defination_id : number;
     table_capatain : string;
     table_description: string;
     table_name: string;

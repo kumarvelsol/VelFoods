@@ -91,6 +91,7 @@ export class OffersComponent implements OnInit {
       this.disablecheckbox();
     }
   }
+  
   onMinBillValid(){
     if(this.minbill_slide == true){
       this.minbill_amount = "";
