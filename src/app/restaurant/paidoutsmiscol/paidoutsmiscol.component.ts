@@ -14,14 +14,32 @@ import { Paidouts } from 'src/app/shared/paidouts';
 export class PaidoutsmiscolComponent implements OnInit {
   rpaid : string; rmis : string; paidout_id : number;  paidout_name : string;
   paidout_pariticular : string;  paidout_reportingname : string;
-  restaurent_id : number;  transaction_id : string;
+  restaurent_id : number;  transaction_id : string; am =[];
   type_of_payment : string;  Amoount : number; jsRes : JsResponse; paiddata : Data[];
-  bank_name : string
+  bank_name : string;total_amount :number;Amount =[];total : number;
+  paytype = []; amount = [];
   constructor(public service1 : RestaurantService) { }
 
   ngOnInit() {
+    for (let i = 0; i < 5; i++) 
+      {
+        this.am[i] = 0;
+      }
 
   }
+  public onChange(event: number)
+  {
+    console.log(this.am);
+    this.total_amount = 0;
+      for (let i = 0; i < 5; i++) 
+      {
+      this.total_amount+= +this.am[i];
+      this.Amount[i] = this.total_amount;
+      this.total = this.Amount[i];
+      }
+      this.total_amount = this.total;
+      console.log(this.total_amount);
+}
   public onsubmitclick()
   {
     let a : Paidouts = {
@@ -30,8 +48,8 @@ export class PaidoutsmiscolComponent implements OnInit {
     paidout_reportingname : this.paidout_reportingname,
     restaurent_id : 1,
     transaction_id : this.transaction_id,
-    type_of_payment : this.type_of_payment,
-    Amoount : this.Amoount,
+    type_of_payment : this.paytype[0],
+    Amoount : this.total_amount,
     bank_name : this.bank_name
     } 
     this.service1.createpaidouts(a).subscribe((data : JsResponse) => 
