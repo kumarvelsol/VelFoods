@@ -16,9 +16,14 @@ export class PaidoutsmiscolComponent implements OnInit {
   paidout_pariticular : string;  paidout_reportingname : string;
   restaurent_id : number;  transaction_id : string; am =[];
   type_of_payment : string;  Amoount : number; jsRes : JsResponse; paiddata : Data[];
-  bank_name : string;total_amount :number;Amount =[];total : number;
-  paytype = []; amount = [];
-  constructor(public service1 : RestaurantService) { }
+  bank_name : string;total_amount :number;Amount =[];total : number; paytypee : string;
+  paytype = []; amount = []; tr = []; // paytypee = false;   
+  masterSelected:boolean;
+  checklist:any;
+  checkedList:any;
+  constructor(public service1 : RestaurantService) {
+    this.masterSelected = false;
+   }
 
   ngOnInit() {
     for (let i = 0; i < 5; i++) 
@@ -48,7 +53,7 @@ export class PaidoutsmiscolComponent implements OnInit {
     paidout_reportingname : this.paidout_reportingname,
     restaurent_id : 1,
     transaction_id : this.transaction_id,
-    type_of_payment : this.paytype[0],
+    type_of_payment : this.paytypee,
     Amoount : this.total_amount,
     bank_name : this.bank_name
     } 
@@ -60,6 +65,25 @@ export class PaidoutsmiscolComponent implements OnInit {
               alert("Paidouts Added Succesfully.!");
             }else{ alert("Failed to Insert data");}
        });
+
+       console.log(this.type_of_payment);
+  }
+  toggleVisibility(e){
+    this.paytype[0] = e.target.checked;this.paytypee = this.paytype[0];
+    console.log(this.paytypee);
+  }
+  toggleVisibilityy(e){
+    debugger;
+    this.paytype[1] = e.target.checked;this.paytypee = this.paytype[1];
+    console.log(this.paytypee);
+  }
+  toggleVisibilitty(e){
+    this.paytype[2] = e.target.checked;this.paytypee = this.paytype[2];
+    console.log(this.paytypee);
+  }
+  toggleVisibiliity(e){
+    this.paytype[3] = e.target.checked;this.paytypee = this.paytype[3];
+    console.log(this.paytypee);
   }
 }
  
