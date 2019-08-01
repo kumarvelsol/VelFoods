@@ -50,6 +50,7 @@ export class TablereserveComponent implements OnInit {
     else if(this.buttoncontent == "Save")
     {
        let a : Tablebooking = {
+        table_booking_id : this.table_booking_id,
         tablebooking_advance : this.tablebooking_advance,
         tablebooking_date : this.tablebooking_date,
         tablebooking_mobile_no : this.tablebooking_mobile_no,
