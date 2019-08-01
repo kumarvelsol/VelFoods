@@ -49,7 +49,6 @@ export class TabledefinitionComponent implements OnInit {
     this.service1.gettabledata(1).subscribe((data:Apiresponse)=> {
       this.tabledatalist = data;
       this.abDatasource = new MatTableDataSource(this.tabledatalist.Data);
-      console.log(this.tabledatalist);
     });
   }
   public onSaveclick()
@@ -61,6 +60,8 @@ export class TabledefinitionComponent implements OnInit {
     else if(this.buttoncontent == "Save")
     {
       let a : Tabledefinition = {
+        restaurent_id:1,
+          table_defination_id : this.table_defination_id,
           table_capatain : this.table_capatain,
           table_description: this.table_description,
           table_name: this.table_name,
@@ -75,12 +76,15 @@ export class TabledefinitionComponent implements OnInit {
         if(this.jsRes.code==200)
             {
               alert("Table Added Succesfully.!");
+              this.onclearclick();
             }else{ alert("Failed to Insert data");}
        });
     }
     else if(this.buttoncontent == "Update")
     {
       let a : Tabledefinition = {
+        restaurent_id:1,
+        table_defination_id : this.table_defination_id,
         table_capatain : this.table_capatain,
         table_description: this.table_description,
         table_name: this.table_name,
@@ -95,13 +99,15 @@ export class TabledefinitionComponent implements OnInit {
       if(this.jsRes.code==200)
           {
             alert("Table Updated Succesfully.!");
+            this.onclearclick();
           }else{ alert("Failed to Update data");}
      });
     }
   }
-  public RowSelected(j,table_name:string,table_pax:number,table_description:string,table_status:string,table_view:string,table_capatain:string,table_steward:string)
+  public RowSelected(j,table_defination_id:number,table_name:string,table_pax:number,table_description:string,table_status:string,table_view:string,table_capatain:string,table_steward:string)
   {
     this.buttoncontent = "Update";
+    this.table_defination_id = table_defination_id;
     this.table_name = table_name;
     this.table_pax =  table_pax;
     this.table_description = table_description;

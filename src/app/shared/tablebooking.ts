@@ -1,4 +1,5 @@
 export interface Tablebooking {
+    table_booking_id : number,
     tablebookingf_name : string,
     tablebooking_pax : number,
     tablebooking_mobile_no : number,
