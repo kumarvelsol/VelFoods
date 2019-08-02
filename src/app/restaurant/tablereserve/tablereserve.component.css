@@ -43,6 +43,7 @@ table {
     margin:auto;
   }
   .example-container {
+    text-align: center;
     height: 900px;
     overflow: auto; 
     margin-top: 20px;
