@@ -20,6 +20,7 @@ export class PaidoutsmiscolComponent implements OnInit {
   paytype = []; amount = []; tr = []; // paytypee = false;   
   checked: boolean = false; bank : string;bank1 : string;bank2 : string;bank3 : string;
   checked1: boolean = false;checked2: boolean = false;checked3: boolean = false;checked4: boolean = false;
+  checking1:boolean=false;checking2:boolean=false;checking3:boolean=false;checking4:boolean=false;checking5:boolean=false;
   constructor(public service1 : RestaurantService) {
    }
 
@@ -95,12 +96,32 @@ public onChange4(event : number)
   toggleVisibility(value){
     this.checked = !value;
     if(this.checked == true)
+    {
+      this.checking2 = true;this.checking1 = false;this.checking3 = true;
+      this.checking4 = true;this.checking4 = true;this.checking5 = true;
+    }
+    else
+    {
+      this.checking2 = false;this.checking1 = false;this.checking3 = false;
+      this.checking4 = false;this.checking4 = false;this.checking5 = false;
+    }
+    if(this.checked == true)
     { this.type_of_payment = "Cash"; this.Amoount = this.am[0];} //this.bank_name = "a";this.transaction_id = "0";}
     else {this.type_of_payment = ""; this.Amoount = null;}
     console.log(this.checked);console.log(this.type_of_payment);
   }
   toggleVisibility1(value){
     this.checked1 = !value;
+    if(this.checked1 == true)
+    {
+      this.checking2 = false;this.checking1 = true;this.checking3 = true;
+      this.checking4 = true;this.checking4 = true;this.checking5 = true;
+    }
+    else
+    {
+      this.checking2 = false;this.checking1 = false;this.checking3 = false;
+      this.checking4 = false;this.checking4 = false;this.checking5 = false;
+    }
     if(this.checked1 == true)
     { this.type_of_payment = "Card";this.Amoount = this.am[1];}
     else { this.type_of_payment = "";this.Amoount = null;}
@@ -109,6 +130,16 @@ public onChange4(event : number)
   toggleVisibility2(value){
     this.checked2 = !value;
     if(this.checked2 == true)
+    {
+      this.checking2 = true;this.checking1 = true;this.checking3 = false;
+      this.checking4 = true;this.checking4 = true;this.checking5 = true;
+    }
+    else
+    {
+      this.checking2 = false;this.checking1 = false;this.checking3 = false;
+      this.checking4 = false;this.checking4 = false;this.checking5 = false;
+    }
+    if(this.checked2 == true)
     { this.type_of_payment = "Online";this.Amoount = this.am[2];}
     else {this.type_of_payment = ""; this.Amoount = null;}
     console.log(this.checked2);console.log(this.type_of_payment);
@@ -116,12 +147,32 @@ public onChange4(event : number)
   toggleVisibility3(value){
     this.checked3 = !value;
     if(this.checked3 == true)
+    {
+      this.checking2 = true;this.checking1 = true;this.checking3 = true;
+      this.checking4 = false;this.checking4 = true;this.checking5 = true;
+    }
+    else
+    {
+      this.checking2 = false;this.checking1 = false;this.checking3 = false;
+      this.checking4 = false;this.checking4 = false;this.checking5 = false;
+    }
+    if(this.checked3 == true)
     { this.type_of_payment = "Wallet";this.Amoount = this.am[3];}
     else {this.type_of_payment = ""; this.Amoount = null;}
     console.log(this.checked3);console.log(this.type_of_payment);
   }
   toggleVisibility4(value){
     this.checked4 = !value;
+    if(this.checked4 == true)
+    {
+      this.checking2 = true;this.checking1 = true;this.checking3 = true;
+      this.checking4 = true;this.checking4 = true;this.checking5 = false;
+    }
+    else
+    {
+      this.checking2 = false;this.checking1 = false;this.checking3 = false;
+      this.checking4 = false;this.checking4 = false;this.checking5 = false;
+    }
     if(this.checked4 == true)
     { this.type_of_payment = "Cheque";this.Amoount = this.am[4];}
     else {this.type_of_payment = "";this.Amoount = null; }
