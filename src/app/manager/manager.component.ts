@@ -19,11 +19,13 @@ export class ManagerComponent implements OnInit {
   buttoncontent:string;
   manger_id:number;manger_name:string;restaurent_id:number;manger_mobile_no:string;
   manger_status:string;manger_id_proof: string;manger_id_no:string;
+  
   constructor(private service:RestaurantService) { }
   ngOnInit() {
     this.buttoncontent = "Save";
     this.service.getrestaurent(1).subscribe((data:Apiresponse) =>{
       this.restaurents = data.Data;
+      console.log(this.restaurents);
     });
     this.service.getmanagers(1).subscribe((data:Apiresponse) =>{
       this.managerslist = data;
@@ -53,8 +55,9 @@ export class ManagerComponent implements OnInit {
         if(this.jsRes.code==200)
             {
               alert("Manager Added Succesfully.!");
-              this.onclearclick();
-            }else{ alert("Failed to Insert data");}
+            }
+            else{ alert("Failed to Insert data");}
+            this.onclearclick();
        });
     }
     else if(this.buttoncontent == "Update")
@@ -75,12 +78,26 @@ export class ManagerComponent implements OnInit {
               alert("Manager Updated Succesfully.!");
               this.onclearclick();
             }else{ alert("Failed to Update data");}
+            this.onclearclick();
        });
     }
   }
 
+  public RowSelected(j,manger_id:number,manger_name:string,restaurent_id:number,manger_mobile_no:string,manger_id_proof:string,manger_id_no:string,manger_status:string)
+  {
+    this.buttoncontent = "Update";
+    this.restaurent_id = restaurent_id;
+    this.manger_id = manger_id;
+    this.manger_name = manger_name;
+    this.manger_mobile_no = manger_mobile_no;
+    this.manger_id_proof = manger_id_proof;
+    this.manger_id_no = manger_id_no;
+    this.manger_status = manger_status;
+  }
+
   public onclearclick()
   {
+    this.restaurent_id = null;
     this.manger_name = "";
     this.manger_mobile_no = "";
     this.manger_id_proof = "";
