@@ -1,4 +1,5 @@
 export interface Paidouts {
+    paidout_id : number,
     paidout_name : string,
     paidout_pariticular : string,
     paidout_reportingname : string,
