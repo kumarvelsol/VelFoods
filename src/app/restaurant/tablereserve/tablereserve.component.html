@@ -31,10 +31,15 @@
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
           <mat-form-field class="col-md-12" style="color: gray;" >
-              <mat-label style="color: gray;">Time</mat-label>
-              <mat-icon style="color :orange" matSuffix>timer</mat-icon>
-              <input matInput type="time" atp-time-picker  name="tablebooking_time"  [(ngModel)]="tablebooking_time" >
-            </mat-form-field>
+            <mat-label style="color: gray;">Time</mat-label>
+            <mat-icon style="color :orange" matSuffix>timer</mat-icon>
+            <input matInput type="time" atp-time-picker  name="tablebooking_time"  [(ngModel)]="tablebooking_time" >
+          </mat-form-field>
+          <!-- <mat-form-field class="col-md-12" style="color: gray;" >
+            <input mat-datetime-picker="" date="false" time="true" type="text" id="time" short-time="true"
+            placeholder="Time" min-date="minDate" format="hh:mm a" ng-model="tablebooking_time"
+            readonly="readonly" matInput> 
+          </mat-form-field> -->
           <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray"  >
             <mat-label style="color :gray">Restaurant</mat-label>
              <mat-select [(ngModel)]="restaurent_id" > 
