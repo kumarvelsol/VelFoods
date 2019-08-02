@@ -42,7 +42,7 @@
 <div class="row">
   <div class="row col-md-12">
   <div class="col-md-6 mat-form-wrap; let j = index;" >
-        <mat-checkbox  [required]="true" style="margin-left: 20px;" [(ngModel)] = "paytype[0]" (change)="toggleVisibility($event)">Cash</mat-checkbox>
+    <mat-checkbox value="checked" [required]="true" style="margin-left: 20px;" [(ngModel)] = "paytype[0]" (change)="toggleVisibility(checked)">Cash</mat-checkbox>
     </div>
     <div class="col-md-6 mat-form-wrap;let j = index;">
       <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray;width:50%;margin-left:265px;">
@@ -55,9 +55,9 @@
 </div>
 <div class="row">
     <div class="row col-md-12">
-    <div class="col-md-3 mat-form-wrap; let j = index;">
-          <mat-checkbox  [required]="true" style="margin-left: 20px;" [(ngModel)] = "paytype[1]" (change)="toggleVisibilityy($event)">Card</mat-checkbox>
-      </div>
+      <div class="col-md-3 mat-form-wrap; let j = index;">
+        <mat-checkbox value="checked1" [required]="true" style="margin-left: 20px;" [(ngModel)] = "paytype[1]" (change)="toggleVisibility1(checked1)">Card</mat-checkbox>
+    </div>
       <div class="col-md-3 mat-form-wrap">
         <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" >
             <mat-label style="color :gray">Bank Name</mat-label>
@@ -85,9 +85,9 @@
   </div>
   <div class="row">
       <div class="row col-md-12">
-      <div class="col-md-3 mat-form-wrap; let j = index;">
-            <mat-checkbox   [required]="true" style="margin-left: 20px;" [(ngModel)] = "paytype[2]" (change)="toggleVisibilitty($event)">Online</mat-checkbox>
-        </div>
+        <div class="col-md-3 mat-form-wrap; let j = index;">
+          <mat-checkbox value="checked2" [required]="true" style="margin-left: 20px;" [(ngModel)] = "paytype[2]" (change)="toggleVisibility2(checked2)">Online</mat-checkbox>
+      </div>
         <div class="col-md-3 mat-form-wrap">
             <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray"  >
                 <mat-label style="color :gray">Bank Name</mat-label>
@@ -115,9 +115,9 @@
     </div>
     <div class="row">
         <div class="row col-md-12">
-        <div class="col-md-3 mat-form-wrap;let j = index;">
-              <mat-checkbox   [required]="true" style="margin-left: 20px;" [(ngModel)] = "paytype[3]" (change)="toggleVisibiliity($event)">Wallet</mat-checkbox>
-          </div>
+          <div class="col-md-3 mat-form-wrap;let j = index;">
+            <mat-checkbox  value="checked3" [required]="true" style="margin-left: 20px;" [(ngModel)] = "paytype[3]" (change)="toggleVisibility3(checked3)">Wallet</mat-checkbox>
+        </div>
           <div class="col-md-3 mat-form-wrap">
               <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray"  >
                   <mat-label style="color :gray">Wallet Name</mat-label>
@@ -145,9 +145,9 @@
       </div>
       <div class="row">
           <div class="row col-md-12">
-          <div class="col-md-3 mat-form-wrap;let j = index;">
-                <mat-checkbox   [required]="true" style="margin-left: 20px;" [(ngModel)] = "paytype[j]">Cheque</mat-checkbox>
-            </div>
+            <div class="col-md-3 mat-form-wrap;let j = index;">
+              <mat-checkbox value="checked4"  [required]="true" style="margin-left: 20px;" [(ngModel)] = "paytype[4]" (change)="toggleVisibility4(checked4)">Cheque</mat-checkbox>
+          </div>
             <div class="col-md-3 mat-form-wrap">
                 <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray"  >
                     <mat-label style="color :gray">Bank Name</mat-label>

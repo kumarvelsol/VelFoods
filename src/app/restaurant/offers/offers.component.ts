@@ -3,7 +3,7 @@ import { Time } from '@angular/common';
 import { Offers } from 'src/app/shared/interfaces/offers';
 import { RestaurantService } from '../restaurant.service';
 import { MatTableDataSource } from '@angular/material';
-import { DatePipe } from '@angular/common'
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-offers',
   templateUrl: './offers.component.html',
@@ -91,7 +91,6 @@ export class OffersComponent implements OnInit {
       this.disablecheckbox();
     }
   }
-  
   onMinBillValid(){
     if(this.minbill_slide == true){
       this.minbill_amount = "";

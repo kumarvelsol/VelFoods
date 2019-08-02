@@ -18,11 +18,9 @@ export class PaidoutsmiscolComponent implements OnInit {
   type_of_payment : string;  Amoount : number; jsRes : JsResponse; paiddata : Data[];
   bank_name : string;total_amount :number;Amount =[];total : number; paytypee : string;
   paytype = []; amount = []; tr = []; // paytypee = false;   
-  masterSelected:boolean;
-  checklist:any;
-  checkedList:any;
+  checked: boolean = false;
+  checked1: boolean = false;checked2: boolean = false;checked3: boolean = false;checked4: boolean = false;
   constructor(public service1 : RestaurantService) {
-    this.masterSelected = false;
    }
 
   ngOnInit() {
@@ -68,22 +66,40 @@ export class PaidoutsmiscolComponent implements OnInit {
 
        console.log(this.type_of_payment);
   }
-  toggleVisibility(e){
-    this.paytype[0] = e.target.checked;this.paytypee = this.paytype[0];
-    console.log(this.paytypee);
+  toggleVisibility(value){
+    this.checked = !value;
+    if(this.checked == true)
+    { this.type_of_payment = "Cash";}
+    else {this.type_of_payment = ""; }
+    console.log(this.checked);console.log(this.type_of_payment);
   }
-  toggleVisibilityy(e){
-    debugger;
-    this.paytype[1] = e.target.checked;this.paytypee = this.paytype[1];
-    console.log(this.paytypee);
+  toggleVisibility1(value){
+    this.checked1 = !value;
+    if(this.checked1 == true)
+    { this.type_of_payment = "Card";}
+    else { this.type_of_payment = "";}
+    console.log(this.checked1);console.log(this.type_of_payment);
   }
-  toggleVisibilitty(e){
-    this.paytype[2] = e.target.checked;this.paytypee = this.paytype[2];
-    console.log(this.paytypee);
+  toggleVisibility2(value){
+    this.checked2 = !value;
+    if(this.checked2 == true)
+    { this.type_of_payment = "Online";}
+    else {this.type_of_payment = ""; }
+    console.log(this.checked2);console.log(this.type_of_payment);
   }
-  toggleVisibiliity(e){
-    this.paytype[3] = e.target.checked;this.paytypee = this.paytype[3];
-    console.log(this.paytypee);
+  toggleVisibility3(value){
+    this.checked3 = !value;
+    if(this.checked3 == true)
+    { this.type_of_payment = "Wallet";}
+    else {this.type_of_payment = ""; }
+    console.log(this.checked3);console.log(this.type_of_payment);
+  }
+  toggleVisibility4(value){
+    this.checked4 = !value;
+    if(this.checked4 == true)
+    { this.type_of_payment = "Cheque";}
+    else {this.type_of_payment = ""; }
+    console.log(this.checked4);console.log(this.type_of_payment);
   }
 }
  
