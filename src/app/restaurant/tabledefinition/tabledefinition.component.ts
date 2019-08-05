@@ -39,8 +39,9 @@ export class TabledefinitionComponent implements OnInit {
   rows: Array<{tableid:string,pax:string,reporting:string,status:string,view:string,captain:string,steward:string}> = [];
   buttoncontent : string;abDatasource;listcount : number; buttonColor : string; tabledatalist : Apiresponse; tabledata : Data[];
   table_defination_id : number;    table_capatain : string;    table_description: string;
-    table_name: string;    table_pax: number;    table_status: string; 
+    table_name: number=0;    table_pax: number;    table_status: string; 
     table_steward: string;    table_view : string; jsRes : JsResponse;
+    count:number;
   displayedColumns: string[] = ['table_defination_id','table_name','table_pax','table_view','table_status','actions']; //'view','captain','steward',
   constructor(public service1 : RestaurantService) { }
 
@@ -48,18 +49,22 @@ export class TabledefinitionComponent implements OnInit {
     this.buttoncontent = "Save";
     this.service1.gettabledata(1).subscribe((data:Apiresponse)=> {
       this.tabledatalist = data;
+      this.count = data.Data.length;
+      console.log(this.count);
+      this.table_name = ++this.count;
       this.abDatasource = new MatTableDataSource(this.tabledatalist.Data);
     });
   }
   public onSaveclick()
   {
-    if(this.table_name == "" || this.table_pax == null)
+    if(this.table_name == null || this.table_pax == null)
     {
       alert("Please fill all fields");
     }
     else if(this.buttoncontent == "Save")
     {
       let a : Tabledefinition = {
+        BACKGROUND_COLOR:"Green",
         restaurent_id:1,
           table_defination_id : this.table_defination_id,
           table_capatain : this.table_capatain,
@@ -83,6 +88,7 @@ export class TabledefinitionComponent implements OnInit {
     else if(this.buttoncontent == "Update")
     {
       let a : Tabledefinition = {
+        BACKGROUND_COLOR:"Green",
         restaurent_id:1,
         table_defination_id : this.table_defination_id,
         table_capatain : this.table_capatain,
@@ -104,7 +110,7 @@ export class TabledefinitionComponent implements OnInit {
      });
     }
   }
-  public RowSelected(j,table_defination_id:number,table_name:string,table_pax:number,table_description:string,table_status:string,table_view:string,table_capatain:string,table_steward:string)
+  public RowSelected(j,table_defination_id:number,table_name:number,table_pax:number,table_description:string,table_status:string,table_view:string,table_capatain:string,table_steward:string)
   {
     this.buttoncontent = "Update";
     this.table_defination_id = table_defination_id;
@@ -119,7 +125,7 @@ export class TabledefinitionComponent implements OnInit {
   public onclearclick()
   {
     this.buttoncontent="Save";
-    this.table_name = "";
+    this.table_name = null;
     this.table_pax =  null;
     this.table_description = "";
     this.table_status = "";
