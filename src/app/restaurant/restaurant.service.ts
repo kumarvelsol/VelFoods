@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Offers } from '../shared/interfaces/offers';
-import { JsResponse, Responce } from '../shared/JsResponse';
+import { JsResponse, Responce } from '../../app/shared/js-response';
 import { Property } from '../shared/property';
 import { EmployeeCategory, EmployeeRegistration, itemcategory, itemnames } from '../shared/interfaces/empcate';
 import { Tabledefinition } from '../shared/tabledefinition';
@@ -38,10 +38,10 @@ export class RestaurantService {
     return this.http.get(`${this.Baseurl+"getproperty"}`);
   }
   public createproperty(prpt_in:Property){
-    return this.http.post(`${this.Baseurl+"addingproperty"}`,prpt_in);
+    return this.http.post(`${this.Baseurl+"addproperty"}`,prpt_in);
   }
   public updateproperty(prpt_up: Property){
-    return this.http.post(`${this.Baseurl+"updatingproperty"}`,prpt_up);
+    return this.http.post(`${this.Baseurl+"updateproperty"}`,prpt_up);
   }
   public gettabledata(restaurent_id:number)
   {

@@ -58,7 +58,7 @@ export class TablereserveComponent implements OnInit {
         tablebooking_splinstructions : this.tablebooking_splinstructions,
         tablebooking_time : this.tablebooking_time,
         tablebookingf_name : this.tablebookingf_name,
-        restaurent_id : 1,
+        restaurent_id : 1, 
        }
       this.service1.createtablebooking(a).subscribe((data : JsResponse) => {
 

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RestaurantService } from '../restaurant.service';
 import { HttpClient } from 'selenium-webdriver/http';
 import { Apiresponse } from 'src/app/shared/apiresponse';
-import { JsResponse } from 'src/app/shared/JsResponse';
+import { JsResponse } from '../../shared/js-response';;
 import { Data } from 'src/app/shared/data';
 import { Paidouts } from 'src/app/shared/paidouts';
 
@@ -93,12 +93,21 @@ public onChange4(event : number)
 
        console.log(this.type_of_payment);
   }
+
+public onclearclick()
+{
+  this.paidout_name = "";this.paidout_reportingname = ""; this.paidout_pariticular = "";
+  this.am[0] = 0;this.am[1] = 0;this.am[2] = 0;this.am[3] = 0;this.am[4] = 0;
+  this.tr[0] = "";this.tr[1] = "";this.tr[2] = "";this.tr[3] = "";
+  this.bank = "";this.bank1 = "";this.bank2 = "";this.bank3 = "";
+}
+
   toggleVisibility(value){
     this.checked = !value;
     if(this.checked == true)
     {
       this.checking2 = true;this.checking1 = false;this.checking3 = true;
-      this.checking4 = true;this.checking5 = true;
+      this.checking4 = true;this.checking5 = true; 
     }
     else
     {
@@ -106,7 +115,8 @@ public onChange4(event : number)
       this.checking4 = false;this.checking5 = false;
     }
     if(this.checked == true)
-    { this.type_of_payment = "Cash"; this.Amoount = this.am[0];} //this.bank_name = "a";this.transaction_id = "0";}
+    { this.type_of_payment = "Cash"; this.Amoount = this.am[0]; 
+    this.am[1] = 0;this.am[2] = 0;this.am[3] = 0;this.am[4] = 0;} //this.bank_name = "a";this.transaction_id = "0";}
     else {this.type_of_payment = ""; this.Amoount = null;}
     console.log(this.checked);console.log(this.type_of_payment);
   }
@@ -123,7 +133,12 @@ public onChange4(event : number)
       this.checking4 = false;this.checking5 = false;
     }
     if(this.checked1 == true)
-    { this.type_of_payment = "Card";this.Amoount = this.am[1];}
+    { 
+      this.type_of_payment = "Card";this.Amoount = this.am[1];
+      this.am[0] = 0;this.am[2]= 0;this.am[3]= 0;this.am[4]= 0;
+      this.transaction_id = this.tr[0]; this.tr[1] = "";this.tr[2] = "";this.tr[3] = "";
+      this.bank_name = this.bank; this.bank1 = "";this.bank2 ="";this.bank3 ="";
+    }
     else { this.type_of_payment = "";this.Amoount = null;}
     console.log(this.checked1);console.log(this.type_of_payment);
   }
@@ -140,7 +155,12 @@ public onChange4(event : number)
       this.checking4 = false;this.checking5 = false;
     }
     if(this.checked2 == true)
-    { this.type_of_payment = "Online";this.Amoount = this.am[2];}
+    { 
+      this.type_of_payment = "Online";this.Amoount = this.am[2];
+      this.am[0]= 0;this.am[1]= 0;this.am[3]= 0;this.am[4]= 0;
+      this.transaction_id = this.tr[1]; this.tr[0] = "";this.tr[2] = "";this.tr[3] = "";
+      this.bank_name = this.bank1; this.bank = "";this.bank2 ="";this.bank3 ="";
+    }
     else {this.type_of_payment = ""; this.Amoount = null;}
     console.log(this.checked2);console.log(this.type_of_payment);
   }
@@ -157,7 +177,12 @@ public onChange4(event : number)
       this.checking4 = false;this.checking5 = false;
     }
     if(this.checked3 == true)
-    { this.type_of_payment = "Wallet";this.Amoount = this.am[3];}
+    { 
+      this.type_of_payment = "Wallet";this.Amoount = this.am[3];
+      this.am[0]= 0;this.am[1]= 0;this.am[2]= 0;this.am[4]= 0;
+      this.transaction_id = this.tr[2]; this.tr[1] = "";this.tr[0] = "";this.tr[3] = "";
+      this.bank_name = this.bank2; this.bank1 = "";this.bank ="";this.bank3 ="";
+    }
     else {this.type_of_payment = ""; this.Amoount = null;}
     console.log(this.checked3);console.log(this.type_of_payment);
   }
@@ -174,7 +199,12 @@ public onChange4(event : number)
       this.checking4 = false;this.checking5 = false;
     }
     if(this.checked4 == true)
-    { this.type_of_payment = "Cheque";this.Amoount = this.am[4];}
+    { 
+      this.type_of_payment = "Cheque";this.Amoount = this.am[4];
+      this.am[0]= 0;this.am[1]= 0;this.am[2]= 0;this.am[3]= 0;
+      this.transaction_id = this.tr[3]; this.tr[1] = "";this.tr[2] = "";this.tr[0] = "";
+      this.bank_name = this.bank3; this.bank1 = "";this.bank2 ="";this.bank ="";
+    }
     else {this.type_of_payment = "";this.Amoount = null; }
     console.log(this.checked4);console.log(this.type_of_payment);
   }
