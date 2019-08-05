@@ -73,8 +73,8 @@
                                   </mat-form-field>
                                 </div>
                                 <div class="col-md-12">
-                                  <button mat-raised-button style="margin-top: 10px;" class="btn-style" (click)="onsaveclick()">{{buttoncontent}}</button>&nbsp;&nbsp;
-                                  <button  style="margin: 10px;" class="btn-style" (click)="onclearclick()">clear</button>
+                                  <button mat-raised-button style="margin-top: 10px;" class="btn-style" [style.backgroundColor]="buttonColor"  (click)="onsaveclick()">{{buttoncontent}}</button>&nbsp;&nbsp;
+                                  <button  style="margin: 10px;" class="btn-style" [style.backgroundColor]="buttonColor"  (click)="onclearclick()">{{buttoncontent1}}</button>
                                 </div>
                               </div>
                              </mat-card>

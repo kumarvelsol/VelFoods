@@ -24,12 +24,14 @@ export class EmployeeregistrationComponent implements OnInit {
   password:string;
   restaurent_id :number;
   buttoncontent:string;
+  buttoncontent1:string;
   displayedColumns : string[] =['empregistration_id','empregistration_name','empregistration_mobile_no','empregistration_status','actions'];
   dataSource;
   constructor(public service: RestaurantService) { }
 
   ngOnInit() {
     this.buttoncontent="Save";
+    this.buttoncontent1="Clear";
     this.service.getempreg(1).subscribe(data =>
       {
         this.dataSource = data.Data;

@@ -21,8 +21,8 @@
             </mat-radio-group>
         </div>
         <div class="block child" >
-          <button mat-raised-button style="margin-top: 10px;" class="btn-style" (click)="onsaveclick()">{{buttoncontent}}</button>&nbsp;&nbsp;
-            <button  style="margin: 10px;" class="btn-style" (click)="onclearclick()">clear</button>
+          <button mat-raised-button style="margin-top: 10px;" class="btn-style" [style.backgroundColor]="buttonColor" (click)="onsaveclick()">{{buttoncontent}}</button>&nbsp;&nbsp;
+            <button  style="margin: 10px;" class="btn-style" [style.backgroundColor]="buttonColor" (click)="onclearclick()">clear</button>
         </div>
       </mat-card>
     </div>
