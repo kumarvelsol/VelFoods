@@ -16,7 +16,8 @@ import { Managermodel } from '../shared/interfaces/managermodel';
   providedIn: 'root'
 })
 export class RestaurantService {
-  Baseurl = 'http://localhost:57649/';
+ // Baseurl = 'http://localhost:57649/';
+ Baseurl = 'http://school.edujinni.in/';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json'
