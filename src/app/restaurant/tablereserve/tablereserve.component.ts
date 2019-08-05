@@ -4,7 +4,7 @@ import { RestaurantService } from '../restaurant.service';
 import { Apiresponse } from 'src/app/shared/apiresponse';
 import { Data } from 'src/app/shared/data';
 import { MatTableDataSource } from '@angular/material';
-import { JsResponse } from 'src/app/shared/JsResponse';
+import { JsResponse } from '../../shared/js-response';
 import { Tablebooking } from 'src/app/shared/tablebooking';
 
 
@@ -58,7 +58,7 @@ export class TablereserveComponent implements OnInit {
         tablebooking_splinstructions : this.tablebooking_splinstructions,
         tablebooking_time : this.tablebooking_time,
         tablebookingf_name : this.tablebookingf_name,
-        restaurent_id : 1,
+        restaurent_id : 1, 
        }
       this.service1.createtablebooking(a).subscribe((data : JsResponse) => {
 

@@ -4,7 +4,7 @@ import { Property } from 'src/app/shared/property';
 import { Apiresponse } from 'src/app/shared/apiresponse';
 import { Data } from 'src/app/shared/data';
 import { JSONP_ERR_WRONG_RESPONSE_TYPE } from '@angular/common/http/src/jsonp';
-import { JsResponse } from 'src/app/shared/jsresponse';
+import { JsResponse } from '../../shared/js-response';
 
 @Component({
   selector: 'app-property',
@@ -12,7 +12,7 @@ import { JsResponse } from 'src/app/shared/jsresponse';
   styleUrls: ['./property.component.css']
 })
 export class PropertyComponent implements OnInit {
-   buttoncontent:string;   property_name : string;   property_address : string;
+   buttoncontent:string; property_id : number;  property_name : string;   property_address : string;
    property_mobile_no : number;   property_land_mark : string;   property_landline : number;
    property_city : string;   property_email : string;   property_state : string;
    property_website : string;   property_pincode : number;   property_gst : string;
@@ -20,7 +20,7 @@ export class PropertyComponent implements OnInit {
    jsRes : JsResponse;
   constructor(private service1: RestaurantService) { }
 
-  ngOnInit() {
+  ngOnInit() { 
     this.service1.getproperty().subscribe((data: Apiresponse) => 
     {
       this.property_name = data.Data[0].property_name;
@@ -53,6 +53,7 @@ export class PropertyComponent implements OnInit {
     if(this.buttoncontent == "Save")
     {
       let a: Property = {
+        property_id : this.property_id,
         property_name : this.property_name,
         property_address : this.property_address,
         property_mobile_no : this.property_mobile_no,
@@ -77,6 +78,7 @@ export class PropertyComponent implements OnInit {
     else if(this.buttoncontent == "Modify")
     {
       let a: Property = {
+        property_id : 1,
         property_name : this.property_name,
         property_address : this.property_address,
         property_mobile_no : this.property_mobile_no,
@@ -98,5 +100,8 @@ export class PropertyComponent implements OnInit {
         else{alert("Failed to update data");}
     });
     }
+    console.log(this.property_name);console.log(this.property_address);console.log(this.property_mobile_no);console.log(this.property_land_mark);
+      console.log(this.property_landline);console.log(this.property_city);console.log(this.property_email);console.log(this.property_state);
+      console.log(this.property_website);console.log(this.property_pincode);console.log(this.property_gst);console.log(this.property_country);
   }
 }

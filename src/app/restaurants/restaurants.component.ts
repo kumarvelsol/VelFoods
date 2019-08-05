@@ -3,7 +3,8 @@ import { RestaurantService } from '../restaurant/restaurant.service';
 import { Apiresponse } from '../shared/apiresponse';
 import { MatTableDataSource } from '@angular/material';
 import { Restaurant } from '../shared/interfaces/restaurant';
-import { JsResponse } from '../shared/JsResponse';
+import { JsResponse } from '../shared/js-response';
+import { Data } from '@angular/router';
 
 @Component({
   selector: 'app-restaurants',
@@ -12,16 +13,21 @@ import { JsResponse } from '../shared/JsResponse';
 })
 export class RestaurantsComponent implements OnInit {
   constructor(public service:RestaurantService ) { }
-  restodatalist:Apiresponse;buttoncontent:string;
+  restodatalist:Apiresponse;managerslist:Data[]; buttoncontent:string;
   restaurent_id:number;restaurent_name:string;restaurent_mobile_no:string;
   restrent_manger:string;restaruent_status:string;restaurent_address:string;
+  manger_name:string;
   dataSource;jsRes :JsResponse;
   displayedColumns: string[] = ['restaurent_id', 'restaurent_name','restaurent_address', 'restaurent_mobile_no','restrent_manger','restaruent_status','actions'];
   ngOnInit() {
     this.buttoncontent = "Save";
     this.service.getrestaurent(1).subscribe((data:Apiresponse)=> {
     this.restodatalist = data;
+    console.log(this.restodatalist);
     this.dataSource = new MatTableDataSource(this.restodatalist.Data);
+    });
+    this.service.getmanagers(1).subscribe((data:Apiresponse) =>{
+      this.managerslist = data.Data;
     });
   }
   public onsubmitclick() 
@@ -36,7 +42,7 @@ export class RestaurantsComponent implements OnInit {
         restaurent_id : this.restaurent_id,
         restaurent_name : this.restaurent_name,
         restaurent_mobile_no : this.restaurent_mobile_no,
-        restrent_manger : this.restrent_manger,
+        restrent_manger : this.manger_name,
         restaurent_address : this.restaurent_address,
         restaruent_status : this.restaruent_status
        }
@@ -56,7 +62,7 @@ export class RestaurantsComponent implements OnInit {
         restaurent_id : this.restaurent_id,
         restaurent_name : this.restaurent_name,
         restaurent_mobile_no : this.restaurent_mobile_no,
-        restrent_manger : this.restrent_manger,
+        restrent_manger : this.manger_name,
         restaurent_address : this.restaurent_address,
         restaruent_status : this.restaruent_status,
        }
@@ -72,14 +78,14 @@ export class RestaurantsComponent implements OnInit {
        });
     }
   }
-  public RowSelected(j,restaurent_id:number,restaurent_name:string,restaurent_address:string,restaurent_mobile_no:string,restrent_manger:string,restaruent_status:string)
+  public RowSelected(j,restaurent_id:number,restaurent_name:string,restaurent_address:string,restaurent_mobile_no:string,manger_name:string,restaruent_status:string)
   {
     this.buttoncontent = "Update";
     this.restaurent_id = restaurent_id;
     this.restaurent_name = restaurent_name;
     this.restaurent_address = restaurent_address;
     this.restaurent_mobile_no = restaurent_mobile_no;
-    this.restrent_manger = restrent_manger;
+    this.restrent_manger = manger_name;
     this.restaruent_status = restaruent_status;
   }
   public onclearclick()

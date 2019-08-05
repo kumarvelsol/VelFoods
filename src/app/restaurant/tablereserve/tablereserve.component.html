@@ -52,9 +52,7 @@
             <input style="color :gray"  type="text" [(ngModel)]="tablebooking_splinstructions" name="tablebooking_splinstructions"  matInput>
           </mat-form-field>
           <button mat-raised-button class="btn-style" (click)="onsubmitclick()">{{buttoncontent}}</button>
-          <button mat-icon-button class="clearbtn-style" (click)="onclearclick()">
-            <mat-icon>clear_all</mat-icon>
-          </button>
+          <button mat-raised-button class="clearbtn-style" (click)="onclearclick()">Clear</button>
         </div>
       </mat-card>
     </div>

@@ -7,22 +7,24 @@
           <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray">
             <mat-label style="color :gray">Restaurant Name</mat-label>
             <mat-icon style="color :gray" matSuffix>restaurant</mat-icon>      
-            <input style="color :gray" [(ngModel)]="restaurent_name" type="text" matInput>
+            <input style="color :gray" [(ngModel)]="restaurent_name" name="restaurent_name" type="text" matInput>
           </mat-form-field>
           <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray">
             <mat-label style="color :gray">Restaurant Address</mat-label>
             <mat-icon style="color :gray" matSuffix>place</mat-icon> 
-            <input style="color:gray;" matInput [(ngModel)]="restaurent_address" type="text">
+            <input style="color:gray;" matInput [(ngModel)]="restaurent_address" name="restaurent_address" type="text">
           </mat-form-field>
-          <mat-form-field class="col-md-12 mat-form-wrap"  style="color:gray;">
-            <mat-label style="color:gray;">Contact No</mat-label>
-            <mat-icon style="color :gray" matSuffix>local_phone</mat-icon> 
-            <input style="color:gray;" matInput [(ngModel)]="restaurent_mobile_no" type="text">
+          <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray">
+            <mat-label style="color :gray">Contact No</mat-label>
+            <mat-icon style="color :gray" matSuffix>local_phone</mat-icon>      
+            <input style="color:gray;" matInput [(ngModel)]="restaurent_mobile_no" name="restaurent_mobile_no" type="text">
           </mat-form-field>
-          <div class="col-md-12 mat-form-wrap"  style="color:gray;">
-            <mat-label style="color:black;font-size: 25;margin-left: 0px; font-weight: bold">Manager :</mat-label>
-            <mat-label style="margin-left: 60px;color:gray;" [(ngModel)]="restrent_manger">Manager Name</mat-label>
-          </div>
+          <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray"  >
+            <mat-label style="color :gray">Manager</mat-label>
+             <mat-select [(ngModel)]="manger_name" > 
+              <mat-option *ngFor="let mn of managerslist" [value]="mn.manger_name">{{mn.manger_name}}</mat-option> 
+            </mat-select>
+          </mat-form-field>
           <mat-label style="color:gray;" style="margin-left: 0px; font-size: 25;font-weight: bold">Status :</mat-label>
           <mat-radio-group aria-label="Select an option" [(ngModel)]="restaruent_status" name="restaruent_status">
             <mat-radio-button style="margin-left: 25px" value="Active">Active</mat-radio-button>
@@ -30,9 +32,7 @@
           </mat-radio-group>
           <div class="col-md-12">
               <button mat-raised-button class="btn-style" (click)="onsubmitclick()">{{buttoncontent}}</button>
-              <button mat-icon-button class="clearbtn-style" (click)="onclearclick()">
-                  <mat-icon>clear_all</mat-icon>
-              </button>
+              <button mat-raised-button class="clearbtn-style" (click)="onclearclick()">Clear</button>
           </div>
         </div>
       </mat-card>
