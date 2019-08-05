@@ -6,7 +6,7 @@ import { DialogBoxComponent } from '../dialog-box/dialog-box.component';
 import { LOCALE_DATA } from '@angular/common/src/i18n/locale_data';
 import { element } from '@angular/core/src/render3';
 import { RestaurantService } from '../restaurant/restaurant.service';
-import { Responce } from '../shared/JsResponse';
+import { Responce } from '../shared/js-response';
 import { Data } from '@angular/router';
 
 export interface UsersData {

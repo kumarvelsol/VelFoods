@@ -4,7 +4,7 @@ import { Property } from 'src/app/shared/property';
 import { Apiresponse } from 'src/app/shared/apiresponse';
 import { Data } from 'src/app/shared/data';
 import { JSONP_ERR_WRONG_RESPONSE_TYPE } from '@angular/common/http/src/jsonp';
-import { JsResponse } from 'src/app/shared/jsresponse';
+import { JsResponse } from '../../shared/js-response';
 
 @Component({
   selector: 'app-property',
