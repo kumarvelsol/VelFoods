@@ -160,7 +160,7 @@ toggleVisibility4(value){
   {
     this.checking2 = true;this.checking1 = true;this.checking3 = true;
     this.checking4 = true;this.checking4 = true;this.checking5 = false;
-  }
+  } 
   else
   {
     this.checking2 = false;this.checking1 = false;this.checking3 = false;
