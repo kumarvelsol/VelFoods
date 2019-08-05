@@ -7,4 +7,5 @@ export interface Tabledefinition {
     table_status: string;
     table_steward: string;
     table_view : string;
+    restaurent_id:number;
 }

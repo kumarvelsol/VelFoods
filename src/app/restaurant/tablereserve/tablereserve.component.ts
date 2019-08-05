@@ -21,13 +21,9 @@ export interface Restaurant {
 
 
 export class TablereserveComponent implements OnInit {
-  res: Restaurant[] = [
-    {id: '1', rname: 'BBQ'},
-    {id: '2', rname: 'Daspalla'}
-  ];
-
+  restaurents:Data[];
   rows: Array<{id:string,date:string,time:string,name:string,pax:string,phoneno:number,restaurant:string}> = [];
-  displayedColumns: string[] = ["id","date", "time","name", "pax","phoneno","restaurant","actions"];
+  displayedColumns: string[] = ["table_booking_id","tablebookingf_name","tablebooking_pax","tablebooking_date", "tablebooking_time", "tablebooking_mobile_no","restaurent_id","actions"];
   buttoncontent : string;abDatasource;id:string; tabledatalist : Apiresponse; tabledata : Data[]; jsRes :JsResponse;
   table_booking_id : number;    tablebookingf_name : string;
     tablebooking_pax : number;    tablebooking_mobile_no : number;
@@ -37,6 +33,9 @@ export class TablereserveComponent implements OnInit {
   
   ngOnInit() {
   this.buttoncontent = "Save";
+  this.service1.getrestaurent(1).subscribe((data:Apiresponse) =>{
+    this.restaurents = data.Data;
+  });
   this.service1.gettablebooking(1).subscribe((data:Apiresponse)=> {
     this.tabledatalist = data;
     this.abDatasource = new MatTableDataSource(this.tabledatalist.Data);
@@ -67,6 +66,7 @@ export class TablereserveComponent implements OnInit {
         if(this.jsRes.code==200)
             {
               alert("Table Added Succesfully.!");
+              this.onclearclick();
             }else{ alert("Failed to Insert data");}
        });
     }
@@ -74,13 +74,13 @@ export class TablereserveComponent implements OnInit {
     {
       let a : Tablebooking = {
         table_booking_id : this.table_booking_id,
+        tablebookingf_name : this.tablebookingf_name,
+        tablebooking_pax : this.tablebooking_pax,
         tablebooking_advance : this.tablebooking_advance,
         tablebooking_date : this.tablebooking_date,
-        tablebooking_mobile_no : this.tablebooking_mobile_no,
-        tablebooking_pax : this.tablebooking_pax,
-        tablebooking_splinstructions : this.tablebooking_splinstructions,
         tablebooking_time : this.tablebooking_time,
-        tablebookingf_name : this.tablebookingf_name,
+        tablebooking_mobile_no : this.tablebooking_mobile_no,
+        tablebooking_splinstructions : this.tablebooking_splinstructions,
         restaurent_id : 1,
        }
       this.service1.updatetablebooking(a).subscribe((data : JsResponse) => {
@@ -89,20 +89,24 @@ export class TablereserveComponent implements OnInit {
         if(this.jsRes.code==200)
             {
               alert("Table updated Succesfully.!");
+              this.onclearclick();
             }else{ alert("Failed to update data");}
        });
     }
   }
-  public RowSelected(j,date:string,time:string,name:string,pax:number,restaurant:number,phoneno:number,advance:number)
+ 
+  public RowSelected(j,table_booking_id:number,tablebooking_date:string,tablebooking_time:string,tablebookingf_name:string,tablebooking_pax:number,restaurent_id:number,tablebooking_mobile_no:number,tablebooking_advance:number,tablebooking_splinstructions:string)
   {
     this.buttoncontent = "Update";
-    this.tablebooking_date = date;
-    this.tablebooking_time = time;
-    this.tablebookingf_name = name;
-    this.tablebooking_pax = pax;
-    this.restaurent_id = restaurant;
-    this.tablebooking_mobile_no = phoneno;
-    this.tablebooking_advance = advance;
+    this.restaurent_id = restaurent_id;
+    this.table_booking_id = table_booking_id;
+    this.tablebookingf_name = tablebookingf_name;
+    this.tablebooking_pax = tablebooking_pax;
+    this.tablebooking_date = tablebooking_date;
+    this.tablebooking_time = tablebooking_time;
+    this.tablebooking_mobile_no = tablebooking_mobile_no;
+    this.tablebooking_advance = tablebooking_advance;
+    this.tablebooking_splinstructions = tablebooking_splinstructions;
   }
   public NavigateClick(j,date:string,time:string,name:string,pax:number,restaurant:number,phoneno:number,advance:number)
   {
@@ -118,5 +122,17 @@ export class TablereserveComponent implements OnInit {
       }
     };
     this.router.navigate(['/ordering'],navigationExtras); 
+  }
+  public onclearclick()
+  {
+    this.buttoncontent = "Save";
+    this.tablebooking_date = "";
+    this.tablebooking_time = "";
+    this.tablebookingf_name = "";
+    this.tablebooking_pax = null;
+    this.restaurent_id = null;
+    this.tablebooking_mobile_no = null;
+    this.tablebooking_advance = null;
+    this.tablebooking_splinstructions = "";
   }
 }

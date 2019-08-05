@@ -21,7 +21,7 @@ export class PropertyComponent implements OnInit {
   constructor(private service1: RestaurantService) { }
 
   ngOnInit() {
-    this.service1.getproperty(1).subscribe((data: Apiresponse) => 
+    this.service1.getproperty().subscribe((data: Apiresponse) => 
     {
       this.property_name = data.Data[0].property_name;
       this.property_address = data.Data[0].property_address;

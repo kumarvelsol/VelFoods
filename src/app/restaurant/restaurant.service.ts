@@ -9,6 +9,8 @@ import { Tax } from '../shared/interfaces/tax';
 import { Tablebooking } from '../shared/tablebooking';
 import { Paidouts } from '../shared/paidouts';
 import { Miscollection } from '../shared/miscollection';
+import { Restaurant } from '../shared/interfaces/restaurant';
+import { Managermodel } from '../shared/interfaces/managermodel';
 
 @Injectable({
   providedIn: 'root'
@@ -31,11 +33,9 @@ export class RestaurantService {
     params = params.append('restaurent_id', restaurent_id+"");
     return this.http.post<Responce>(`${this.Baseurl+"OffersList"}`,params);
   }
-  public getproperty(restaurent_id : number)
+  public getproperty()
   {
-    let params = new HttpParams();
-    params = params.append('restaurent_id', restaurent_id+"");
-    return this.http.post(`${this.Baseurl+"getproperty"}`,params);
+    return this.http.get(`${this.Baseurl+"getproperty"}`);
   }
   public createproperty(prpt_in:Property){
     return this.http.post(`${this.Baseurl+"addingproperty"}`,prpt_in);
@@ -71,6 +71,14 @@ export class RestaurantService {
     let parms =new HttpParams();
     parms =parms.append('property_id', property_id+"")
     return this.http.post(`${this.Baseurl+"gettingrestaurant"}`,parms);
+  }
+  public addrestaurant(resadd:Restaurant)
+  {
+    return this.http.post(`${this.Baseurl+"addingrestaurant"}`,resadd);
+  }
+  public updaterestaurant(resup:Restaurant)
+  {
+    return this.http.post(`${this.Baseurl+"updatingrestaurant"}`,resup);
   }
   public getpaidouts(restaurent_id:number)
   {
@@ -150,5 +158,19 @@ export class RestaurantService {
     let parms = new HttpParams();
     parms = parms.append('restaurent_id',restaurent_id+"");
     return this.http.post<Responce>(`${this.Baseurl+"TaxList"}`,parms);
+  }
+  public getmanagers(restaurent_id : number)
+  {
+    let parms = new HttpParams();
+    parms = parms.append('restaurent_id',restaurent_id+"");
+    return this.http.post(`${this.Baseurl+"gettingmanagers"}`,parms);
+  }
+  public addmanagers(managerA:Managermodel)
+  {
+    return this.http.post(`${this.Baseurl+"addingmanager"}`,managerA);
+  }
+  public updatemanager(managerU:Managermodel)
+  {
+    return this.http.post(`${this.Baseurl+"updatingmanager"}`,managerU);
   }
 }
