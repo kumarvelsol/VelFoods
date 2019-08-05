@@ -4,10 +4,7 @@ import { Apiresponse } from '../shared/apiresponse';
 import { MatTableDataSource } from '@angular/material';
 import { Restaurant } from '../shared/interfaces/restaurant';
 import { JsResponse } from '../shared/js-response';
-<<<<<<< HEAD
 import { Data } from '@angular/router';
-=======
->>>>>>> af033b6d0a5439b6912218b6f72cd8e716383a1f
 
 @Component({
   selector: 'app-restaurants',
