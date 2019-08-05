@@ -5,6 +5,7 @@ import { MaterialModule } from '../shared/material.module';
 import { ToolbarComponent } from '../ui/toolbar/toolbar.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { RouterModule } from '@angular/router';
+import  'core-js/es7/array';
 
 @NgModule({
   declarations: [ToolbarComponent],
