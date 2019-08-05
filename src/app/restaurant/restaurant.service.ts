@@ -38,10 +38,10 @@ export class RestaurantService {
     return this.http.get(`${this.Baseurl+"getproperty"}`);
   }
   public createproperty(prpt_in:Property){
-    return this.http.post(`${this.Baseurl+"addingproperty"}`,prpt_in);
+    return this.http.post(`${this.Baseurl+"addproperty"}`,prpt_in);
   }
   public updateproperty(prpt_up: Property){
-    return this.http.post(`${this.Baseurl+"updatingproperty"}`,prpt_up);
+    return this.http.post(`${this.Baseurl+"updateproperty"}`,prpt_up);
   }
   public gettabledata(restaurent_id:number)
   {
