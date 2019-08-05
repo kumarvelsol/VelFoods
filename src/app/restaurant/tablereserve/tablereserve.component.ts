@@ -4,7 +4,7 @@ import { RestaurantService } from '../restaurant.service';
 import { Apiresponse } from 'src/app/shared/apiresponse';
 import { Data } from 'src/app/shared/data';
 import { MatTableDataSource } from '@angular/material';
-import { JsResponse } from 'src/app/shared/JsResponse';
+import { JsResponse } from '../../shared/js-response';
 import { Tablebooking } from 'src/app/shared/tablebooking';
 
 

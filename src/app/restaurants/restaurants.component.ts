@@ -3,7 +3,7 @@ import { RestaurantService } from '../restaurant/restaurant.service';
 import { Apiresponse } from '../shared/apiresponse';
 import { MatTableDataSource } from '@angular/material';
 import { Restaurant } from '../shared/interfaces/restaurant';
-import { JsResponse } from '../shared/JsResponse';
+import { JsResponse } from '../shared/js-response';
 
 @Component({
   selector: 'app-restaurants',
