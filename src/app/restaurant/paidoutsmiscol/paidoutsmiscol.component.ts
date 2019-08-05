@@ -98,12 +98,12 @@ public onChange4(event : number)
     if(this.checked == true)
     {
       this.checking2 = true;this.checking1 = false;this.checking3 = true;
-      this.checking4 = true;this.checking4 = true;this.checking5 = true;
+      this.checking4 = true;this.checking5 = true;
     }
     else
     {
       this.checking2 = false;this.checking1 = false;this.checking3 = false;
-      this.checking4 = false;this.checking4 = false;this.checking5 = false;
+      this.checking4 = false;this.checking5 = false;
     }
     if(this.checked == true)
     { this.type_of_payment = "Cash"; this.Amoount = this.am[0];} //this.bank_name = "a";this.transaction_id = "0";}
@@ -115,12 +115,12 @@ public onChange4(event : number)
     if(this.checked1 == true)
     {
       this.checking2 = false;this.checking1 = true;this.checking3 = true;
-      this.checking4 = true;this.checking4 = true;this.checking5 = true;
+      this.checking4 = true;this.checking5 = true;
     }
     else
     {
       this.checking2 = false;this.checking1 = false;this.checking3 = false;
-      this.checking4 = false;this.checking4 = false;this.checking5 = false;
+      this.checking4 = false;this.checking5 = false;
     }
     if(this.checked1 == true)
     { this.type_of_payment = "Card";this.Amoount = this.am[1];}
@@ -132,12 +132,12 @@ public onChange4(event : number)
     if(this.checked2 == true)
     {
       this.checking2 = true;this.checking1 = true;this.checking3 = false;
-      this.checking4 = true;this.checking4 = true;this.checking5 = true;
+      this.checking4 = true;this.checking5 = true;
     }
     else
     {
       this.checking2 = false;this.checking1 = false;this.checking3 = false;
-      this.checking4 = false;this.checking4 = false;this.checking5 = false;
+      this.checking4 = false;this.checking5 = false;
     }
     if(this.checked2 == true)
     { this.type_of_payment = "Online";this.Amoount = this.am[2];}
@@ -149,12 +149,12 @@ public onChange4(event : number)
     if(this.checked3 == true)
     {
       this.checking2 = true;this.checking1 = true;this.checking3 = true;
-      this.checking4 = false;this.checking4 = true;this.checking5 = true;
+      this.checking4 = false;this.checking5 = true;
     }
     else
     {
       this.checking2 = false;this.checking1 = false;this.checking3 = false;
-      this.checking4 = false;this.checking4 = false;this.checking5 = false;
+      this.checking4 = false;this.checking5 = false;
     }
     if(this.checked3 == true)
     { this.type_of_payment = "Wallet";this.Amoount = this.am[3];}
@@ -166,12 +166,12 @@ public onChange4(event : number)
     if(this.checked4 == true)
     {
       this.checking2 = true;this.checking1 = true;this.checking3 = true;
-      this.checking4 = true;this.checking4 = true;this.checking5 = false;
+      this.checking4 = true;this.checking5 = false;
     }
     else
     {
       this.checking2 = false;this.checking1 = false;this.checking3 = false;
-      this.checking4 = false;this.checking4 = false;this.checking5 = false;
+      this.checking4 = false;this.checking5 = false;
     }
     if(this.checked4 == true)
     { this.type_of_payment = "Cheque";this.Amoount = this.am[4];}
