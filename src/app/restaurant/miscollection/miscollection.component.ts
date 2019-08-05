@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RestaurantService } from '../restaurant.service';
-import { JsResponse } from 'src/app/shared/JsResponse';
+import { JsResponse } from '../../shared/js-response';
 import { Miscollection } from 'src/app/shared/miscollection';
 
 @Component({

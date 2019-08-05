@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RestaurantService } from '../restaurant.service';
 import { HttpClient } from 'selenium-webdriver/http';
 import { Apiresponse } from 'src/app/shared/apiresponse';
-import { JsResponse } from 'src/app/shared/JsResponse';
+import { JsResponse } from '../../shared/js-response';;
 import { Data } from 'src/app/shared/data';
 import { Paidouts } from 'src/app/shared/paidouts';
 

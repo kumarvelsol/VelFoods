@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Offers } from '../shared/interfaces/offers';
-import { JsResponse, Responce } from '../shared/JsResponse';
+import { JsResponse, Responce } from '../../app/shared/js-response';
 import { Property } from '../shared/property';
 import { EmployeeCategory, EmployeeRegistration, itemcategory, itemnames } from '../shared/interfaces/empcate';
 import { Tabledefinition } from '../shared/tabledefinition';
