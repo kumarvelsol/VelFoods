@@ -20,7 +20,7 @@ export class ItemCategoryComponent implements OnInit {
   item_reporting_name:string;
   restaurent_id:number;
   constructor(public service:RestaurantService) { }  
-  displayedColumns: string[] = ['itemcategory_id', 'item_name', 'item_reporting_name', 'item_status'];
+  displayedColumns: string[] = ['itemcategory_id', 'item_name', 'item_reporting_name', 'item_status','actions'];
   dataSource;
   ngOnInit() {
     this.buttoncontent ="Save";
@@ -79,12 +79,14 @@ export class ItemCategoryComponent implements OnInit {
     this.item_status ="";
     this.item_reporting_name ="";
   }
-  public RowSelected(i:number,itemcategory_id:number,item_name:string,item_description:string,item_status:string,item_reporting_name:string){
+  public RowSelected(i:number,itemcategory_id:number,item_name:string,item_description:string,item_status:string,item_reporting_name:string,item_active_from:Date)
+  {
     this.buttoncontent ="Update";
     this.itemcategory_id =itemcategory_id,
     this.item_name =item_name,
     this.item_description=item_description,
     this.item_status =item_status,
-    this.item_reporting_name =item_reporting_name
+    this.item_reporting_name =item_reporting_name,
+    this.item_active_from = item_active_from
   }
 }
