@@ -6,8 +6,7 @@
           <p style="margin-top: 20px; margin-left: 15px; color: gray; font-size: 24px;">Table Definition</p>
           <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" >
             <mat-icon  style=color:gray matSuffix>format_list_numbered</mat-icon>
-            <mat-label style="color :gray">Table Name/No</mat-label>
-            <input style="color :gray"  type="text" [(ngModel)]="table_name" matInput>
+            <input style="color :gray"  type="text"  [disabled]="true" [(ngModel)]="table_name" matInput>
           </mat-form-field>
           <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" >
             <mat-icon  style=color:gray matSuffix>format_list_numbered</mat-icon>
