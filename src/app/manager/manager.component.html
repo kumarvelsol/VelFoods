@@ -8,65 +8,50 @@
             <!-- <mat-icon style="color :gray" matSuffix>subject</mat-icon> -->
             <mat-label style="color :gray">Manager Name</mat-label>
             <mat-icon style="color :gray" matSuffix>person</mat-icon>
-            <input style="color :gray" [(ngModel)]="name" type="text" name="name"  matInput>
+            <input style="color :gray" [(ngModel)]="manger_name" type="text" name="manger_name"  matInput>
             <!-- <mat-hint color="primary">Hint</mat-hint> -->
           </mat-form-field>
           <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray">
             <!-- <mat-icon style="color:gray;" matSuffix>code</mat-icon> -->
             <mat-label style="color :gray">Mobile No</mat-label>
             <mat-icon style="color :gray" matSuffix>call</mat-icon>
-            <input style="color:gray;" matInput [(ngModel)]="code" type="text" name="code">
+            <input style="color:gray;" matInput [(ngModel)]="manger_mobile_no" type="text" name="manger_mobile_no">
             <!-- <mat-hint color="primary">Hint</mat-hint> -->
           </mat-form-field>
-          <mat-form-field class="col-md-12 mat-form-wrap"  style="color:gray;">
-            <!-- <mat-icon style="color:gray;" matSuffix>description</mat-icon> -->
+          <!-- <mat-form-field class="col-md-12 mat-form-wrap"  style="color:gray;">
             <mat-label style="color:gray;">Contact No</mat-label>
             <mat-icon style="color :gray" matSuffix>call</mat-icon>
             <input style="color:gray;" matInput [(ngModel)]="description" type="text" name="description">
-            <!-- <mat-hint color="primary">Hint</mat-hint> -->
-          </mat-form-field>
+          </mat-form-field> -->
           <mat-form-field class="col-md-12 mat-form-wrap">
             <mat-label>Id Proof</mat-label>
-            <mat-select style="color :gray" [(ngModel)]="proof" disableRipple>
-              <mat-option style="color :gray" value="VoterId">Voter Id</mat-option>
+            <mat-select style="color :gray" [(ngModel)]="manger_id_proof" name="manger_id_proof" disableRipple>
+              <mat-option style="color :gray" value="VoterId">VoterId</mat-option>
               <mat-option style="color :gray" value="Aadhar">Aadhar</mat-option>
-              <mat-option style="color :gray" value="DrivingLicence">Driving Licence</mat-option>
+              <mat-option style="color :gray" value="DrivingLicence">DrivingLicence</mat-option>
               <mat-option style="color :gray" value="PanCard">PanCard</mat-option>
               <mat-option style="color :gray" value="Passport">Passport</mat-option>
             </mat-select>
-            <!-- <mat-select [(ngModel)] = "classSelected">
-              <mat-option>Class</mat-option>
-              <mat-option *ngFor="let class of classes" [value]="class.class_id">{{class.class_name}}</mat-option>
-            </mat-select> -->
           </mat-form-field>
           <mat-form-field class="col-md-12 mat-form-wrap"  style="color:gray;">
-            <!-- <mat-icon style="color:gray;" matSuffix>description</mat-icon> -->
             <mat-label style="color:gray;">Id Proof No</mat-label>
             <mat-icon style="color :gray" matSuffix>person</mat-icon>
-            <input style="color:gray;" matInput [(ngModel)]="description" type="text" name="description">
-            <!-- <mat-hint color="primary">Hint</mat-hint> -->
+            <input style="color:gray;" matInput [(ngModel)]="manger_id_no" type="text" name="manger_id_no">
           </mat-form-field>
-          <mat-form-field class="col-md-12 mat-form-wrap">
-            <mat-label>Restaurant</mat-label>
-            <mat-select style="color :gray" [(ngModel)]="restaurant" disableRipple>
-              <mat-option style="color :gray" value="MyKitchen">My Kitchen</mat-option>
-              <mat-option style="color :gray" value="ThePatio">The Patio</mat-option>
+          <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray"  >
+            <mat-label style="color :gray">Restaurant</mat-label>
+             <mat-select [(ngModel)]="restaurent_id" > 
+              <mat-option *ngFor="let re of restaurents" [value]="re.restaurent_id">{{re.restaurent_name}}</mat-option> 
             </mat-select>
-            <!-- <mat-select [(ngModel)] = "classSelected">
-              <mat-option>Class</mat-option>
-              <mat-option *ngFor="let class of classes" [value]="class.class_id">{{class.class_name}}</mat-option>
-            </mat-select> -->
           </mat-form-field>
-          <mat-radio-group aria-label="Select an option">
-            <mat-label style="color:gray;" style="margin-left: 0px; font-size: 25;font-weight: bold">Status</mat-label>
-            <mat-radio-button style="margin-left: 25px" value="1">Active</mat-radio-button>
-            <mat-radio-button style="margin-left: 25px" value="2">In-Active</mat-radio-button>
+          <mat-label style="color:gray;" style="margin-left: 0px; font-size: 25;font-weight: bold">Status :</mat-label>
+          <mat-radio-group aria-label="Select an option" [(ngModel)]="manger_status" name="manger_status">
+            <mat-radio-button style="margin-left: 25px" value="Active">Active</mat-radio-button>
+            <mat-radio-button style="margin-left: 25px" value="InActive">InActive</mat-radio-button>
           </mat-radio-group>
           <div class="col-md-12">
               <button mat-raised-button class="btn-style" (click)="onsaveclick()">{{buttoncontent}}</button>
-              <button mat-icon-button class="clearbtn-style" (click)="onclearclick()">
-                  <mat-icon>clear_all</mat-icon>
-              </button>
+              <button mat-raised-button class="clearbtn-style" (click)="onclearclick()">Clear</button>
           </div>
         </div>
       </mat-card>
@@ -74,43 +59,35 @@
     <div class="col-lg-6">
       <div class="example-container mat-elevation-z1">
         <table mat-table [dataSource]="dataSource">
-          <!--Id Column-->
-          <!-- <ng-container matColumnDef="subjects">
-            <th mat-header-cell *matHeaderCellDef colspan="5"> Subjects </th>
-          </ng-container> -->
-          <ng-container matColumnDef="Id">
+          <ng-container matColumnDef="manger_id">
             <th mat-header-cell *matHeaderCellDef> Id </th>
-            <td mat-cell *matCellDef="let element"> {{element.Id}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.manger_id}} </td>
           </ng-container>
-          <!-- Name Column -->
-          <ng-container matColumnDef="Manager">
+          <ng-container matColumnDef="manger_name">
             <th mat-header-cell *matHeaderCellDef> Manager Name </th>
-            <td mat-cell *matCellDef="let element"> {{element.Manager}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.manger_name}} </td>
           </ng-container>
-          <ng-container matColumnDef="AltRestaurant">
+          <ng-container matColumnDef="restaurent_id">
             <th mat-header-cell *matHeaderCellDef> Restaurant </th>
-            <td mat-cell *matCellDef="let element"> {{element.AltRestaurant}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.restaurent_id}} </td>
           </ng-container>
-          <!-- Code Column -->
-          <ng-container matColumnDef="Mobile">
+          <ng-container matColumnDef="manger_mobile_no">
             <th mat-header-cell *matHeaderCellDef> Mobile No </th>
-            <td mat-cell *matCellDef="let element"> {{element.Mobile}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.manger_mobile_no}} </td>
           </ng-container>
-          <!-- Description Column -->
-          <ng-container matColumnDef="Status">
+          <ng-container matColumnDef="manger_status">
             <th mat-header-cell *matHeaderCellDef> Status </th>
-            <td mat-cell *matCellDef="let element"> {{element.Status}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.manger_status}} </td>
           </ng-container>
           <!-- actions -->
           <ng-container matColumnDef="actions">
             <th mat-header-cell *matHeaderCellDef>Edit</th>
-            <td mat-cell *matCellDef="let element; let i=index;"> 
-              <button mat-icon-button style="color:gray;margin-right: 10px;">
+            <td mat-cell *matCellDef="let element; let j=index;"> 
+              <button mat-icon-button style="color:gray;margin-right: 10px;" (click)="RowSelected(j,element.manger_id,element.manger_name,element.restaurent_id,element.manger_mobile_no,element.manger_id_proof,element.manger_id_no,element.manger_status)">
                 <mat-icon aria-label="Edit">edit</mat-icon>
               </button>
             </td>
           </ng-container>
-          <!-- <tr mat-header-row *matHeaderRowDef="displayedHeading; sticky: true"></tr> -->
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>

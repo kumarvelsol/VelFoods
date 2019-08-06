@@ -6,7 +6,7 @@
           <mat-card-title style="font-size: 20px; text-align:center; margin-left: 170px; font-weight:bold;">Tableview</mat-card-title>
           <mat-divider style="font-size: 1px; margin-top: 26px; " class="mat-divider"></mat-divider>
           <div class="col-md-12" style="padding-top: 10px;overflow: auto; height: 300px;">
-            <button *ngFor="let room of rooms" [ngClass]="getmystyles()"   [ngStyle]="{'background-color':room.BACKGROUND_COLOR}"  mat-raised-button  class="button-style colors" name="room.ROOM_NO" (click)="onbuttonclick($event,room.ROOM_NO)">{{room.ROOM_NO}}</button>
+            <button *ngFor="let room of rooms"  [ngStyle]="{'background-color':room.BACKGROUND_COLOR}"  mat-raised-button  class="button-style colors" name="room.table_name" (click)="onbuttonclick($event,room.table_name)">{{room.table_name}}</button>
           </div>
           <div class="col-4 mat-form-wrap" style="text-align: center">
             <button mat-mini-fab color="warn" class="col-12">1</button>
@@ -77,24 +77,28 @@
             <table mat-table [dataSource]="dataSource">
               <!--- Note that these columns can be defined in any order.
                   The actual rendered columns are set as a property on the row definition" -->
+                  <ng-container matColumnDef="order_id">
+                    <th mat-header-cell *matHeaderCellDef> Id </th>
+                    <td mat-cell *matCellDef="let element"> {{element.order_id}} </td>
+                  </ng-container>
               <!-- ItemName Column -->
-              <ng-container matColumnDef="ItemName">
+              <ng-container matColumnDef="order_itemname">
                 <th mat-header-cell *matHeaderCellDef> ItemName </th>
-                <td mat-cell *matCellDef="let element"> {{element.ItemName}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.order_itemname}} </td>
               </ng-container>
               <!-- Rate Column -->
-              <ng-container matColumnDef="Rate">
+              <ng-container matColumnDef="order_rate">
                 <th mat-header-cell *matHeaderCellDef> Rate </th>
-                <td mat-cell *matCellDef="let element"> {{element.Rate}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.order_rate}} </td>
               </ng-container>
               <!-- Quantity Column -->
-              <ng-container matColumnDef="Quantity">
+              <ng-container matColumnDef="order_quantity">
                 <th mat-header-cell *matHeaderCellDef> Quantity </th>
-                <td mat-cell *matCellDef="let element"> {{element.Quantity}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.order_quantity}} </td>
               </ng-container>
-              <ng-container matColumnDef="Totalamount">
+              <ng-container matColumnDef="order_totalamount">
                 <th mat-header-cell *matHeaderCellDef> Totalamount </th>
-                <td mat-cell *matCellDef="let element"> {{element.Totalamount}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.order_totalamount}} </td>
               </ng-container>
               <!-- Action Column -->
               <ng-container matColumnDef="action">

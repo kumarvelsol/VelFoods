@@ -6,19 +6,19 @@
           <p>Employee Registration</p>
           <mat-form-field class="col-md-12">
             <mat-label> Emp Id </mat-label>
-            <input matInput ([ngModel])="empregistration_id">
+            <input matInput [(ngModel)]="empregistration_id">
           </mat-form-field>
           <mat-form-field class="col-md-12">
               <mat-label> Emp Name </mat-label>
-              <input matInput ([ngModel])="empregistration_name" required>
+              <input matInput [(ngModel)]="empregistration_name" required>
             </mat-form-field>
             <mat-form-field class="col-md-12">
                 <mat-label> Contact No </mat-label>
-                <input matInput ([ngModel])="empregistration_mobile_no" required>
+                <input matInput [(ngModel)]="empregistration_mobile_no" required>
               </mat-form-field>
               <mat-form-field class="col-md-12">
                   <mat-label> Email Id </mat-label>
-                  <input matInput ([ngModel])="empregistration_email_id" required>
+                  <input matInput [(ngModel)]="empregistration_email_id" required>
                 </mat-form-field>
                 <mat-form-field appearance="legacy" class="col-md-12" >
                     <mat-label> --Select Idproof --</mat-label>
@@ -32,11 +32,11 @@
                   </mat-form-field>
                   <mat-form-field class="col-md-12">
                       <mat-label> IdData </mat-label>
-                      <input matInput ([ngModel])="empregistration_id_data" required>
+                      <input matInput [(ngModel)]="empregistration_id_data" required>
                     </mat-form-field>
                     <mat-form-field class="col-md-12">
                         <mat-label> Address </mat-label>
-                        <input matInput ([ngModel])="empregistration_Address" required>
+                        <input matInput [(ngModel)]="empregistration_Address" required>
                       </mat-form-field>
                       <mat-form-field appearance="legacy" class="col-md-12" >
                           <mat-label> --Select Department--</mat-label>
@@ -63,18 +63,18 @@
                               <div class="col-md-12">
                               <mat-form-field class="col-md-12">
                                   <mat-label> Username </mat-label>
-                                  <input matInput ([ngModel])="Username" required>
+                                  <input matInput [(ngModel)]="Username" required>
                                 </mat-form-field>
                               </div>
                                 <div class="col-md-12">
                                 <mat-form-field class="col-md-12">
                                     <mat-label> Password </mat-label>
-                                    <input matInput ([ngModel])="password" required>
+                                    <input matInput [(ngModel)]="password" required>
                                   </mat-form-field>
                                 </div>
                                 <div class="col-md-12">
-                                  <button (onclick)="onsaveclick()">{{buttoncontent}}</button> &nbsp;&nbsp;&nbsp;
-                                  <button (onclick)="onclearclick()">Clear</button>
+                                  <button mat-raised-button style="margin-top: 10px;" class="btn-style" [style.backgroundColor]="buttonColor"  (click)="onsaveclick()">{{buttoncontent}}</button>&nbsp;&nbsp;
+                                  <button  style="margin: 10px;" class="btn-style" [style.backgroundColor]="buttonColor"  (click)="onclearclick()">{{buttoncontent1}}</button>
                                 </div>
                               </div>
                              </mat-card>

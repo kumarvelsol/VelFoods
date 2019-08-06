@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RestaurantService } from '../restaurant/restaurant.service';
 import { EmployeeRegistration } from '../shared/interfaces/empcate';
 import { EmptyOutletComponent } from '@angular/router/src/components/empty_outlet';
+import { debug } from 'util';
 
 @Component({
   selector: 'app-employeeregistration',
@@ -21,21 +22,23 @@ export class EmployeeregistrationComponent implements OnInit {
   empregistration_login_type:string;
   Username:string;
   password:string;
-  restaurent_id:number;
+  restaurent_id :number;
   buttoncontent:string;
+  buttoncontent1:string;
   displayedColumns : string[] =['empregistration_id','empregistration_name','empregistration_mobile_no','empregistration_status','actions'];
   dataSource;
   constructor(public service: RestaurantService) { }
 
   ngOnInit() {
     this.buttoncontent="Save";
+    this.buttoncontent1="Clear";
     this.service.getempreg(1).subscribe(data =>
       {
         this.dataSource = data.Data;
       });
   }
   onsaveclick(){
-    let empc:EmployeeRegistration ={
+    let empr:EmployeeRegistration ={
       empregistration_id:this.empregistration_id,
       empregistration_name:this.empregistration_name,
       empregistration_mobile_no:this.empregistration_mobile_no,
@@ -53,7 +56,7 @@ export class EmployeeregistrationComponent implements OnInit {
     }
     if(this.buttoncontent =="Save")
     {
-      this.service.addempreg(empc).subscribe(data =>{
+      this.service.addempreg(empr).subscribe(data =>{
         if(data.code ==200){
           alert(data.message);
           this.ngOnInit();
@@ -69,7 +72,7 @@ export class EmployeeregistrationComponent implements OnInit {
     }
     else
     {
-      this.service.updateempreg(empc).subscribe(data =>{
+      this.service.updateempreg(empr).subscribe(data =>{
         if(data.code ==200){
           alert(data.message);
           this.ngOnInit();

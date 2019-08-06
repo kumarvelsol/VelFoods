@@ -1,16 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ItemcategoryServiceService } from '../itemcategory-service.service';
 import { NgForm } from '@angular/forms';
-
-
-
-const ELEMENT_DATA: PeriodicElements[] = [
-  {position: 1, name: 'Non-veg', weight: "Employee 1", DineINN:"100",Tax:"5",TakeAway:"100", Tax1:"6",HomeDelivery:"100",Tax2:"7",DeliveryCharge:"100",symbol: 'Active'},
-  {position: 2, name: 'veg', weight: "Employee 2", DineINN:"100",Tax:"5",TakeAway:"100", Tax1:"6",HomeDelivery:"100",Tax2:"7",DeliveryCharge:"100",symbol: 'Active'},
-  {position: 3, name: 'Non-veg', weight: "Employee 1", DineINN:"100",Tax:"5",TakeAway:"100", Tax1:"6",HomeDelivery:"100",Tax2:"7",DeliveryCharge:"100",symbol: 'Active'},
-  {position: 4, name: 'veg', weight: "Employee 2", DineINN:"100",Tax:"5",TakeAway:"100", Tax1:"6",HomeDelivery:"100",Tax2:"7",DeliveryCharge:"100",symbol: 'Active'},
-  {position: 5, name: 'veg', weight: "Employee 1", DineINN:"100",Tax:"5",TakeAway:"100", Tax1:"6",HomeDelivery:"100",Tax2:"7",DeliveryCharge:"100",symbol: 'Active'},
-];
+import { RestaurantService } from '../restaurant/restaurant.service';
+import { itemnames } from '../shared/interfaces/empcate';
+import { convertActionBinding } from '@angular/compiler/src/compiler_util/expression_converter';
 
 @Component({
   selector: 'app-item-names',
@@ -19,139 +12,120 @@ const ELEMENT_DATA: PeriodicElements[] = [
 })
 export class ItemNamesComponent implements OnInit 
 {
-  taxOnAmount:any;
-  taxOnTakeAwayAmount:any;
-  taxOnHDlryAmount:any;
-  selected:any;
-  selectedTakeaway:any;
-  spinnerDineInn:any;
-  dineInnInputss:number;
-  takeawayInputss:number;
-  selectedDeliveryss:any;
-  ss:number;
-  homeDeliveryLabel1:number;
-  homeDeliveryTax1:number;
+    itemname_id:number;
+    itemname_item_name:string;
+    itemname_description:string;
+    itemname_reportingname:string;
+    itemname_active_from:Date;
+    itemname_status:string;
+    item_dinein_amount:number;
+    item_dinein_tax:number;
+    item_takeaway_amount:number;
+    item_takeaway_tax:number;
+    item_homedelivary_amount:number;
+    item_homedelivary_tax:number;
+    item_homedelivery_deliverycharges:number;
+    restaurent_id :number;
+    itemcategory_id:number;
+    itemname_dinein_total:string;
+    itemname_takeaway_total:string;
+    itemname_homedelivary_total:string;
+    dataSource;
+    buttoncontent:string;
+    constructor(public service:RestaurantService) { }
+
+  displayedColumns: string[] = ['itemname_id', 'itemname_item_name', 'itemname_reportingname','item_dinein_amount','item_dinein_tax','item_takeaway_amount','item_takeaway_tax','item_homedelivary_amount','item_homedelivary_tax','item_homedelivery_deliverycharges', 'itemname_status','actions'];
   
-  addingsss:number;
-  
-  seasons: string[] = ['Active', 'InActive'];
-  constructor(public service:ItemcategoryServiceService) { }
-
-  
-  displayedColumns: string[] = ['position', 'name', 'weight','DineINN','Tax','TakeAway','Tax1','HomeDelivery','Tax2','DeliveryCharge', 'symbol'];
-  dataSource = ELEMENT_DATA;
-
-  ngOnInit() {
-    this.resetForm();
-
-  }
-
-
-  resetForm(form? : NgForm)
-  { 
-    if(form!=null)
-    form.reset();
-        this.service.itemNames={
-          category:'',
-          name:'',
-          description:'',
-          reportingName:'',
-          activeFrom:'',
-          status:''
-        }
-  }
-
-
-  onSubmit(ss:NgForm)
+  ngOnInit() 
   {
-    if(ss.value.name=='' || ss.value.category=='' || ss.value.description==''|| ss.value.reportingName ==''||
-    ss.value.activeFrom=='')
-    {
-      alert("all fields are important");
+    this.buttoncontent ="Save";
+    this.service.getitemnames(1).subscribe(data =>
+      {
+        this.dataSource = data.Data;
+      });
+  }
+  onsaveclick(){
+    let itmname: itemnames ={
+      itemname_id:this.itemname_id,
+      itemname_item_name:this.itemname_item_name,
+      itemname_description:this.itemname_description,
+      itemname_reportingname:this.itemname_reportingname,
+      itemname_active_from:this.itemname_active_from,
+      itemname_status:this.itemname_status,
+      item_dinein_amount:this.item_dinein_amount,
+      item_dinein_tax:this.item_dinein_tax,
+      item_takeaway_amount:this.item_takeaway_amount,
+      item_takeaway_tax:this.item_takeaway_tax,
+      item_homedelivary_amount:this.item_homedelivary_amount,
+      item_homedelivary_tax:this.item_homedelivary_tax,
+      item_homedelivery_deliverycharges:this.item_homedelivery_deliverycharges,
+      restaurent_id:1,
+      itemcategory_id:1,
+      itemname_dinein_total:this.itemname_dinein_total,
+      itemname_takeaway_total:this.itemname_takeaway_total,
+      itemname_homedelivary_total:this.itemname_homedelivary_total
     }
+    if(this.buttoncontent =="Save")
+    {
+      this.service.additemname(itmname).subscribe(data =>{
+        if(data.code ==200){
+          alert(data.message);
+          this.ngOnInit();
+          this.onclearclick();
+        }
+        else
+        {
+          alert(data.message);
+          this.ngOnInit();
+          this.onclearclick();
+        }
+      });
+    }    
     else
     {
-      alert("added succesfully");
-      this.service.itemNames.name=null;
-      this.service.itemNames.category=null;
-      this.service.itemNames.description=null;
-      this.service.itemNames.reportingName=null;
-      this.service.itemNames.activeFrom=null;
-      this.service.itemNames.status=null;      
-    }    
+      this.service.updateitemname(itmname).subscribe(data =>{
+        if(data.code ==200){
+          alert(data.message);
+          this.ngOnInit();
+          this.onclearclick();
+        }
+        else
+        {
+          alert(data.message);
+          this.ngOnInit();
+          this.onclearclick();
+        }
+      });
+    }
   }
-
   onclearclick()
   {
-    this.service.itemNames.category=null;
-    this.service.itemNames.description=null;
+    this.itemname_id=Number("");
+    this.itemname_item_name="";
+    this.itemname_description="";
+    this.itemname_reportingname="";
+    this.itemname_status="";
+    this.item_dinein_amount=Number("");
+    this.item_dinein_tax=Number("");
+    this.item_takeaway_amount=Number("");
+    this.item_takeaway_tax=Number("");
+    this.item_homedelivary_amount=Number("");
+    this.item_homedelivary_tax=Number("");
+    this.item_homedelivery_deliverycharges=Number("");
+    this.restaurent_id =Number("");
+    this.itemcategory_id=Number("");
+    this.itemname_dinein_total="";
+    this.itemname_takeaway_total="";
+    this.itemname_homedelivary_total="";
+    this.buttoncontent ="Save";
   }
-
-
-  onKey(event: any)
-  {
-    console.log(event.target.value);
+  totalamountdine:number;
+  num1:number;
+  num2:number;
+  onchange(){
+    this.num1 =this.item_dinein_amount;
+    this.num2 = (this.item_dinein_amount + this.item_dinein_tax)/100
+    this.totalamountdine = this.num1 +this.num2;
   }
-
-  onDineInnLabel(event: any)
-  {
-    this.dineInnInputss=event.target.value;
-
-    
-    
-    // this.spinnerDineInn=this.selected;
-    // this.selected=''+(event.target.value*this.spinnerDineInn);
-  }
-
-  selectOption(value)
-  {
-    this.selected=Number.parseFloat((this.dineInnInputss*value).toString())+Number.parseInt(this.dineInnInputss.toString());
-    this.taxOnAmount=Number.parseFloat((this.dineInnInputss*value).toString());
-  }
-
-  onTakeAwayLabel(event:any)
-  {
-    this.takeawayInputss=event.target.value;
-  }
-  
-  selectTakeAway(value)
-  {        
-    this.selectedTakeaway=Number.parseFloat((this.takeawayInputss*value).toString())+Number.parseInt(this.takeawayInputss.toString());
-
-    this.taxOnTakeAwayAmount=Number.parseFloat((this.takeawayInputss*value).toString());
-  }
-
-  onHDeliveryLabel(event:any)
-  {
-    this.homeDeliveryLabel1=event.target.value;
-  }
-
-  selectHDelivery(value)
-  {
-    this.homeDeliveryTax1=value;
-    this.taxOnHDlryAmount=(this.homeDeliveryLabel1*this.homeDeliveryTax1);        
-  }
-
-  onHDeliveryChargeLabel(event:any)
-  {         
-    this.ss =(this.homeDeliveryLabel1*this.homeDeliveryTax1);
-    this.addingsss=Number.parseFloat(this.ss.toString())+Number.parseInt(this.homeDeliveryLabel1.toString());
-    this.selectedDeliveryss=Number.parseFloat((this.addingsss).toString())+ Number.parseInt(event.target.value.toString());    
-  }
-
 }
-export interface PeriodicElements 
-{
-  name: string;
-  position: number;
-  weight: string;
-  DineINN:string;
-  Tax:string;
-  Tax1:string;
-  Tax2:string;
-  TakeAway:string;
-  HomeDelivery:string;
-  DeliveryCharge:string;
-  symbol: string;
- 
-}
+

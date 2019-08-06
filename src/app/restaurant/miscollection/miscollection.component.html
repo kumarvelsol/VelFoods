@@ -1,0 +1,190 @@
+<div class="container card">
+  <p style="margin-top: 20px; margin-left: 15px; color: gray; font-size: 24px;">MisCollections</p>
+  <!-- <div class = "row">
+      <mat-card class="row example-card child">
+    <div class="row col-md-12">
+      <div class="col-md-12 mat-form-wrap">
+        <mat-radio-group style="margin-bottom: 60px;margin-top: 60px; " required>
+          <mat-radio-button value="Paidouts" style="margin-left: 100px;" >Paidouts</mat-radio-button>
+          <mat-radio-button value="MisCollections"  style="margin-left: 500px;" >MisCollections</mat-radio-button>
+        </mat-radio-group>
+    </div>
+  </div>
+  </mat-card>
+  </div> -->
+<div class="row">
+  <mat-card class="row example-card parent">
+      <div class="row col-md-12">
+        <div class="col-md-4 mat-form-wrap">
+          <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray">
+            <mat-icon style="color :gray" matSuffix>person</mat-icon>
+            <mat-label style="color :gray">Name</mat-label>
+            <input style="color :gray"  type="text" name="miscollection_name" [(ngModel)] = "miscollection_name" matInput>
+          </mat-form-field>
+        </div>
+        <div class="col-md-4 mat-form-wrap">
+          <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray">
+            <mat-icon style="color :gray" matSuffix>developer_board</mat-icon>
+            <mat-label style="color :gray">Particulars</mat-label>
+            <input style="color :gray"  type="text" name="miscollection_pariticular" [(ngModel)] = "miscollection_pariticular"  matInput>
+          </mat-form-field>
+        </div>
+        <div class="col-md-4 mat-form-wrap">
+          <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray">
+            <mat-icon style="color :gray" matSuffix>developer_board</mat-icon>
+            <mat-label style="color :gray">ReportingName</mat-label>
+            <input style="color :gray"  type="text" name="miscollection_reportingname" [(ngModel)] = "miscollection_reportingname"  matInput>
+          </mat-form-field>
+      </div>
+    </div>
+  </mat-card>
+</div>
+<div class="row">
+    <div class="row col-md-12">
+    <div class="col-md-6 mat-form-wrap; let j = index;" >
+      <mat-checkbox value="checked" [disabled]="checking1" [required]="true" style="margin-left: 20px;" (change)="toggleVisibility(checked)">Cash</mat-checkbox>
+      </div>
+      <div class="col-md-6 mat-form-wrap;let j = index;">
+        <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray;width:50%;margin-left:265px;">
+          <mat-icon style="color :gray" matSuffix>monetization_on</mat-icon>
+          <mat-label style="color :gray" >Amount</mat-label>
+          <input style="color :gray" [disabled]="checking1"  type="text" name="Amoount"  [(ngModel)] = "am[0]" (change)="onChange($event)" matInput>
+        </mat-form-field>
+      </div>
+      </div>
+  </div>
+  <div class="row">
+      <div class="row col-md-12">
+        <div class="col-md-3 mat-form-wrap; let j = index;">
+          <mat-checkbox value="checked1" [disabled]="checking2" [required]="true" style="margin-left: 20px;" (change)="toggleVisibility1(checked1)">Card</mat-checkbox>
+      </div>
+        <div class="col-md-3 mat-form-wrap">
+            <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray"  >
+                <mat-label style="color :gray">Bank Name</mat-label>
+                <mat-select style="color :gray" [(ngModel)]="bank" [disabled]="checking2" disableRipple name="bank">
+                  <mat-option style="color :gray" value="SBI">SBI</mat-option>
+                  <mat-option style="color :gray" value="Kotak">Kotak</mat-option>
+                  <mat-option style="color :gray" value="ICICI">ICICI</mat-option>
+                  <mat-option style="color :gray" value="Axis">Axis</mat-option>
+                </mat-select>
+              </mat-form-field>
+      </div>
+        <div class="col-md-3 mat-form-wrap">
+          <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray">
+            <mat-icon style="color :gray" matSuffix>developer_board</mat-icon>
+            <mat-label style="color :gray">Transaction Id</mat-label>
+            <input style="color :gray"  [disabled]="checking2" type="text" name="transaction_id"  [(ngModel)] = "tr[0]" matInput>
+          </mat-form-field>
+        </div>
+        <div class="col-md-3 mat-form-wrap;let j = index;">
+            <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray">
+              <mat-icon style="color :gray" matSuffix>monetization_on</mat-icon>
+              <mat-label style="color :gray">Amount</mat-label>
+              <input style="color :gray"  [disabled]="checking2" type="text" name="Amoount" [(ngModel)] = "am[1]" (change)="onChange1($event)" matInput>
+            </mat-form-field>
+          </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="row col-md-12">
+          <div class="col-md-3 mat-form-wrap; let j = index;">
+            <mat-checkbox value="checked2" [disabled]="checking3" [required]="true" style="margin-left: 20px;"  (change)="toggleVisibility2(checked2)">Online</mat-checkbox>
+        </div>
+          <div class="col-md-3 mat-form-wrap">
+              <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray"  >
+                  <mat-label style="color :gray">Bank Name</mat-label>
+                  <mat-select style="color :gray"  [disabled]="checking3" [(ngModel)]="bank1" disableRipple name="bank1">
+                    <mat-option style="color :gray" value="SBI">SBI</mat-option>
+                    <mat-option style="color :gray" value="Kotak">Kotak</mat-option>
+                    <mat-option style="color :gray" value="ICICI">ICICI</mat-option>
+                    <mat-option style="color :gray" value="Axis">Axis</mat-option>
+                  </mat-select>
+                </mat-form-field>
+          </div>
+          <div class="col-md-3 mat-form-wrap">
+          <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray">
+            <mat-icon style="color :gray" matSuffix>developer_board</mat-icon>
+            <mat-label style="color :gray">Transaction Id</mat-label>
+            <input style="color :gray"   [disabled]="checking3" type="text" name="transaction_id" [(ngModel)] = "tr[1]"  matInput>
+          </mat-form-field>
+        </div>
+            <div class="col-md-3 mat-form-wrap;let j = index;">
+                <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray">
+                  <mat-icon style="color :gray" matSuffix>monetization_on</mat-icon>
+                  <mat-label style="color :gray">Amount</mat-label>
+                  <input style="color :gray"  [disabled]="checking3"  type="text" name="Amoount" [(ngModel)] = "am[2]" (change)="onChange2($event)"  matInput>
+                </mat-form-field>
+              </div>
+          </div>
+      </div>
+      <div class="row">
+          <div class="row col-md-12">
+            <div class="col-md-3 mat-form-wrap;let j = index;">
+              <mat-checkbox  value="checked3" [disabled]="checking4" [required]="true" style="margin-left: 20px;"  (change)="toggleVisibility3(checked3)">Wallet</mat-checkbox>
+          </div>
+            <div class="col-md-3 mat-form-wrap">
+                <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray"  >
+                    <mat-label style="color :gray">Bank Name</mat-label>
+                    <mat-select style="color :gray" [disabled]="checking4" [(ngModel)]="bank2" disableRipple name="bank2">
+                      <mat-option style="color :gray" value="SBI">SBI</mat-option>
+                      <mat-option style="color :gray" value="Kotak">Kotak</mat-option>
+                      <mat-option style="color :gray" value="ICICI">ICICI</mat-option>
+                      <mat-option style="color :gray" value="Axis">Axis</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+            </div>
+            <div class="col-md-3 mat-form-wrap">
+                <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" >
+                  <mat-icon style="color :gray" matSuffix>developer_board</mat-icon>
+                  <mat-label style="color :gray">Transaction Id</mat-label>
+                  <input style="color :gray"  [disabled]="checking4" type="text" name="transaction_id" [(ngModel)] = "tr[2]"  matInput>
+                </mat-form-field>
+              </div>
+              <div class="col-md-3 mat-form-wrap;let j = index;">
+                  <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray">
+                    <mat-icon style="color :gray" matSuffix>monetization_on</mat-icon>
+                    <mat-label style="color :gray">Amount</mat-label>
+                    <input style="color :gray" [disabled]="checking4"  type="text" name="Amoount" [(ngModel)] = "am[3]" (change)="onChange3($event)" matInput>
+                  </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="row col-md-12">
+              <div class="col-md-3 mat-form-wrap;let j = index;">
+                <mat-checkbox value="checked4" [disabled]="checking5" [required]="true" style="margin-left: 20px;"  (change)="toggleVisibility4(checked4)">Cheque</mat-checkbox>
+            </div>
+              <div class="col-md-3 mat-form-wrap">
+                  <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray"  >
+                      <mat-label style="color :gray">Bank Name</mat-label>
+                      <mat-select style="color :gray" [disabled]="checking5" [(ngModel)]="bank3" disableRipple name="bank3">
+                        <mat-option style="color :gray" value="SBI">SBI</mat-option>
+                        <mat-option style="color :gray" value="Kotak">Kotak</mat-option>
+                        <mat-option style="color :gray" value="ICICI">ICICI</mat-option>
+                        <mat-option style="color :gray" value="Axis">Axis</mat-option>
+                      </mat-select> 
+                    </mat-form-field>
+              </div>
+              <div class="col-md-3 mat-form-wrap">
+                  <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray">
+                    <mat-icon style="color :gray" matSuffix>developer_board</mat-icon>
+                    <mat-label style="color :gray">Cheque No</mat-label>
+                    <input style="color :gray" [disabled]="checking5"  type="text" name="transaction_id" [(ngModel)] = "tr[3]" matInput>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-3 mat-form-wrap;let j = index;">
+                    <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray">
+                      <mat-icon style="color :gray" matSuffix>monetization_on</mat-icon>
+                      <mat-label style="color :gray">Amount</mat-label>
+                      <input style="color :gray" [disabled]="checking5"  type="text" name="Amoount" [(ngModel)] = "am[4]" (change)="onChange4($event)"  matInput>
+                    </mat-form-field>
+                  </div>
+              </div>
+          </div>
+          <div class="row">
+          <button mat-raised-button style="margin-top: 10px;" class="btn-style" (click)="onsubmitclick()">Save</button>&nbsp;&nbsp;
+          <button mat-raised-button style="margin-top: 10px;" class="btn-style" (click)="onclearclick()">Clear</button>
+          </div>
+  </div>
+  
+  

@@ -2,8 +2,8 @@ import { Component, Inject, Optional } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
  
 export interface UsersData {
-  name: string;
-  id: number;
+  order_itemname:string;
+  order_id:number;
 }
 @Component({
   selector: 'app-dialog-box',

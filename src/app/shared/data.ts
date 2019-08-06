@@ -1,5 +1,5 @@
-export interface Property {
-    property_id : number;
+export interface Data {
+
     property_name : string;
     property_address : string;
     property_mobile_no : number;
@@ -11,5 +11,7 @@ export interface Property {
     property_website : string;
     property_pincode : number;
     property_gst : string;
-    property_country : string;                    
+    property_country : string;      
+    property_id : number;
 }
+

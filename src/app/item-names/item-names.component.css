@@ -14,11 +14,29 @@
   width: 100%;
   margin-left: 0px;
 }
+.parent{
+  text-align:center;
+  height:550px;
+  margin-left: 10px;
+}
 .block {
   width: 80%;
 }
 .child {
   margin:auto;
+}
+.example-card1{
+  /* background-color: #33B5E5; */
+  margin-top: 20px;
+  width: 100%;
+  margin-left: 0px;
+}
+.example-container {
+  height: 550px;
+  overflow: auto; 
+  margin-top: 20px;
+  border-radius: 5px;
+  margin-bottom: 20px;
 }
 .clearbtn-style{
   color: gray;
@@ -36,19 +54,12 @@
 .example-radio-button {
   margin: 5px;
 }
-.tableRows
-{
-  color:whitesmoke;
-  background-color:lightskyblue;
-  width: 150px;
-}
 .textSizes
 {
     font-size: 100%;
     color: navy;
 }
-table
-{
+table {
   width: 100%;
 }
 p{
@@ -75,4 +86,14 @@ p{
   border: 1px solid #CECECE;
   border-radius: 5px;
   margin-bottom: 15px;
+}
+.btn-style{
+  background-color: #33B5E5;
+  color: white;
+  width : 120px;
+  height: 50px;
+  left: 0px;
+  margin-bottom: 15px;
+  margin-top: 0px;
+  font-size: 18px;
 }
