@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild  } from '@angular/core';
 import {ServiceService} from '../service.service';
 import { order, room } from '../Model/ordermodel';
-import { MatDialog, MatTable } from '@angular/material';
+import { MatDialog, MatTable, MatTableDataSource, MatDialogConfig } from '@angular/material';
 import { DialogBoxComponent } from '../dialog-box/dialog-box.component';
 import { LOCALE_DATA } from '@angular/common/src/i18n/locale_data';
 import { element } from '@angular/core/src/render3';
@@ -31,6 +31,8 @@ export interface UsersData {
  styleUrls: ['./ordering.component.css'],
 })
 export class OrderingComponent implements OnInit {
+  rows:Array<{order_itemname:string,order_quantity:number}>;
+  orderlist;itemname_item_name:string;
   order_id:number;
   order_itemname:string;
   order_rate:number;
@@ -75,34 +77,69 @@ export class OrderingComponent implements OnInit {
     this.colorr;
     alert(table_name);
   }
-openDialog(action,obj) {
-    obj.action = action;
-    const dialogRef = this.dialog.open(DialogBoxComponent, {
-      width: '250px',
-      data:obj
-    });
+    // openDialog(action,obj) {
+    // obj.action = action;
+    // const dialogRef = this.dialog.open(DialogBoxComponent, {
+    //   width: '250px',
+    //   data:{itemname_item_name:this.order_itemname,order_quantity:this.order_quantity}
+    // });
  
-    dialogRef.afterClosed().subscribe(result => {
-      if(result.event == 'Add'){
-        this.addRowData(result.data);
-      }else if(result.event == 'Update'){
-        this.updateRowData(result.data);
-      }else if(result.event == 'Delete'){
-        this.deleteRowData(result.data);
-      }
-    });
-  }
- 
+    // dialogRef.afterClosed().subscribe(result => {
+    //   console.log(result);
+    //     if(result.event == 'Add'){
+    //       this.order_itemname = result.itemname_item_name;
+    //       this.order_quantity = result.order_quantity;
+    //       console.log(this.order_itemname);
+    //       //this.addRowData(result.data);
+    //     }else if(result.event == 'Update'){
+    //       this.updateRowData(result.data);
+    //     }else if(result.event == 'Delete'){
+    //       this.deleteRowData(result.data);
+    //     }
+    //   });
+    // }
+    
+    openDialog(): void {
+      const dialogRef = this.dialog.open(DialogBoxComponent, {
+        width: '250px',
+        data: {itemname_item_name: this.itemname_item_name, order_quantity: this.order_quantity}
+      });
+  
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(result);
+        this.order_itemname = result.itemname_item_name;
+        this.order_quantity = result.order_quantity;
+        //this.orderlist = (this.order_itemname,this.order_quantity);
+        this.rows.push({order_itemname:this.order_itemname,order_quantity:this.order_quantity});
+        console.log(this.rows);
+        this.dataSource = new MatTableDataSource(this.rows);
+      });
+    }
+
+    // openDialog() {
+    //   const dialogConfig = new MatDialogConfig();
+    //   dialogConfig.disableClose = true;
+    //   dialogConfig.autoFocus = true;
+    //   dialogConfig.data = {
+    //   order_id: 1,
+    //   order_itemname : "",
+    //   order_rate:null,
+    //   order_quantity:null,
+    //   order_totalamount:null,
+    //   action: "Add"
+    //   };
+    //   dialogConfig.width = '250px';
+    //   const dialogRef = this.dialog.open(DialogBoxComponent, dialogConfig);
+    //   dialogRef.afterClosed().subscribe(result => {
+    //   console.log(result)
+    //   });
+    //   }
   addRowData(row_obj){
     var d = new Date();
-    this.dataSource.push({
-      order_id:d.getTime(),
-      order_itemname:row_obj.order_itemname,
-      order_rate:row_obj.order_rate,
-      order_quantity:row_obj.order_quantity,
-      order_totalamount:row_obj.order_totalamount
-    });
-    this.table.renderRows();
+    this.orderlist=(d.getTime(),row_obj.itemname_item_name,row_obj.order_rate,row_obj.order_quantity,row_obj.order_totalamount);
+    //this.dataSource = new MatTableDataSource(this.orderlist);
+    console.log(this.orderlist);
+    //this.table.renderRows();
     
   }
   updateRowData(row_obj){
