@@ -127,5 +127,33 @@ export class ItemNamesComponent implements OnInit
     this.num2 = (this.item_dinein_amount + this.item_dinein_tax)/100
     this.totalamountdine = this.num1 +this.num2;
   }
+
+  public RowSelected(i:number,
+    itemname_id:number,
+    itemname_item_name:string,itemname_description:string,itemname_reportingname:string,itemname_active_from:Date,
+    item_dinein_amount:number,item_dinein_tax:number,itemname_dinein_total:string,
+    item_takeaway_amount:number,item_takeaway_tax:number,itemname_takeaway_total:string,
+    item_homedelivary_amount:number,item_homedelivary_tax:number,
+    item_homedelivery_deliverycharges:number,itemname_homedelivary_total:string,
+    itemname_status:string)
+  {
+    this.buttoncontent ="Update";
+    this.itemname_id = itemname_id;
+    this.itemname_item_name =itemname_item_name;
+    this.itemname_description =itemname_description;
+    this.itemname_reportingname =itemname_reportingname;
+    this.itemname_active_from =itemname_active_from;
+    this.item_dinein_amount =item_dinein_amount;
+    this.item_dinein_tax =item_dinein_tax;
+    this.itemname_dinein_total =itemname_dinein_total;
+    this.item_takeaway_amount =item_takeaway_amount;
+    this.item_takeaway_tax =item_takeaway_tax;
+    this.itemname_takeaway_total =itemname_takeaway_total;
+    this.item_homedelivary_amount =item_homedelivary_amount;
+    this.item_homedelivary_tax  =item_homedelivary_tax;
+    this.item_homedelivery_deliverycharges =item_homedelivery_deliverycharges;
+    this.itemname_homedelivary_total =itemname_homedelivary_total;
+    this.itemname_status =itemname_status;
+  }
 }
 

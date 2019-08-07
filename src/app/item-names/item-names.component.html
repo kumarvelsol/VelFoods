@@ -110,8 +110,8 @@
                   </mat-form-field>
                 </div>
                 <div class="col-md-12">
-                  <button mat-raised-button style="margin-left: 300px; margin-top: 10px;" (click)="onsaveclick()">{{buttoncontent}}</button>&nbsp;&nbsp;
-                  <button style="margin: 10px;"  (click)="onclearclick()">clear</button>
+                  <button mat-raised-button style="margin-left: 300px; margin-top: 10px;" class="btn-style" (click)="onsaveclick()">{{buttoncontent}}</button>&nbsp;&nbsp;
+                  <button style="margin: 10px;" class="btn-style"  (click)="onclearclick()">clear</button>
                 </div>
               </mat-card>
             </div>
@@ -166,7 +166,13 @@
                     <th mat-header-cell *matHeaderCellDef>Edit</th>
                     <td mat-cell *matCellDef="let element; let i=index;"> 
                       <button mat-icon-button style="color:gray;margin-right: 10px;" 
-                      (click)="RowSelected(i,element.itemname_id,element.itemname_item_name,element.itemname_reportingname,element.item_dinein_amount,element.item_dinein_tax,element.item_takeaway_amount,element.item_takeaway_tax,element.item_homedelivary_amount,element.item_homedelivary_tax,element.item_homedelivery_deliverycharges,element.itemname_status)">
+                      (click)="RowSelected(i,element.itemname_id,element.itemname_item_name,element.itemname_description,
+                      element.itemname_reportingname,element.itemname_active_from,element.item_dinein_amount,
+                      element.item_dinein_tax,element.itemname_dinein_total,
+                      element.item_takeaway_amount,element.item_takeaway_tax,
+                      element.itemname_takeaway_total,element.item_homedelivary_amount,
+                      element.item_homedelivary_tax,element.item_homedelivery_deliverycharges,
+                      element.itemname_homedelivary_total,element.itemname_status)">
                         <mat-icon aria-label="Edit">edit</mat-icon>
                       </button>
                     </td>
