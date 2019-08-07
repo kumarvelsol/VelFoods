@@ -119,13 +119,14 @@ export class ItemNamesComponent implements OnInit
     this.itemname_homedelivary_total="";
     this.buttoncontent ="Save";
   }
-  totalamountdine:number;
-  num1:number;
-  num2:number;
   onchange(){
-    this.num1 =this.item_dinein_amount;
-    this.num2 = (this.item_dinein_amount + this.item_dinein_tax)/100
-    this.totalamountdine = this.num1 +this.num2;
+    function change($scope) {
+      $scope.total = function () 
+      {
+        return parseInt($scope.item_dinein_amount) * parseInt($scope.item_dinein_tax)/100 + parseInt($scope.item_dinein_amount);
+      };
+      console.log(parseInt($scope.item_dinein_amount) * parseInt($scope.item_dinein_tax)/100 + parseInt($scope.item_dinein_amount));
+  }
   }
 
   public RowSelected(i:number,
