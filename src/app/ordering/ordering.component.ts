@@ -8,6 +8,7 @@ import { element } from '@angular/core/src/render3';
 import { RestaurantService } from '../restaurant/restaurant.service';
 import { Responce } from '../shared/js-response';
 import { Data } from '@angular/router';
+import { Apiresponse } from '../shared/apiresponse';
 
 export interface UsersData {
   order_id:number;
@@ -31,13 +32,12 @@ export interface UsersData {
  styleUrls: ['./ordering.component.css'],
 })
 export class OrderingComponent implements OnInit {
-  rows:Array<{order_itemname:string,order_quantity:number}>;
-  orderlist;itemname_item_name:string;
-  order_id:number;
+  orderlist:Responce;itemname_item_name:string;
+  order_id:number=0;order_tax:number;
   order_itemname:string;
   order_rate:number;
   order_quantity:number;
-  order_totalamount:number;
+  order_totalamount:number=0;
   restaurent_id:number;
   itemname_id:number;
   table_defination_id:number;
@@ -47,9 +47,9 @@ export class OrderingComponent implements OnInit {
   insert_date:Date;
   kot_id:number;
   local_data:any;
-  displayedColumns: string[] = ['order_id','order_itemname','order_rate', 'order_quantity','order_totalamount', 'action'];
+  displayedColumns: string[] = ['itemname_item_name','order_rate', 'order_quantity','order_tax','order_totalamount', 'action'];
  // dataSource = ELEMENT_DATA;
-  dataSource;
+ dataSource: any[] = [];
   userlist:Responce;
   rooms : Data[];
   name:string;
@@ -98,48 +98,43 @@ export class OrderingComponent implements OnInit {
     //     }
     //   });
     // }
-    
-    openDialog(): void {
+    // {action:action ,order_id:++this.order_id,itemname_item_name: this.itemname_item_name,order_rate:this.order_rate, order_quantity: this.order_quantity,order_totalamount:this.order_totalamount}
+    openDialog(action,obj): void {
+      obj.action = action;
       const dialogRef = this.dialog.open(DialogBoxComponent, {
         width: '250px',
-        data: {itemname_item_name: this.itemname_item_name, order_quantity: this.order_quantity}
+        data: obj
       });
   
       dialogRef.afterClosed().subscribe(result => {
-        console.log(result);
-        this.order_itemname = result.itemname_item_name;
-        this.order_quantity = result.order_quantity;
-        //this.orderlist = (this.order_itemname,this.order_quantity);
-        this.rows.push({order_itemname:this.order_itemname,order_quantity:this.order_quantity});
-        console.log(this.rows);
-        this.dataSource = new MatTableDataSource(this.rows);
+        if(result.action == 'Add')
+        {
+          console.log(result);
+          this.dataSource.push(result); 
+          this.dataSource = [...this.dataSource]; 
+          //this.addRowData(result.data);
+        }
+        else if(result.action == 'Update')
+        {
+          this.updateRowData(result.data); 
+        }
+        else if(result.action == 'Delete')
+        {
+          this.deleteRowData(result.data);
+        }
       });
     }
 
-    // openDialog() {
-    //   const dialogConfig = new MatDialogConfig();
-    //   dialogConfig.disableClose = true;
-    //   dialogConfig.autoFocus = true;
-    //   dialogConfig.data = {
-    //   order_id: 1,
-    //   order_itemname : "",
-    //   order_rate:null,
-    //   order_quantity:null,
-    //   order_totalamount:null,
-    //   action: "Add"
-    //   };
-    //   dialogConfig.width = '250px';
-    //   const dialogRef = this.dialog.open(DialogBoxComponent, dialogConfig);
-    //   dialogRef.afterClosed().subscribe(result => {
-    //   console.log(result)
-    //   });
-    //   }
   addRowData(row_obj){
-    var d = new Date();
-    this.orderlist=(d.getTime(),row_obj.itemname_item_name,row_obj.order_rate,row_obj.order_quantity,row_obj.order_totalamount);
-    //this.dataSource = new MatTableDataSource(this.orderlist);
-    console.log(this.orderlist);
-    //this.table.renderRows();
+    this.dataSource.push({
+      order_id:++this.order_id,
+      itemname_item_name: row_obj.itemname_item_name,
+      order_rate:row_obj.order_rate,
+      order_quantity: row_obj.order_quantity,
+      order_totalamount:row_obj.order_totalamount
+    });
+    this.table.renderRows();
+    
     
   }
   updateRowData(row_obj){
