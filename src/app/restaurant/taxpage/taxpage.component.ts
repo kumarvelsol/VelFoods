@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { RestaurantService } from '../restaurant.service';
 import { Tax } from 'src/app/shared/interfaces/tax';
 import { MatTableDataSource } from '@angular/material';
-
+import { Responce } from 'src/app/shared/js-response';
+import { Data } from 'src/app/shared/data';
 @Component({
   selector: 'app-taxpage',
   templateUrl: './taxpage.component.html',
@@ -13,13 +14,15 @@ export class TaxpageComponent implements OnInit {
   //data: any = [{taxid:1, taxname:"Five",percentage:5,reportname:"Dharani",status:"Active"}, {taxid:2, taxname:"Three",percentage:3,reportname:"Dharani",status:"Active"} ];
   dataSource;buttoncontent : string = "Save";
   taxid : number; taxname : string; percentage : number; reportname : string; activefrom : string; status : string;
+  emplist;
   displayedColumns : string[] = ["tax_id", "tax_name","tax_percentage", "tax_employeename","tax_Active_from","tax_status","actions"];
   constructor(public service : RestaurantService){}
   ngOnInit() {
     this.LoadingList();
-    // this.rows = [{taxid:1, taxname:"Five",percentage:5,reportname:"Dharani",activefrom:"6/19/2019",status:"Active"},
-    //             {taxid:2, taxname:"Three",percentage:3,reportname:"Dharani",activefrom:"6/18/2019",status:"InActive"}];
-    // this.dataSource = this.rows;
+    this.service.getempreg(1).subscribe(data =>
+      {
+        this.emplist = new MatTableDataSource(data.Data);
+      });
   }
   onclear()
   {

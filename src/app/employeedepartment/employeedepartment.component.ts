@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RestaurantService } from '../restaurant/restaurant.service';
 import { EmployeeCategory } from '../shared/interfaces/empcate';
-import { Breakpoints } from '@angular/cdk/layout';
 import { MatTableDataSource } from '@angular/material';
 
 @Component({
@@ -14,6 +13,7 @@ export class EmployeedepartmentComponent implements OnInit {
   empdepartement_name:string;
   empdepartement_status:string;
   buttoncontent:string;
+  count:number;
   displayedColumns : string[] =['empdepartement_id','empdepartement_name','empdepartement_status','actions'];
   dataSource;
   constructor(public service :RestaurantService) {  }
@@ -23,6 +23,8 @@ export class EmployeedepartmentComponent implements OnInit {
     this.service.getempcategory(1).subscribe(data =>
     {
       this.dataSource = new MatTableDataSource(data.Data);
+      this.count =data.Data.length;
+      this.empdepartement_id = ++this.count;
     });
 
   }
