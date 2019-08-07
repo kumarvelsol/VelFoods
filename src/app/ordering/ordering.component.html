@@ -50,9 +50,9 @@
         </div>
         <div class="row col-12 mat-form-wrap">
           <mat-label class="col-3" style="font-size: 20px; font-weight:bold;">Table:</mat-label>
-          <input class="col-3 " type="text" placeholder="28">
+          <input class="col-3 " type="text" [(ngModel)] = "table_name" name="table_name" placeholder="28">
           <mat-label class="col-3" style="font-size: 20px; font-weight:bold;">Pax:</mat-label>
-          <input class="col-3" type="text" placeholder="5">
+          <input class="col-3" type="text" [(ngModel)] = "table_pax" name="table_pax" placeholder="5">
         </div>
         <div class="row col-12 mat-form-wrap">
           <mat-label class="col-3" style="font-size: 20px; font-weight:bold;">Kot:</mat-label>
@@ -62,14 +62,20 @@
         </div>
         <div class="row col-12 mat-form-wrap">
           <mat-label class="col-3" style="font-size: 20px; font-weight:bold;">Captian:</mat-label>
-          <mat-form-field appearance="legacy" class="col-6">
-            <mat-label>Select a Captian</mat-label>
+          <mat-form-field class="col-md-6 mat-form-wrap" style="color :gray"  >
+            <mat-label style="color :gray">Select a Captian</mat-label>
+             <mat-select [(ngModel)]="table_capatain" > 
+              <mat-option *ngFor="let cap of tables" [value]="cap.table_capatain">{{cap.table_capatain}}</mat-option> 
+            </mat-select>
+          </mat-form-field>
+          <!-- <mat-form-field appearance="legacy" class="col-6">
+             <mat-label>Select a Captian</mat-label>
             <mat-select  matNativeControl requireds>
               <mat-option value="srikar">srikar</mat-option>
               <mat-option value="umesh">umesh</mat-option>
               <mat-option value="kumar">kumar</mat-option>
-            </mat-select>
-          </mat-form-field>
+            </mat-select> 
+          </mat-form-field> -->
         </div>
         <button class="col-12" mat-button (click)="openDialog('Add',{})" mat-flat-button color="primary">Add Row</button>
         <div class="col-12">

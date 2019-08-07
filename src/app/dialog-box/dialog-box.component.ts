@@ -32,7 +32,6 @@ export class DialogBoxComponent implements OnInit {
   }
   doAction(){
     this.dialogRef.close({event:this.action});
-
   }
   closeDialog(){
     this.dialogRef.close({event:'Cancel'});
