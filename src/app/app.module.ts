@@ -11,6 +11,7 @@ import { RestaurantsComponent } from './restaurants/restaurants.component';
 import { ItemCategoryComponent } from './item-category/item-category.component';
 import { ItemNamesComponent } from './item-names/item-names.component';
 import { RestaurantModule } from './restaurant/restaurant.module';
+import { MatDialogModule } from '@angular/material';
 import { MaterialModule } from './shared/material.module';
 import { LoginComponent } from './login/login.component';
 import { OrderingComponent } from './ordering/ordering.component';
@@ -36,7 +37,7 @@ import { BillsettledailogComponent } from './restaurant/Billsettle/billsettledai
     EmployeeregistrationComponent,
   ],
   imports: [
-    MaterialModule,
+    MaterialModule,MatDialogModule,
     BrowserModule,AppRoutingModule,
     ReactiveFormsModule,FormsModule,
     BrowserAnimationsModule,RestaurantModule,
