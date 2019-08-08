@@ -12,7 +12,7 @@
             <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" >
               <mat-icon style="color:gray;" matSuffix>code</mat-icon>
               <mat-label style="color :gray">Percentage</mat-label>
-              <input style="color :gray" [(ngModel)]="percentage" type="text" matInput required>
+              <input style="color :gray" [(ngModel)]="percentage" type="number" maxlength="2" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" matInput required>
             </mat-form-field>
             <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray">
               <mat-label style="color :gray">Employee Name</mat-label>

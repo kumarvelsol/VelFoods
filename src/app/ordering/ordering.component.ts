@@ -61,7 +61,10 @@ export class OrderingComponent implements OnInit {
   redd :'red';
   colorr:string;
   colorFlag: any;
-  
+  tables :Data[]; table_pax : number;
+  listcount: number; tname:number; table_capatain : string;
+  kotid : number;count : number;
+
   @ViewChild(MatTable) table: MatTable<any>; 
   constructor(private _roomservice : RestaurantService,public dialog: MatDialog) {
    }
@@ -72,10 +75,31 @@ export class OrderingComponent implements OnInit {
       this.userlist=data;
       this.rooms = this.userlist.Data
     });
+    this._roomservice.getorders(1).subscribe((data : Responce) =>
+    {
+      this.count = data.Data.length;
+      this.kotid = this.count + 1;
+    });
   }
   onbuttonclick($event,table_name){
     this.colorr;
-    alert(table_name);
+   // alert(table_name);
+   this.tname = table_name;
+   this._roomservice.gettabledata(1).subscribe((data : Responce) =>
+   {
+    this.listcount = data.Data.length;
+    // this.table_name = 
+    for(let i = 1;i<=this.listcount;i++)
+    {
+        if(i == this.tname)
+        {
+          this.table_name = table_name;
+          this.table_pax = data.Data[i].table_pax;
+        //  this.table_capatain = data.Data[i].table_capatain;
+        }
+    }
+     this.tables = data.Data;
+   });
   }
     // openDialog(action,obj) {
     // obj.action = action;
