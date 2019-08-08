@@ -15,6 +15,10 @@
                 <mat-label style="color :gray">Bank Name</mat-label>
                 <input style="color :gray" [(ngModel)]="bankname" type="text" matInput required>
               </mat-form-field>
+              <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" >
+                  <mat-label style="color :gray">Account Number</mat-label>
+                  <input style="color :gray" [(ngModel)]="bankname" type="text" matInput required>
+                </mat-form-field>
               <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray">
                 <mat-label style="color :gray">Employee Name</mat-label>
                   <mat-select style="color :gray" [(ngModel)]="reportname" disableRipple>
@@ -39,21 +43,21 @@
       <div class="col-md-6">
         <div class="example-container mat-elevation-z8">
             <table mat-table [dataSource]="dataSource">
-              <ng-container matColumnDef="bankid">
+              <ng-container matColumnDef="bank_id">
                 <th mat-header-cell *matHeaderCellDef> S.No  </th>
-                <td mat-cell *matCellDef="let element"> {{element.bankid}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.bank_id}} </td>
               </ng-container>
-              <ng-container matColumnDef="bankcode">
+              <ng-container matColumnDef="bank_code">
                 <th mat-header-cell *matHeaderCellDef> Bank Code </th>
-                <td mat-cell *matCellDef="let element"> {{element.bankcode}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.bank_code}} </td>
               </ng-container>
-              <ng-container matColumnDef="bankname">
+              <ng-container matColumnDef="bank_name">
                 <th mat-header-cell *matHeaderCellDef> Bank Name </th>
-                <td mat-cell *matCellDef="let element"> {{element.bankname}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.bank_name}} </td>
               </ng-container>
-              <ng-container matColumnDef="reportname">
+              <ng-container matColumnDef="bank_reporting_name">
                 <th mat-header-cell *matHeaderCellDef> Reporting Name </th>
-                <td mat-cell *matCellDef="let element"> {{element.reportname}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.bank_reporting_name}} </td>
               </ng-container>
               <ng-container matColumnDef="status">
                 <th mat-header-cell *matHeaderCellDef> Status </th>
