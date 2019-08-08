@@ -173,4 +173,10 @@ export class RestaurantService {
   {
     return this.http.post(`${this.Baseurl+"updatingmanager"}`,managerU);
   }
+  public getorders(restaurent_id:number)
+  {
+    let parms =new HttpParams();
+    parms =parms.append('restaurent_id', restaurent_id+"")
+    return this.http.post(`${this.Baseurl+"Getorders"}`,parms);
+  }
 }
