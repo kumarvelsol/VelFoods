@@ -6,6 +6,7 @@ import { Data } from '@angular/router';
  
 export interface UsersData {
   itemname_item_name:string;
+  itemname_id:number;
   order_quantity:number;
   order_rate:number;
   order_id:number;
@@ -50,6 +51,7 @@ export class DialogBoxComponent implements OnInit {
       {
         if(this.orderlist.Data[i].itemname_item_name == this.data.itemname_item_name)
         {
+          this.data.itemname_id = this.orderlist.Data[i].itemname_id;
           this.data.order_rate = this.orderlist.Data[i].item_dinein_amount;
           this.data.order_tax = this.orderlist.Data[i].item_dinein_tax;
           console.log(this.data.order_rate,this.data.order_tax);

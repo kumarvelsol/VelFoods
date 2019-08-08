@@ -57,9 +57,9 @@
         </div>
         <div class="row col-12 mat-form-wrap">
           <mat-label class="col-3" style="font-size: 20px; font-weight:bold;">Kot:</mat-label>
-          <input type="text" class="col-3" [(ngModel)] = "kotid" name = "kotid" >
+          <input type="text" class="col-3" [(ngModel)] = "kot_id" name = "kot_id" >
           <mat-label class="col-3" style="font-size: 20px; font-weight:bold;">Status:</mat-label>
-          <input class="col-3" type="text" placeholder="Active">
+          <input class="col-3" type="text" [(ngModel)]="order_status" placeholder="Active">
         </div>
         <div class="row col-12 mat-form-wrap">
           <mat-label class="col-3" style="font-size: 20px; font-weight:bold;">Captian:</mat-label>
@@ -132,7 +132,7 @@
           </div>
         </div>
         <div class="col-12">
-          <button style="margin-left: 180px; width: 100px; " mat-botton mat-flat-button color="primary" (click)="save()" >Save</button>
+          <button style="margin-left: 180px; width: 100px; " mat-botton mat-flat-button color="primary" (click)="onsaveclick()" >Save</button>
         </div>
       </mat-card>
     </div>
