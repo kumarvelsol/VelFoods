@@ -136,15 +136,14 @@ export class OrderingComponent implements OnInit {
           console.log(result);
           this.dataSource.push(result); 
           this.dataSource = [...this.dataSource]; 
-          //this.addRowData(result.data);
         }
         else if(result.action == 'Update')
         {
-          this.updateRowData(result.data); 
+          //this.updateRowData(result.data); 
         }
         else if(result.action == 'Delete')
         {
-          this.deleteRowData(result.data);
+          //this.deleteRowData(result.data);
         }
       });
     }
@@ -171,7 +170,7 @@ export class OrderingComponent implements OnInit {
   }
   deleteRowData(row_obj){
     this.dataSource = this.dataSource.filter((value,key)=>{
-      return value.order_id != row_obj.order_id;
+      return value.itemname_item_name != row_obj.itemname_item_name;
     });
   }
 }
