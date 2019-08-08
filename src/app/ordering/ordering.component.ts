@@ -132,8 +132,8 @@ export class OrderingComponent implements OnInit {
         if(i == this.tname)
         {
           this.table_name = table_name;
-          this.table_pax = data.Data[i].table_pax;
-        //  this.table_capatain = data.Data[i].table_capatain;
+          this.table_pax = data.Data[i-1].table_pax;
+          this.table_capatain = data.Data[i-1].table_capatain;
         }
     }
      this.tables = data.Data;
