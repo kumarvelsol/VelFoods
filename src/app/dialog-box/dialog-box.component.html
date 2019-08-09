@@ -16,6 +16,7 @@
 <div mat-dialog-actions>
   <!-- <button mat-button (click)="doAction()">{{action}}</button>
   <button mat-button (click)="closeDialog()" mat-flat-button color="warn">Cancel</button> -->
-  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>{{action}}</button>
-  <button mat-button (click)="closeDialog()">Cancel</button>
+  <button mat-button mat-flat-button color="primary" [mat-dialog-close]="data">{{action}}</button>
+  <button mat-button mat-flat-button color="primary" (click)="closeDialog()">Cancel</button>
 </div>
+<!-- cdkFocusInitial --to focus on that particular button or anything on pageload -->

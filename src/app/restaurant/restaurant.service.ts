@@ -183,6 +183,11 @@ export class RestaurantService {
   }
   public updatebank(banks :bank){
     return this.http.post<JsResponse>(`${this.Baseurl+"updatebanks"}`,banks);
-    
   }
+    public getorders(restaurent_id:number)
+  {
+    let parms =new HttpParams();
+    parms =parms.append('restaurent_id', restaurent_id+"")
+    return this.http.post(`${this.Baseurl+"Getorders"}`,parms);
+ }
 }
