@@ -10,6 +10,8 @@ import { bank } from 'src/app/shared/interfaces/empcate';
   styleUrls: ['./banks.component.css']
 })
 export class BanksComponent implements OnInit {
+  rows: Array<{bankid:string, bankcode:string,bankname:string,reportname:string,status:string}> = [];
+
 //  rows: Array<{bankid:string, bankcode:string,bankname:string,reportname:string,status:string}> = [];
 bank_id:number;
 bank_code:string;
