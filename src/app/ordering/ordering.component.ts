@@ -67,12 +67,22 @@ export class OrderingComponent implements OnInit {
   listcount: number; tname:number; table_capatain : string;
   kotid : number;count : number;
   greencount:number=0;orangecount:number=0;redcount:number=0;whitecount:number=0;bluecount:number=0;
-
+  disableadd:boolean=true;
   @ViewChild(MatTable) table: MatTable<any>; 
   constructor(private service : RestaurantService,public dialog: MatDialog) {
    }
   
  ngOnInit() {
+    this.gettingtablenumbers();
+    this.service.getorders(1).subscribe((data : Responce) =>
+    {
+      this.count = data.Data.length;
+      this.kot_id = this.count + 1;
+      console.log(data);
+    });
+  }
+  gettingtablenumbers()
+  {
     this.service.gettabledata(1).subscribe((data : Responce) =>
     {
       this.userlist=data;
@@ -102,14 +112,7 @@ export class OrderingComponent implements OnInit {
         }
       }
     });
-    this.service.getorders(1).subscribe((data : Responce) =>
-    {
-      this.count = data.Data.length;
-      this.kot_id = this.count + 1;
-      console.log(data);
-    });
   }
-
   onsaveclick()
   {
     if(this.dataSource == null || this.table_name == null || this.table_pax == null || this.table_capatain == "")
@@ -167,12 +170,16 @@ export class OrderingComponent implements OnInit {
   onclear()
   {
     this.table_name = null;this.table_pax = null;this.table_capatain = "";
-    this.dataSource = null;
+    this.dataSource = null;this.order_status = "";
   }
   onbuttonclick($event,table_name){
     this.colorr;
    // alert(table_name);
    this.tname = table_name;
+   if(this.tname != null)
+   {
+     this.disableadd = false;
+   }
    this.service.gettabledata(1).subscribe((data : Responce) =>
    {
     this.listcount = data.Data.length;

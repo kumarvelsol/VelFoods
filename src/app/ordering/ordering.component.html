@@ -39,7 +39,7 @@
       <mat-card class="example-card2">
         <div class="row col-12 mat-form-wrap">
           <mat-label class="col-3" style="font-size: 20px; font-weight:bold;margin-top: 15px;">Resturant:</mat-label>
-          <input class="col-3 " type="text"  name="resname" height="10px" width="50px" >
+          <input type="text" style="height: 30px;width:355px;margin-top: 15px; " name="resname">
           <!-- <mat-form-field appearance="legacy" class="col-6">
             <mat-label>Select a Resturant</mat-label>
             <mat-select  matNativeControl requireds>
@@ -79,7 +79,7 @@
             </mat-select> 
           </mat-form-field> -->
         </div>
-        <button class="col-12" mat-button (click)="openDialog('Add',{})" mat-flat-button color="primary">Add Row</button>
+        <button class="col-12" mat-button (click)="openDialog('Add',{})" [disabled]="disableadd" mat-flat-button color="primary">Add Row</button>
         <div class="col-12">
           <div class="example-container mat-elevation-z1">
             <table mat-table [dataSource]="dataSource">
@@ -133,7 +133,7 @@
           </div>
         </div>
         <div class="col-12">
-          <button style="margin-left: 180px; width: 100px; " mat-botton mat-flat-button color="primary" (click)="onsaveclick()" >Save</button>
+          <button style="margin-left: 180px; width: 100px; " mat-botton mat-flat-button color="primary" [disabled]="disableadd" (click)="onsaveclick()" >Save</button>
         </div>
       </mat-card>
     </div>
