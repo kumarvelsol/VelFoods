@@ -180,22 +180,25 @@ export class RestaurantService {
     parms =parms.append('restaurent_id', restaurent_id+"")
     return this.http.post(`${this.Baseurl+"Getorders"}`,parms);
   }
-  public addingorder(table_name:number,table_pax:number,order_itemname:any[]=[],order_rate:any[]=[],order_quantity:any[]=[],order_totalamount:any[]=[],
-                      restaurent_id:number,itemname_id:any[]=[],table_defination_id:number,order_status:string,insert_by:string,insert_date:Date,kot_id:number)
+  public addingorder(itemnames:any[]=[],Rate:any[]=[],quantity:any[]=[],total:any[]=[],tax:any[]=[],
+                      restaurent_id:number,itemnameid:any[]=[],table_defination_id:number,order_captain:string,order_status:string)
   {
     let parms =new HttpParams();
-    parms =parms.append('table_name', table_name+"");
-    parms =parms.append('table_pax', table_pax+"");
-    parms =parms.append('order_itemname', order_itemname+"");
-    parms =parms.append('order_rate', order_rate+"");
-    parms =parms.append('order_quantity', order_quantity+"");
-    parms =parms.append('order_totalamount', order_totalamount+"");
+    //parms =parms.append('table_name', table_name+"");
+    //parms =parms.append('table_pax', table_pax+"");
+    parms =parms.append('order_captain', order_captain+"");
+    parms =parms.append('itemnames', itemnames+"");
+    parms =parms.append('Rate', Rate+"");
+    parms =parms.append('tax', tax+"");
+    //parms =parms.append('kot_id', kot_id+"");
+    parms =parms.append('quantity', quantity+"");
+    parms =parms.append('total', total+"");
     parms =parms.append('restaurent_id', restaurent_id+"");
-    parms =parms.append('itemname_id', itemname_id+"");
+    parms =parms.append('itemnameid', itemnameid+"");
     parms =parms.append('table_defination_id', table_defination_id+"");
     parms =parms.append('order_status', order_status+"");
-    parms =parms.append('insert_by', insert_by+"");
-    parms =parms.append('insert_date', insert_date+"");
-    return this.http.post(`${this.Baseurl+"Orderinsert"}`,parms);
+    //parms =parms.append('insert_by', insert_by+"");
+    //parms =parms.append('insert_date', insert_date+"");
+    return this.http.post<JsResponse>(`${this.Baseurl+"Orderinsert"}`,parms);
   }
 }
