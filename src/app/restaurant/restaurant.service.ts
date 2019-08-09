@@ -18,7 +18,7 @@ import { room } from '../Model/ordermodel';
   providedIn: 'root'
 })
 export class RestaurantService {
- // Baseurl = 'http://localhost:57649/';
+//Baseurl = 'http://localhost:57649/';
  Baseurl = 'http://school.edujinni.in/';
   httpOptions = {
     headers: new HttpHeaders({
@@ -192,19 +192,19 @@ export class RestaurantService {
     parms =parms.append('restaurent_id', restaurent_id+"")
     return this.http.post(`${this.Baseurl+"Getorders"}`,parms);
   }
-  public getgetwallets(restaurent_id:number)
+  public getwallets(restaurent_id:number)
   {
     let parms =new HttpParams();
     parms =parms.append('restaurent_id', restaurent_id+"")
-    return this.http.post(`${this.Baseurl+"getwallets"}`,parms);
+    return this.http.post<JsResponse>(`${this.Baseurl+"getwallets"}`,parms);
   }
   public addwallets(walletI:Walletsmodel)
   {
-    return this.http.post(`${this.Baseurl+"walletadding"}`,walletI);
+    return this.http.post<JsResponse>(`${this.Baseurl+"walletadding"}`,walletI);
   }
   public updatewallets(walletU:Walletsmodel)
   {
-    return this.http.post(`${this.Baseurl+"walletupdate"}`,walletU);
+    return this.http.post<JsResponse>(`${this.Baseurl+"walletupdate"}`,walletU);
   }
   public addingorder(itemnames:any[]=[],Rate:any[]=[],quantity:any[]=[],total:any[]=[],tax:any[]=[],
                       restaurent_id:number,itemnameid:any[]=[],table_defination_id:number,order_captain:string,order_status:string)
