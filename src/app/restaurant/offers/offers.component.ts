@@ -120,7 +120,7 @@ export class OffersComponent implements OnInit {
       this.sunday = true;         this.sun_disable = true;
     }else if(this.daysSelected == "WeekDays"){
       this.monday = true;         this.mon_disable = true;   
-      this.tuesday = true;        this.tue_disable = true;    
+      this.tuesday = true;        this.tue_disable = true;     
       this.wednesday = true;      this.wed_disable = true;          
       this.thursday = true;       this.thur_disable = true;            
       this.friday = true;         this.fri_disable = true;     
