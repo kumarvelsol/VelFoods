@@ -3,7 +3,7 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Offers } from '../shared/interfaces/offers';
 import { JsResponse, Responce } from '../../app/shared/js-response';
 import { Property } from '../shared/property';
-import { EmployeeCategory, EmployeeRegistration, itemcategory, itemnames } from '../shared/interfaces/empcate';
+import { EmployeeCategory, EmployeeRegistration, itemcategory, itemnames, bank } from '../shared/interfaces/empcate';
 import { Tabledefinition } from '../shared/tabledefinition';
 import { Tax } from '../shared/interfaces/tax';
 import { Tablebooking } from '../shared/tablebooking';
@@ -174,7 +174,18 @@ export class RestaurantService {
   {
     return this.http.post(`${this.Baseurl+"updatingmanager"}`,managerU);
   }
-  public getorders(restaurent_id:number)
+  public getbanks (restaurent_id : number){
+    let parms = new HttpParams();
+    parms = parms.append('restaurent_id',restaurent_id+"");
+    return this.http.post<Responce>(`${this.Baseurl+"getbanks"}`,parms);
+  }
+  public addbank (banks :bank){
+    return this.http.post<JsResponse>(`${this.Baseurl+"addbanks"}`,banks);
+  }
+  public updatebank(banks :bank){
+    return this.http.post<JsResponse>(`${this.Baseurl+"updatebanks"}`,banks);
+  }
+    public getorders(restaurent_id:number)
   {
     let parms =new HttpParams();
     parms =parms.append('restaurent_id', restaurent_id+"")
@@ -201,4 +212,5 @@ export class RestaurantService {
     //parms =parms.append('insert_date', insert_date+"");
     return this.http.post<JsResponse>(`${this.Baseurl+"Orderinsert"}`,parms);
   }
-}
+ }
+

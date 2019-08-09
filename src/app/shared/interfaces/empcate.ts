@@ -67,3 +67,14 @@ export interface order{
     insert_date:Date;
     kot_id:number;
 }
+
+export interface bank{
+    bank_id:number;
+    bank_code:string;
+    bank_name:string;
+    bank_account_no:number;
+    bank_status:string;
+    bank_reporting_name:string;
+    empregistration_id:number;
+    restaurent_id:number;
+}
