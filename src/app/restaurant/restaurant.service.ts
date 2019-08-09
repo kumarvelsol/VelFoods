@@ -12,6 +12,7 @@ import { Miscollection } from '../shared/miscollection';
 import { Restaurant } from '../shared/interfaces/restaurant';
 import { Managermodel } from '../shared/interfaces/managermodel';
 import { Walletsmodel } from '../shared/walletsmodel';
+import { room } from '../Model/ordermodel';
 
 @Injectable({
   providedIn: 'root'
@@ -205,5 +206,26 @@ export class RestaurantService {
   {
     return this.http.post(`${this.Baseurl+"walletupdate"}`,walletU);
   }
+  public addingorder(itemnames:any[]=[],Rate:any[]=[],quantity:any[]=[],total:any[]=[],tax:any[]=[],
+                      restaurent_id:number,itemnameid:any[]=[],table_defination_id:number,order_captain:string,order_status:string)
+  {
+    let parms =new HttpParams();
+    //parms =parms.append('table_name', table_name+"");
+    //parms =parms.append('table_pax', table_pax+"");
+    parms =parms.append('order_captain', order_captain+"");
+    parms =parms.append('itemnames', itemnames+"");
+    parms =parms.append('Rate', Rate+"");
+    parms =parms.append('tax', tax+"");
+    //parms =parms.append('kot_id', kot_id+"");
+    parms =parms.append('quantity', quantity+"");
+    parms =parms.append('total', total+"");
+    parms =parms.append('restaurent_id', restaurent_id+"");
+    parms =parms.append('itemnameid', itemnameid+"");
+    parms =parms.append('table_defination_id', table_defination_id+"");
+    parms =parms.append('order_status', order_status+"");
+    //parms =parms.append('insert_by', insert_by+"");
+    //parms =parms.append('insert_date', insert_date+"");
+    return this.http.post<JsResponse>(`${this.Baseurl+"Orderinsert"}`,parms);
+  }
  }
-}
+

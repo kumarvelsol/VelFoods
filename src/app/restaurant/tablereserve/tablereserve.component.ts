@@ -36,11 +36,15 @@ export class TablereserveComponent implements OnInit {
   this.service1.getrestaurent(1).subscribe((data:Apiresponse) =>{
     this.restaurents = data.Data;
   });
-  this.service1.gettablebooking(1).subscribe((data:Apiresponse)=> {
-    this.tabledatalist = data;
-    this.abDatasource = new MatTableDataSource(this.tabledatalist.Data);
-  });
+  this.gettablelist();
 }
+  gettablelist()
+  {
+    this.service1.gettablebooking(1).subscribe((data:Apiresponse)=> {
+      this.tabledatalist = data;
+      this.abDatasource = new MatTableDataSource(this.tabledatalist.Data);
+    });
+  }
   public onsubmitclick() 
   {
     if(this.tablebookingf_name == "" || this.tablebooking_pax == null || this.tablebooking_mobile_no == null)
@@ -134,5 +138,6 @@ export class TablereserveComponent implements OnInit {
     this.tablebooking_mobile_no = null;
     this.tablebooking_advance = null;
     this.tablebooking_splinstructions = "";
+    this.gettablelist();
   }
 }

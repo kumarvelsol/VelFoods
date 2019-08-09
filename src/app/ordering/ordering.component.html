@@ -9,23 +9,23 @@
             <button *ngFor="let room of rooms"  [ngStyle]="{'background-color':room.BACKGROUND_COLOR}"  mat-raised-button  class="button-style colors" name="room.table_name" (click)="onbuttonclick($event,room.table_name)">{{room.table_name}}</button>
           </div>
           <div class="col-4 mat-form-wrap" style="text-align: center">
-            <button mat-mini-fab color="warn" class="col-12">1</button>
+            <button mat-mini-fab color="warn" style="font-size: 18px;font-weight:bold;" class="col-12">{{redcount}}</button>
             <mat-label class="mat-form-field col-12" style="font-size: 20px; text-align: center;margin-top: 5px; font-weight:bold;">Repair</mat-label>
           </div>
           <div class="col-4 mat-form-wrap" style="text-align: center">
-            <button mat-mini-fab [ngStyle]="{'background-color':'green'}" class="col-12">1</button>
-            <mat-label class="mat-form-field col-12" style="font-size: 20px; text-align: center;margin-top: 5px; font-weight:bold;">vacunt</mat-label>
+            <button mat-mini-fab [ngStyle]="{'background-color':'green'}" style="font-size: 18px;font-weight:bold;" class="col-12">{{greencount}}</button>
+            <mat-label class="mat-form-field col-12" style="font-size: 20px; text-align: center;margin-top: 5px; font-weight:bold;">Vacant</mat-label>
           </div>
           <div class="col-4 mat-form-wrap" style="text-align: center">
-            <button mat-mini-fab [ngStyle]="{'background-color':'orange'}" class="col-12" >1</button>
-            <mat-label class="mat-form-field col-12" style="font-size: 20px; text-align: center;margin-top: 5px; font-weight:bold;">occupied</mat-label>
+            <button mat-mini-fab [ngStyle]="{'background-color':'orange'}"  style="font-size: 18px;font-weight:bold;" class="col-12" >{{orangecount}}</button>
+            <mat-label class="mat-form-field col-12" style="font-size: 20px; text-align: center;margin-top: 5px; font-weight:bold;">Occupied</mat-label>
           </div>
           <div class="col-4 mat-form-wrap" style="text-align: center">
-            <button mat-mini-fab color="primary" class="col-12" >1</button>
+            <button mat-mini-fab color="primary" style="font-size: 18px;font-weight:bold;" class="col-12" >{{bluecount}}</button>
             <mat-label class="mat-form-field col-12" style="font-size: 20px; text-align: center;margin-top: 5px; font-weight:bold;">Billing</mat-label>
           </div>
           <div class="col-4 mat-form-wrap" style="text-align: center">
-            <button mat-mini-fab [ngStyle]="{'background-color':'white'}" class="col-12">1</button>
+            <button mat-mini-fab [ngStyle]="{'background-color':'white'}" style="font-size: 18px;font-weight:bold;" class="col-12">{{whitecount}}</button>
             <mat-label class="mat-form-field col-12" style="font-size: 20px; text-align: center;margin-top: 5px; font-weight:bold; ">Reservation</mat-label>
           </div>
         </div>
@@ -57,9 +57,9 @@
         </div>
         <div class="row col-12 mat-form-wrap">
           <mat-label class="col-3" style="font-size: 20px; font-weight:bold;">Kot:</mat-label>
-          <input type="text" class="col-3" [(ngModel)] = "kotid" name = "kotid" >
+          <input type="text" class="col-3" [(ngModel)] = "kot_id" name = "kot_id" >
           <mat-label class="col-3" style="font-size: 20px; font-weight:bold;">Status:</mat-label>
-          <input class="col-3" type="text" placeholder="Active">
+          <input class="col-3" type="text" [(ngModel)]="order_status" placeholder="Active">
         </div>
         <div class="row col-12 mat-form-wrap">
           <mat-label class="col-3" style="font-size: 20px; font-weight:bold;">Captian:</mat-label>
@@ -133,7 +133,7 @@
           </div>
         </div>
         <div class="col-12">
-          <button style="margin-left: 180px; width: 100px; " mat-botton mat-flat-button color="primary" (click)="save()" >Save</button>
+          <button style="margin-left: 180px; width: 100px; " mat-botton mat-flat-button color="primary" (click)="onsaveclick()" >Save</button>
         </div>
       </mat-card>
     </div>

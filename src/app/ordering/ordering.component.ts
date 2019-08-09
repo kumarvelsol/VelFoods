@@ -6,9 +6,10 @@ import { DialogBoxComponent } from '../dialog-box/dialog-box.component';
 import { LOCALE_DATA } from '@angular/common/src/i18n/locale_data';
 import { element } from '@angular/core/src/render3';
 import { RestaurantService } from '../restaurant/restaurant.service';
-import { Responce } from '../shared/js-response';
+import { Responce, JsResponse } from '../shared/js-response';
 import { Data } from '@angular/router';
 import { Apiresponse } from '../shared/apiresponse';
+import { Tabledefinition } from '../shared/tabledefinition';
 
 export interface UsersData {
   order_id:number;
@@ -33,16 +34,17 @@ export interface UsersData {
 })
 export class OrderingComponent implements OnInit {
   orderlist:Responce;itemname_item_name:string;
-  order_id:number=0;order_tax:number;
-  order_itemname:string;
-  order_rate:number;
-  order_quantity:number;
-  order_totalamount:number=0;
+  order_id:number=0;tax:any[] = [];jsRes :JsResponse;
+  itemnames:any[] =[];
+  Rate:any[] =[];
+  quantity:any[] =[];
+  total:any[] =[];
   restaurent_id:number;
-  itemname_id:number;
+  itemnameid:any[] =[];
   table_defination_id:number;
   order_status:string;
-  table_name:string;
+  table_name:number;
+  order_captain:string;
   insert_by:string;
   insert_date:Date;
   kot_id:number;
@@ -64,28 +66,114 @@ export class OrderingComponent implements OnInit {
   tables :Data[]; table_pax : number;
   listcount: number; tname:number; table_capatain : string;
   kotid : number;count : number;
+  greencount:number=0;orangecount:number=0;redcount:number=0;whitecount:number=0;bluecount:number=0;
 
   @ViewChild(MatTable) table: MatTable<any>; 
-  constructor(private _roomservice : RestaurantService,public dialog: MatDialog) {
+  constructor(private service : RestaurantService,public dialog: MatDialog) {
    }
   
  ngOnInit() {
-    this._roomservice.gettabledata(1).subscribe((data : Responce) =>
+    this.service.gettabledata(1).subscribe((data : Responce) =>
     {
       this.userlist=data;
-      this.rooms = this.userlist.Data
+      this.rooms = this.userlist.Data;
+      console.log(this.rooms);
+      for(let i=0;i<this.rooms.length;i++)
+      {
+        if(this.rooms[i].BACKGROUND_COLOR == "Green")
+        {
+          this.greencount= ++this.greencount;
+        }
+        else if(this.rooms[i].BACKGROUND_COLOR == "Orange")
+        {
+          this.orangecount= ++this.orangecount;
+        }
+        else if(this.rooms[i].BACKGROUND_COLOR == "Blue")
+        {
+          this.bluecount= ++this.bluecount;
+        }
+        else if(this.rooms[i].BACKGROUND_COLOR == "White")
+        {
+          this.whitecount= ++this.whitecount;
+        }
+        else if(this.rooms[i].BACKGROUND_COLOR == "Red")
+        {
+          this.redcount= ++this.redcount;
+        }
+      }
     });
-    this._roomservice.getorders(1).subscribe((data : Responce) =>
+    this.service.getorders(1).subscribe((data : Responce) =>
     {
       this.count = data.Data.length;
-      this.kotid = this.count + 1;
+      this.kot_id = this.count + 1;
+      console.log(data);
     });
+  }
+
+  onsaveclick()
+  {
+    if(this.dataSource == null || this.table_name == null || this.table_pax == null || this.table_capatain == "")
+    {
+      alert("Please fill all fields");
+    }
+    else
+    {
+      //this.table_name=this.table_name;
+      //this.table_pax=this.table_pax;
+      this.order_captain = this.table_capatain;
+      for(let i=0;i<this.dataSource.length;i++)
+      {
+        this.itemnames.push(this.dataSource[i].itemname_item_name);
+        this.itemnameid.push(this.dataSource[i].itemname_id );
+        this.Rate.push(this.dataSource[i].order_rate);
+        this.quantity.push(this.dataSource[i].order_quantity);
+        this.total.push(this.dataSource[i].order_totalamount);
+        this.tax.push(this.dataSource[i].order_tax);
+      }
+      this.restaurent_id=1;
+      this.table_defination_id= this.table_name;
+      this.order_status="Running";
+      //this.insert_by="aaa";
+      //this.insert_date=this.insert_date;
+      //this.kot_id=this.kot_id;
+      this.service.addingorder(this.itemnames,this.Rate,this.quantity,this.total,this.tax,1,this.itemnameid,
+                              this.table_defination_id,this.order_captain,this.order_status,
+                              ).subscribe(data =>
+        {
+          if(data.code == 200)
+          {
+              alert("Order Added Succesfully.!");
+              let a : Tabledefinition = {
+                BACKGROUND_COLOR:"Orange",
+                restaurent_id:1,
+                table_defination_id : this.table_defination_id,
+                table_capatain : this.table_capatain,
+                table_description: this.table_description,
+                table_name: this.table_name,
+                table_pax: this.table_pax,
+                table_status: this.table_status,
+                table_steward: this.table_steward,
+                table_view : this.table_view,
+            }
+             this.service.updatetable(a).subscribe((data : JsResponse) => {
+              this.jsRes = data;
+             });
+              this.onclear();
+          }else{ alert("Failed to Insert data");}
+       });
+    }
+  }
+  table_description:string;table_status:string;table_steward:string;table_view:string;
+  onclear()
+  {
+    this.table_name = null;this.table_pax = null;this.table_capatain = "";
+    this.dataSource = null;
   }
   onbuttonclick($event,table_name){
     this.colorr;
    // alert(table_name);
    this.tname = table_name;
-   this._roomservice.gettabledata(1).subscribe((data : Responce) =>
+   this.service.gettabledata(1).subscribe((data : Responce) =>
    {
     this.listcount = data.Data.length;
     // this.table_name = 
@@ -123,6 +211,7 @@ export class OrderingComponent implements OnInit {
     //   });
     // }
     // {action:action ,order_id:++this.order_id,itemname_item_name: this.itemname_item_name,order_rate:this.order_rate, order_quantity: this.order_quantity,order_totalamount:this.order_totalamount}
+   
     openDialog(action,obj): void {
       obj.action = action;
       const dialogRef = this.dialog.open(DialogBoxComponent, {
