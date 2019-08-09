@@ -11,6 +11,7 @@ import { Paidouts } from '../shared/paidouts';
 import { Miscollection } from '../shared/miscollection';
 import { Restaurant } from '../shared/interfaces/restaurant';
 import { Managermodel } from '../shared/interfaces/managermodel';
+import { Walletsmodel } from '../shared/walletsmodel';
 
 @Injectable({
   providedIn: 'root'
@@ -178,5 +179,19 @@ export class RestaurantService {
     let parms =new HttpParams();
     parms =parms.append('restaurent_id', restaurent_id+"")
     return this.http.post(`${this.Baseurl+"Getorders"}`,parms);
+  }
+  public getgetwallets(restaurent_id:number)
+  {
+    let parms =new HttpParams();
+    parms =parms.append('restaurent_id', restaurent_id+"")
+    return this.http.post(`${this.Baseurl+"getwallets"}`,parms);
+  }
+  public addwallets(walletI:Walletsmodel)
+  {
+    return this.http.post(`${this.Baseurl+"walletadding"}`,walletI);
+  }
+  public updatewallets(walletU:Walletsmodel)
+  {
+    return this.http.post(`${this.Baseurl+"walletupdate"}`,walletU);
   }
 }

@@ -8,8 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class WalletsComponent implements OnInit {
   rows: Array<{walletid:string, walletcode:string,walletname:string,reportname:string,status:string}> = [];
   dataSource;buttoncontent:string;
-  walletid:string;walletcode:string;walletname:string;reportname:string;status:string;
-  displayedColumns: string[] = ["walletid", "walletcode","walletname", "reportname","status","actions"];
+  wallet_id:string;wallet_code:string;wallet_name:string;wallet_reporting_name:string;wallet_status:string;
+  displayedColumns: string[] = ["wallet_id", "wallet_code","wallet_name", "wallet_reporting_name","wallet_status","actions"];
   constructor() { }
 
   ngOnInit() {
@@ -20,29 +20,29 @@ export class WalletsComponent implements OnInit {
   }
   onclear()
   {
-    this.walletcode = "";this.walletname = "";this.reportname = "";this.status = "";
+   // this.walletcode = "";this.walletname = "";this.reportname = "";this.status = "";
     this.buttoncontent = "Save";
   }
   onsave()
   {
-    if(this.walletcode == "" || this.walletname == "" || this.reportname == "" || this.status == "")
-    {
-      alert("Please fill all fields");
-    }
-    else
-    {
-      this.rows.push({walletid:"3",walletcode:this.walletcode,walletname:this.walletname,reportname:this.reportname,status:this.status});
-      this.dataSource = this.rows;
-      console.log(this.dataSource);
-    }
+    // if(this.walletcode == "" || this.walletname == "" || this.reportname == "" || this.status == "")
+    // {
+    //   alert("Please fill all fields");
+    // }
+    // else
+    // {
+    //   this.rows.push({walletid:"3",walletcode:this.walletcode,walletname:this.walletname,reportname:this.reportname,status:this.status});
+    //   this.dataSource = this.rows;
+    //   console.log(this.dataSource);
+    // }
     this.onclear();
   }
   public RowSelected(i:number,walletcode:string,walletname:string,reportname:string,status:string)
   {
     this.buttoncontent="Update";
-    this.walletcode =  walletcode;
-    this.walletname = walletname;
-    this.reportname = reportname;
-    this.status = status;
+    // this.walletcode =  walletcode;
+    // this.walletname = walletname;
+    // this.reportname = reportname;
+    // this.status = status;
   }
 }

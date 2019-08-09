@@ -9,7 +9,7 @@ export class BanksComponent implements OnInit {
   rows: Array<{bankid:string, bankcode:string,bankname:string,reportname:string,status:string}> = [];
   dataSource;buttoncontent:string;
   bankid:string;bankcode:string;bankname:string;reportname:string;status:string;
-  displayedColumns: string[] = ["bankid", "bankcode","bankname", "reportname","status","actions"];
+  displayedColumns: string[] = ["bank_id", "bank_code","bank_name", "bank_reporting_name","status","actions"];
   constructor() { }
 
   ngOnInit() {
