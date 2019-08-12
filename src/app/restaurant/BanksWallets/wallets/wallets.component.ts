@@ -30,6 +30,10 @@ export class WalletsComponent implements OnInit {
   onclear()
   {
     this.buttoncontent = "Save";
+    this.wallet_code =  "";
+    this.wallet_name = "";
+    this.empregistration_name = "";
+    this.wallet_status = "";
   }
   onsave()
   {
