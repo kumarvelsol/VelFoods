@@ -61,7 +61,7 @@ export class TaxpageComponent implements OnInit {
           }
         });
       }else if(this.buttoncontent == "Update"){
-        this.service.UpdateTax(this.taxid,this.taxname,this.percentage,this.activefrom,this.status,1,this.reportname).subscribe(data=>{
+        this.service.UpdateTax(this.taxid,this.taxname,this.percentage,this.activefrom,this.status,1,this.empregistration_name).subscribe(data=>{
           if(data.code == 200){
             alert(data.message);
             this.onclear();
