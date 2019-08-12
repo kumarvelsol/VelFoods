@@ -37,6 +37,7 @@ export class EmployeeregistrationComponent implements OnInit {
     this.service.getempreg(1).subscribe(data =>
       {
         this.dataSource = data.Data;
+        console.log(this.dataSource);
         this.count =data.Data.length;
         this.empregistration_id = ++this.count;
       });
@@ -54,7 +55,7 @@ export class EmployeeregistrationComponent implements OnInit {
       empregistration_id_proof:this.empregistration_id_proof,
       empregistration_id_data:this.empregistration_id_data,
       empregistration_Address:this.empregistration_Address,
-      empdepartement_id:1,
+      empdepartement_id:this.empdepartement_id,
       empregistration_status:this.empregistration_status,
       empregistration_login_type:this.empregistration_login_type,
       Username:this.Username,
@@ -106,7 +107,8 @@ export class EmployeeregistrationComponent implements OnInit {
     this.empregistration_status="",
     this.empregistration_login_type="",
     this.Username="",
-    this.password =""
+    this.password ="",
+    this.buttoncontent = "Save";
   }
   public RowSelected(i:number,empregistration_id:number,empregistration_name:string,
     empregistration_mobile_no:number,
@@ -114,7 +116,7 @@ export class EmployeeregistrationComponent implements OnInit {
     empregistration_id_proof:string,
     empregistration_id_data:string,
     empregistration_Address:string,
-    empregistration_login_type:string,
+    empregistration_login_type:string,empdepartement_name:string,
     empregistration_status:string,Username:string,password:string){
     this.buttoncontent ="Update";
     this.empregistration_id =empregistration_id,
@@ -125,6 +127,7 @@ export class EmployeeregistrationComponent implements OnInit {
     this.empregistration_id_data=empregistration_id_data,
     this.empregistration_Address=empregistration_Address,
     this.empregistration_status=empregistration_status,
+    this.empdepartement_name = empdepartement_name,
     this.empregistration_login_type=empregistration_login_type,
     this.Username=Username,
     this.password =password
