@@ -96,13 +96,14 @@ displayedColumns: string[] = ["bank_id", "bank_code","bank_name", "bank_reportin
       });
    }
   }
-  public RowSelected(i:number,bank_id:number,bank_code:string,bank_name:string,bank_reporting_name:string,bank_status:string)
+  public RowSelected(i:number,bank_id:number,bank_code:string,bank_name:string,bank_reporting_name:string,bank_status:string,bank_account_no:number)
   {
     this.buttoncontent="Update";
     this.bank_id =bank_id;
     this.bank_code =  bank_code;
     this.bank_name = bank_name;
     this.empregistration_name = bank_reporting_name;
+    this.bank_account_no = bank_account_no;
     this.bank_status = bank_status;
   }
 }
