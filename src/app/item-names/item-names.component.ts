@@ -30,8 +30,8 @@ export class ItemNamesComponent implements OnInit
     itemname_dinein_total:string;
     itemname_takeaway_total:string;
     itemname_homedelivary_total:string;
-    dataSource;
-    buttoncontent:string;
+    dataSource; tax_percentage : number;
+    buttoncontent:string; itemcategory; taxlist;
     constructor(public service:RestaurantService) { }
 
   displayedColumns: string[] = ['itemname_id', 'itemname_item_name', 'itemname_reportingname','item_dinein_amount','item_dinein_tax','item_takeaway_amount','item_takeaway_tax','item_homedelivary_amount','item_homedelivary_tax','item_homedelivery_deliverycharges', 'itemname_status','actions'];
@@ -43,6 +43,14 @@ export class ItemNamesComponent implements OnInit
       {
         this.dataSource = data.Data;
       });
+      this.service.getitemcate(1).subscribe(data =>
+        {
+          this.itemcategory = data.Data;
+        });
+        this.service.TaxList(1).subscribe(data =>
+          {
+            this.taxlist = data.Data;
+          });
   }
   onsaveclick(){
     let itmname: itemnames ={
@@ -53,14 +61,14 @@ export class ItemNamesComponent implements OnInit
       itemname_active_from:this.itemname_active_from,
       itemname_status:this.itemname_status,
       item_dinein_amount:this.item_dinein_amount,
-      item_dinein_tax:this.item_dinein_tax,
+      item_dinein_tax:this.tax_percentage,
       item_takeaway_amount:this.item_takeaway_amount,
       item_takeaway_tax:this.item_takeaway_tax,
       item_homedelivary_amount:this.item_homedelivary_amount,
       item_homedelivary_tax:this.item_homedelivary_tax,
       item_homedelivery_deliverycharges:this.item_homedelivery_deliverycharges,
       restaurent_id:1,
-      itemcategory_id:1,
+      itemcategory_id:this.itemcategory_id,
       itemname_dinein_total:this.itemname_dinein_total,
       itemname_takeaway_total:this.itemname_takeaway_total,
       itemname_homedelivary_total:this.itemname_homedelivary_total

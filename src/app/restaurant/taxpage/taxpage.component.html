@@ -16,10 +16,8 @@
             </mat-form-field>
             <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray">
               <mat-label style="color :gray">Employee Name</mat-label>
-              <mat-select style="color :gray" [(ngModel)]="reportname" disableRipple>
-                <mat-option style="color :gray" value="Umesh">Umesh</mat-option>
-                <mat-option style="color :gray" value="Srikar">Srikar</mat-option>
-                <mat-option style="color :gray" value="Kumar">Kumar</mat-option>
+              <mat-select style="color :gray" [(ngModel)]="empregistration_name" disableRipple>
+                <mat-option *ngFor="let emp of emplist" [value]="emp.empregistration_id">{{emp.empregistration_name}}</mat-option>
               </mat-select>
             </mat-form-field>
             <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" >

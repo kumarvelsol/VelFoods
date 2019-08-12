@@ -22,9 +22,13 @@ export class PropertyComponent implements OnInit {
   constructor(private service1: RestaurantService) { }
 
   ngOnInit() {  
-    
+    this.buttoncontent = "Save";
     this.service1.getproperty().subscribe((data: Apiresponse) => 
     {
+      if(data.Data[0].property_name == "")
+      { this.buttoncontent = "Save"; }
+      else 
+      { this.buttoncontent = "Modify";}
       this.property_name = data.Data[0].property_name;
       this.property_address = data.Data[0].property_address;
       this.property_city = data.Data[0].property_city;
@@ -40,15 +44,15 @@ export class PropertyComponent implements OnInit {
      });
     
 
-    if(this.property_name=="" && this.property_address=="" && this.property_land_mark=="" && this.property_city=="" && this.property_state=="" &&
-    this.property_pincode==null && this.property_country=="" && this.property_mobile_no==null && this.property_landline==null && this.property_email=="" && this.property_website=="" && this.property_gst=="")
-    {
-      this.buttoncontent = "Save";
-    }
-    else
-    {
-      this.buttoncontent = "Modify";
-    }
+    // if(this.property_name=="" && this.property_address=="" && this.property_land_mark=="" && this.property_city=="" && this.property_state=="" &&
+    // this.property_pincode==null && this.property_country=="" && this.property_mobile_no==null && this.property_landline==null && this.property_email=="" && this.property_website=="" && this.property_gst=="")
+    // {
+    //   this.buttoncontent = "Save";
+    // }
+    // else
+    // {
+    //   this.buttoncontent = "Modify";
+    // }
   }
   public onsave()
   {
