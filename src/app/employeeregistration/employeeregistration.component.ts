@@ -110,13 +110,13 @@ export class EmployeeregistrationComponent implements OnInit {
     this.password ="",
     this.buttoncontent = "Save";
   }
-  public RowSelected(i:number,empregistration_id:number,empregistration_name:string,
+  public RowSelected(i,empregistration_id:number,empregistration_name:string,
     empregistration_mobile_no:number,
     empregistration_email_id:string,
     empregistration_id_proof:string,
     empregistration_id_data:string,
     empregistration_Address:string,
-    empregistration_login_type:string,empdepartement_name:string,
+    empregistration_login_type:string,empdepartement_id:number,
     empregistration_status:string,Username:string,password:string){
     this.buttoncontent ="Update";
     this.empregistration_id =empregistration_id,
@@ -127,7 +127,7 @@ export class EmployeeregistrationComponent implements OnInit {
     this.empregistration_id_data=empregistration_id_data,
     this.empregistration_Address=empregistration_Address,
     this.empregistration_status=empregistration_status,
-    this.empdepartement_name = empdepartement_name,
+    this.empdepartement_id = empdepartement_id,
     this.empregistration_login_type=empregistration_login_type,
     this.Username=Username,
     this.password =password
