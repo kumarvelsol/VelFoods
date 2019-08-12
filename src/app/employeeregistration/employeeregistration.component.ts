@@ -25,6 +25,7 @@ export class EmployeeregistrationComponent implements OnInit {
   restaurent_id :number;
   buttoncontent:string;
   buttoncontent1:string;
+  count:number;
   displayedColumns : string[] =['empregistration_id','empregistration_name','empregistration_mobile_no','empregistration_status','actions'];
   dataSource;
   constructor(public service: RestaurantService) { }
@@ -35,6 +36,8 @@ export class EmployeeregistrationComponent implements OnInit {
     this.service.getempreg(1).subscribe(data =>
       {
         this.dataSource = data.Data;
+        this.count =data.Data.length;
+        this.empregistration_id = ++this.count;
       });
   }
   onsaveclick(){
@@ -100,7 +103,14 @@ export class EmployeeregistrationComponent implements OnInit {
     this.Username="",
     this.password =""
   }
-  public RowSelected(i:number,empregistration_id:number,empregistration_name:string,empregistration_mobile_no:number,empregistration_email_id:string,empregistration_id_proof:string,empregistration_id_data:string,empregistration_Address:string,empregistration_status:string,empregistration_login_type:string,Username:string,password:string){
+  public RowSelected(i:number,empregistration_id:number,empregistration_name:string,
+    empregistration_mobile_no:number,
+    empregistration_email_id:string,
+    empregistration_id_proof:string,
+    empregistration_id_data:string,
+    empregistration_Address:string,
+    empregistration_login_type:string,
+    empregistration_status:string,Username:string,password:string){
     this.buttoncontent ="Update";
     this.empregistration_id =empregistration_id,
     this.empregistration_name =empregistration_name,

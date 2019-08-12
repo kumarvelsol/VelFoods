@@ -1,13 +1,22 @@
 <h1 mat-dialog-title>Items: <strong>{{action}}</strong></h1>
 <div mat-dialog-content>
   <mat-form-field *ngIf="action != 'Delete'; else elseTemplate">
-    <input placeholder="{{action}} Name" matInput [(ngModel)]="local_data.name">
+    <mat-label style="color :gray">Item Names</mat-label>
+    <mat-select [(ngModel)]="data.itemname_item_name" (ngModelChange)="onChange()"> 
+    <mat-option *ngFor="let re of itemnames" [value]="re.itemname_item_name">{{re.itemname_item_name}}</mat-option> 
+    </mat-select>
+  </mat-form-field> 
+  <mat-form-field>
+    <input placeholder="Quantity" matInput [(ngModel)]="data.order_quantity" (ngModelChange)="onChangeQuantity()">
   </mat-form-field>
   <ng-template #elseTemplate>
-    Sure to delete <b>{{local_data.name}}</b>?
+    Sure to delete <b>{{data.itemname_item_name}}</b>?
   </ng-template>
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="doAction()">{{action}}</button>
-  <button mat-button (click)="closeDialog()" mat-flat-button color="warn">Cancel</button>
+  <!-- <button mat-button (click)="doAction()">{{action}}</button>
+  <button mat-button (click)="closeDialog()" mat-flat-button color="warn">Cancel</button> -->
+  <button mat-button mat-flat-button color="primary" [mat-dialog-close]="data">{{action}}</button>
+  <button mat-button mat-flat-button color="primary" (click)="closeDialog()">Cancel</button>
 </div>
+<!-- cdkFocusInitial --to focus on that particular button or anything on pageload -->

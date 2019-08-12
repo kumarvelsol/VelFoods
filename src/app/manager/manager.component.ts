@@ -27,12 +27,15 @@ export class ManagerComponent implements OnInit {
       this.restaurents = data.Data;
       console.log(this.restaurents);
     });
+    this.getmanagers();
+  }
+  getmanagers()
+  {
     this.service.getmanagers(1).subscribe((data:Apiresponse) =>{
       this.managerslist = data;
       this.dataSource = new MatTableDataSource(this.managerslist.Data);
     });
   }
-
   public onsaveclick()
   {
     if(this.manger_name == "" || this.manger_mobile_no == "")
@@ -104,5 +107,6 @@ export class ManagerComponent implements OnInit {
     this.manger_id_no = "";
     this.manger_status = "";
     this.buttoncontent = "Save";
+    this.getmanagers();
   }
 }

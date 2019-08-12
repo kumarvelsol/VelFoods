@@ -47,6 +47,10 @@ export class TabledefinitionComponent implements OnInit {
 
   ngOnInit() {
     this.buttoncontent = "Save";
+    this.gettabledata();
+  }
+  gettabledata()
+  {
     this.service1.gettabledata(1).subscribe((data:Apiresponse)=> {
       this.tabledatalist = data;
       this.count = data.Data.length;
@@ -132,5 +136,6 @@ export class TabledefinitionComponent implements OnInit {
     this.table_steward = "";
     this.table_view = "";
     this.table_capatain = "";
+    this.gettabledata();
   }
 }

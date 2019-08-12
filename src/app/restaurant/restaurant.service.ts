@@ -3,7 +3,7 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Offers } from '../shared/interfaces/offers';
 import { JsResponse, Responce } from '../../app/shared/js-response';
 import { Property } from '../shared/property';
-import { EmployeeCategory, EmployeeRegistration, itemcategory, itemnames } from '../shared/interfaces/empcate';
+import { EmployeeCategory, EmployeeRegistration, itemcategory, itemnames, bank } from '../shared/interfaces/empcate';
 import { Tabledefinition } from '../shared/tabledefinition';
 import { Tax } from '../shared/interfaces/tax';
 import { Tablebooking } from '../shared/tablebooking';
@@ -11,12 +11,14 @@ import { Paidouts } from '../shared/paidouts';
 import { Miscollection } from '../shared/miscollection';
 import { Restaurant } from '../shared/interfaces/restaurant';
 import { Managermodel } from '../shared/interfaces/managermodel';
+import { Walletsmodel } from '../shared/walletsmodel';
+import { room } from '../Model/ordermodel';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RestaurantService {
- // Baseurl = 'http://localhost:57649/';
+//Baseurl = 'http://localhost:57649/';
  Baseurl = 'http://school.edujinni.in/';
   httpOptions = {
     headers: new HttpHeaders({
@@ -173,4 +175,57 @@ export class RestaurantService {
   {
     return this.http.post(`${this.Baseurl+"updatingmanager"}`,managerU);
   }
-}
+  public getbanks (restaurent_id : number){
+    let parms = new HttpParams();
+    parms = parms.append('restaurent_id',restaurent_id+"");
+    return this.http.post<Responce>(`${this.Baseurl+"getbanks"}`,parms);
+  }
+  public addbank (banks :bank){
+    return this.http.post<JsResponse>(`${this.Baseurl+"addbanks"}`,banks);
+  }
+  public updatebank(banks :bank){
+    return this.http.post<JsResponse>(`${this.Baseurl+"updatebanks"}`,banks);
+  }
+    public getorders(restaurent_id:number)
+  {
+    let parms =new HttpParams();
+    parms =parms.append('restaurent_id', restaurent_id+"")
+    return this.http.post(`${this.Baseurl+"Getorders"}`,parms);
+  }
+  public getwallets(restaurent_id:number)
+  {
+    let parms =new HttpParams();
+    parms =parms.append('restaurent_id', restaurent_id+"")
+    return this.http.post<JsResponse>(`${this.Baseurl+"getwallets"}`,parms);
+  }
+  public addwallets(walletI:Walletsmodel)
+  {
+    return this.http.post<JsResponse>(`${this.Baseurl+"walletadding"}`,walletI);
+  }
+  public updatewallets(walletU:Walletsmodel)
+  {
+    return this.http.post<JsResponse>(`${this.Baseurl+"walletupdate"}`,walletU);
+  }
+  public addingorder(itemnames:any[]=[],Rate:any[]=[],quantity:any[]=[],total:any[]=[],tax:any[]=[],
+                      restaurent_id:number,itemnameid:any[]=[],table_defination_id:number,order_captain:string,order_status:string)
+  {
+    let parms =new HttpParams();
+    //parms =parms.append('table_name', table_name+"");
+    //parms =parms.append('table_pax', table_pax+"");
+    parms =parms.append('order_captain', order_captain+"");
+    parms =parms.append('itemnames', itemnames+"");
+    parms =parms.append('Rate', Rate+"");
+    parms =parms.append('tax', tax+"");
+    //parms =parms.append('kot_id', kot_id+"");
+    parms =parms.append('quantity', quantity+"");
+    parms =parms.append('total', total+"");
+    parms =parms.append('restaurent_id', restaurent_id+"");
+    parms =parms.append('itemnameid', itemnameid+"");
+    parms =parms.append('table_defination_id', table_defination_id+"");
+    parms =parms.append('order_status', order_status+"");
+    //parms =parms.append('insert_by', insert_by+"");
+    //parms =parms.append('insert_date', insert_date+"");
+    return this.http.post<JsResponse>(`${this.Baseurl+"Orderinsert"}`,parms);
+  }
+ }
+

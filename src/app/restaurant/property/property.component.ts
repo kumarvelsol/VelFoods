@@ -5,6 +5,7 @@ import { Apiresponse } from 'src/app/shared/apiresponse';
 import { Data } from 'src/app/shared/data';
 import { JSONP_ERR_WRONG_RESPONSE_TYPE } from '@angular/common/http/src/jsonp';
 import { JsResponse } from '../../shared/js-response';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-property',
@@ -21,6 +22,7 @@ export class PropertyComponent implements OnInit {
   constructor(private service1: RestaurantService) { }
 
   ngOnInit() {  
+    
     this.service1.getproperty().subscribe((data: Apiresponse) => 
     {
       this.property_name = data.Data[0].property_name;

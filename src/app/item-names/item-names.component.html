@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="row">
+  <div class="row">
         <div class="col-md-12">
             <mat-card class="row example-card">
               <div class="block child">
@@ -46,20 +46,21 @@
                   <mat-form-field class="col-lg-6">
                     <mat-label style="color: gray;">enter amount</mat-label>
                     <mat-icon style="color :gray" matSuffix>monetization_on</mat-icon>          
-                    <input matInput (change)="onchange()" [(ngModel)]="item_dinein_amount" required>
+                    <input matInput  [(ngModel)]="item_dinein_amount" required >
                   </mat-form-field>
                   <mat-form-field  class="col-lg-6" >
                     <mat-label>---select Tax---</mat-label>
-                  <mat-select [(ngModel)]="item_dinein_tax" (change)="onchange()">
+                  <mat-select [(ngModel)]="item_dinein_tax" (click)="onChange()">
                     <mat-option value="5">5</mat-option>
                     <mat-option value="6">6</mat-option>
                     <mat-option value="7">7</mat-option>
+                    <mat-option value="70">70</mat-option>
                   </mat-select>
                   </mat-form-field>
                   <mat-form-field class="col-lg-12">
                       <mat-label style="color: gray;">Total amount</mat-label>
                       <mat-icon style="color :gray" matSuffix>monetization_on</mat-icon>          
-                      <input matInput [(ngModel)]="itemname_dinein_total" required>
+                      <input matInput [(ngModel)]="itemname_dinein_total" value="{{(item_dinein_amount*item_dinein_tax/100)+  +item_dinein_amount}}" >
                   </mat-form-field>
                 </div>
                 <div class="block child">
@@ -80,7 +81,7 @@
                   <mat-form-field class="col-lg-12">
                     <mat-label style="color: gray;">Total amount</mat-label>
                     <mat-icon style="color :gray" matSuffix>monetization_on</mat-icon>          
-                    <input matInput (keyup)="onDineInnLabel($event)" [(ngModel)]="itemname_takeaway_total" required>
+                    <input matInput (keyup)="onDineInnLabel($event)" [(ngModel)]="itemname_takeaway_total" value="{{(item_takeaway_amount * item_takeaway_tax/100) + +item_takeaway_amount}}" >
                   </mat-form-field>
                 </div>
                 <div class="block child">
@@ -106,12 +107,12 @@
                   <mat-form-field class="col-lg-6">
                       <mat-label style="color: gray;">Total amount</mat-label>
                       <mat-icon style="color :gray" matSuffix>monetization_on</mat-icon>          
-                      <input matInput (keyup)="onDineInnLabel($event)" [(ngModel)]="itemname_homedelivary_total" required>
+                      <input matInput (keyup)="onDineInnLabel($event)" [(ngModel)]="itemname_homedelivary_total" value="{{(item_homedelivary_amount * item_homedelivary_tax/100) + +item_homedelivary_amount + +item_homedelivery_deliverycharges}}">
                   </mat-form-field>
                 </div>
                 <div class="col-md-12">
-                  <button mat-raised-button style="margin-left: 300px; margin-top: 10px;" (click)="onsaveclick()">{{buttoncontent}}</button>&nbsp;&nbsp;
-                  <button style="margin: 10px;"  (click)="onclearclick()">clear</button>
+                  <button mat-raised-button style="margin-left: 300px; margin-top: 10px;" class="btn-style" (click)="onsaveclick()">{{buttoncontent}}</button>&nbsp;&nbsp;
+                  <button style="margin: 10px;" class="btn-style"  (click)="onclearclick()">clear</button>
                 </div>
               </mat-card>
             </div>
@@ -166,7 +167,13 @@
                     <th mat-header-cell *matHeaderCellDef>Edit</th>
                     <td mat-cell *matCellDef="let element; let i=index;"> 
                       <button mat-icon-button style="color:gray;margin-right: 10px;" 
-                      (click)="RowSelected(i,element.itemname_id,element.itemname_item_name,element.itemname_reportingname,element.item_dinein_amount,element.item_dinein_tax,element.item_takeaway_amount,element.item_takeaway_tax,element.item_homedelivary_amount,element.item_homedelivary_tax,element.item_homedelivery_deliverycharges,element.itemname_status)">
+                      (click)="RowSelected(i,element.itemname_id,element.itemname_item_name,element.itemname_description,
+                      element.itemname_reportingname,element.itemname_active_from,element.item_dinein_amount,
+                      element.item_dinein_tax,element.itemname_dinein_total,
+                      element.item_takeaway_amount,element.item_takeaway_tax,
+                      element.itemname_takeaway_total,element.item_homedelivary_amount,
+                      element.item_homedelivary_tax,element.item_homedelivery_deliverycharges,
+                      element.itemname_homedelivary_total,element.itemname_status)">
                         <mat-icon aria-label="Edit">edit</mat-icon>
                       </button>
                     </td>

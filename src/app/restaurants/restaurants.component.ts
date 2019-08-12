@@ -21,14 +21,18 @@ export class RestaurantsComponent implements OnInit {
   displayedColumns: string[] = ['restaurent_id', 'restaurent_name','restaurent_address', 'restaurent_mobile_no','restrent_manger','restaruent_status','actions'];
   ngOnInit() {
     this.buttoncontent = "Save";
-    this.service.getrestaurent(1).subscribe((data:Apiresponse)=> {
-    this.restodatalist = data;
-    console.log(this.restodatalist);
-    this.dataSource = new MatTableDataSource(this.restodatalist.Data);
-    });
+    this.getrestos();
     this.service.getmanagers(1).subscribe((data:Apiresponse) =>{
       this.managerslist = data.Data;
     });
+  }
+  getrestos()
+  {
+    this.service.getrestaurent(1).subscribe((data:Apiresponse)=> {
+      this.restodatalist = data;
+      console.log(this.restodatalist);
+      this.dataSource = new MatTableDataSource(this.restodatalist.Data);
+      });
   }
   public onsubmitclick() 
   {
@@ -96,5 +100,6 @@ export class RestaurantsComponent implements OnInit {
     this.restaurent_address="";
     this.restaruent_status="";
     this.restrent_manger="";
+    this.getrestos();
   }
 }

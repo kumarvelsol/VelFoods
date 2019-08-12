@@ -17,7 +17,7 @@
           <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray">
             <mat-label style="color :gray">Contact No</mat-label>
             <mat-icon style="color :gray" matSuffix>local_phone</mat-icon>      
-            <input style="color:gray;" matInput [(ngModel)]="restaurent_mobile_no" name="restaurent_mobile_no" type="text">
+            <input style="color:gray;" matInput [(ngModel)]="restaurent_mobile_no" type="number" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" >
           </mat-form-field>
           <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray"  >
             <mat-label style="color :gray">Manager</mat-label>

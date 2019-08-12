@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { RestaurantService } from '../../restaurant.service';
+import { Walletsmodel } from 'src/app/shared/walletsmodel';
+import { JsResponse, Data } from 'src/app/shared/js-response';
 
 @Component({
   selector: 'app-wallets',
@@ -7,42 +10,76 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WalletsComponent implements OnInit {
   rows: Array<{walletid:string, walletcode:string,walletname:string,reportname:string,status:string}> = [];
-  dataSource;buttoncontent:string;
-  walletid:string;walletcode:string;walletname:string;reportname:string;status:string;
-  displayedColumns: string[] = ["walletid", "walletcode","walletname", "reportname","status","actions"];
-  constructor() { }
+  dataSource;buttoncontent:string;JsResponse; walletdata : Data[];
+  wallet_id:string;wallet_code:string;wallet_name:string;wallet_reporting_name:string;wallet_status:string;
+  displayedColumns: string[] = ["wallet_id", "wallet_code","wallet_name", "wallet_reporting_name","wallet_status","actions"];
+  constructor(public service : RestaurantService) { }
 
   ngOnInit() {
     this.buttoncontent = "Save";
-    this.rows = [{walletid:"1", walletcode:"111",walletname:"Paytm",reportname:"Dharani",status:"Active"},
-                   {walletid:"2", walletcode:"222",walletname:"AmazonPay",reportname:"Dharani",status:"InActive"}];
-    this.dataSource = this.rows;
+    this.service.getwallets(1).subscribe((data :JsResponse )=>
+      {
+        this.dataSource = data.Data;
+      });
   }
   onclear()
   {
-    this.walletcode = "";this.walletname = "";this.reportname = "";this.status = "";
     this.buttoncontent = "Save";
   }
   onsave()
   {
-    if(this.walletcode == "" || this.walletname == "" || this.reportname == "" || this.status == "")
-    {
-      alert("Please fill all fields");
+    let a : Walletsmodel = {
+      wallet_id :this.wallet_id,
+      wallet_code:this.wallet_code,
+      wallet_name:this.wallet_name,
+      wallet_reporting_name:this.wallet_reporting_name,
+      wallet_status:this.wallet_status,
+      empregistration_id:1,
+      restaurent_id:1
     }
-    else
-    {
-      this.rows.push({walletid:"3",walletcode:this.walletcode,walletname:this.walletname,reportname:this.reportname,status:this.status});
-      this.dataSource = this.rows;
-      console.log(this.dataSource);
-    }
-    this.onclear();
+    if(this.buttoncontent =="Save")
+   {
+     this.service.addwallets(a).subscribe(data =>
+      {
+        if(data.code ==200){
+          alert(data.message);
+          this.ngOnInit();
+          this.onclear();
+        }
+        else{
+          alert(data.message);
+          this.ngOnInit();
+          this.onclear();
+        }
+      });
+   }
+   else
+   {
+     this.service.updatewallets(a).subscribe(data =>
+      {
+        if(data.code ==200){
+          alert(data.message);
+          this.ngOnInit();
+          this.onclear();
+        }
+        else
+        {
+          alert(data.message);
+          this.ngOnInit();
+          this.onclear();
+        }
+      });
+   }
+    
   }
-  public RowSelected(i:number,walletcode:string,walletname:string,reportname:string,status:string)
+  public RowSelected(i,wallet_id:string,walletcode:string,walletname:string,reportname:string,status:string)
   {
+    //debugger;
     this.buttoncontent="Update";
-    this.walletcode =  walletcode;
-    this.walletname = walletname;
-    this.reportname = reportname;
-    this.status = status;
+    this.wallet_id =  wallet_id;
+    this.wallet_code =  walletcode;
+    this.wallet_name = walletname;
+    this.wallet_reporting_name = reportname;
+    this.wallet_status = status;
   }
 }

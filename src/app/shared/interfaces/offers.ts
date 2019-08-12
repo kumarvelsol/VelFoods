@@ -4,7 +4,7 @@ export interface Offers{
     promo_code_description : string;
     Active_dare_status : string;
     from_date : string;
-    to_date : string;
+    to_date : string; 
     Active_time_status : string;
     from_time : string;
     to_time : string;

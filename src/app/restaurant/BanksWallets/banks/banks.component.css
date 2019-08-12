@@ -34,7 +34,7 @@ table {
   }
   .parent{
     text-align:center;
-    height:500px;
+    height:550px;
     margin-left: 10px;
   }
   .block {
@@ -44,7 +44,7 @@ table {
     margin:auto;
   }
   .example-container {
-    height: 500px;
+    height: 550px;
     overflow: auto; 
     margin-top: 20px;
     border-radius: 5px;

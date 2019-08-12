@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { RestaurantModule } from '../../restaurant.module';
+import { RestaurantService } from '../../restaurant.service';
+import { bank } from 'src/app/shared/interfaces/empcate';
+
 
 @Component({
   selector: 'app-banks',
@@ -7,42 +11,94 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BanksComponent implements OnInit {
   rows: Array<{bankid:string, bankcode:string,bankname:string,reportname:string,status:string}> = [];
-  dataSource;buttoncontent:string;
-  bankid:string;bankcode:string;bankname:string;reportname:string;status:string;
-  displayedColumns: string[] = ["bankid", "bankcode","bankname", "reportname","status","actions"];
-  constructor() { }
+
+//  rows: Array<{bankid:string, bankcode:string,bankname:string,reportname:string,status:string}> = [];
+bank_id:number;
+bank_code:string;
+bank_name:string;
+bank_account_no:number;
+bank_status:string;
+bank_reporting_name:string;
+empregistration_id:number;
+restaurent_id:number;
+dataSource;
+buttoncontent:string;
+
+
+displayedColumns: string[] = ["bank_id", "bank_code","bank_name", "bank_reporting_name","bank_status","actions"];
+  constructor(public service :RestaurantService) { }
 
   ngOnInit() {
     this.buttoncontent = "Save";
-    this.rows = [{bankid:"1", bankcode:"111",bankname:"State Bank of India",reportname:"Dharani",status:"Active"},
-                   {bankid:"2", bankcode:"222",bankname:"Bank of India",reportname:"Dharani",status:"InActive"}];
-    this.dataSource = this.rows;
+    this.service.getbanks(1).subscribe(data =>
+      {
+        this.dataSource = data.Data;
+      });
   }
-  onclear()
+  onclearclick()
   {
-    this.bankcode = "";this.bankname = "";this.reportname = "";this.status = "";
+    //alert("no");
+    this.bank_code = "";
+    this.bank_name = "";
+    this.bank_reporting_name = "";
+    this.bank_status = "";
+    this.bank_account_no =Number("");
     this.buttoncontent = "Save";
   }
-  onsave()
+  onsaveclick()
   {
-    if(this.bankcode == "" || this.bankname == "" || this.reportname == "" || this.status == "")
-    {
-      alert("Please fill all fields");
-    }
-    else
-    {
-      this.rows.push({bankid:"3",bankcode:this.bankcode,bankname:this.bankname,reportname:this.reportname,status:this.status});
-      this.dataSource = this.rows;
-      console.log(this.dataSource);
-    }
-    this.onclear();
+    //alert("yes");
+   let bankb: bank ={
+     bank_id :this.bank_id,
+     bank_code:this.bank_code,
+     bank_name:this.bank_name,
+     bank_account_no:this.bank_account_no,
+     bank_reporting_name:this.bank_reporting_name,
+     bank_status:this.bank_status,
+     empregistration_id:1,
+     restaurent_id:1
+   } 
+   if(this.buttoncontent =="Save")
+   {
+     this.service.addbank(bankb).subscribe(data =>
+      {
+        if(data.code ==200){
+          alert(data.message);
+          this.ngOnInit();
+          this.onclearclick();
+        }
+        else{
+          alert(data.message);
+          this.ngOnInit();
+          this.onclearclick();
+        }
+      });
+   }
+   else
+   {
+     this.service.updatebank(bankb).subscribe(data =>
+      {
+        if(data.code ==200){
+          alert(data.message);
+          this.ngOnInit();
+          this.onclearclick();
+        }
+        else
+        {
+          alert(data.message);
+          this.ngOnInit();
+          this.onclearclick();
+        }
+      });
+   }
   }
-  public RowSelected(i:number,bankcode:string,bankname:string,reportname:string,status:string)
+  public RowSelected(i:number,bank_id:number,bank_code:string,bank_name:string,bank_reporting_name:string,bank_status:string)
   {
     this.buttoncontent="Update";
-    this.bankcode =  bankcode;
-    this.bankname = bankname;
-    this.reportname = reportname;
-    this.status = status;
+    this.bank_id =bank_id;
+    this.bank_code =  bank_code;
+    this.bank_name = bank_name;
+    this.bank_reporting_name = bank_reporting_name;
+    this.bank_status = bank_status;
   }
 }
