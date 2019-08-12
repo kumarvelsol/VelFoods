@@ -13,6 +13,7 @@ import { Restaurant } from '../shared/interfaces/restaurant';
 import { Managermodel } from '../shared/interfaces/managermodel';
 import { Walletsmodel } from '../shared/walletsmodel';
 import { room } from '../Model/ordermodel';
+import { Apiresponse } from '../shared/apiresponse';
 
 @Injectable({
   providedIn: 'root'
@@ -226,6 +227,18 @@ export class RestaurantService {
     //parms =parms.append('insert_by', insert_by+"");
     //parms =parms.append('insert_date', insert_date+"");
     return this.http.post<JsResponse>(`${this.Baseurl+"Orderinsert"}`,parms);
+  }
+  public getcaptains(restaurent_id:number)
+  {
+    let parms =new HttpParams();
+    parms =parms.append('restaurent_id', restaurent_id+"")
+    return this.http.post(`${this.Baseurl+"captains"}`,parms);
+  }
+  public getstewards(restaurent_id:number)
+  {
+    let parms =new HttpParams();
+    parms =parms.append('restaurent_id', restaurent_id+"")
+    return this.http.post(`${this.Baseurl+"stewards"}`,parms);
   }
  }
 
