@@ -3,6 +3,7 @@ import { RestaurantService } from '../restaurant/restaurant.service';
 import { EmployeeRegistration } from '../shared/interfaces/empcate';
 import { EmptyOutletComponent } from '@angular/router/src/components/empty_outlet';
 import { debug } from 'util';
+import { Data } from '@angular/router';
 
 @Component({
   selector: 'app-employeeregistration',
@@ -10,7 +11,7 @@ import { debug } from 'util';
   styleUrls: ['./employeeregistration.component.css']
 })
 export class EmployeeregistrationComponent implements OnInit {
-  empregistration_id:number;
+  empregistration_id:number;empdepartement_name:string;
   empregistration_name:string;
   empregistration_mobile_no:number;
   empregistration_email_id:string;
@@ -25,7 +26,7 @@ export class EmployeeregistrationComponent implements OnInit {
   restaurent_id :number;
   buttoncontent:string;
   buttoncontent1:string;
-  count:number;
+  count:number;empdept:Data[];
   displayedColumns : string[] =['empregistration_id','empregistration_name','empregistration_mobile_no','empregistration_status','actions'];
   dataSource;
   constructor(public service: RestaurantService) { }
@@ -39,6 +40,10 @@ export class EmployeeregistrationComponent implements OnInit {
         this.count =data.Data.length;
         this.empregistration_id = ++this.count;
       });
+      this.service.getempcategory(1).subscribe(data =>
+        {
+          this.empdept = data.Data;
+        });
   }
   onsaveclick(){
     let empr:EmployeeRegistration ={

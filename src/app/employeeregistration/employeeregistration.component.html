@@ -40,10 +40,8 @@
                       </mat-form-field>
                       <mat-form-field appearance="legacy" class="col-md-12" >
                           <mat-label> --Select Department--</mat-label>
-                          <mat-select  matNativeControl requireds [(ngModel)]="empdepartement_id">
-                              <mat-option value="Admin">Admin</mat-option>
-                              <mat-option value="manger">manger</mat-option>
-                              <mat-option value="Cashier">Cashier</mat-option>
+                          <mat-select  matNativeControl requireds [(ngModel)]="empdepartement_name">
+                              <mat-option *ngFor="let dept of empdept" value="dept.empdepartement_id">{{dept.empdepartement_name}}</mat-option>
                             </mat-select>
                           </mat-form-field>
                           <div class="col-md-12">

@@ -89,7 +89,8 @@ export class RestaurantsComponent implements OnInit {
     this.restaurent_name = restaurent_name;
     this.restaurent_address = restaurent_address;
     this.restaurent_mobile_no = restaurent_mobile_no;
-    this.restrent_manger = manger_name;
+    this.manger_name = manger_name;
+    console.log(this.manger_name);
     this.restaruent_status = restaruent_status;
   }
   public onclearclick()
@@ -99,7 +100,7 @@ export class RestaurantsComponent implements OnInit {
     this.restaurent_mobile_no="";
     this.restaurent_address="";
     this.restaruent_status="";
-    this.restrent_manger="";
+    this.manger_name="";
     this.getrestos();
   }
 }
