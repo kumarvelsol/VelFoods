@@ -33,15 +33,13 @@
           <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray"  >
             <mat-label style="color :gray">Captain</mat-label>
             <mat-select style="color :gray" [(ngModel)]="table_capatain" disableRipple name="table_capatain">
-              <mat-option style="color :gray" value="ABC">ABC</mat-option>
-              <mat-option style="color :gray" value="XYZ">XYZ</mat-option>
+              <mat-option style="color :gray" *ngFor="let emp of employee" [value]="emp.empregistration_name">{{emp.empregistration_name}}</mat-option>
             </mat-select>
           </mat-form-field>
           <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray"  >
             <mat-label style="color :gray">Steward</mat-label>
             <mat-select style="color :gray" [(ngModel)]="table_steward" disableRipple name="table_steward">
-              <mat-option style="color :gray" value="AAA">AAA</mat-option>
-              <mat-option style="color :gray" value="BBB">BBB</mat-option>
+              <mat-option style="color :gray" *ngFor="let emp of employee" [value]="emp.empregistration_name">{{emp.empregistration_name}}</mat-option>
             </mat-select>
           </mat-form-field>
 
