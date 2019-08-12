@@ -23,7 +23,7 @@ empregistration_id:number;
 restaurent_id:number;
 dataSource;
 buttoncontent:string;
-
+empregistration_name : string;emplist;
 
 displayedColumns: string[] = ["bank_id", "bank_code","bank_name", "bank_reporting_name","bank_status","actions"];
   constructor(public service :RestaurantService) { }
@@ -34,6 +34,10 @@ displayedColumns: string[] = ["bank_id", "bank_code","bank_name", "bank_reportin
       {
         this.dataSource = data.Data;
       });
+      this.service.getempreg(1).subscribe(data =>
+        {
+          this.emplist = data.Data;
+        });
   }
   onclearclick()
   {
@@ -53,7 +57,7 @@ displayedColumns: string[] = ["bank_id", "bank_code","bank_name", "bank_reportin
      bank_code:this.bank_code,
      bank_name:this.bank_name,
      bank_account_no:this.bank_account_no,
-     bank_reporting_name:this.bank_reporting_name,
+     bank_reporting_name:this.empregistration_name,
      bank_status:this.bank_status,
      empregistration_id:1,
      restaurent_id:1
@@ -98,7 +102,7 @@ displayedColumns: string[] = ["bank_id", "bank_code","bank_name", "bank_reportin
     this.bank_id =bank_id;
     this.bank_code =  bank_code;
     this.bank_name = bank_name;
-    this.bank_reporting_name = bank_reporting_name;
+    this.empregistration_name = bank_reporting_name;
     this.bank_status = bank_status;
   }
 }

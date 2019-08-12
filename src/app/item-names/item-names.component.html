@@ -48,7 +48,7 @@
                   </mat-form-field>
                   <mat-form-field  class="col-lg-6" >
                     <mat-label>---select Tax---</mat-label>
-                  <mat-select [(ngModel)]="tax_percentage" (click)="onChange()">
+                  <mat-select [(ngModel)]="dinein_tax_percentage" (click)="onChange()">
                     <mat-option *ngFor="let tax of taxlist" [value]="tax.tax_percentage">{{tax.tax_percentage}}</mat-option>
                   </mat-select>
                   </mat-form-field>
@@ -67,11 +67,9 @@
                   </mat-form-field>
                   <mat-form-field  class="col-lg-6" >
                     <mat-label>---select Tax---</mat-label>
-                  <mat-select [(ngModel)]="item_takeaway_tax">
-                    <mat-option value="5">5</mat-option>
-                    <mat-option value="6">6</mat-option>
-                    <mat-option value="7">7</mat-option>
-                  </mat-select>
+                    <mat-select [(ngModel)]="takeaway_tax_percentage" (click)="onChange()">
+                      <mat-option *ngFor="let tax of taxlist" [value]="tax.tax_percentage">{{tax.tax_percentage}}</mat-option>
+                    </mat-select>
                   </mat-form-field>
                   <mat-form-field class="col-lg-12">
                     <mat-label style="color: gray;">Total amount</mat-label>
@@ -88,11 +86,9 @@
                   </mat-form-field>
                   <mat-form-field  class="col-lg-6" >
                       <mat-label>---select Tax---</mat-label>
-                    <mat-select [(ngModel)]="item_homedelivary_tax">
-                      <mat-option value="5">5</mat-option>
-                      <mat-option value="6">6</mat-option>
-                      <mat-option value="7">7</mat-option>
-                    </mat-select>
+                      <mat-select [(ngModel)]="hd_tax_percentage" (click)="onChange()">
+                        <mat-option *ngFor="let tax of taxlist" [value]="tax.tax_percentage">{{tax.tax_percentage}}</mat-option>
+                      </mat-select>
                   </mat-form-field>
                   <mat-form-field class="col-md-6" style="color: gray;">
                     <mat-label style="color: gray;">Delivary charges</mat-label>

@@ -31,7 +31,8 @@ export class ItemNamesComponent implements OnInit
     itemname_takeaway_total:string;
     itemname_homedelivary_total:string;
     dataSource; tax_percentage : number;
-    buttoncontent:string; itemcategory; taxlist;
+    buttoncontent:string; itemcategory; taxlist; 
+    takeaway_tax_percentage : number; dinein_tax_percentage : number; hd_tax_percentage : number;
     constructor(public service:RestaurantService) { }
 
   displayedColumns: string[] = ['itemname_id', 'itemname_item_name', 'itemname_reportingname','item_dinein_amount','item_dinein_tax','item_takeaway_amount','item_takeaway_tax','item_homedelivary_amount','item_homedelivary_tax','item_homedelivery_deliverycharges', 'itemname_status','actions'];
@@ -61,11 +62,11 @@ export class ItemNamesComponent implements OnInit
       itemname_active_from:this.itemname_active_from,
       itemname_status:this.itemname_status,
       item_dinein_amount:this.item_dinein_amount,
-      item_dinein_tax:this.tax_percentage,
+      item_dinein_tax:this.dinein_tax_percentage,
       item_takeaway_amount:this.item_takeaway_amount,
-      item_takeaway_tax:this.item_takeaway_tax,
+      item_takeaway_tax:this.takeaway_tax_percentage,
       item_homedelivary_amount:this.item_homedelivary_amount,
-      item_homedelivary_tax:this.item_homedelivary_tax,
+      item_homedelivary_tax:this.hd_tax_percentage,
       item_homedelivery_deliverycharges:this.item_homedelivery_deliverycharges,
       restaurent_id:1,
       itemcategory_id:this.itemcategory_id,
@@ -153,13 +154,13 @@ export class ItemNamesComponent implements OnInit
     this.itemname_reportingname =itemname_reportingname;
     this.itemname_active_from =itemname_active_from;
     this.item_dinein_amount =item_dinein_amount;
-    this.item_dinein_tax =item_dinein_tax;
+    this.dinein_tax_percentage =item_dinein_tax;
     this.itemname_dinein_total =itemname_dinein_total;
     this.item_takeaway_amount =item_takeaway_amount;
-    this.item_takeaway_tax =item_takeaway_tax;
+    this.takeaway_tax_percentage =item_takeaway_tax;
     this.itemname_takeaway_total =itemname_takeaway_total;
     this.item_homedelivary_amount =item_homedelivary_amount;
-    this.item_homedelivary_tax  =item_homedelivary_tax;
+    this.hd_tax_percentage  =item_homedelivary_tax;
     this.item_homedelivery_deliverycharges =item_homedelivery_deliverycharges;
     this.itemname_homedelivary_total =itemname_homedelivary_total;
     this.itemname_status =itemname_status;
