@@ -7,9 +7,7 @@
                 <mat-form-field class="col-lg-6">
                   <mat-label>---select category---</mat-label>
                   <mat-select [(ngModel)]="itemcategory_id">
-                    <mat-option  value="Non-veg">NonVeg</mat-option>
-                    <mat-option  value="veg">Veg</mat-option>
-                    <mat-option  value="Bawarges">bawareges</mat-option>  
+                    <mat-option *ngFor="let itm of itemcategory" [value]="itm.itemcategory_id">{{itm.item_name}}</mat-option> 
                   </mat-select>
                 </mat-form-field>
                 <mat-form-field class="col-lg-6">
@@ -50,11 +48,8 @@
                   </mat-form-field>
                   <mat-form-field  class="col-lg-6" >
                     <mat-label>---select Tax---</mat-label>
-                  <mat-select [(ngModel)]="item_dinein_tax" (click)="onChange()">
-                    <mat-option value="5">5</mat-option>
-                    <mat-option value="6">6</mat-option>
-                    <mat-option value="7">7</mat-option>
-                    <mat-option value="70">70</mat-option>
+                  <mat-select [(ngModel)]="tax_percentage" (click)="onChange()">
+                    <mat-option *ngFor="let tax of taxlist" [value]="tax.tax_percentage">{{tax.tax_percentage}}</mat-option>
                   </mat-select>
                   </mat-form-field>
                   <mat-form-field class="col-lg-12">
