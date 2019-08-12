@@ -5,6 +5,7 @@ import { Apiresponse } from '../shared/apiresponse';
 import { Data } from 'src/app/shared/data';
 import { MatTableDataSource } from '@angular/material';
 import { JsResponse } from '../shared/js-response';
+import { Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-manager',
@@ -22,6 +23,14 @@ export class ManagerComponent implements OnInit {
   
   constructor(private service:RestaurantService) { }
   ngOnInit() {
+    manger_name: [
+      '',
+      [
+        Validators.required,
+        Validators.maxLength(50),
+        Validators.pattern('^[a-zA-Z ]*$')
+      ]
+    ]
     this.buttoncontent = "Save";
     this.service.getrestaurent(1).subscribe((data:Apiresponse) =>{
       this.restaurents = data.Data;

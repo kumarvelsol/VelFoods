@@ -8,14 +8,14 @@
             <!-- <mat-icon style="color :gray" matSuffix>subject</mat-icon> -->
             <mat-label style="color :gray">Manager Name</mat-label>
             <mat-icon style="color :gray" matSuffix>person</mat-icon>
-            <input style="color :gray" [(ngModel)]="manger_name" type="text" name="manger_name"  matInput>
+            <input style="color :gray" [(ngModel)]="manger_name" type="text" pattern="^[A-Za-z]+$" ng-pattern-restrict name="manger_name" matInput>
             <!-- <mat-hint color="primary">Hint</mat-hint> -->
           </mat-form-field>
           <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray">
             <!-- <mat-icon style="color:gray;" matSuffix>code</mat-icon> -->
             <mat-label style="color :gray">Mobile No</mat-label>
             <mat-icon style="color :gray" matSuffix>call</mat-icon>
-            <input style="color:gray;" matInput [(ngModel)]="manger_mobile_no" type="text" name="manger_mobile_no">
+            <input style="color:gray;" matInput [(ngModel)]="manger_mobile_no" type="number" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="manger_mobile_no">
             <!-- <mat-hint color="primary">Hint</mat-hint> -->
           </mat-form-field>
           <!-- <mat-form-field class="col-md-12 mat-form-wrap"  style="color:gray;">
