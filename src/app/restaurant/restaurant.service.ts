@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
-import { Offers } from '../shared/interfaces/offers';
+import { Offers, OfferUp } from '../shared/interfaces/offers';
 import { JsResponse, Responce } from '../../app/shared/js-response';
 import { Property } from '../shared/property';
 import { EmployeeCategory, EmployeeRegistration, itemcategory, itemnames, bank } from '../shared/interfaces/empcate';
@@ -26,8 +26,7 @@ export class RestaurantService {
       'Content-Type':  'application/json'
     })
   };
-  constructor(private http:HttpClient) { }
-  
+  constructor(private http : HttpClient){ }
   public AddOffer (offer : Offers){
     return this.http.post<JsResponse>(`${this.Baseurl+"OfferAdding"}`,offer);
   }
@@ -35,6 +34,9 @@ export class RestaurantService {
     let params = new HttpParams();
     params = params.append('restaurent_id', restaurent_id+"");
     return this.http.post<Responce>(`${this.Baseurl+"OffersList"}`,params);
+  }
+  public UpdateOffers (offer : OfferUp){
+    return this.http.post<JsResponse>(`${this.Baseurl+"OfferUpdate"}`,offer);
   }
   public getproperty()
   {

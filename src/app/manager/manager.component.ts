@@ -23,14 +23,6 @@ export class ManagerComponent implements OnInit {
   
   constructor(private service:RestaurantService) { }
   ngOnInit() {
-    manger_name: [
-      '',
-      [
-        Validators.required,
-        Validators.maxLength(50),
-        Validators.pattern('^[a-zA-Z ]*$')
-      ]
-    ]
     this.buttoncontent = "Save";
     this.service.getrestaurent(1).subscribe((data:Apiresponse) =>{
       this.restaurents = data.Data;

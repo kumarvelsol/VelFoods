@@ -63,7 +63,7 @@ export class ItemNamesComponent implements OnInit
       itemname_id:this.itemname_id,
       itemname_item_name:this.itemname_item_name,
       itemname_description:this.itemname_description,
-      itemname_reportingname:this.empregistration_name,
+      itemname_reportingname:this.itemname_reportingname,
       itemname_active_from:this.itemname_active_from,
       itemname_status:this.itemname_status,
       item_dinein_amount:this.item_dinein_amount,
@@ -175,7 +175,7 @@ onchangeee(){
     this.itemname_id = itemname_id;
     this.itemname_item_name =itemname_item_name;
     this.itemname_description =itemname_description;
-    this.empregistration_name =itemname_reportingname;
+    this.itemname_reportingname =itemname_reportingname;
     this.itemname_active_from =itemname_active_from;
     this.item_dinein_amount =item_dinein_amount;
     this.dinein_tax_percentage =item_dinein_tax;
