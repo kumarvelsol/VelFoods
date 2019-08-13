@@ -42,7 +42,7 @@ import { BillsettledailogComponent } from './restaurant/Billsettle/billsettledai
     ReactiveFormsModule,FormsModule,
     BrowserAnimationsModule,RestaurantModule,
     CoreModule,AmazingTimePickerModule,
-    CommonModule,HttpClientModule,
+    CommonModule,HttpClientModule, 
   ],
   entryComponents: [
     DialogBoxComponent,

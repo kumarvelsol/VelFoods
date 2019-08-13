@@ -4,13 +4,28 @@ import { Offers, OfferUp } from 'src/app/shared/interfaces/offers';
 import { RestaurantService } from '../restaurant.service';
 import { MatTableDataSource } from '@angular/material';
 import { DatePipe } from '@angular/common';
+import { AmazingTimePickerService } from 'amazing-time-picker';
 @Component({
   selector: 'app-offers',
   templateUrl: './offers.component.html',
   styleUrls: ['./offers.component.css']
 })
 export class OffersComponent implements OnInit {
-  constructor(public service : RestaurantService,public datepipe: DatePipe) { }
+  constructor(public service : RestaurantService,public datepipe: DatePipe,private atp: AmazingTimePickerService) { }
+  opentime() {
+    const amazingTimePicker = this.atp.open();
+    amazingTimePicker.afterClose().subscribe(time => {
+    console.log(time);
+    this.from_time = time;
+    });
+  }
+  opentotime(){
+    const amazingTimePicker = this.atp.open();
+    amazingTimePicker.afterClose().subscribe(time => {
+    console.log(time);
+    this.to_time = time;
+    });
+  }
   dates_slide : boolean = false;
   times_slide : boolean = false;
   days_slide : boolean = false;
