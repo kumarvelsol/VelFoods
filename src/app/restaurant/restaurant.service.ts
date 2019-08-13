@@ -36,7 +36,7 @@ export class RestaurantService {
     return this.http.post<Responce>(`${this.Baseurl+"OffersList"}`,params);
   }
   public UpdateOffers (offer : OfferUp){
-    return this.http.post<JsResponse>(`${"http://localhost:57649/OfferUpdate"}`,offer);
+    return this.http.post<JsResponse>(`${this.Baseurl+"OfferUpdate"}`,offer);
   }
   public getproperty()
   {
