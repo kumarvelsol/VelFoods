@@ -240,5 +240,13 @@ export class RestaurantService {
     parms =parms.append('restaurent_id', restaurent_id+"")
     return this.http.post(`${this.Baseurl+"stewards"}`,parms);
   }
+  public getorderitems(restaurent_id:number,table_defination_id:number)
+  {
+    let parms =new HttpParams();
+    parms = parms.append('restaurent_id', restaurent_id+"")
+    parms = parms.append('table_defination_id', table_defination_id+"")
+    return this.http.post(`${this.Baseurl+"getorderitems"}`,parms);
+  }
+  
  }
 
