@@ -52,6 +52,7 @@ export class OrderingComponent implements OnInit {
   displayedColumns: string[] = ['itemname_item_name','order_rate', 'order_quantity','order_tax','order_totalamount', 'action'];
  // dataSource = ELEMENT_DATA;
  dataSource: any[] = [];
+ orders:any[]=[];
   userlist:Responce;
   rooms : Data[];
   name:string;
@@ -145,28 +146,29 @@ export class OrderingComponent implements OnInit {
         {
           if(data.code == 200)
           {
-              alert("Order Added Succesfully.!");
-              let a : Tabledefinition = {
-                BACKGROUND_COLOR:"Orange",
-                restaurent_id:1,
-                table_defination_id : this.table_defination_id,
-                table_capatain : this.table_capatain,
-                table_description: this.table_description,
-                table_name: this.table_name,
-                table_pax: this.table_pax,
-                table_status: this.table_status,
-                table_steward: this.table_steward,
-                table_view : this.table_view,
-            }
-             this.service.updatetable(a).subscribe((data : JsResponse) => {
-              this.jsRes = data;
-             });
-              this.onclear();
+            alert("Order Added Succesfully.!");
+            let a : Tabledefinition = {
+              BACKGROUND_COLOR:"Orange",
+              restaurent_id:1,
+              table_defination_id : this.table_defination_id,
+              table_capatain : this.table_capatain,
+              table_description: this.table_description,
+              table_name: this.table_name,
+              table_pax: this.table_pax,
+              table_status: this.table_status,
+              table_steward: this.table_steward,
+              table_view : this.table_view,
+          }
+           this.service.updatetable(a).subscribe((data : JsResponse) => {
+            this.jsRes = data;
+           });
+            this.onclear();
           }else{ alert("Failed to Insert data");}
        });
     }
   }
   table_description:string;table_status:string;table_steward:string;table_view:string;
+  countorder:number;
   onclear()
   {
     this.table_name = null;this.table_pax = null;this.table_capatain = "";
@@ -183,7 +185,6 @@ export class OrderingComponent implements OnInit {
    this.service.gettabledata(1).subscribe((data : Responce) =>
    {
     this.listcount = data.Data.length;
-    // this.table_name = 
     for(let i = 1;i<=this.listcount;i++)
     {
         if(i == this.tname)
@@ -193,6 +194,23 @@ export class OrderingComponent implements OnInit {
           this.table_capatain = data.Data[i-1].table_capatain;
         }
     }
+    this.service.getorders(1).subscribe((data : Apiresponse) =>{
+      this.countorder = data.Data.length;
+      for(let j=0;j<this.countorder;j++)
+      {
+        if(this.table_name == data.Data[j].table_defination_id)
+        {
+          this.itemnames.push(data.Data[j].order_itemname);
+          this.Rate.push(data.Data[j].order_rate);
+          this.quantity.push(data.Data[j].order_quantity);
+          this.total.push(data.Data[j].order_totalamount);
+          //this.tax.push(data.Data[j].order_tax);
+        }
+      }
+      this.orders.push(this.itemnames,this.Rate,this.quantity,this.total);
+      this.dataSource.push(this.orders);
+      console.log(this.dataSource);
+    });
      this.tables = data.Data;
    });
   }
