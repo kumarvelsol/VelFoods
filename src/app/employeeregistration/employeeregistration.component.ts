@@ -3,6 +3,7 @@ import { RestaurantService } from '../restaurant/restaurant.service';
 import { EmployeeRegistration } from '../shared/interfaces/empcate';
 import { EmptyOutletComponent } from '@angular/router/src/components/empty_outlet';
 import { debug } from 'util';
+import { Data } from '@angular/router';
 
 @Component({
   selector: 'app-employeeregistration',
@@ -10,7 +11,7 @@ import { debug } from 'util';
   styleUrls: ['./employeeregistration.component.css']
 })
 export class EmployeeregistrationComponent implements OnInit {
-  empregistration_id:number;
+  empregistration_id:number;empdepartement_name:string;
   empregistration_name:string;
   empregistration_mobile_no:number;
   empregistration_email_id:string;
@@ -25,7 +26,7 @@ export class EmployeeregistrationComponent implements OnInit {
   restaurent_id :number;
   buttoncontent:string;
   buttoncontent1:string;
-  count:number;
+  count:number;empdept:Data[];
   displayedColumns : string[] =['empregistration_id','empregistration_name','empregistration_mobile_no','empregistration_status','actions'];
   dataSource;
   constructor(public service: RestaurantService) { }
@@ -36,9 +37,14 @@ export class EmployeeregistrationComponent implements OnInit {
     this.service.getempreg(1).subscribe(data =>
       {
         this.dataSource = data.Data;
+        console.log(this.dataSource);
         this.count =data.Data.length;
         this.empregistration_id = ++this.count;
       });
+      this.service.getempcategory(1).subscribe(data =>
+        {
+          this.empdept = data.Data;
+        });
   }
   onsaveclick(){
     let empr:EmployeeRegistration ={
@@ -49,7 +55,7 @@ export class EmployeeregistrationComponent implements OnInit {
       empregistration_id_proof:this.empregistration_id_proof,
       empregistration_id_data:this.empregistration_id_data,
       empregistration_Address:this.empregistration_Address,
-      empdepartement_id:1,
+      empdepartement_id:this.empdepartement_id,
       empregistration_status:this.empregistration_status,
       empregistration_login_type:this.empregistration_login_type,
       Username:this.Username,
@@ -101,15 +107,16 @@ export class EmployeeregistrationComponent implements OnInit {
     this.empregistration_status="",
     this.empregistration_login_type="",
     this.Username="",
-    this.password =""
+    this.password ="",
+    this.buttoncontent = "Save";
   }
-  public RowSelected(i:number,empregistration_id:number,empregistration_name:string,
+  public RowSelected(i,empregistration_id:number,empregistration_name:string,
     empregistration_mobile_no:number,
     empregistration_email_id:string,
     empregistration_id_proof:string,
     empregistration_id_data:string,
     empregistration_Address:string,
-    empregistration_login_type:string,
+    empregistration_login_type:string,empdepartement_id:number,
     empregistration_status:string,Username:string,password:string){
     this.buttoncontent ="Update";
     this.empregistration_id =empregistration_id,
@@ -120,6 +127,7 @@ export class EmployeeregistrationComponent implements OnInit {
     this.empregistration_id_data=empregistration_id_data,
     this.empregistration_Address=empregistration_Address,
     this.empregistration_status=empregistration_status,
+    this.empdepartement_id = empdepartement_id,
     this.empregistration_login_type=empregistration_login_type,
     this.Username=Username,
     this.password =password

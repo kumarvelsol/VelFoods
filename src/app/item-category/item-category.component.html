@@ -17,9 +17,7 @@
                 <mat-form-field appearance="legacy" class="col-md-12" >
                     <mat-label> --Select ReportingName--</mat-label>
                     <mat-select  matNativeControl requireds [(ngModel)]="item_reporting_name">
-                        <mat-option value="srikar">srikar</mat-option>
-                        <mat-option value="kumar">kumar</mat-option>
-                        <mat-option value="teja">teja</mat-option>
+                        <mat-option *ngFor="let emp of employee" [value]="emp.empregistration_name">{{emp.empregistration_name}}</mat-option>
                       </mat-select>
                     </mat-form-field>
                     <mat-form-field class="col-md-12">

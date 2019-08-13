@@ -13,7 +13,7 @@ export class TaxpageComponent implements OnInit {
   rows: Array<{taxid:number, taxname:string,percentage:number,reportname:string,activefrom:string,status:string}> = [];
   //data: any = [{taxid:1, taxname:"Five",percentage:5,reportname:"Dharani",status:"Active"}, {taxid:2, taxname:"Three",percentage:3,reportname:"Dharani",status:"Active"} ];
   dataSource;buttoncontent : string = "Save";
-  taxid : number; taxname : string; percentage : number; reportname : string; activefrom : string; status : string;
+  taxid : number; taxname : string; percentage : number; reportname : string; activefrom : string; status : string; empregistration_name : string;
   emplist;
   displayedColumns : string[] = ["tax_id", "tax_name","tax_percentage", "tax_employeename","tax_Active_from","tax_status","actions"];
   constructor(public service : RestaurantService){}
@@ -21,7 +21,7 @@ export class TaxpageComponent implements OnInit {
     this.LoadingList();
     this.service.getempreg(1).subscribe(data =>
       {
-        this.emplist = new MatTableDataSource(data.Data);
+        this.emplist = data.Data;
       });
   }
   onclear()
@@ -50,7 +50,7 @@ export class TaxpageComponent implements OnInit {
           tax_Active_from : this.activefrom,
           tax_status : this.status,
           restaurent_id : 1,
-          tax_employeename : this.reportname,
+          tax_employeename : this.empregistration_name,
         }
         this.service.AddTax(tax).subscribe(data=>{
           if(data.code == 200){
@@ -61,7 +61,7 @@ export class TaxpageComponent implements OnInit {
           }
         });
       }else if(this.buttoncontent == "Update"){
-        this.service.UpdateTax(this.taxid,this.taxname,this.percentage,this.activefrom,this.status,1,this.reportname).subscribe(data=>{
+        this.service.UpdateTax(this.taxid,this.taxname,this.percentage,this.activefrom,this.status,1,this.empregistration_name).subscribe(data=>{
           if(data.code == 200){
             alert(data.message);
             this.onclear();
@@ -86,7 +86,7 @@ export class TaxpageComponent implements OnInit {
     this.taxid = tax_id;
     this.taxname =  tax_name;
     this.percentage = tax_percentage;
-    this.reportname = tax_employeename;
+    this.empregistration_name = tax_employeename;
     this.activefrom = tax_Active_from;
     this.status = tax_status;
   }

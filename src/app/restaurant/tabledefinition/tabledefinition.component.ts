@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { RestaurantService } from '../restaurant.service';
-import { JsResponse } from '../../shared/js-response';
+import { JsResponse, Responce } from '../../shared/js-response';
 import { Apiresponse } from 'src/app/shared/apiresponse';
-import { Data } from 'src/app/shared/data';
 import { MatTableDataSource } from '@angular/material';
 import { Tabledefinition } from 'src/app/shared/tabledefinition';
+import { Data } from '@angular/router';
 
 export interface Captain {
   cid: string;
@@ -41,23 +41,49 @@ export class TabledefinitionComponent implements OnInit {
   table_defination_id : number;    table_capatain : string;    table_description: string;
     table_name: number=0;    table_pax: number;    table_status: string; 
     table_steward: string;    table_view : string; jsRes : JsResponse;
-    count:number;
+    count:number;captains:Data[];stewards:Data[];employee:Data[];
   displayedColumns: string[] = ['table_defination_id','table_name','table_pax','table_view','table_status','actions']; //'view','captain','steward',
   constructor(public service1 : RestaurantService) { }
 
   ngOnInit() {
     this.buttoncontent = "Save";
     this.gettabledata();
+    this.getcaptains();
+    this.getstewards();
+    this.getemployees();
   }
   gettabledata()
   {
     this.service1.gettabledata(1).subscribe((data:Apiresponse)=> {
       this.tabledatalist = data;
+      console.log(this.tabledatalist);
       this.count = data.Data.length;
       console.log(this.count);
       this.table_name = ++this.count;
       this.abDatasource = new MatTableDataSource(this.tabledatalist.Data);
     });
+  }
+  getcaptains()
+  {
+    this.service1.getcaptains(1).subscribe((data:Apiresponse) =>{
+      this.captains = data.Data;
+      console.log(this.captains);
+    });
+  }
+  getstewards()
+  {
+    this.service1.getstewards(1).subscribe((data:Apiresponse) =>{
+      this.stewards = data.Data;
+      console.log(this.stewards);
+    });
+  }
+  getemployees()
+  {
+    this.service1.getempreg(1).subscribe(data =>
+      {
+        this.employee = data.Data;
+        console.log(this.employee);
+      });
   }
   public onSaveclick()
   {

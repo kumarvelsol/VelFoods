@@ -62,10 +62,7 @@
           <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray"  >
               <mat-label style="color :gray">Bank Name</mat-label>
               <mat-select style="color :gray" [(ngModel)]="bank" [disabled]="checking2" disableRipple name="bank">
-                <mat-option style="color :gray" value="SBI">SBI</mat-option>
-                <mat-option style="color :gray" value="Kotak">Kotak</mat-option>
-                <mat-option style="color :gray" value="ICICI">ICICI</mat-option>
-                <mat-option style="color :gray" value="Axis">Axis</mat-option>
+                  <mat-option *ngFor="let bb of banklist" [value]="bb.bank_name">{{bb.bank_name}}</mat-option>
               </mat-select>
             </mat-form-field>
     </div>
@@ -94,10 +91,7 @@
             <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray"  >
                 <mat-label style="color :gray">Bank Name</mat-label>
                 <mat-select style="color :gray"  [disabled]="checking3" [(ngModel)]="bank1" disableRipple name="bank1">
-                  <mat-option style="color :gray" value="SBI">SBI</mat-option>
-                  <mat-option style="color :gray" value="Kotak">Kotak</mat-option>
-                  <mat-option style="color :gray" value="ICICI">ICICI</mat-option>
-                  <mat-option style="color :gray" value="Axis">Axis</mat-option>
+                  <mat-option *ngFor="let bb of banklist" [value]="bb.bank_name">{{bb.bank_name}}</mat-option>
                 </mat-select>
               </mat-form-field>
         </div>
@@ -124,12 +118,9 @@
         </div>
           <div class="col-md-3 mat-form-wrap">
               <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray"  >
-                  <mat-label style="color :gray">Bank Name</mat-label>
+                  <mat-label style="color :gray">Wallet Name</mat-label>
                   <mat-select style="color :gray" [disabled]="checking4" [(ngModel)]="bank2" disableRipple name="bank2">
-                    <mat-option style="color :gray" value="SBI">SBI</mat-option>
-                    <mat-option style="color :gray" value="Kotak">Kotak</mat-option>
-                    <mat-option style="color :gray" value="ICICI">ICICI</mat-option>
-                    <mat-option style="color :gray" value="Axis">Axis</mat-option>
+                    <mat-option *ngFor="let bb of walletlist" [value]="bb.wallet_name">{{bb.wallet_name}}</mat-option>
                   </mat-select>
                 </mat-form-field>
           </div>
@@ -158,10 +149,7 @@
                 <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray"  >
                     <mat-label style="color :gray">Bank Name</mat-label>
                     <mat-select style="color :gray" [disabled]="checking5" [(ngModel)]="bank3" disableRipple name="bank3">
-                      <mat-option style="color :gray" value="SBI">SBI</mat-option>
-                      <mat-option style="color :gray" value="Kotak">Kotak</mat-option>
-                      <mat-option style="color :gray" value="ICICI">ICICI</mat-option>
-                      <mat-option style="color :gray" value="Axis">Axis</mat-option>
+                      <mat-option *ngFor="let bb of banklist" [value]="bb.bank_name">{{bb.bank_name}}</mat-option>
                     </mat-select> 
                   </mat-form-field>
             </div>

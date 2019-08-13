@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { RestaurantService } from '../restaurant/restaurant.service';
 import { itemcategory } from '../shared/interfaces/empcate';
 import { toDate } from '@angular/common/src/i18n/format_date';
+import { Data } from '@angular/router';
 
 @Component({
   selector: 'app-item-category',
@@ -18,6 +19,7 @@ export class ItemCategoryComponent implements OnInit {
   item_active_from:Date;
   item_status:string;
   item_reporting_name:string;
+  employee:Data[];
   restaurent_id:number;
   count:number;
   constructor(public service:RestaurantService) { }  
@@ -28,8 +30,13 @@ export class ItemCategoryComponent implements OnInit {
     this.service.getitemcate(1).subscribe(data =>
       {
         this.dataSource = data.Data;
+        console.log(this.dataSource);
       });
-
+      this.service.getempreg(1).subscribe(data =>
+        {
+          this.employee = data.Data;
+          console.log(this.employee);
+        });
   }
   onsaveclick(){
     let item:itemcategory ={

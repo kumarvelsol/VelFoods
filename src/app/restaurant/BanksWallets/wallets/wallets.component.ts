@@ -12,6 +12,7 @@ export class WalletsComponent implements OnInit {
   rows: Array<{walletid:string, walletcode:string,walletname:string,reportname:string,status:string}> = [];
   dataSource;buttoncontent:string;JsResponse; walletdata : Data[];
   wallet_id:string;wallet_code:string;wallet_name:string;wallet_reporting_name:string;wallet_status:string;
+  empregistration_name : string;emplist;
   displayedColumns: string[] = ["wallet_id", "wallet_code","wallet_name", "wallet_reporting_name","wallet_status","actions"];
   constructor(public service : RestaurantService) { }
 
@@ -21,10 +22,18 @@ export class WalletsComponent implements OnInit {
       {
         this.dataSource = data.Data;
       });
+      this.service.getempreg(1).subscribe(data =>
+        {
+          this.emplist = data.Data;
+        });
   }
   onclear()
   {
     this.buttoncontent = "Save";
+    this.wallet_code =  "";
+    this.wallet_name = "";
+    this.empregistration_name = "";
+    this.wallet_status = "";
   }
   onsave()
   {
@@ -32,7 +41,7 @@ export class WalletsComponent implements OnInit {
       wallet_id :this.wallet_id,
       wallet_code:this.wallet_code,
       wallet_name:this.wallet_name,
-      wallet_reporting_name:this.wallet_reporting_name,
+      wallet_reporting_name:this.empregistration_name,
       wallet_status:this.wallet_status,
       empregistration_id:1,
       restaurent_id:1
@@ -72,14 +81,14 @@ export class WalletsComponent implements OnInit {
    }
     
   }
-  public RowSelected(i,wallet_id:string,walletcode:string,walletname:string,reportname:string,status:string)
+  public RowSelected(i:number,wallet_id:string,wallet_code:string,wallet_name:string,wallet_reporting_name:string,wallet_status:string)
   {
     //debugger;
     this.buttoncontent="Update";
     this.wallet_id =  wallet_id;
-    this.wallet_code =  walletcode;
-    this.wallet_name = walletname;
-    this.wallet_reporting_name = reportname;
-    this.wallet_status = status;
+    this.wallet_code =  wallet_code;
+    this.wallet_name = wallet_name;
+    this.empregistration_name = wallet_reporting_name;
+    this.wallet_status = wallet_status;
   }
 }
