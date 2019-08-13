@@ -194,23 +194,23 @@ export class OrderingComponent implements OnInit {
           this.table_capatain = data.Data[i-1].table_capatain;
         }
     }
-    this.service.getorders(1).subscribe((data : Apiresponse) =>{
-      this.countorder = data.Data.length;
-      for(let j=0;j<this.countorder;j++)
-      {
-        if(this.table_name == data.Data[j].table_defination_id)
-        {
-          this.itemnames.push(data.Data[j].order_itemname);
-          this.Rate.push(data.Data[j].order_rate);
-          this.quantity.push(data.Data[j].order_quantity);
-          this.total.push(data.Data[j].order_totalamount);
-          //this.tax.push(data.Data[j].order_tax);
-        }
-      }
-      this.orders.push(this.itemnames,this.Rate,this.quantity,this.total);
-      this.dataSource.push(this.orders);
-      console.log(this.dataSource);
-    });
+    // this.service.getorders(1).subscribe((data : Apiresponse) =>{
+    //   this.countorder = data.Data.length;
+    //   for(let j=0;j<this.countorder;j++)
+    //   {
+    //     if(this.table_name == data.Data[j].table_defination_id)
+    //     {
+    //       this.itemnames.push(data.Data[j].order_itemname);
+    //       this.Rate.push(data.Data[j].order_rate);
+    //       this.quantity.push(data.Data[j].order_quantity);
+    //       this.total.push(data.Data[j].order_totalamount);
+    //       //this.tax.push(data.Data[j].order_tax);
+    //     }
+    //   }
+    //   this.orders = (this.itemnames,this.Rate,this.quantity,this.total);
+    //   this.dataSource = (this.orders);
+    //   console.log(this.dataSource);
+    // });
      this.tables = data.Data;
    });
   }
