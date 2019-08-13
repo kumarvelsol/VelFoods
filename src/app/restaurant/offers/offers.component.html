@@ -65,13 +65,15 @@
               <mat-form-field class="col-md-4 mat-form-wrap" style="color: gray;margin-left: 0px;margin-right: 0px;">
                 <mat-label style="color: gray;">From Time</mat-label>
                 <mat-icon style="color: gray;" matSuffix>timer</mat-icon>
-                <input matInput type="time" atp-time-picker name="from_time" style="color: gray;" #from_time="ngModel" [ngModel]="from_time" [disabled]="from_time_disable">
+                <input matInput type="time" atp-time-picker name="from_time" style="color: gray;" [ngModel]="from_time" >
+                <!-- #from_time="ngModel" [disabled]="from_time_disable"-->
                 <!-- <mat-hint style="color: gray;">Hint</mat-hint> -->
               </mat-form-field>
               <mat-form-field class="col-md-4 mat-form-wrap" style="color: gray;margin-left: 0px;margin-right: 0px;">
                 <mat-label style="color: gray;">To Time</mat-label>
                 <mat-icon style="color: gray;" matSuffix>timer</mat-icon>
-                <input matInput type="time" atp-time-picker name="to_time" style="color: gray;" #to_time="ngModel" [ngModel]="to_time" [disabled]="to_time_disable">
+                <input matInput type="time" atp-time-picker name="to_time" style="color: gray;" [ngModel]="to_time" >
+                <!-- #to_time="ngModel" [disabled]="to_time_disable"-->
                 <!-- <mat-hint style="color: gray;">Hint</mat-hint> -->
               </mat-form-field>
             </div>
@@ -166,8 +168,9 @@
           </div>
           <div class="row col-12">
             <button mat-raised-button class="btn-style" (click)="onsaveclick()">{{buttoncontent}}</button>
-            <button mat-icon-button class="clearbtn-style" (click)="onclearclick()">
-              <mat-icon>clear_all</mat-icon>
+            <button mat-raised-button class="btn-style" style="margin-left: 15px;" (click)="onclearclick()"> <!-- class="clearbtn-style" -->
+              Clear
+              <!-- <mat-icon>clear_all</mat-icon> -->
             </button>
           </div>
         </div>
@@ -219,7 +222,7 @@
           <ng-container matColumnDef="actions">
             <th mat-header-cell *matHeaderCellDef>Edit</th>
             <td mat-cell *matCellDef="let element; let i=index;">
-              <button mat-icon-button style="color:gray;margin-right: 10px;" (click)="RowSelected(i,element.tax_id,element.tax_name,element.tax_percentage,element.tax_employeename,element.tax_Active_from,element.tax_status)">
+              <button mat-icon-button style="color:gray;margin-right: 10px;" (click)="RowSelected(i,element.offers_id,element.promo_code_name,element.promo_code,element.percentage,element.from_date,element.to_date,element.from_time,element.to_time,element.Active_dare_status,element.Active_time_status,element.minbill_status,element.maximum_bill_status,element.Day_status,element.Day_type,element.Days,element.minbill_amount,element.maximum_bill_amount)">
                 <mat-icon aria-label="Edit">edit</mat-icon>
               </button>
             </td>

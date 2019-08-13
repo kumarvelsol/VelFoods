@@ -7,7 +7,7 @@
             <p>Running Tables</p>
           </div>
           <div class="col-md-12" style="padding-top: 10px;overflow: auto; height: 400px;">
-            <button *ngFor="let room of rooms" [ngStyle]="{'background-color':room.BACKGROUND_COLOR}"  mat-raised-button  class="button-style colors" name="room.ROOM_NO" (click)="onbuttonclick($event,room.ROOM_NO)">{{room.ROOM_NO}}</button>
+            <button *ngFor="let room of rooms"  [ngStyle]="{'background-color':room.BACKGROUND_COLOR}"  mat-raised-button  class="button-style colors" name="room.table_name" (click)="onbuttonclick($event,room.table_name)">{{room.table_name}}</button>
           </div>
         </div>
         <div class="col-md-6">

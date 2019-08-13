@@ -21,6 +21,7 @@ export class PaidoutsmiscolComponent implements OnInit {
   checked: boolean = false; bank : string;bank1 : string;bank2 : string;bank3 : string;
   checked1: boolean = false;checked2: boolean = false;checked3: boolean = false;checked4: boolean = false;
   checking1:boolean=false;checking2:boolean=false;checking3:boolean=false;checking4:boolean=false;checking5:boolean=false;
+  banklist;walletlist;
   constructor(public service1 : RestaurantService) {
    }
 
@@ -29,7 +30,14 @@ export class PaidoutsmiscolComponent implements OnInit {
       {
         this.am[i] = 0;
       }
-
+      this.service1.getbanks(1).subscribe(data =>
+        {
+          this.banklist = data.Data;
+        });
+        this.service1.getwallets(1).subscribe(data =>
+          {
+            this.walletlist = data.Data;
+          });
   }
 //   public onChange(event: number)
 //   {
