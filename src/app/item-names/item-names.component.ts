@@ -159,7 +159,7 @@ onchangeee(){
       return parseInt($scope.item_homedelivary_amount) * parseInt($scope.hd_tax_percentage)/100 + parseInt($scope.item_homedelivary_amount);
     };
     console.log(parseInt($scope.item_homedelivary_amount) * parseInt($scope.hd_tax_percentage)/100 + parseInt($scope.item_homedelivary_amount));
-}
+} 
 }
 
   public RowSelected(i:number,
