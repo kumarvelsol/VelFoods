@@ -31,7 +31,7 @@ export class TableStatusComponent implements OnInit {
   quantity:any[] =[];
   total:any[] =[];
   restaurent_id:number;
-  tax:any[] =[];
+  tax:any[] =[]; totalamount : number; amount : number;
   rows: Array<{order_itemname:string, order_rate:number,order_tax:number,order_quantity:number,order_totalamount:number}> = [];
   array =[];
   dataSource ;
@@ -48,10 +48,17 @@ export class TableStatusComponent implements OnInit {
   }
   onbuttonclick($event,table_name)
   {
+    this.amount = 0;
     this.tname = table_name;
     this.service.getorderitems(1,this.tname).subscribe((data : Responce) =>
      {
           this.dataSource = data.Data;
+          this.listcount = data.Data.length;
+          for(let i =0;i<this.listcount;i++)
+          {
+            this.totalamount = data.Data[i].order_totalamount;
+            this.amount = this.amount + this.totalamount;
+          }
      });
   }
 }
