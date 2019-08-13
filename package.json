@@ -8,6 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "prod-build-dev": "ng build --prod --build-optimizer",
+    "prod-build-staging": "ng build --prod --configuration=staging --build-optimizer",
     "packagr": "ng-packagr -p ng-package.json"
   },
   "private": true,

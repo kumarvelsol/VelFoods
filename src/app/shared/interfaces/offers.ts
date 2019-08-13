@@ -18,3 +18,24 @@ export interface Offers{
     maximum_bill_amount : string;
     restaurent_id : number;
 }
+export interface OfferUp{
+    offers_id : number;
+    restaurent_id : number;
+    promo_code : string;
+    promo_code_name : string;
+    promo_code_description : string;
+    Active_dare_status : string;
+    from_date : string;
+    to_date : string; 
+    Active_time_status : string;
+    from_time : string;
+    to_time : string;
+    Day_status : string;
+    Days : string;
+    Day_type : string;
+    percentage : string;
+    minbill_status : string;
+    minbill_amount : string;
+    maximum_bill_status : string;
+    maximum_bill_amount : string;
+}
