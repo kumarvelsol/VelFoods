@@ -52,7 +52,7 @@ export class OrderingComponent implements OnInit {
   displayedColumns: string[] = ['itemname_item_name','order_rate', 'order_quantity','order_tax','order_totalamount', 'action'];
  // dataSource = ELEMENT_DATA;
  dataSource: any[] = [];
- orders:any[]=[];
+ orders:Apiresponse;
   userlist:Responce;
   rooms : Data[];
   name:string;
@@ -194,6 +194,11 @@ export class OrderingComponent implements OnInit {
           this.table_capatain = data.Data[i-1].table_capatain;
         }
     }
+    // this.service.getorderitems(1,this.table_name).subscribe((data:Responce) =>{
+    //   this.orders = data.Data;
+    //   this.dataSource.push(this.orders);
+
+    // });
     // this.service.getorders(1).subscribe((data : Apiresponse) =>{
     //   this.countorder = data.Data.length;
     //   for(let j=0;j<this.countorder;j++)
