@@ -25,8 +25,20 @@ export class TableStatusComponent implements OnInit {
   count: number;
   kot_id:number;
   tables :Data[]; table_pax : number;
-  ngOnInit(){
-    this.service.getorders(1).subscribe((data : Responce) =>
+  listcount : number;tname:number; table_name : string;table_defination_id : number;
+  itemnames:any[] =[];
+  Rate:any[] =[];
+  quantity:any[] =[];
+  total:any[] =[];
+  restaurent_id:number;
+  tax:any[] =[]; totalamount : number; amount : number;
+  rows: Array<{order_itemname:string, order_rate:number,order_tax:number,order_quantity:number,order_totalamount:number}> = [];
+  array =[];
+  dataSource ;
+  displayedColumns: string[] = ['order_itemname', 'order_rate', 'order_tax', 'order_quantity','order_totalamount'];
+  ngOnInit()
+  {
+    this.service.gettabledata(1).subscribe((data : Responce) =>
     {
       this.count = data.Data.length;
       this.kot_id = this.count + 1;
@@ -34,5 +46,70 @@ export class TableStatusComponent implements OnInit {
       this.tables =data.Data;
     });
   }
-  displayedColumns: string[] = ['ItemName', 'Rate', 'Tax', 'Quantity','Total'];
+  onbuttonclick($event,table_name)
+  {
+    this.amount = 0;
+    this.tname = table_name;
+    this.service.getorderitems(1,this.tname).subscribe((data : Responce) =>
+     {
+          this.dataSource = data.Data;
+          this.listcount = data.Data.length;
+          for(let i =0;i<this.listcount;i++)
+          {
+            this.totalamount = data.Data[i].order_totalamount;
+            this.amount = this.amount + this.totalamount;
+          }
+     });
+  }
 }
+
+
+
+// onbuttonclick($event,table_name)
+// {
+// this.dataSource = null;
+//     this.rows = null;
+//   //  this.colorr;
+//    this.tname = table_name;
+//    console.log(this.tname);
+   
+//           this.service.getorders(1).subscribe((data : Responce) =>
+//           {
+//             this.listcount = data.Data.length;
+//             for(let i = 0;i<this.listcount;i++)
+//             {
+//               this.table_defination_id = data.Data[i].table_defination_id;
+//               console.log(this.table_defination_id);
+//                 if(this.table_defination_id == this.tname)
+//                 {
+//                   // this.itemnames.push(data.Data[i].order_itemname);
+//                   // this.Rate.push(data.Data[i].order_rate);
+//                   // this.quantity.push(data.Data[i].order_quantity);
+//                   // this.total.push(data.Data[i].order_totalamount);
+//                   // this.tax.push(data.Data[i].order_tax);
+
+//                   this.order_itemname = data.Data[i].order_itemname;
+//                   this.order_rate = data.Data[i].order_rate;
+//                   this.order_quantity = data.Data[i].order_quantity;
+//                   this.order_totalamount = data.Data[i].order_totalamount;
+//                   this.order_tax = data.Data[i].order_tax;
+//                   this.rows = [{order_itemname : this.order_itemname,order_rate : this.order_rate,order_quantity : this.order_quantity,order_totalamount : this.order_totalamount,order_tax : this.order_tax}];
+//                   this.array.push(this.rows);
+//                 }
+//                 this.dataSource = this.array;
+//             }
+//             console.log(this.dataSource);
+//            // this.dataSource.push(this.itemnames,this.Rate,this.quantity,this.total,this.tax);
+//             // console.log(this.array);
+             
+//           });
+//          // this.array.push(this.itemnames,this.Rate,this.quantity,this.total,this.tax);
+//         //  console.log(this.array);
+//           // this.table_name = table_name;
+//           // this.table_pax = data.Data[i-1].table_pax; 
+//     }
+//     order_itemname : string;order_rate : number;
+//     order_quantity : number;
+//     order_totalamount : number;
+//     order_tax : number;
+//}

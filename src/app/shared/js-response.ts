@@ -79,4 +79,11 @@ export interface Data {
     bank_account_no:number;
     bank_status:string;
     bank_reporting_name:string;
+    table_defination_id : number;
+    order_itemname : string;
+    order_rate : number;
+    order_quantity : number;
+    order_totalamount : number;
+    order_tax : number;
+    BACKGROUND_COLOR : string;
 }
