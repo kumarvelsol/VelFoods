@@ -49,15 +49,9 @@ export class OrderingComponent implements OnInit {
   kot_id:number;
   local_data:any;
   displayedColumns: string[] = ['itemname_item_name','order_rate', 'order_quantity','order_tax','order_totalamount', 'action'];
-<<<<<<< HEAD
-  // dataSource = ELEMENT_DATA;
-  dataSource: any[] = [];
-  orders:any[]=[];
-=======
  // dataSource = ELEMENT_DATA;
  dataSource: any[] = [];
  orders:Apiresponse;
->>>>>>> 7422dea27624a95a6003adbf15a56899111880b6
   userlist:Responce;
   rooms : Data[];
   name:string;
