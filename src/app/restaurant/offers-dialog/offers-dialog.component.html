@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 text-center">
+      <p>Offers List</p>
+    </div>
+    <div class="col-12 text-center">
+      <label>Total Amount : {{total_amount}}</label>
+      <!-- <label class="col-2"></label> -->
+    </div>
+    <div class="col-md-12" style="padding-top: 10px;overflow: auto; height: 400px;">
+      <button *ngFor="let Promo of Offers" mat-raised-button  class="button-style colors" name="Promo.promo_code" (click)="onbuttonclick($event,Promo.promo_code)">  {{Promo.promo_code}} ({{Promo.percentage}})</button>
+      <!-- [ngStyle]="{'background-color':room.BACKGROUND_COLOR}" -->
+    </div>
+  </div>
+</div>
+<h1 mat-dialog-title style="background-color: #123;color:#fff">Offers List</h1>
+<div mat-dialog-content>
+  <div class="col-12 text-center">
+    <label>Total Amount : {{total_amount}}</label>
+    <!-- <label class="col-2"></label> -->
+  </div>
+  <div class="col-md-12" style="padding-top: 10px;overflow: auto; height: 400px;">
+    <button *ngFor="let Promo of Offers" mat-raised-button  class="button-style colors" name="Promo.promo_code" (click)="onbuttonclick($event,Promo.promo_code)">  {{Promo.promo_code}} ({{Promo.percentage}})</button>
+    <!-- [ngStyle]="{'background-color':room.BACKGROUND_COLOR}" -->
+  </div>
+</div>
+<div mat-dialog-actions>
+  <!-- <button mat-button (click)="doAction()">{{action}}</button>
+  <button mat-button (click)="closeDialog()" mat-flat-button color="warn">Cancel</button> -->
+  <button mat-button mat-flat-button color="primary" [mat-dialog-close]="data">{{action}}</button>
+  <button mat-button mat-flat-button color="primary" (click)="apply()">Apply</button>
+  <label>{{OfferApplyMessage}}</label>
+</div>

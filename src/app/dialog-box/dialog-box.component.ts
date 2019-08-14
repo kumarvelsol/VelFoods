@@ -24,14 +24,13 @@ export class DialogBoxComponent implements OnInit {
   order_tax:number;
   constructor(
     public dialogRef: MatDialogRef<DialogBoxComponent>,
-    @Optional() @Inject(MAT_DIALOG_DATA) public data: UsersData,public service:RestaurantService) {
+    @Optional() @Inject(MAT_DIALOG_DATA) public data: UsersData, public service:RestaurantService) {
     console.log(data);
     this.local_data = {...data};
     this.action = this.local_data.action;
     this.itemname_item_name = this.local_data.itemname_item_name;
     this.order_quantity = this.local_data.order_quantity;
   }
-
   ngOnInit() {
     //debugger;
     if(this.action == "Update")

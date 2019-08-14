@@ -24,8 +24,6 @@ export interface UsersData {
 //   {order_id:3,order_itemname: 'Gongura Chicken',order_rate : 120,order_quantity :   1, order_totalamount : 120},
 //   {order_id:4,order_itemname: 'Chicken 65',     order_rate : 150,order_quantity :   2, order_totalamount : 300}
 // ];
- 
-
 @Component({
  selector: 'app-ordering',
  templateUrl: './ordering.component.html',
@@ -50,9 +48,9 @@ export class OrderingComponent implements OnInit {
   kot_id:number;
   local_data:any;
   displayedColumns: string[] = ['itemname_item_name','order_rate', 'order_quantity','order_tax','order_totalamount', 'action'];
- // dataSource = ELEMENT_DATA;
- dataSource: any[] = [];
- orders:any[]=[];
+  // dataSource = ELEMENT_DATA;
+  dataSource: any[] = [];
+  orders:any[]=[];
   userlist:Responce;
   rooms : Data[];
   name:string;
@@ -73,7 +71,7 @@ export class OrderingComponent implements OnInit {
   constructor(private service : RestaurantService,public dialog: MatDialog) {
    }
   
- ngOnInit() {
+  ngOnInit() {
     this.gettingtablenumbers();
     this.service.getorders(1).subscribe((data : Responce) =>
     {
