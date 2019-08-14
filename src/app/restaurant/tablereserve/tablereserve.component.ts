@@ -6,7 +6,7 @@ import { Data } from 'src/app/shared/data';
 import { MatTableDataSource } from '@angular/material';
 import { JsResponse } from '../../shared/js-response';
 import { Tablebooking } from 'src/app/shared/tablebooking';
-
+import { AmazingTimePickerService } from 'amazing-time-picker';
 
 export interface Restaurant {
   id: string;
@@ -29,8 +29,14 @@ export class TablereserveComponent implements OnInit {
     tablebooking_pax : number;    tablebooking_mobile_no : number;
     tablebooking_advance : number;    tablebooking_time : string;
     tablebooking_splinstructions : string;    restaurent_id : number; tablebooking_date : string;
-  constructor(private router: Router,public service1 : RestaurantService) { }
-  
+  constructor(private router: Router,public service1 : RestaurantService,private atp: AmazingTimePickerService) { }
+  opentime() {
+    const amazingTimePicker = this.atp.open();
+    amazingTimePicker.afterClose().subscribe(time => {
+    console.log(time);
+    this.tablebooking_time = time;
+    });
+  }
   ngOnInit() {
   this.buttoncontent = "Save";
   this.service1.getrestaurent(1).subscribe((data:Apiresponse) =>{

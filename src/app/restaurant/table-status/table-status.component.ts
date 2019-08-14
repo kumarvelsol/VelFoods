@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ServiceService } from 'src/app/service.service';
 import { order, room } from 'src/app/Model/ordermodel';
 import { RestaurantService } from '../restaurant.service';
-import { MatDialog } from '@angular/material';
 import { Responce, Data } from 'src/app/shared/js-response';
+import { OffersDialogComponent } from '../offers-dialog/offers-dialog.component';
+import { MatDialog, MatTable, MatTableDataSource, MatDialogConfig } from '@angular/material';
 export interface PeriodicElement {
   ItemName : string;
   Rate : number;
@@ -19,6 +20,7 @@ export interface PeriodicElement {
   styleUrls: ['./table-status.component.css']
 })
 export class TableStatusComponent implements OnInit {
+  @ViewChild(MatTable) table: MatTable<any>; 
   constructor(private service : RestaurantService,public dialog: MatDialog) { }
   userlist:order;
   rooms : room[];
@@ -61,6 +63,29 @@ export class TableStatusComponent implements OnInit {
             this.amount = this.amount + this.totalamount;
           }
      });
+  }
+  onofferclick(action,obj): void{
+    obj.action = action;
+    const dialogRef = this.dialog.open(OffersDialogComponent, {
+      width: '250px',
+      data: obj
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      // if(result.action == 'Add')
+      // {
+      //   console.log(result);
+      //   this.dataSource.push(result); 
+      //   this.dataSource = [...this.dataSource]; 
+      // }
+      // else if(result.action == 'Update')
+      // {
+      //   //this.updateRowData(result.data); 
+      // }
+      // else if(result.action == 'Delete')
+      // {
+      //   //this.deleteRowData(result.data);
+      // }
+    });
   }
 }
 

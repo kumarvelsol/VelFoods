@@ -16,21 +16,21 @@
   <mat-card class="row example-card parent">
       <div class="row col-md-12">
         <div class="col-md-4 mat-form-wrap">
-          <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray">
+          <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" appearance="outline">
             <mat-icon style="color :gray" matSuffix>person</mat-icon>
             <mat-label style="color :gray">Name</mat-label>
             <input style="color :gray"  type="text" name="paidout_name" [(ngModel)] = "paidout_name" matInput>
           </mat-form-field>
         </div>
         <div class="col-md-4 mat-form-wrap">
-          <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray">
+          <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" appearance="outline">
             <mat-icon style="color :gray" matSuffix>developer_board</mat-icon>
             <mat-label style="color :gray">Particulars</mat-label>
             <input style="color :gray"  type="text" name="paidout_pariticular" [(ngModel)] = "paidout_pariticular"  matInput>
           </mat-form-field>
         </div>
         <div class="col-md-4 mat-form-wrap">
-          <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray">
+          <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" appearance="outline">
             <mat-icon style="color :gray" matSuffix>developer_board</mat-icon>
             <mat-label style="color :gray">ReportingName</mat-label>
             <input style="color :gray"  type="text" name="paidout_reportingname" [(ngModel)] = "paidout_reportingname"  matInput>
@@ -45,7 +45,7 @@
     <mat-checkbox value="checked" [disabled]="checking1" [required]="true" style="margin-left: 20px;" (change)="toggleVisibility(checked)">Cash</mat-checkbox>
     </div>
     <div class="col-md-6 mat-form-wrap;let j = index;">
-      <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray;width:50%;margin-left:265px;">
+      <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray;width:50%;margin-left:265px;" appearance="outline">
         <mat-icon style="color :gray" matSuffix>monetization_on</mat-icon>
         <mat-label style="color :gray" >Amount</mat-label>
         <input style="color :gray" [disabled]="checking1"  type="text" name="Amoount"  [(ngModel)] = "am[0]" (change)="onChange($event)" matInput>
@@ -59,7 +59,7 @@
         <mat-checkbox value="checked1" [disabled]="checking2" [required]="true" style="margin-left: 20px;" (change)="toggleVisibility1(checked1)">Card</mat-checkbox>
     </div>
       <div class="col-md-3 mat-form-wrap">
-          <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray"  >
+          <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" appearance="outline" >
               <mat-label style="color :gray">Bank Name</mat-label>
               <mat-select style="color :gray" [(ngModel)]="bank" [disabled]="checking2" disableRipple name="bank">
                   <mat-option *ngFor="let bb of banklist" [value]="bb.bank_name">{{bb.bank_name}}</mat-option>
@@ -67,14 +67,14 @@
             </mat-form-field>
     </div>
       <div class="col-md-3 mat-form-wrap">
-        <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray">
+        <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" appearance="outline">
           <mat-icon style="color :gray" matSuffix>developer_board</mat-icon>
           <mat-label style="color :gray">Transaction Id</mat-label>
           <input style="color :gray"  [disabled]="checking2" type="text" name="transaction_id"  [(ngModel)] = "tr[0]" matInput>
         </mat-form-field>
       </div>
       <div class="col-md-3 mat-form-wrap;let j = index;">
-          <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray">
+          <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" appearance="outline">
             <mat-icon style="color :gray" matSuffix>monetization_on</mat-icon>
             <mat-label style="color :gray">Amount</mat-label>
             <input style="color :gray"  [disabled]="checking2" type="text" name="Amoount" [(ngModel)] = "am[1]" (change)="onChange1($event)" matInput>
@@ -88,7 +88,7 @@
           <mat-checkbox value="checked2" [disabled]="checking3" [required]="true" style="margin-left: 20px;"  (change)="toggleVisibility2(checked2)">Online</mat-checkbox>
       </div>
         <div class="col-md-3 mat-form-wrap">
-            <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray"  >
+            <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" appearance="outline" >
                 <mat-label style="color :gray">Bank Name</mat-label>
                 <mat-select style="color :gray"  [disabled]="checking3" [(ngModel)]="bank1" disableRipple name="bank1">
                   <mat-option *ngFor="let bb of banklist" [value]="bb.bank_name">{{bb.bank_name}}</mat-option>
@@ -96,14 +96,14 @@
               </mat-form-field>
         </div>
         <div class="col-md-3 mat-form-wrap">
-        <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray">
+        <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" appearance="outline">
           <mat-icon style="color :gray" matSuffix>developer_board</mat-icon>
           <mat-label style="color :gray">Transaction Id</mat-label>
           <input style="color :gray"   [disabled]="checking3" type="text" name="transaction_id" [(ngModel)] = "tr[1]"  matInput>
         </mat-form-field>
       </div>
           <div class="col-md-3 mat-form-wrap;let j = index;">
-              <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray">
+              <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" appearance="outline">
                 <mat-icon style="color :gray" matSuffix>monetization_on</mat-icon>
                 <mat-label style="color :gray">Amount</mat-label>
                 <input style="color :gray"  [disabled]="checking3"  type="text" name="Amoount" [(ngModel)] = "am[2]" (change)="onChange2($event)"  matInput>
@@ -117,7 +117,7 @@
             <mat-checkbox  value="checked3" [disabled]="checking4" [required]="true" style="margin-left: 20px;"  (change)="toggleVisibility3(checked3)">Wallet</mat-checkbox>
         </div>
           <div class="col-md-3 mat-form-wrap">
-              <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray"  >
+              <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" appearance="outline" >
                   <mat-label style="color :gray">Wallet Name</mat-label>
                   <mat-select style="color :gray" [disabled]="checking4" [(ngModel)]="bank2" disableRipple name="bank2">
                     <mat-option *ngFor="let bb of walletlist" [value]="bb.wallet_name">{{bb.wallet_name}}</mat-option>
@@ -125,14 +125,14 @@
                 </mat-form-field>
           </div>
           <div class="col-md-3 mat-form-wrap">
-              <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" >
+              <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" appearance="outline">
                 <mat-icon style="color :gray" matSuffix>developer_board</mat-icon>
                 <mat-label style="color :gray">Transaction Id</mat-label>
                 <input style="color :gray"  [disabled]="checking4" type="text" name="transaction_id" [(ngModel)] = "tr[2]"  matInput>
               </mat-form-field>
             </div>
             <div class="col-md-3 mat-form-wrap;let j = index;">
-                <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray">
+                <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" appearance="outline">
                   <mat-icon style="color :gray" matSuffix>monetization_on</mat-icon>
                   <mat-label style="color :gray">Amount</mat-label>
                   <input style="color :gray" [disabled]="checking4"  type="text" name="Amoount" [(ngModel)] = "am[3]" (change)="onChange3($event)" matInput>
@@ -146,7 +146,7 @@
               <mat-checkbox value="checked4" [disabled]="checking5" [required]="true" style="margin-left: 20px;"  (change)="toggleVisibility4(checked4)">Cheque</mat-checkbox>
           </div>
             <div class="col-md-3 mat-form-wrap">
-                <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray"  >
+                <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" appearance="outline" >
                     <mat-label style="color :gray">Bank Name</mat-label>
                     <mat-select style="color :gray" [disabled]="checking5" [(ngModel)]="bank3" disableRipple name="bank3">
                       <mat-option *ngFor="let bb of banklist" [value]="bb.bank_name">{{bb.bank_name}}</mat-option>
@@ -154,14 +154,14 @@
                   </mat-form-field>
             </div>
             <div class="col-md-3 mat-form-wrap">
-                <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray">
+                <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" appearance="outline">
                   <mat-icon style="color :gray" matSuffix>developer_board</mat-icon>
                   <mat-label style="color :gray">Cheque No</mat-label>
                   <input style="color :gray" [disabled]="checking5"  type="text" name="transaction_id" [(ngModel)] = "tr[3]" matInput>
                 </mat-form-field>
               </div>
               <div class="col-md-3 mat-form-wrap;let j = index;">
-                  <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray">
+                  <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" appearance="outline">
                     <mat-icon style="color :gray" matSuffix>monetization_on</mat-icon>
                     <mat-label style="color :gray">Amount</mat-label>
                     <input style="color :gray" [disabled]="checking5"  type="text" name="Amoount" [(ngModel)] = "am[4]" (change)="onChange4($event)"  matInput>

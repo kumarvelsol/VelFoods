@@ -33,6 +33,12 @@ export class RestaurantService {
     params = params.append('restaurent_id', restaurent_id+"");
     return this.http.post<Responce>(`${this.Baseurl+"OffersList"}`,params);
   }
+  public SelectedOffer (restaurent_id : number,promo_code : string){
+    let params = new HttpParams();
+    params = params.append('restaurent_id', restaurent_id+"");
+    params = params.append('promo_code', promo_code);
+    return this.http.post<Responce>(`${this.Baseurl+"SelectedOffer"}`,params);
+  }
   public UpdateOffers (offer : OfferUp){
     return this.http.post<JsResponse>(`${this.Baseurl+"OfferUpdate"}`,offer);
   }
