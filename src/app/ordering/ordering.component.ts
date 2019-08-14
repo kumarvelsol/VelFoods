@@ -48,10 +48,10 @@ export class OrderingComponent implements OnInit {
   insert_date:Date;
   kot_id:number;
   local_data:any;
-  displayedColumns: string[] = ['order_itemname','order_rate', 'order_quantity','order_tax_amount','order_totalamount', 'action'];
   buttoncontent:string;
   dataSource;
   orders:any[]=[];
+  displayedColumns: string[] = ['itemname_item_name','order_rate', 'order_quantity','order_tax','order_totalamount', 'action'];
   userlist:Responce;
   rooms : Data[];
   name:string;
