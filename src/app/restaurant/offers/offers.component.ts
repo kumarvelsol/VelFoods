@@ -5,10 +5,16 @@ import { RestaurantService } from '../restaurant.service';
 import { MatTableDataSource } from '@angular/material';
 import { DatePipe } from '@angular/common';
 import { AmazingTimePickerService } from 'amazing-time-picker';
+import { DateAdapter, MAT_DATE_FORMATS} from '@angular/material/core';
+import { AppDateAdapter, APP_DATE_FORMATS } from 'src/app/shared/format-datepicker';
 @Component({
   selector: 'app-offers',
   templateUrl: './offers.component.html',
-  styleUrls: ['./offers.component.css']
+  styleUrls: ['./offers.component.css'],
+  providers: [
+    {provide: DateAdapter, useClass: AppDateAdapter},
+    {provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS}
+  ]
 })
 export class OffersComponent implements OnInit {
   constructor(public service : RestaurantService,public datepipe: DatePipe,private atp: AmazingTimePickerService) { }
@@ -395,7 +401,7 @@ export class OffersComponent implements OnInit {
       this.to_date = to_date;
       this.to_date_disable = false;
       this.from_date_disable = false;
-      console.log("Date True");
+      console.log("Date True, From Date : " + this.from_date + "\nTo Date : " + this.to_date);
     }else{
       this.dates_slide = false;
       this.from_date = null;
