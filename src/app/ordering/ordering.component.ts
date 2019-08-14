@@ -33,7 +33,8 @@ export interface UsersData {
  styleUrls: ['./ordering.component.css'],
 })
 export class OrderingComponent implements OnInit {
-  orderlist:Responce;itemname_item_name:string;
+  orderlist:any;itemname_item_name:string;
+  rows: Array<{itemname_item_name:string,order_rate:number,order_quantity:number,order_tax:number,order_totalamount:number}> = [];
   order_id:number=0;tax:any[] = [];jsRes :JsResponse;
   itemnames:any[] =[];
   Rate:any[] =[];
@@ -147,21 +148,6 @@ export class OrderingComponent implements OnInit {
           if(data.code == 200)
           {
             alert("Order Added Succesfully.!");
-            let a : Tabledefinition = {
-              BACKGROUND_COLOR:"Orange",
-              restaurent_id:1,
-              table_defination_id : this.table_defination_id,
-              table_capatain : this.table_capatain,
-              table_description: this.table_description,
-              table_name: this.table_name,
-              table_pax: this.table_pax,
-              table_status: this.table_status,
-              table_steward: this.table_steward,
-              table_view : this.table_view,
-          }
-           this.service.updatetable(a).subscribe((data : JsResponse) => {
-            this.jsRes = data;
-           });
             this.onclear();
           }else{ alert("Failed to Insert data");}
        });
@@ -176,7 +162,6 @@ export class OrderingComponent implements OnInit {
   }
   onbuttonclick($event,table_name){
     this.colorr;
-   // alert(table_name);
    this.tname = table_name;
    if(this.tname != null)
    {
@@ -193,32 +178,25 @@ export class OrderingComponent implements OnInit {
           this.table_pax = data.Data[i-1].table_pax;
           this.table_capatain = data.Data[i-1].table_capatain;
         }
+        // if(data.Data[i-1].BACKGROUND_COLOR == "Orange")
+        // {
+        //   this.service.getorderitems(1,this.table_name).subscribe((data:Responce) =>{
+      
+        //     this.dataSource.push(data.Data); 
+        //     this.dataSource = [...this.dataSource];
+        //     console.log(this.dataSource);
+        //   });
+        //   break;
+        // }
     }
-    // this.service.getorderitems(1,this.table_name).subscribe((data:Responce) =>{
-    //   this.orders = data.Data;
-    //   this.dataSource.push(this.orders);
-
-    // });
-    // this.service.getorders(1).subscribe((data : Apiresponse) =>{
-    //   this.countorder = data.Data.length;
-    //   for(let j=0;j<this.countorder;j++)
-    //   {
-    //     if(this.table_name == data.Data[j].table_defination_id)
-    //     {
-    //       this.itemnames.push(data.Data[j].order_itemname);
-    //       this.Rate.push(data.Data[j].order_rate);
-    //       this.quantity.push(data.Data[j].order_quantity);
-    //       this.total.push(data.Data[j].order_totalamount);
-    //       //this.tax.push(data.Data[j].order_tax);
-    //     }
-    //   }
-    //   this.orders = (this.itemnames,this.Rate,this.quantity,this.total);
-    //   this.dataSource = (this.orders);
-    //   console.log(this.dataSource);
-    // });
+    
      this.tables = data.Data;
    });
   }
+  // for(let a=0;a<data.Data.length;a++)
+  // {
+  //   this.rows =[{itemname_item_name : data.Data[a].order_itemname,order_rate : data.Data[a].order_rate,order_quantity : data.Data[a].order_quantity,order_totalamount : data.Data[a].order_totalamount,order_tax : data.Data[a].order_tax_amount}];
+  // }
     // openDialog(action,obj) {
     // obj.action = action;
     // const dialogRef = this.dialog.open(DialogBoxComponent, {

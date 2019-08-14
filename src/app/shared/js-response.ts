@@ -86,4 +86,9 @@ export interface Data {
     order_totalamount : number;
     order_tax : number;
     BACKGROUND_COLOR : string;
+    kot_id: number;
+    order_captain: string;
+    order_id: number;
+    order_status:string;
+    order_tax_amount: number;
 }

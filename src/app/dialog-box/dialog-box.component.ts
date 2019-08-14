@@ -33,12 +33,11 @@ export class DialogBoxComponent implements OnInit {
   }
 
   ngOnInit() {
-    //debugger;
-    if(this.action == "Update")
-    {
-      this.itemname_item_name = this.data.itemname_item_name;
-      this.order_quantity = this.data.order_quantity;
-    }
+    // if(this.action == "Update")
+    // {
+    //   this.itemname_item_name = this.data.itemname_item_name;
+    //   this.order_quantity = this.data.order_quantity;
+    // }
     this.service.getitemnames(1).subscribe((data:Responce)=> {
       this.itemnames = data.Data;
     });
