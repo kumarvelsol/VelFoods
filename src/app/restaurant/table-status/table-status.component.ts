@@ -12,7 +12,17 @@ export interface PeriodicElement {
   Quantity : number;
   Total : number;
 }
-
+export interface ParsingData {
+  table_name : number;
+  total_amount : number;
+  DiscountAmount : number;
+  AmountAfterDiscount : number;
+  OfferId : number;
+  Percentage : number;
+  MinBillAmount : number;
+  MaxDiscountAmount : number;
+  PromoCode : string;
+}
 @Component({
   selector: 'app-table-status',
   templateUrl: './table-status.component.html',
@@ -64,28 +74,29 @@ export class TableStatusComponent implements OnInit {
           }
      });
   }
-  onofferclick(action,obj): void{
-    obj.action = action;
-    const dialogRef = this.dialog.open(OffersDialogComponent, {
-      width: '250px',
-      data: obj
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      // if(result.action == 'Add')
-      // {
-      //   console.log(result);
-      //   this.dataSource.push(result); 
-      //   this.dataSource = [...this.dataSource]; 
-      // }
-      // else if(result.action == 'Update')
-      // {
-      //   //this.updateRowData(result.data); 
-      // }
-      // else if(result.action == 'Delete')
-      // {
-      //   //this.deleteRowData(result.data);
-      // }
-    });
+  Parsing_data : ParsingData[];
+  onofferclick(): void{
+    if(this.amount > 0){
+      let p_data : ParsingData = {
+        table_name : this.tname,
+        total_amount : this.amount,
+        DiscountAmount : 0,
+        AmountAfterDiscount : 0,
+        OfferId : 0,
+        Percentage : 0,
+        MinBillAmount : 0,
+        MaxDiscountAmount : 0,
+        PromoCode : "",
+      }
+      const dialogRef = this.dialog.open(OffersDialogComponent, {
+        data: p_data
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(result);
+      });
+    }else{
+      alert("Please select the Occupied Table to apply an offer");
+    }
   }
 }
 
