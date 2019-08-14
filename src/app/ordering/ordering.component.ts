@@ -50,8 +50,8 @@ export class OrderingComponent implements OnInit {
   local_data:any;
   displayedColumns: string[] = ['itemname_item_name','order_rate', 'order_quantity','order_tax','order_totalamount', 'action'];
  // dataSource = ELEMENT_DATA;
- dataSource: any[] = [];
- orders:Apiresponse;
+  dataSource: any[] = [];
+  orders:Apiresponse;
   userlist:Responce;
   rooms : Data[];
   name:string;
@@ -231,6 +231,7 @@ export class OrderingComponent implements OnInit {
           console.log(result);
           this.dataSource.push(result); 
           this.dataSource = [...this.dataSource]; 
+          console.log(this.dataSource);
         }
         else if(result.action == 'Update')
         {
