@@ -53,6 +53,7 @@ export class TableStatusComponent implements OnInit {
     this.service.getorderitems(1,this.tname).subscribe((data : Responce) =>
      {
           this.dataSource = data.Data;
+          console.log(this.dataSource);
           this.listcount = data.Data.length;
           for(let i =0;i<this.listcount;i++)
           {

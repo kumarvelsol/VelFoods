@@ -12,8 +12,6 @@ import { Miscollection } from '../shared/miscollection';
 import { Restaurant } from '../shared/interfaces/restaurant';
 import { Managermodel } from '../shared/interfaces/managermodel';
 import { Walletsmodel } from '../shared/walletsmodel';
-import { room } from '../Model/ordermodel';
-import { Apiresponse } from '../shared/apiresponse';
 
 @Injectable({
   providedIn: 'root'
