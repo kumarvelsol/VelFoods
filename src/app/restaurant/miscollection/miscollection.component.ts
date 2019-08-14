@@ -117,8 +117,12 @@ toggleVisibility(value){
     this.checking4 = false;this.checking5 = false;
   }
   if(this.checked == true)
-  { this.type_of_payment = "Cash"; this.Amoount = this.am[0]; 
-  this.am[1] = 0;this.am[2] = 0;this.am[3] = 0;this.am[4] = 0;} //this.bank_name = "a";this.transaction_id = "0";}
+  { 
+    this.type_of_payment = "Cash"; this.Amoount = this.am[0]; 
+    this.am[1] = 0;this.am[2] = 0;this.am[3] = 0;this.am[4] = 0;
+    this.tr[0] = ""; this.tr[1] = "";this.tr[2] = "";this.tr[3] = "";
+    this.bank = ""; this.bank1 = "";this.bank2 ="";this.bank3 ="";
+  } 
   else {this.type_of_payment = ""; this.Amoount = null;}
   console.log(this.checked);console.log(this.type_of_payment);
 }
