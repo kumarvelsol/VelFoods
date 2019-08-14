@@ -48,11 +48,10 @@ export class OrderingComponent implements OnInit {
   insert_date:Date;
   kot_id:number;
   local_data:any;
-  displayedColumns: string[] = ['itemname_item_name','order_rate', 'order_quantity','order_tax','order_totalamount', 'action'];
-
-  dataSource: any[] = [];
+  displayedColumns: string[] = ['order_itemname','order_rate', 'order_quantity','order_tax_amount','order_totalamount', 'action'];
+  buttoncontent:string;
+  dataSource;
   orders:any[]=[];
-
   userlist:Responce;
   rooms : Data[];
   name:string;
@@ -81,6 +80,7 @@ export class OrderingComponent implements OnInit {
       this.kot_id = this.count + 1;
       console.log(data);
     });
+    this.buttoncontent= "Save";
   }
   gettingtablenumbers()
   {
@@ -120,19 +120,19 @@ export class OrderingComponent implements OnInit {
     {
       alert("Please fill all fields");
     }
-    else
+    else if(this.buttoncontent= "Save")
     {
       //this.table_name=this.table_name;
       //this.table_pax=this.table_pax;
       this.order_captain = this.table_capatain;
       for(let i=0;i<this.dataSource.length;i++)
       {
-        this.itemnames.push(this.dataSource[i].itemname_item_name);
+        this.itemnames.push(this.dataSource[i].order_itemname);
         this.itemnameid.push(this.dataSource[i].itemname_id );
         this.Rate.push(this.dataSource[i].order_rate);
         this.quantity.push(this.dataSource[i].order_quantity);
         this.total.push(this.dataSource[i].order_totalamount);
-        this.tax.push(this.dataSource[i].order_tax);
+        this.tax.push(this.dataSource[i].order_tax_amount);
       }
       this.restaurent_id=1;
       this.table_defination_id= this.table_name;
@@ -158,39 +158,77 @@ export class OrderingComponent implements OnInit {
   {
     this.table_name = null;this.table_pax = null;this.table_capatain = "";
     this.dataSource = null;this.order_status = "";
+    this.buttoncontent= "Save";
   }
-  onbuttonclick($event,table_name){
-    this.colorr;
+  onbuttonclick($event,table_name,BACKGROUND_COLOR){
+    this.dataSource = null;
+    this.colorr = BACKGROUND_COLOR;
    this.tname = table_name;
    if(this.tname != null)
    {
      this.disableadd = false;
    }
-   this.service.gettabledata(1).subscribe((data : Responce) =>
+   if(this.colorr == "Green")
    {
-    this.listcount = data.Data.length;
-    for(let i = 1;i<=this.listcount;i++)
-    {
-        if(i == this.tname)
+    this.order_status = "Active";
+    this.buttoncontent= "Save";
+    this.service.gettabledata(1).subscribe((data : Responce) =>
+      {
+        this.listcount = data.Data.length;
+        for(let i = 1;i<=this.listcount;i++)
         {
-          this.table_name = table_name;
-          this.table_pax = data.Data[i-1].table_pax;
-          this.table_capatain = data.Data[i-1].table_capatain;
+            if(i == this.tname)
+            {
+              this.table_name = table_name;
+              this.table_pax = data.Data[i-1].table_pax;
+              this.table_capatain = data.Data[i-1].table_capatain;
+            }
         }
-        // if(data.Data[i-1].BACKGROUND_COLOR == "Orange")
-        // {
-        //   this.service.getorderitems(1,this.table_name).subscribe((data:Responce) =>{
+      });
+   }
+   else if(this.colorr == "Orange")
+   {
+     this.order_status = "Running";
+      this.service.getorderitems(1,this.tname).subscribe((data : Responce) =>
+      {
+        this.table_name = table_name;
+        this.table_pax = data.Data[0].table_pax;
+        this.table_capatain = data.Data[0].order_captain;
+        console.log(data.Data);
+        this.dataSource = data.Data; 
+        //this.dataSource = [...this.dataSource];
+        console.log(this.dataSource);
+        this.buttoncontent = "Modify";
+      });
+   }
+   
+   
+   
+  //  this.service.gettabledata(1).subscribe((data : Responce) =>
+  //  {
+  //   this.listcount = data.Data.length;
+  //   for(let i = 1;i<=this.listcount;i++)
+  //   {
+  //       if(i == this.tname)
+  //       {
+  //         this.table_name = table_name;
+  //         this.table_pax = data.Data[i-1].table_pax;
+  //         this.table_capatain = data.Data[i-1].table_capatain;
+  //       }
+  //       // if(data.Data[i-1].BACKGROUND_COLOR == "Orange")
+  //       // {
+  //       //   this.service.getorderitems(1,this.table_name).subscribe((data:Responce) =>{
       
-        //     this.dataSource.push(data.Data); 
-        //     this.dataSource = [...this.dataSource];
-        //     console.log(this.dataSource);
-        //   });
-        //   break;
-        // }
-    }
+  //       //     this.dataSource.push(data.Data); 
+  //       //     this.dataSource = [...this.dataSource];
+  //       //     console.log(this.dataSource);
+  //       //   });
+  //       //   break;
+  //       // }
+  //   }
     
-     this.tables = data.Data;
-   });
+  //    this.tables = data.Data;
+  //  });
   }
   // for(let a=0;a<data.Data.length;a++)
   // {
@@ -230,8 +268,9 @@ export class OrderingComponent implements OnInit {
         if(result.action == 'Add')
         {
           console.log(result);
-          this.dataSource.push(result); 
-          this.dataSource = [...this.dataSource]; 
+          this.orders.push(result);
+          this.dataSource = this.orders; 
+          this.dataSource = [...this.dataSource];
           console.log(this.dataSource);
         }
         else if(result.action == 'Update')

@@ -22,5 +22,8 @@ export interface Data {
     order_status: string,
     kot_id: number,
     order_captain: string;
+    table_pax:number;
+    table_capatain:string;
+    BACKGROUND_COLOR:string;
 }
 
