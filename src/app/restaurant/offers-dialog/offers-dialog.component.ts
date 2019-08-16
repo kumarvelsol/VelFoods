@@ -120,7 +120,7 @@ export class OffersDialogComponent implements OnInit {
     }
     if(this.DateCheck == false || this.DayCheck == false || this.MinBillCheck == false){
       this.OfferApplyMessage == "This Offer is not Available at this Time..!";
-      this.data.AmountAfterDiscount = 0;
+      this.data.AmountAfterDiscount = this.total_amount;
       this.data.DiscountAmount = 0;
       this.data.OfferId = 0;
       this.data.Percentage = 0;
@@ -172,7 +172,7 @@ export class OffersDialogComponent implements OnInit {
     }
   }
   Close(){
-    this.data.AmountAfterDiscount = 0;
+    this.data.AmountAfterDiscount = this.total_amount;
     this.data.DiscountAmount = 0;
     this.data.OfferId = 0;
     this.data.Percentage = 0;

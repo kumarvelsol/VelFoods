@@ -93,15 +93,13 @@ export class TableStatusComponent implements OnInit {
       });
       dialogRef.afterClosed().subscribe(result => {
         console.log(result);
+        this.totalamount = result.AmountAfterDiscount;
       });
     }else{
       alert("Please select the Occupied Table to apply an offer");
     }
   }
 }
-
-
-
 // onbuttonclick($event,table_name)
 // {
 // this.dataSource = null;
