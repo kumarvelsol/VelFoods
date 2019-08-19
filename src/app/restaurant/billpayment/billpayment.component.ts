@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RestaurantService } from '../restaurant.service';
+import { Responce, JsResponse } from '../../shared/js-response';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-billpayment',
@@ -11,8 +13,16 @@ export class BillpaymentComponent implements OnInit {
   bank : string;bank1 : string;bank2 : string;bank3 : string;type_of_payment : string;  Amoount : number;
   checked: boolean = false;checked1: boolean = false;checked2: boolean = false;checked3: boolean = false;checked4: boolean = false;
   checking1:boolean=false;checking2:boolean=false;checking3:boolean=false;checking4:boolean=false;checking5:boolean=false;
-  banklist;walletlist;
-  constructor(public service1 : RestaurantService) {
+  banklist;walletlist;count : number = 0; tablelist : Responce;billment_id : number;
+  table_name : number; table_pax : number; amount : number;
+
+  constructor(public service1 : RestaurantService,private route: ActivatedRoute) {
+    this.route.queryParams.subscribe(params => {
+      this.table_name = params["tablename"];
+      this.table_pax = params["pax"];
+      this.amount = params["amount"];
+    });
+    console.log(this.table_name);console.log(this.table_pax);
    }
 
   ngOnInit() 
@@ -28,6 +38,12 @@ export class BillpaymentComponent implements OnInit {
         this.service1.getwallets(1).subscribe(data =>
           {
             this.walletlist = data.Data;
+          });
+          this.service1.Getbillpayemnts(1).subscribe((data : Responce) =>
+          {
+            this.count = data.Data.length;
+            this.billment_id = this.count + 1;
+            console.log(data);
           });
   }
   public onChange(event : number)
