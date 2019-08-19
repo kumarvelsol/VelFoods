@@ -93,7 +93,8 @@ export class TableStatusComponent implements OnInit {
       });
       dialogRef.afterClosed().subscribe(result => {
         console.log(result);
-        this.totalamount = result.AmountAfterDiscount;
+        this.amount = result.AmountAfterDiscount;
+        console.log(this.amount);
       });
     }else{
       alert("Please select the Occupied Table to apply an offer");

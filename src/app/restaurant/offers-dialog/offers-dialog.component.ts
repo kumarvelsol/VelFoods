@@ -30,6 +30,8 @@ export class OffersDialogComponent implements OnInit {
   offers_count : number;
   PromoCode : string;
   SelectedOffer : string = "None";
+  isCheckvisible : boolean = false;
+  isCancelvisible : boolean = false;
   constructor(public dialogRef: MatDialogRef<OffersDialogComponent>,public datepipe: DatePipe,
     @Optional() @Inject(MAT_DIALOG_DATA) public data: TableData, public service:RestaurantService) {
     console.log(data);
@@ -60,13 +62,14 @@ export class OffersDialogComponent implements OnInit {
     //this.PromoCode = promo_code;
     //console.log(this.PromoCode);
     this.SelectedOffer = Promo.promo_code_name;
-    console.log("Min Status : "+ Promo.minbill_status+"\nMin Amount : "+ Promo.minbill_amount);
-    console.log("offers_id : "+ Promo.offers_id+"\npercentage : "+ Promo.percentage);
-    console.log("Promocode Name : "+ Promo.promo_code_name+"\nPromo Code : "+ Promo.promo_code);
-    console.log("Max Status : "+ Promo.maximum_bill_status+"\nMax Amount : "+ Promo.maximum_bill_amount);
-    console.log("Day Status : "+ Promo.Day_status+"\nDay Type : "+ Promo.Day_type+"\nDays : "+ Promo.Days);
-    console.log("Time Status : "+ Promo.Active_time_status+"\nFrom Time : "+ Promo.from_time+"\nTo Time : "+ Promo.to_time);
-    console.log("Date Status : "+ Promo.Active_dare_status+"\nFrom Amount : "+ Promo.from_date+"\nTo Date : "+ Promo.to_date);
+    this.PromoCode = Promo.promo_code;
+    // console.log("Min Status : "+ Promo.minbill_status+"\nMin Amount : "+ Promo.minbill_amount);
+    // console.log("offers_id : "+ Promo.offers_id+"\npercentage : "+ Promo.percentage);
+    // console.log("Promocode Name : "+ Promo.promo_code_name+"\nPromo Code : "+ Promo.promo_code);
+    // console.log("Max Status : "+ Promo.maximum_bill_status+"\nMax Amount : "+ Promo.maximum_bill_amount);
+    // console.log("Day Status : "+ Promo.Day_status+"\nDay Type : "+ Promo.Day_type+"\nDays : "+ Promo.Days);
+    // console.log("Time Status : "+ Promo.Active_time_status+"\nFrom Time : "+ Promo.from_time+"\nTo Time : "+ Promo.to_time);
+    // console.log("Date Status : "+ Promo.Active_dare_status+"\nFrom Amount : "+ Promo.from_date+"\nTo Date : "+ Promo.to_date);
     let date: Date = new Date();
     if(Promo.Active_dare_status == "true"){
       //console.log(Promo.Active_dare_status+","+date.toDateString());
@@ -119,7 +122,10 @@ export class OffersDialogComponent implements OnInit {
       this.MinBillCheck = true;
     }
     if(this.DateCheck == false || this.DayCheck == false || this.MinBillCheck == false){
-      this.OfferApplyMessage == "This Offer is not Available at this Time..!";
+      this.OfferApplyMessage = "This Offer is not Available at this Time..!";
+      this.isCheckvisible = false;
+      this.isCancelvisible = true;
+      console.log(this.OfferApplyMessage);
       this.data.AmountAfterDiscount = this.total_amount;
       this.data.DiscountAmount = 0;
       this.data.OfferId = 0;
@@ -128,12 +134,15 @@ export class OffersDialogComponent implements OnInit {
       this.data.MinBillAmount = 0;
       this.data.PromoCode = "";
     }else{
+      this.OfferApplyMessage = "This Offer Can be Applied";
+      this.isCheckvisible = true;
+      this.isCancelvisible = false;
       this.Percentage = Promo.percentage;
       this.Discount = (this.Percentage * this.total_amount) / 100;
-      this.AmountAfterDiscount = this.total_amount - this.Discount;
       if(Promo.maximum_bill_status == "true"){
-        if(this.AmountAfterDiscount >= Promo.maximum_bill_amount){
-          this.AmountAfterDiscount = Promo.maximum_bill_amount;
+        if(this.Discount >= Promo.maximum_bill_amount){
+          this.AmountAfterDiscount = this.total_amount - Promo.maximum_bill_amount;
+          this.Discount = Promo.maximum_bill_amount;
         }else{
           this.AmountAfterDiscount = this.total_amount - this.Discount;
         }
