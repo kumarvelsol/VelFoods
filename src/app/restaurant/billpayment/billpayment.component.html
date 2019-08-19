@@ -9,26 +9,26 @@
           <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" appearance="outline">
             <mat-icon style="color :gray" matSuffix>developer_board</mat-icon>
             <mat-label style="color :gray">BillNo</mat-label>
-            <input style="color :gray"  type="text" name="first_name"  matInput>
+            <input style="color :gray"  type="text" [(ngModel)]="billment_id" name="billment_id"  matInput>
           </mat-form-field>
         </div>
         <div class="col-md-3 mat-form-wrap">
           <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" appearance="outline">
             <mat-icon style="color :gray" matSuffix>developer_board</mat-icon>
             <mat-label style="color :gray">Table</mat-label>
-            <input style="color :gray"  type="text" name="student_roll_no"  matInput>
+            <input style="color :gray"  type="text" [(ngModel)]="table_name" name="table_name"  matInput>
           </mat-form-field>
         </div>
         <div class="col-md-3 mat-form-wrap">
           <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" appearance="outline" >
             <mat-label style="color :gray">Pax</mat-label>
-            <input style="color :gray"  type="text" name="student_roll_no"  matInput>
+            <input style="color :gray"  type="text" [(ngModel)]="table_pax" name="table_pax"  matInput>
           </mat-form-field>
         </div>
         <div class="col-md-3 mat-form-wrap">
           <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" appearance="outline"  >
             <mat-label style="color :gray">Amount</mat-label>
-            <input style="color :gray"  type="text" name="student_roll_no"  matInput>
+            <input style="color :gray"  type="text" [(ngModel)]="amount" name="amount"  matInput>
           </mat-form-field>
         </div>
       </div>
@@ -171,7 +171,7 @@
               <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" appearance="outline">
                 <mat-icon style="color :gray" matSuffix>developer_board</mat-icon>
                 <mat-label style="color :gray">Bill Amount</mat-label>
-                <input style="color :gray"  type="text" name="first_name"  matInput>
+                <input style="color :gray"  type="text" [(ngModel)]="amount" name="amount"  matInput>
               </mat-form-field>
             </div>
             <div class="col-md-4 mat-form-wrap">

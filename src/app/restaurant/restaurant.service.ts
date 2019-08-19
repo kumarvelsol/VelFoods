@@ -18,8 +18,8 @@ import { Prints } from '../shared/interfaces/Prints';
   providedIn: 'root'
 })
 export class RestaurantService {
-//Baseurl = 'http://localhost:57649/';
- Baseurl = 'http://school.edujinni.in/';
+Baseurl = 'http://localhost:57649/';
+// Baseurl = 'http://school.edujinni.in/';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json'
@@ -256,5 +256,11 @@ export class RestaurantService {
   }
   public PrintInsert(print : Prints){
     return this.http.post<JsResponse>(`${"http://localhost:57649/printinsert"}`,print);
+  }
+  public Getbillpayemnts(restaurent_id:number)
+  {
+    let parms =new HttpParams();
+    parms =parms.append('restaurent_id', restaurent_id+"")
+    return this.http.post(`${this.Baseurl+"Getbillpayemnts"}`,parms);
   }
  }

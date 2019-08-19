@@ -6,6 +6,8 @@ import { Responce, Data, JsResponse } from 'src/app/shared/js-response';
 import { OffersDialogComponent } from '../offers-dialog/offers-dialog.component';
 import { MatDialog, MatTable, MatTableDataSource, MatDialogConfig } from '@angular/material';
 import { Prints } from 'src/app/shared/interfaces/Prints';
+import { NavigationExtras, Router } from '@angular/router';
+
 export interface PeriodicElement {
   ItemName : string;
   Rate : number;
@@ -32,13 +34,13 @@ export interface ParsingData {
 })
 export class TableStatusComponent implements OnInit {
   @ViewChild(MatTable) table: MatTable<any>; 
-  constructor(private service : RestaurantService,public dialog: MatDialog) { }
+  constructor(private service : RestaurantService,public dialog: MatDialog,private router: Router) { }
   userlist:order;
   rooms : room[];
   count: number;
   kot_id:number;
   tables :Data[]; table_pax : number;
-  listcount : number;tname:number; table_name : string;table_defination_id : number;
+  listcount : number;tname:number; table_name : number;table_defination_id : number;
   itemnames:any[] =[];
   Rate:any[] =[];
   quantity:any[] =[];
@@ -96,6 +98,8 @@ export class TableStatusComponent implements OnInit {
             this.totalamount = data.Data[i].order_totalamount;
             this.amount = this.amount + this.totalamount;
           }
+          this.table_name = this.tname;
+          this.table_pax = data.Data[0].table_pax;
      });
   }
   Parsing_data : ParsingData[];
@@ -169,52 +173,16 @@ export class TableStatusComponent implements OnInit {
       alert("Please select the Occupied Table to apply an offer");
     }
   }
+  public NavigateClick(table_name:number,table_pax:number,amount:number)
+  {
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        "tablename":this.table_name = table_name, 
+        "pax":this.table_pax = table_pax,
+        "amount":this.amount= amount,
+      }
+    };
+    console.log("name",this.table_name);console.log("pax",this.table_pax);console.log("amount",this.amount);
+    this.router.navigate(['/BillPayment'],navigationExtras); 
+  }
 }
-// onbuttonclick($event,table_name)
-// {
-// this.dataSource = null;
-//     this.rows = null;
-//   //  this.colorr;
-//    this.tname = table_name;
-//    console.log(this.tname);
-   
-//           this.service.getorders(1).subscribe((data : Responce) =>
-//           {
-//             this.listcount = data.Data.length;
-//             for(let i = 0;i<this.listcount;i++)
-//             {
-//               this.table_defination_id = data.Data[i].table_defination_id;
-//               console.log(this.table_defination_id);
-//                 if(this.table_defination_id == this.tname)
-//                 {
-//                   // this.itemnames.push(data.Data[i].order_itemname);
-//                   // this.Rate.push(data.Data[i].order_rate);
-//                   // this.quantity.push(data.Data[i].order_quantity);
-//                   // this.total.push(data.Data[i].order_totalamount);
-//                   // this.tax.push(data.Data[i].order_tax);
-
-//                   this.order_itemname = data.Data[i].order_itemname;
-//                   this.order_rate = data.Data[i].order_rate;
-//                   this.order_quantity = data.Data[i].order_quantity;
-//                   this.order_totalamount = data.Data[i].order_totalamount;
-//                   this.order_tax = data.Data[i].order_tax;
-//                   this.rows = [{order_itemname : this.order_itemname,order_rate : this.order_rate,order_quantity : this.order_quantity,order_totalamount : this.order_totalamount,order_tax : this.order_tax}];
-//                   this.array.push(this.rows);
-//                 }
-//                 this.dataSource = this.array;
-//             }
-//             console.log(this.dataSource);
-//            // this.dataSource.push(this.itemnames,this.Rate,this.quantity,this.total,this.tax);
-//             // console.log(this.array);
-             
-//           });
-//          // this.array.push(this.itemnames,this.Rate,this.quantity,this.total,this.tax);
-//         //  console.log(this.array);
-//           // this.table_name = table_name;
-//           // this.table_pax = data.Data[i-1].table_pax; 
-//     }
-//     order_itemname : string;order_rate : number;
-//     order_quantity : number;
-//     order_totalamount : number;
-//     order_tax : number;
-//}

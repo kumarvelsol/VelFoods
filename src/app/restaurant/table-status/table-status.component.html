@@ -51,7 +51,7 @@
           </div>
         </div>
         <div class="col-6 text-center">
-          <button mat-raised-button class="btn-styleoffer" (click)="onsettleclick()" [disabled]="Payment_disable">BillPayment</button>
+          <button mat-raised-button class="btn-styleoffer" (click)="NavigateClick(table_name,table_pax,amount)" routerLink="/BillPayment" routerLinkActive = "active" [disabled]="Payment_disable">BillPayment</button>
           <button mat-raised-button class="btn-styleoffer" (click)="onofferclick()" [disabled]="availOffer_disable" style="margin-left: 15px;">Available Offers</button>
         </div>
         <div class="col-6 text-center">
