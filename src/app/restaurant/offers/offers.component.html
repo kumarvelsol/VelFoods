@@ -33,7 +33,7 @@
                 <label class="labels_style" >Valid From & To Dates</label>
               </div>
               <div class="col-6" style="position: relative">
-                <mat-slide-toggle class="slidetoggle_wrap" name="dates_slide" [(ngModel)]="dates_slide" [color]="color" (change)="onDatesValid()"></mat-slide-toggle>
+                <mat-slide-toggle class="slidetoggle_wrap" name="dates_slide" [(ngModel)]="dates_slide" [color]="color" (change)="onDatesValid()" [disabled]="dates_disable"></mat-slide-toggle>
               </div>
             </div>
             <div class="row col-md-12" style="padding-top: 10px;padding-bottom:5px;">
@@ -85,7 +85,7 @@
                 <label class="labels_style">Select offer Application Days</label>
               </div>
               <div class="col-6" style="position: relative">
-                <mat-slide-toggle class="slidetoggle_wrap" name="days_slide" [(ngModel)]="days_slide" [color]="color" (change)="onDaysValid()"></mat-slide-toggle>
+                <mat-slide-toggle class="slidetoggle_wrap" name="days_slide" [(ngModel)]="days_slide" [color]="color" (change)="onDaysValid()" [disabled]="days_disable"></mat-slide-toggle>
               </div>
             </div>
             <div class="row col-md-12" style="padding-top: 10px;padding-bottom: 5px;">

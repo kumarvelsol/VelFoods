@@ -61,6 +61,8 @@ export class OffersComponent implements OnInit {
   sun_disable : boolean;  sunday : boolean;
   minbill_disable : boolean;
   maxdis_disable : boolean;
+  days_disable : boolean;
+  dates_disable : boolean;
   buttoncontent : string = "Save";
   displayedColumns : string[] = ["offers_id","promo_code_name","promo_code","percentage","from_date","to_date","from_time","to_time","minbill_amount","maximum_bill_amount","actions"];
   dataSource;
@@ -72,25 +74,28 @@ export class OffersComponent implements OnInit {
     this.daysSelected_disable = true;
     this.minbill_disable = true;
     this.maxdis_disable = true;
+    this.dates_disable = false;
+    this.days_disable =false;
     this.disablecheckbox();
     this.LoadingList();
   }
   onDatesValid(){
-    if(this.days_slide == true){
-      alert("You can't Switch On both Dates & Days Section");
-      this.dates_slide = false;
+    if(this.dates_slide == true){
+      this.from_date = null;
+      this.to_date = null;
+      this.to_date_disable = false;
+      this.from_date_disable = false;
+
+      //Disabling the Days Section..!
+      this.days_disable = true;
     }else{
-      if(this.dates_slide == true){
-        this.from_date = null;
-        this.to_date = null;
-        this.to_date_disable = false;
-        this.from_date_disable = false;
-      }else{
-        this.from_date = null;
-        this.to_date = null;
-        this.to_date_disable = true;
-        this.from_date_disable = true;
-      }
+      this.from_date = null;
+      this.to_date = null;
+      this.to_date_disable = true;
+      this.from_date_disable = true;
+
+      //Enabling the Days Section..!
+      this.days_disable = false;
     }
   }
   onTimesValid(){
@@ -107,19 +112,20 @@ export class OffersComponent implements OnInit {
     }
   }
   onDaysValid(){
-    if(this.dates_slide == true){
-      alert("You can't Switch On both Dates & Days Section");
-      this.days_slide = false;
+    if(this.days_slide == true){
+      this.daysSelected = "";
+      this.daysSelected_disable = false;
+      this.enable_checkboxes();
+      
+      //Disabling the Dates Section..!
+      this.dates_disable = true;
     }else{
-      if(this.days_slide == true){
-        this.daysSelected = "";
-        this.daysSelected_disable = false;
-        this.enable_checkboxes();
-      }else{
-        this.daysSelected = "";
-        this.daysSelected_disable = true;
-        this.disablecheckbox();
-      }
+      this.daysSelected = "";
+      this.daysSelected_disable = true;
+      this.disablecheckbox();
+
+      //Enabling the Dates Section..!
+      this.dates_disable = false;
     }
   }
   onMinBillValid(){
@@ -245,6 +251,8 @@ export class OffersComponent implements OnInit {
       }
     }
     else{
+      this.daysSelected = null;
+      this.selecteddays = null;
       this.days = true;
     }
     //minbillslide
@@ -387,6 +395,18 @@ export class OffersComponent implements OnInit {
     this.sat_disable = true;
     this.sun_disable = true;
   }
+  public OnlydisableCheckbox(){
+    this.mon_disable = true;
+    this.tue_disable = true;
+    this.wed_disable = true;
+    this.thur_disable = true;
+    this.fri_disable = true;
+    this.sat_disable = true;
+    this.sun_disable = true;
+  }
+  public OnlyenableCheckbox(){
+
+  }
   public LoadingList(){
     this.service.OffersList(1).subscribe(data =>{
       this.dataSource = new MatTableDataSource(data.Data);
@@ -394,31 +414,103 @@ export class OffersComponent implements OnInit {
   }
   off_id : number;
   public RowSelected(i: number, offers_id: number, promo_code_name: string, promo_code: string, percentage : string, from_date : string,to_date : string,from_time : string,to_time : string, Active_dare_status : string, Active_time_status : string, minbill_status : string, maximum_bill_status : string, Day_status : string, Day_type : string, Days : string,minbill_amount : string,maximum_bill_amount : string) {
-    // index row is used just for debugging proposes and can be removed
-    // this.id = fee_mode_id;
-    // this.mode = fee_mode_name;
-    // this.code = fee_mode_code;
-    // this.installments = No_of_installments;
     this.buttoncontent = "Update";
     this.off_id = offers_id;
-    console.log("Date status : "+Active_dare_status+"\nTime status : "+Active_time_status+"\nMin Bill Status : "+ minbill_status+"\nMax Bill Status : "+maximum_bill_status+"\nDay Status : "+Day_status);
     this.promo_name = promo_code_name;
     this.promo_code = promo_code;
     this.percentage = percentage;
     if(Active_dare_status == "true"){
+      //Date Elements
       this.dates_slide = true;
       this.from_date = from_date;
       this.to_date = to_date;
       this.to_date_disable = false;
       this.from_date_disable = false;
-      console.log("Date True, From Date : " + this.from_date + "\nTo Date : " + this.to_date);
-    }else{
+
+      //Day Elements
+      this.days_slide = false;
+      this.daysSelected = null;
+      this.daysSelected_disable = true;
+      this.disablecheckbox();
+    }else if(Day_status == "true"){
+      //Date Elements
       this.dates_slide = false;
       this.from_date = null;
       this.to_date = null;
       this.to_date_disable = true;
       this.from_date_disable = true;
-      console.log("Date False");
+
+      //Day Elements
+      this.days_slide = true;
+      this.daysSelected = Day_type;
+      this.daysSelected_disable = false;
+      this.enable_checkboxes();
+      var splittedDays = Days.split(",",7);
+      if(Day_type == "WeekEnds"){
+        this.monday = false;
+        this.tuesday = false;
+        this.wednesday = false;
+        this.thursday = false;
+        this.friday = false;
+        this.saturday = true;
+        this.sunday = true;
+        this.OnlydisableCheckbox();
+      }else if(Day_type == "WeekDays"){
+        this.monday = true;
+        this.tuesday = true;
+        this.wednesday = true;
+        this.thursday = true;
+        this.friday = true;
+        this.saturday = false;
+        this.sunday = false;
+        this.OnlydisableCheckbox();
+      }else if(Day_type == "AllDays"){
+        this.monday = true;
+        this.tuesday = true;
+        this.wednesday = true;
+        this.thursday = true;
+        this.friday = true;
+        this.saturday = true;
+        this.sunday = true;
+        this.OnlydisableCheckbox();
+      }else if(Day_type == "ParticularDays"){
+        this.OnlyenableCheckbox();
+        if(splittedDays.includes('Monday')){
+          this.monday = true;
+        }else{
+          this.monday = false;
+        }
+        if(splittedDays.includes('Tuesday')){
+          this.tuesday = true;
+        }else{
+          this.tuesday = false;
+        }
+        if(splittedDays.includes('Wednesday')){
+          this.wednesday = true;
+        }else{
+          this.wednesday = false;
+        }
+        if(splittedDays.includes('Thursday')){
+          this.thursday = true;
+        }else{
+          this.thursday = false;
+        }
+        if(splittedDays.includes('Friday')){
+          this.friday = true;
+        }else{
+          this.friday = false;
+        }
+        if(splittedDays.includes('Saturday')){
+          this.saturday = true;
+        }else{
+          this.saturday = false;
+        }
+        if(splittedDays.includes('Sunday')){
+          this.sunday = true;
+        }else{
+          this.sunday = false;
+        }
+      }
     }
     if(Active_time_status == "true"){
       this.times_slide = true;
@@ -426,14 +518,12 @@ export class OffersComponent implements OnInit {
       this.to_time = to_time;
       this.to_time_disable = false;
       this.from_time_disable = false;
-      console.log("Time True");
     }else{
       this.times_slide = false;
       this.from_time = null;
       this.to_time = null;
       this.to_time_disable = true;
       this.from_time_disable = true;
-      console.log("Time False");
     }
     if(minbill_status == "true"){
       this.minbill_slide = true;
@@ -452,68 +542,6 @@ export class OffersComponent implements OnInit {
       this.maxdis_slide = false;
       this.maxdis_amount = "";
       this.maxdis_disable = true;
-    }
-    if(Day_status == "true"){
-      this.days_slide = true;
-      this.daysSelected = Day_type;
-      this.daysSelected_disable = false;
-      this.enable_checkboxes();
-      console.log("Days : "+Days);
-      var splittedDays = Days.split(",",7);
-      console.log(splittedDays.length);
-      if(Day_type == "WeekEnds"){
-        this.monday = false;
-        this.tuesday = false;
-        this.wednesday = false;
-        this.thursday = false;
-        this.friday = false;
-        this.saturday = true;
-        this.sunday = true;
-      }else if(Day_type == "WeekDays"){
-        this.monday = true;
-        this.tuesday = true;
-        this.wednesday = true;
-        this.thursday = true;
-        this.friday = true;
-        this.saturday = false;
-        this.sunday = false;
-      }else if(Day_type == "AllDays"){
-        this.monday = true;
-        this.tuesday = true;
-        this.wednesday = true;
-        this.thursday = true;
-        this.friday = true;
-        this.saturday = true;
-        this.sunday = true;
-        this.selecteddays = "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday";
-      }else if(Day_type == "ParticularDays"){
-        if(splittedDays.includes('Monday')){
-          this.monday = true;
-        }
-        if(splittedDays.includes('Tuesday')){
-          this.tuesday = true;
-        }
-        if(splittedDays.includes('Wednesday')){
-          this.wednesday = true;
-        }
-        if(splittedDays.includes('Thursday')){
-          this.thursday = true;
-        }
-        if(splittedDays.includes('Friday')){
-          this.friday = true;
-        }
-        if(splittedDays.includes('Saturday')){
-          this.saturday = true;
-        }
-        if(splittedDays.includes('Sunday')){
-          this.sunday = true;
-        }
-      }
-    }else{
-      this.days_slide = false;
-      this.daysSelected = "";
-      this.daysSelected_disable = true;
-      this.disablecheckbox();
     }
   }
 }
