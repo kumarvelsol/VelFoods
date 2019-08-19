@@ -32,6 +32,7 @@ export class OffersDialogComponent implements OnInit {
   SelectedOffer : string = "None";
   isCheckvisible : boolean = false;
   isCancelvisible : boolean = false;
+  isdetailsvisible : boolean = false;
   constructor(public dialogRef: MatDialogRef<OffersDialogComponent>,public datepipe: DatePipe,
     @Optional() @Inject(MAT_DIALOG_DATA) public data: TableData, public service:RestaurantService) {
     console.log(data);
@@ -125,6 +126,7 @@ export class OffersDialogComponent implements OnInit {
       this.OfferApplyMessage = "This Offer is not Available at this Time..!";
       this.isCheckvisible = false;
       this.isCancelvisible = true;
+      this.isdetailsvisible = false;
       console.log(this.OfferApplyMessage);
       this.data.AmountAfterDiscount = this.total_amount;
       this.data.DiscountAmount = 0;
@@ -137,6 +139,7 @@ export class OffersDialogComponent implements OnInit {
       this.OfferApplyMessage = "This Offer Can be Applied";
       this.isCheckvisible = true;
       this.isCancelvisible = false;
+      this.isdetailsvisible = true;
       this.Percentage = Promo.percentage;
       this.Discount = (this.Percentage * this.total_amount) / 100;
       if(Promo.maximum_bill_status == "true"){

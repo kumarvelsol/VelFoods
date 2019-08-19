@@ -76,16 +76,21 @@ export class OffersComponent implements OnInit {
     this.LoadingList();
   }
   onDatesValid(){
-    if(this.dates_slide == true){
-      this.from_date = null;
-      this.to_date = null;
-      this.to_date_disable = false;
-      this.from_date_disable = false;
+    if(this.days_slide == true){
+      alert("You can't Switch On both Dates & Days Section");
+      this.dates_slide = false;
     }else{
-      this.from_date = null;
-      this.to_date = null;
-      this.to_date_disable = true;
-      this.from_date_disable = true;
+      if(this.dates_slide == true){
+        this.from_date = null;
+        this.to_date = null;
+        this.to_date_disable = false;
+        this.from_date_disable = false;
+      }else{
+        this.from_date = null;
+        this.to_date = null;
+        this.to_date_disable = true;
+        this.from_date_disable = true;
+      }
     }
   }
   onTimesValid(){
@@ -102,14 +107,19 @@ export class OffersComponent implements OnInit {
     }
   }
   onDaysValid(){
-    if(this.days_slide == true){
-      this.daysSelected = "";
-      this.daysSelected_disable = false;
-      this.enable_checkboxes();
+    if(this.dates_slide == true){
+      alert("You can't Switch On both Dates & Days Section");
+      this.days_slide = false;
     }else{
-      this.daysSelected = "";
-      this.daysSelected_disable = true;
-      this.disablecheckbox();
+      if(this.days_slide == true){
+        this.daysSelected = "";
+        this.daysSelected_disable = false;
+        this.enable_checkboxes();
+      }else{
+        this.daysSelected = "";
+        this.daysSelected_disable = true;
+        this.disablecheckbox();
+      }
     }
   }
   onMinBillValid(){

@@ -12,6 +12,7 @@ import { Miscollection } from '../shared/miscollection';
 import { Restaurant } from '../shared/interfaces/restaurant';
 import { Managermodel } from '../shared/interfaces/managermodel';
 import { Walletsmodel } from '../shared/walletsmodel';
+import { Prints } from '../shared/interfaces/Prints';
 
 @Injectable({
   providedIn: 'root'
@@ -253,6 +254,7 @@ export class RestaurantService {
     parms = parms.append('table_defination_id', table_defination_id+"")
     return this.http.post(`${this.Baseurl+"getorderitems"}`,parms);
   }
-  
+  public PrintInsert(print : Prints){
+    return this.http.post<JsResponse>(`${"http://localhost:57649/printinsert"}`,print);
+  }
  }
-

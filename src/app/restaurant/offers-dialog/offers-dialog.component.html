@@ -3,13 +3,10 @@
     <div class="col-12 text-center">
       <p>Available Offers</p>
     </div>
-    <div class="col-12 text-center">
-      
-      <!-- <label class="col-2"></label> -->
-    </div>
-    <div class="col-md-12" style="padding-top: 10px;overflow: auto; height: 200px;">
+    <!-- <div class="col-12 text-center">
+    </div> -->
+    <div class="col-md-12" style="padding-top: 10px;overflow: auto;height: 200px;">
       <button *ngFor="let Promo of Offers" mat-raised-button  class="button-style colors" name="Promo.promo_code" (click)="onbuttonclick($event,Promo)">  {{Promo.promo_code}} ({{Promo.percentage}} %)</button>
-      <!-- [ngStyle]="{'background-color':room.BACKGROUND_COLOR}" -->
     </div>
     <div class="col-12">
       <button mat-button mat-flat-button class="btn-style" color="warn" [mat-dialog-close]="data" (click)="apply()">Apply</button>
@@ -19,11 +16,11 @@
       <label style="margin-left: 10px;">{{OfferApplyMessage}}</label>
     </div>
     <div class="col-12">
-      <label>Total Amount : {{total_amount}}</label>
+      <label><strong>Total Amount :</strong> {{total_amount}}</label>
     </div>
-    <div class="col-12">
-      <label>After Discount : {{AmountAfterDiscount}}</label>
-      <label>Promo Code : {{PromoCode}}</label>
+    <div class="col-12" *ngIf="isdetailsvisible">
+      <label><strong>After Discount :</strong> {{AmountAfterDiscount}}</label>
+      <label style="margin-left: 10px"><strong>Promo Code :</strong> {{PromoCode}}</label>
     </div>
   </div>
 </div>
