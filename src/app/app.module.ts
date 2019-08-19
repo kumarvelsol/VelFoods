@@ -19,6 +19,7 @@ import { AmazingTimePickerModule } from 'amazing-time-picker';
 //import { DialogBoxComponent } from './dialog-box/dialog-box.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DialogBoxComponent } from './dialog-box/dialog-box.component';
+import { OffersDialogComponent } from './restaurant/offers-dialog/offers-dialog.component';
 import { EmployeedepartmentComponent } from './employeedepartment/employeedepartment.component';
 import { EmployeeregistrationComponent } from './employeeregistration/employeeregistration.component';
 import { BillsettledailogComponent } from './restaurant/Billsettle/billsettledailog/billsettledailog.component';
@@ -33,7 +34,7 @@ import { BillsettledailogComponent } from './restaurant/Billsettle/billsettledai
     LoginComponent,
     OrderingComponent,
     DialogBoxComponent,
-    EmployeedepartmentComponent,
+    EmployeedepartmentComponent,OffersDialogComponent,
     EmployeeregistrationComponent,
   ],
   imports: [
@@ -45,7 +46,7 @@ import { BillsettledailogComponent } from './restaurant/Billsettle/billsettledai
     CommonModule,HttpClientModule, 
   ],
   entryComponents: [
-    DialogBoxComponent,
+    DialogBoxComponent,OffersDialogComponent,
     BillsettledailogComponent
   ],
   providers: [DatePipe],

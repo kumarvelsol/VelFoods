@@ -12,13 +12,14 @@ import { Miscollection } from '../shared/miscollection';
 import { Restaurant } from '../shared/interfaces/restaurant';
 import { Managermodel } from '../shared/interfaces/managermodel';
 import { Walletsmodel } from '../shared/walletsmodel';
+import { Prints } from '../shared/interfaces/Prints';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RestaurantService {
-Baseurl = 'http://localhost:57649/';
- //Baseurl = 'http://school.edujinni.in/';
+//Baseurl = 'http://localhost:57649/';
+ Baseurl = 'http://school.edujinni.in/';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json'
@@ -37,7 +38,7 @@ Baseurl = 'http://localhost:57649/';
     let params = new HttpParams();
     params = params.append('restaurent_id', restaurent_id+"");
     params = params.append('promo_code', promo_code);
-    return this.http.post<Responce>(`${this.Baseurl+"SelectedOffer"}`,params);
+    return this.http.post<Responce>(`${"http://localhost:57649/SelectedOffer"}`,params);
   }
   public UpdateOffers (offer : OfferUp){
     return this.http.post<JsResponse>(`${this.Baseurl+"OfferUpdate"}`,offer);
@@ -263,6 +264,13 @@ Baseurl = 'http://localhost:57649/';
     parms = parms.append('table_defination_id', table_defination_id+"")
     return this.http.post(`${this.Baseurl+"getorderitems"}`,parms);
   }
-  
+  public PrintInsert(print : Prints){
+    return this.http.post<JsResponse>(`${"http://localhost:57649/printinsert"}`,print);
+  }
+  public Getbillpayemnts(restaurent_id:number)
+  {
+    let parms =new HttpParams();
+    parms =parms.append('restaurent_id', restaurent_id+"")
+    return this.http.post(`${this.Baseurl+"Getbillpayemnts"}`,parms);
+  }
  }
-

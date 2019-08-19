@@ -3,30 +3,42 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { RestaurantService } from 'src/app/restaurant/restaurant.service';
 import { Responce, Data } from 'src/app/shared/js-response';
 import { OfferUp } from 'src/app/shared/interfaces/offers';
+import { DatePipe } from '@angular/common';
 
-export interface UsersData {
-  table_Name:string;
-  total_amount:number;
+export interface TableData {
+  table_Name : number;
+  total_amount : number;
+  DiscountAmount : number;
+  AmountAfterDiscount : number;
+  OfferId : number;
+  Percentage : number;
+  MinBillAmount : number;
+  MaxDiscountAmount : number;
+  PromoCode : string;
 }
 @Component({
   selector: 'app-offers-dialog',
   templateUrl: './offers-dialog.component.html',
   styleUrls: ['./offers-dialog.component.css']
 })
-
 export class OffersDialogComponent implements OnInit {
-  table_Name : string;
+  table_Name : number;
   total_amount : number;
-  local_data:any;
+  local_data : any;
   Offers : Data[];
+  OfferApplyMessage : string;
   offers_count : number;
   PromoCode : string;
-  constructor(public dialogRef: MatDialogRef<OffersDialogComponent>,
-    @Optional() @Inject(MAT_DIALOG_DATA) public data: UsersData, public service:RestaurantService) {
+  SelectedOffer : string = "None";
+  isCheckvisible : boolean = false;
+  isCancelvisible : boolean = false;
+  isdetailsvisible : boolean = false;
+  constructor(public dialogRef: MatDialogRef<OffersDialogComponent>,public datepipe: DatePipe,
+    @Optional() @Inject(MAT_DIALOG_DATA) public data: TableData, public service:RestaurantService) {
     console.log(data);
     this.local_data = data;
-    this.table_Name = this.local_data.table_Name;
-    this.total_amount = this.local_data.total_amount;
+    this.table_Name = data.table_Name;
+    this.total_amount = data.total_amount;
   }
   ngOnInit() {
     this.service.OffersList(1).subscribe((data : Responce) =>
@@ -37,27 +49,147 @@ export class OffersDialogComponent implements OnInit {
       this.Offers = data.Data;
     });
   }
-  onbuttonclick($event,promo_code){
+  OfferCheck : boolean = true;
+  DateCheck : boolean = true;
+  DayCheck : boolean = true;
+  TimeCheck : boolean = true;
+  MinBillCheck : boolean = true;
+  MaxDisAmount : number;
+  Percentage : number;
+  Discount : number;
+  AmountAfterDiscount : number;
+  onbuttonclick($event,Promo){
     //this.amount = 0;
-    this.PromoCode = promo_code;
-    this.service.SelectedOffer(1,this.PromoCode).subscribe((data : Responce) =>
-    {
-      if(data.code == 200){
-        if(data.Data[0].Active_dare_status == "true"){
-
-        }else if(data.Data[0].Day_status == "true"){
-          
+    //this.PromoCode = promo_code;
+    //console.log(this.PromoCode);
+    this.SelectedOffer = Promo.promo_code_name;
+    this.PromoCode = Promo.promo_code;
+    // console.log("Min Status : "+ Promo.minbill_status+"\nMin Amount : "+ Promo.minbill_amount);
+    // console.log("offers_id : "+ Promo.offers_id+"\npercentage : "+ Promo.percentage);
+    // console.log("Promocode Name : "+ Promo.promo_code_name+"\nPromo Code : "+ Promo.promo_code);
+    // console.log("Max Status : "+ Promo.maximum_bill_status+"\nMax Amount : "+ Promo.maximum_bill_amount);
+    // console.log("Day Status : "+ Promo.Day_status+"\nDay Type : "+ Promo.Day_type+"\nDays : "+ Promo.Days);
+    // console.log("Time Status : "+ Promo.Active_time_status+"\nFrom Time : "+ Promo.from_time+"\nTo Time : "+ Promo.to_time);
+    // console.log("Date Status : "+ Promo.Active_dare_status+"\nFrom Amount : "+ Promo.from_date+"\nTo Date : "+ Promo.to_date);
+    let date: Date = new Date();
+    if(Promo.Active_dare_status == "true"){
+      //console.log(Promo.Active_dare_status+","+date.toDateString());
+      if(this.datepipe.transform(date.toDateString(),'yyyy-MM-dd')>= Promo.from_date && this.datepipe.transform(date.toDateString(),'yyyy-MM-dd') <= Promo.to_date){
+        this.DateCheck = true;
+        this.OfferCheck = true;
+        console.log("Date True");
+      }else{
+        this.DateCheck = false;
+        this.OfferCheck = false;
+        console.log("Date False");
+      }
+    }else if(Promo.Day_status == "true"){
+      console.log("Days : "+Promo.Days);
+      var splittedDays = Promo.Days.split(",",7);
+      console.log(splittedDays.length);
+      var day: string[] = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+      var TodayDay = day[date.getDay()]; 
+      console.log(TodayDay);
+      if(splittedDays.includes(TodayDay)){
+        this.DayCheck = true;
+        this.OfferCheck = true;
+        console.log("Day True");
+      }else{
+        this.DayCheck = false;
+        this.OfferCheck = false;
+        console.log("Day False");
+      }
+    }
+    if(Promo.Active_time_status == "true"){
+      this.TimeCheck = true;
+      // if(){
+      //   this.TimeCheck = true;
+      // }else{
+      //   this.TimeCheck = false;
+      // }
+    }else{
+      this.TimeCheck = true;
+    }
+    if(Promo.minbill_status == "true"){
+      if(this.total_amount >= Promo.minbill_amount){
+        this.MinBillCheck = true;
+        console.log("Min Bill True");
+      }else{
+        this.MinBillCheck = false;
+        console.log("Min Bill False");
+      }
+      console.log("Tot : "+ this.total_amount+"\nMin Amount : "+Promo.minbill_amount)
+    }else{
+      this.MinBillCheck = true;
+    }
+    if(this.DateCheck == false || this.DayCheck == false || this.MinBillCheck == false){
+      this.OfferApplyMessage = "This Offer is not Available at this Time..!";
+      this.isCheckvisible = false;
+      this.isCancelvisible = true;
+      this.isdetailsvisible = false;
+      console.log(this.OfferApplyMessage);
+      this.data.AmountAfterDiscount = this.total_amount;
+      this.data.DiscountAmount = 0;
+      this.data.OfferId = 0;
+      this.data.Percentage = 0;
+      this.data.MaxDiscountAmount = 0;
+      this.data.MinBillAmount = 0;
+      this.data.PromoCode = "";
+    }else{
+      this.OfferApplyMessage = "This Offer Can be Applied";
+      this.isCheckvisible = true;
+      this.isCancelvisible = false;
+      this.isdetailsvisible = true;
+      this.Percentage = Promo.percentage;
+      this.Discount = (this.Percentage * this.total_amount) / 100;
+      if(Promo.maximum_bill_status == "true"){
+        if(this.Discount >= Promo.maximum_bill_amount){
+          this.AmountAfterDiscount = this.total_amount - Promo.maximum_bill_amount;
+          this.Discount = Promo.maximum_bill_amount;
+        }else{
+          this.AmountAfterDiscount = this.total_amount - this.Discount;
         }
       }else{
-
+        this.AmountAfterDiscount = this.total_amount - this.Discount;
       }
-        //this.dataSource = data.Data;
-        // this.listcount = data.Data.length;
-        // for(let i =0;i<this.listcount;i++)
-        // {
-        //   this.totalamount = data.Data[i].order_totalamount;
-        //   this.amount = this.amount + this.totalamount;
-        // }
-    });
+      this.data.AmountAfterDiscount = this.AmountAfterDiscount;
+      this.data.DiscountAmount = this.Discount;
+      this.data.OfferId = Promo.offers_id;
+      this.data.Percentage = Promo.percentage;
+      this.data.MaxDiscountAmount = Promo.maximum_bill_amount;
+      this.data.MinBillAmount = Promo.minbill_amount;
+      this.data.PromoCode = Promo.promo_code;
+    }
+    // this.service.SelectedOffer(1,this.PromoCode).subscribe((data : Responce) =>
+    // {
+    //   console.log(data);
+    //   if(data.code == 200){
+    //     if(data.Data[0].Active_dare_status == "true"){
+    //     }else if(data.Data[0].Day_status == "true"){
+    //     }
+    //   }else{
+    //   }
+    //     //this.dataSource = data.Data;
+    //     // this.listcount = data.Data.length;
+    //     // for(let i =0;i<this.listcount;i++)
+    //     // {
+    //     //   this.totalamount = data.Data[i].order_totalamount;
+    //     //   this.amount = this.amount + this.totalamount;
+    //     // }
+    // });
+  }
+  apply(){
+    if(this.OfferApplyMessage == "None"){
+      alert("Please Select the Offer and apply");
+    }
+  }
+  Close(){
+    this.data.AmountAfterDiscount = this.total_amount;
+    this.data.DiscountAmount = 0;
+    this.data.OfferId = 0;
+    this.data.Percentage = 0;
+    this.data.MaxDiscountAmount = 0;
+    this.data.MinBillAmount = 0;
+    this.data.PromoCode = "";
   }
 }
