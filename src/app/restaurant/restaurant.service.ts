@@ -12,6 +12,7 @@ import { Miscollection } from '../shared/miscollection';
 import { Restaurant } from '../shared/interfaces/restaurant';
 import { Managermodel } from '../shared/interfaces/managermodel';
 import { Walletsmodel } from '../shared/walletsmodel';
+import { Prints } from '../shared/interfaces/Prints';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +33,12 @@ export class RestaurantService {
     let params = new HttpParams();
     params = params.append('restaurent_id', restaurent_id+"");
     return this.http.post<Responce>(`${this.Baseurl+"OffersList"}`,params);
+  }
+  public SelectedOffer (restaurent_id : number,promo_code : string){
+    let params = new HttpParams();
+    params = params.append('restaurent_id', restaurent_id+"");
+    params = params.append('promo_code', promo_code);
+    return this.http.post<Responce>(`${"http://localhost:57649/SelectedOffer"}`,params);
   }
   public UpdateOffers (offer : OfferUp){
     return this.http.post<JsResponse>(`${this.Baseurl+"OfferUpdate"}`,offer);
@@ -247,6 +254,7 @@ export class RestaurantService {
     parms = parms.append('table_defination_id', table_defination_id+"")
     return this.http.post(`${this.Baseurl+"getorderitems"}`,parms);
   }
-  
+  public PrintInsert(print : Prints){
+    return this.http.post<JsResponse>(`${"http://localhost:57649/printinsert"}`,print);
+  }
  }
-

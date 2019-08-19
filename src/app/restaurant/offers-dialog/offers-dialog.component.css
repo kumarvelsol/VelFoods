@@ -1,0 +1,21 @@
+.button-style{
+    height: 40px;
+    margin-right: 15px;
+    margin-bottom: 15px;
+}
+.btn-style{
+    /* background-color: #33B5E5; */
+    color: white;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+p{
+    text-align: center;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color : warn;
+    /* darkslategray */
+    font-family: "Montserrat", sans-serif;
+    text-shadow: 0 1px 2px rgba(black,.15);
+}
