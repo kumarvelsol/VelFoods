@@ -18,8 +18,8 @@ import { Prints } from '../shared/interfaces/Prints';
   providedIn: 'root'
 })
 export class RestaurantService {
-Baseurl = 'http://localhost:57649/';
-// Baseurl = 'http://school.edujinni.in/';
+//Baseurl = 'http://localhost:57649/';
+ Baseurl = 'http://school.edujinni.in/';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json'
@@ -234,6 +234,16 @@ Baseurl = 'http://localhost:57649/';
     //parms =parms.append('insert_by', insert_by+"");
     //parms =parms.append('insert_date', insert_date+"");
     return this.http.post<JsResponse>(`${this.Baseurl+"Orderinsert"}`,parms);
+  }
+  public updateorder(quantity:any[]=[],total:any[]=[],restaurent_id:number,table_defination_id:number,order_status:string,)
+  {
+    let parms =new HttpParams();
+    parms =parms.append('quantity', quantity+"");
+    parms =parms.append('total', total+"");
+    parms =parms.append('restaurent_id', restaurent_id+"");
+    parms =parms.append('table_defination_id', table_defination_id+"");
+    parms =parms.append('order_status', order_status+"");
+    return this.http.post<JsResponse>(`${this.Baseurl+"orderupdate"}`,parms);
   }
   public getcaptains(restaurent_id:number)
   {
