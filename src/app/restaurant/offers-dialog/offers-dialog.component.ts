@@ -47,7 +47,6 @@ export class OffersDialogComponent implements OnInit {
       this.Offers = data.Data;
     });
   }
-  OfferCheck : boolean = true;
   DateCheck : boolean = true;
   DayCheck : boolean = true;
   TimeCheck : boolean = true;
@@ -71,10 +70,8 @@ export class OffersDialogComponent implements OnInit {
     if(Promo.Active_dare_status == "true"){
       if(this.datepipe.transform(date.toDateString(),'yyyy-MM-dd')>= Promo.from_date && this.datepipe.transform(date.toDateString(),'yyyy-MM-dd') <= Promo.to_date){
         this.DateCheck = true;
-        this.OfferCheck = true;
       }else{
         this.DateCheck = false;
-        this.OfferCheck = false;
       }
     }else if(Promo.Day_status == "true"){
       var splittedDays = Promo.Days.split(",",7);
@@ -82,15 +79,18 @@ export class OffersDialogComponent implements OnInit {
       var TodayDay = day[date.getDay()]; 
       if(splittedDays.includes(TodayDay)){
         this.DayCheck = true;
-        this.OfferCheck = true;
       }else{
         this.DayCheck = false;
-        this.OfferCheck = false;
       }
     }
     if(Promo.Active_time_status == "true"){
-      //console.log(this.datepipe.transform(date.toTimeString(),'hh:mm'));
-      this.TimeCheck = true;
+      let date: Date = new Date();
+      console.log(date.toTimeString().replace(/.*(\d{2}:\d{2}):\d{2}.*/, "$1"));
+      if(date.toTimeString().replace(/.*(\d{2}:\d{2}):\d{2}.*/, "$1")>= Promo.from_time && date.toTimeString().replace(/.*(\d{2}:\d{2}):\d{2}.*/, "$1") <= Promo.to_time){
+        this.TimeCheck = true;
+      }else{
+        this.TimeCheck = false;
+      }
     }else{
       this.TimeCheck = true;
     }
@@ -103,7 +103,7 @@ export class OffersDialogComponent implements OnInit {
     }else{
       this.MinBillCheck = true;
     }
-    if(this.DateCheck == false || this.DayCheck == false || this.MinBillCheck == false){
+    if(this.DateCheck == false || this.DayCheck == false || this.MinBillCheck == false || this.TimeCheck == false){
       this.OfferApplyMessage = "This Offer can't apply to this Bill..!";
       this.isCheckvisible = false;
       this.isCancelvisible = true;
