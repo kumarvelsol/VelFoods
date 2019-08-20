@@ -89,7 +89,7 @@ export class OffersDialogComponent implements OnInit {
       }
     }
     if(Promo.Active_time_status == "true"){
-      console.log(this.datepipe.transform(date.toTimeString(),'hh:mm'));
+      //console.log(this.datepipe.transform(date.toTimeString(),'hh:mm'));
       this.TimeCheck = true;
     }else{
       this.TimeCheck = true;
