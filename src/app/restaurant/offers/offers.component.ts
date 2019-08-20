@@ -45,6 +45,7 @@ export class OffersComponent implements OnInit {
   promo_code : string;
   percentage : string;
   daysSelected : string;
+  offerstatus : string;
   minbill_amount : string;
   maxdis_amount : string;
   to_date_disable : boolean;
@@ -75,7 +76,8 @@ export class OffersComponent implements OnInit {
     this.minbill_disable = true;
     this.maxdis_disable = true;
     this.dates_disable = false;
-    this.days_disable =false;
+    this.days_disable = false;
+    this.offerstatus = "Active";
     this.disablecheckbox();
     this.LoadingList();
   }
@@ -190,22 +192,19 @@ export class OffersComponent implements OnInit {
       }else{
         this.from_date = this.datepipe.transform(this.from_date,'yyyy-MM-dd');
         this.to_date = this.datepipe.transform(this.to_date,'yyyy-MM-dd');
-        console.log(this.from_date +" "+ this.to_date);
         this.dates = true;
       }
     }else{
       this.dates = true;
-      this.from_date = null;
-      this.to_date = null;
+      this.from_date = "";
+      this.to_date = "";
     }
     //times slide
     if(this.times_slide == true){
       if(this.from_time == null || this.to_time == null){
         this.times = false;
-        console.log("Time : "+this.from_time+" "+this.to_time);
         alert("Please Enter Time fields Or Switch off the Time Section");
       }else{
-        console.log("Time : "+this.from_time+" "+this.to_time);
         this.times = true;
       }
     }else{
@@ -252,7 +251,7 @@ export class OffersComponent implements OnInit {
     }
     else{
       this.daysSelected = null;
-      this.selecteddays = null;
+      this.selecteddays = "";
       this.days = true;
     }
     //minbillslide
@@ -284,8 +283,8 @@ export class OffersComponent implements OnInit {
     }else{
       if(this.maxbill == false || this.minbill == false || this.dates == false || this.times == false || this.days == false){
       }else{
-        alert(this.daysSelected+" "+this.selecteddays);
         if(this.buttoncontent == "Save"){
+          let date: Date = new Date();
           let offers : Offers = {
             promo_code_name : this.promo_name,
             promo_code : this.promo_code,
@@ -305,6 +304,9 @@ export class OffersComponent implements OnInit {
             maximum_bill_status : this.maxdis_slide+"",
             maximum_bill_amount : this.maxdis_amount,
             restaurent_id : 1,
+            offers_status : this.offerstatus,
+            insert_by : "Velsol",
+            insert_date : this.datepipe.transform(date.toDateString(),'yyyy-MM-dd'),
           }
           this.service.AddOffer(offers).subscribe(data=>{
             if(data.code == 200){
@@ -336,6 +338,7 @@ export class OffersComponent implements OnInit {
             maximum_bill_status : this.maxdis_slide+"",
             maximum_bill_amount : this.maxdis_amount,
             restaurent_id : 1,
+            offers_status : this.offerstatus,
           }
           this.service.UpdateOffers(offerup).subscribe(data=>{
             if(data.code == 200){
@@ -351,6 +354,9 @@ export class OffersComponent implements OnInit {
     }
   }
   onclearclick(){
+    this.promo_name = null;
+    this.promo_code = null;
+    this.percentage = null;
     this.dates_slide = false;
     this.onDatesValid();
     this.times_slide = false;
@@ -362,6 +368,9 @@ export class OffersComponent implements OnInit {
     this.minbill_slide = false;
     this.onMinBillValid();
     this.buttoncontent = "Save";
+    this.selecteddays = "";
+    this.daysSelected = null;
+    this.offerstatus = "Active";
   }
   public enable_checkboxes(){
     this.monday = false;
@@ -405,7 +414,13 @@ export class OffersComponent implements OnInit {
     this.sun_disable = true;
   }
   public OnlyenableCheckbox(){
-
+    this.mon_disable = false;
+    this.tue_disable = false;
+    this.wed_disable = false;
+    this.thur_disable = false;
+    this.fri_disable = false;
+    this.sat_disable = false;
+    this.sun_disable = false;
   }
   public LoadingList(){
     this.service.OffersList(1).subscribe(data =>{
@@ -413,12 +428,13 @@ export class OffersComponent implements OnInit {
     });
   }
   off_id : number;
-  public RowSelected(i: number, offers_id: number, promo_code_name: string, promo_code: string, percentage : string, from_date : string,to_date : string,from_time : string,to_time : string, Active_dare_status : string, Active_time_status : string, minbill_status : string, maximum_bill_status : string, Day_status : string, Day_type : string, Days : string,minbill_amount : string,maximum_bill_amount : string) {
+  public RowSelected(i: number, offers_id: number, promo_code_name: string, promo_code: string, percentage : string, from_date : string,to_date : string,from_time : string,to_time : string, Active_dare_status : string, Active_time_status : string, minbill_status : string, maximum_bill_status : string, Day_status : string, Day_type : string, Days : string,minbill_amount : string,maximum_bill_amount : string,offers_status : string,insert_by : string,insert_date : string) {
     this.buttoncontent = "Update";
     this.off_id = offers_id;
     this.promo_name = promo_code_name;
     this.promo_code = promo_code;
     this.percentage = percentage;
+    this.offerstatus = offers_status;
     if(Active_dare_status == "true"){
       //Date Elements
       this.dates_slide = true;
@@ -510,6 +526,8 @@ export class OffersComponent implements OnInit {
         }else{
           this.sunday = false;
         }
+      }else{
+
       }
     }
     if(Active_time_status == "true"){

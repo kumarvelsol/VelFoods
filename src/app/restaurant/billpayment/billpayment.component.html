@@ -178,13 +178,13 @@
               <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" appearance="outline">
                 <mat-icon style="color :gray" matSuffix>developer_board</mat-icon>
                 <mat-label style="color :gray">Paid Amount</mat-label>
-                <input style="color :gray"  type="text" name="student_roll_no"  matInput>
+                <input style="color :gray"  type="text" [(ngModel)]="bill_amount" name="bill_amount"  (change)="onBillChange($event)" matInput>
               </mat-form-field>
             </div>
             <div class="col-md-4 mat-form-wrap">
               <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" appearance="outline" >
                 <mat-label style="color :gray">Difference</mat-label>
-                <input style="color :gray"  type="text" name="student_roll_no"  matInput>
+                <input style="color :gray"  type="text" [(ngModel)]="due_amount" name="due_amount"  matInput>
               </mat-form-field>
             </div>
           </div>

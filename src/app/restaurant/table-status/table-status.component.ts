@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ServiceService } from 'src/app/service.service';
 import { order, room } from 'src/app/Model/ordermodel';
 import { RestaurantService } from '../restaurant.service';
+import { DatePipe } from '@angular/common';
 import { Responce, Data, JsResponse } from 'src/app/shared/js-response';
 import { OffersDialogComponent } from '../offers-dialog/offers-dialog.component';
 import { MatDialog, MatTable, MatTableDataSource, MatDialogConfig } from '@angular/material';
@@ -34,7 +35,7 @@ export interface ParsingData {
 })
 export class TableStatusComponent implements OnInit {
   @ViewChild(MatTable) table: MatTable<any>; 
-  constructor(private service : RestaurantService,public dialog: MatDialog,private router: Router) { }
+  constructor(private service : RestaurantService,public datepipe: DatePipe,public dialog: MatDialog,private router: Router) { }
   userlist:order;
   rooms : room[];
   count: number;
@@ -54,9 +55,11 @@ export class TableStatusComponent implements OnInit {
   Payment_disable : boolean;
   availOffer_disable : boolean;
   print_disable : boolean;
-  tables_disable : boolean;
+  tables_disable : boolean; 
   ngOnInit()
   {
+    let date: Date = new Date();
+    //console.log(this.datepipe.transform(date.toTimeString(),"hh:mm:ss"));
     this.Payment_disable = true;
     this.availOffer_disable = true;
     this.print_disable = true;
@@ -76,6 +79,10 @@ export class TableStatusComponent implements OnInit {
       this.print_disable = true;
       this.availOffer_disable = true;
       this.Payment_disable = false;
+      this.service.getprintid(1,table_defination_id,"Printed").subscribe((data : Responce) =>
+      {
+        this.amount = data.Data[0].total_after_discount;
+      });
     }else if(BACKGROUND_COLOR == "Green"){
       this.print_disable = true;
       this.availOffer_disable = true;
@@ -100,6 +107,7 @@ export class TableStatusComponent implements OnInit {
           }
           this.table_name = this.tname;
           this.table_pax = data.Data[0].table_pax;
+          this.table_defination_id = data.Data[0].table_defination_id;
      });
   }
   Parsing_data : ParsingData[];
@@ -111,6 +119,7 @@ export class TableStatusComponent implements OnInit {
         this.AmountAfterDiscount = this.amount;
         this.ActualAmount = this.amount;
       }
+      let date: Date = new Date();
       let print_data : Prints = {
         table_defination_id : this.Table_Id,
         total_amount : this.ActualAmount,
@@ -120,7 +129,7 @@ export class TableStatusComponent implements OnInit {
         restaurent_id : 1,
         total_after_discount : this.AmountAfterDiscount,
         insert_by : "velsol",
-        insert_date : "2019-08-19",
+        insert_date : this.datepipe.transform(date.toDateString(),'yyyy-MM-dd'),
       }
       console.log(print_data);
       this.service.PrintInsert(print_data).subscribe((data : JsResponse) =>{
@@ -136,9 +145,6 @@ export class TableStatusComponent implements OnInit {
   Discount_amount : number = 0;
   AmountAfterDiscount : number;
   ActualAmount: number;
-  onsettleclick(){
-
-  }
   onofferclick(): void{
     if(this.amount > 0){
       let p_data : ParsingData = {
@@ -173,13 +179,14 @@ export class TableStatusComponent implements OnInit {
       alert("Please select the Occupied Table to apply an offer");
     }
   }
-  public NavigateClick(table_name:number,table_pax:number,amount:number)
+  public NavigateClick(table_name:number,table_pax:number,amount:number,table_defination_id:number)
   {
     let navigationExtras: NavigationExtras = {
       queryParams: {
         "tablename":this.table_name = table_name, 
         "pax":this.table_pax = table_pax,
         "amount":this.amount= amount,
+        "tid":this.table_defination_id= table_defination_id,
       }
     };
     console.log("name",this.table_name);console.log("pax",this.table_pax);console.log("amount",this.amount);

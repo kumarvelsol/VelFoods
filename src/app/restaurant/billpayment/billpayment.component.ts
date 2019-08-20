@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RestaurantService } from '../restaurant.service';
 import { Responce, JsResponse } from '../../shared/js-response';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Billpayment } from 'src/app/shared/billpayment';
 
 @Component({
   selector: 'app-billpayment',
@@ -14,15 +15,17 @@ export class BillpaymentComponent implements OnInit {
   checked: boolean = false;checked1: boolean = false;checked2: boolean = false;checked3: boolean = false;checked4: boolean = false;
   checking1:boolean=false;checking2:boolean=false;checking3:boolean=false;checking4:boolean=false;checking5:boolean=false;
   banklist;walletlist;count : number = 0; tablelist : Responce;billment_id : number;
-  table_name : number; table_pax : number; amount : number;
+  table_name : number; table_pax : number; amount : number;bill_amount :number; due_amount : number;
+  print_id : number;payment_status : string;table_defination_id : number;jsRes : JsResponse; 
 
   constructor(public service1 : RestaurantService,private route: ActivatedRoute) {
     this.route.queryParams.subscribe(params => {
       this.table_name = params["tablename"];
       this.table_pax = params["pax"];
       this.amount = params["amount"];
+      this.table_defination_id =params["tid"];
     });
-    console.log(this.table_name);console.log(this.table_pax);
+    console.log(this.table_name);console.log(this.table_defination_id);
    }
 
   ngOnInit() 
@@ -45,33 +48,70 @@ export class BillpaymentComponent implements OnInit {
             this.billment_id = this.count + 1;
             console.log(data);
           });
+          this.service1.getprintid(1,this.table_defination_id,"printed").subscribe((data: Responce) =>
+            {
+              this.print_id = data.Data[0].print_id;
+            });
   }
   public onChange(event : number)
   {
     this.bank_name = "";
     this.total_amount = this.am[0];
+    this.bill_amount = this.am[0];
+    this.due_amount = this.amount - this.bill_amount;
+    if(this.due_amount == 0)
+    {
+      this.payment_status = "Settled";
+    }
   }
   public onChange1(event : number)
   {
     this.bank_name = this.bank;
     this.total_amount = this.am[1];
+    this.bill_amount = this.am[1];
+    this.due_amount = this.amount - this.bill_amount;
+    if(this.due_amount == 0)
+    {
+      this.payment_status = "Settled";
+    }
   }
   public onChange2(event : number)
   {
     this.bank_name = this.bank1;
     this.total_amount = this.am[2];
+    this.bill_amount = this.am[2];
+    this.due_amount = this.amount - this.bill_amount;
+    if(this.due_amount == 0)
+    {
+      this.payment_status = "Settled";
+    }
   }
   public onChange3(event : number)
   {
     this.bank_name = this.bank2;
     this.total_amount = this.am[3];
+    this.bill_amount = this.am[3];
+    this.due_amount = this.amount - this.bill_amount;
+    if(this.due_amount == 0)
+    {
+      this.payment_status = "Settled";
+    }
   }
   public onChange4(event : number)
   {
     this.bank_name = this.bank3;
     this.total_amount = this.am[4];
+    this.bill_amount = this.am[4];
+    this.due_amount = this.amount - this.bill_amount;
+    if(this.due_amount == 0)
+    {
+      this.payment_status = "Settled";
+    }
   }
-
+  public onBillChange($event)
+  {
+    this.due_amount = this.amount - this.bill_amount;
+  }
 
   toggleVisibility(value){
     this.checked = !value;
@@ -87,7 +127,7 @@ export class BillpaymentComponent implements OnInit {
     }
     if(this.checked == true)
     { 
-      this.type_of_payment = "Cash"; this.Amoount = this.am[0]; 
+      this.type_of_payment = "Cash"; this.Amoount = this.am[0];
     this.am[1] = 0;this.am[2] = 0;this.am[3] = 0;this.am[4] = 0;
     this.tr[0] = ""; this.tr[1] = "";this.tr[2] = "";this.tr[3] = "";
     this.bank = ""; this.bank1 = "";this.bank2 ="";this.bank3 ="";
@@ -183,5 +223,31 @@ export class BillpaymentComponent implements OnInit {
     }
     else {this.type_of_payment = "";this.Amoount = null; }
     console.log(this.checked4);console.log(this.type_of_payment);
+  }
+  public onsubmitclick()
+  {
+    let a : Billpayment = {
+      billment_id : this.billment_id,
+      table_name : this.table_name,
+      table_pax : this.table_pax,
+      amount : this.amount,
+      bill_amount :this.bill_amount, 
+      due_amount : this.due_amount,
+      bank_name : this.bank_name,
+      transaction_id :this.transaction_id,
+      print_id : this.print_id,
+      payment_mode : this.type_of_payment,
+      payment_status : this.payment_status,
+      table_defination_id : this.table_defination_id,
+      restaurent_id : 1
+    }
+    this.service1.billinsert(a).subscribe((data : JsResponse) =>
+    {
+      this.jsRes = data;
+      if(this.jsRes.code==200)
+          {
+            alert("BillPayment Added Succesfully.!");
+          }else{ alert("Failed to Insert data");}
+   });
   }
 }
