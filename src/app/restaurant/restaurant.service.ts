@@ -266,7 +266,7 @@ export class RestaurantService {
     return this.http.post(`${this.Baseurl+"getorderitems"}`,parms);
   }
   public PrintInsert(print : Prints){
-    return this.http.post<JsResponse>(`${"http://localhost:57649/printinsert"}`,print);
+    return this.http.post<JsResponse>(`${this.Baseurl+"printinsert"}`,print);
   }
   public getprintid(restaurent_id:number,table_defination_id : number,print_status:string)
   {
