@@ -116,14 +116,17 @@ export class TableStatusComponent implements OnInit {
       alert("Please Select the Table..!");
     }else{
       if(this.Offer_Id == 0){
+        this.OffId = null;
         this.AmountAfterDiscount = this.amount;
         this.ActualAmount = this.amount;
+      }else{
+        this.OffId = this.Offer_Id;
       }
       let date: Date = new Date();
       let print_data : Prints = {
         table_defination_id : this.Table_Id,
         total_amount : this.ActualAmount,
-        offers_id : this.Offer_Id,
+        offers_id : this.OffId,
         discount_amount : this.Discount_amount,
         print_status : "Prited",
         restaurent_id : 1,
@@ -142,6 +145,7 @@ export class TableStatusComponent implements OnInit {
     }
   }
   Offer_Id : number = 0;
+  OffId : number;
   Discount_amount : number = 0;
   AmountAfterDiscount : number;
   ActualAmount: number;

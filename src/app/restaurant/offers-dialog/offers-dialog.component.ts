@@ -41,7 +41,7 @@ export class OffersDialogComponent implements OnInit {
     this.total_amount = data.total_amount;
   }
   ngOnInit() {
-    this.service.ActiveOffers(1).subscribe((data : Responce) =>
+    this.service.OffersList(1).subscribe((data : Responce) =>
     {
       this.offers_count = data.Data.length;
       this.Offers = data.Data;
@@ -88,7 +88,9 @@ export class OffersDialogComponent implements OnInit {
       console.log(date.toTimeString().replace(/.*(\d{2}:\d{2}):\d{2}.*/, "$1"));
       if(date.toTimeString().replace(/.*(\d{2}:\d{2}):\d{2}.*/, "$1")>= Promo.from_time && date.toTimeString().replace(/.*(\d{2}:\d{2}):\d{2}.*/, "$1") <= Promo.to_time){
         this.TimeCheck = true;
+        console.log("Time true");
       }else{
+        console.log("Time false");
         this.TimeCheck = false;
       }
     }else{
