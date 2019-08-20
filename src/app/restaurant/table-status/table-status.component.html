@@ -7,7 +7,7 @@
             <p>Running Tables</p>
           </div>
           <div class="col-md-12" style="padding-top: 10px;overflow: auto; height: 400px;">
-            <button *ngFor="let room of tables"  [ngStyle]="{'background-color':room.BACKGROUND_COLOR}"  mat-raised-button  class="button-style colors" name="room.table_name" (click)="onbuttonclick($event,room.table_name)">{{room.table_name}}</button>
+            <button *ngFor="let room of tables"  [ngStyle]="{'background-color':room.BACKGROUND_COLOR}"  mat-raised-button  class="button-style colors" name="room.table_name" (click)="onbuttonclick($event,room.table_name,room.table_defination_id,room.BACKGROUND_COLOR)" [disabled]="tables_disable">{{room.table_name}}</button>
           </div>
         </div>
         <div class="col-md-6">
@@ -51,10 +51,11 @@
           </div>
         </div>
         <div class="col-6 text-center">
-          <button mat-raised-button class="btn-styleoffer" (click)="onofferclick()">Available Offers</button>
+          <button mat-raised-button class="btn-styleoffer" (click)="NavigateClick(table_name,table_pax,amount)" routerLink="/BillPayment" routerLinkActive = "active" [disabled]="Payment_disable">BillPayment</button>
+          <button mat-raised-button class="btn-styleoffer" (click)="onofferclick()" [disabled]="availOffer_disable" style="margin-left: 15px;">Available Offers</button>
         </div>
         <div class="col-6 text-center">
-          <button mat-raised-button class="btn-style" (click)="onsaveclick()">Print</button>
+          <button mat-raised-button class="btn-style" (click)="onsaveclick()" [disabled]="print_disable">Print</button>
         </div>
       </div>
     </mat-card>

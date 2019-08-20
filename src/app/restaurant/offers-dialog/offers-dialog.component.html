@@ -1,20 +1,26 @@
 <div class="container">
   <div class="row">
     <div class="col-12 text-center">
-      <p>Offers List</p>
+      <p>Available Offers</p>
     </div>
-    <div class="col-12 text-center">
-      <label>Total Amount : {{total_amount}}</label>
-      <!-- <label class="col-2"></label> -->
-    </div>
-    <div class="col-md-12" style="padding-top: 10px;overflow: auto; height: 200px;">
+    <!-- <div class="col-12 text-center">
+    </div> -->
+    <div class="col-md-12" style="padding-top: 10px;overflow: auto;height: 200px;">
       <button *ngFor="let Promo of Offers" mat-raised-button  class="button-style colors" name="Promo.promo_code" (click)="onbuttonclick($event,Promo)">  {{Promo.promo_code}} ({{Promo.percentage}} %)</button>
-      <!-- [ngStyle]="{'background-color':room.BACKGROUND_COLOR}" -->
     </div>
     <div class="col-12">
-      <button mat-button mat-flat-button color="primary" [mat-dialog-close]="data" (click)="apply()">Apply</button>
-      <button mat-button mat-flat-button color="primary" [mat-dialog-close]="data" (click)="Close()">Close</button>
-      <label>{{OfferApplyMessage}}</label>
+      <button mat-button mat-flat-button class="btn-style" color="warn" [mat-dialog-close]="data" (click)="apply()">Apply</button>
+      <button mat-button mat-flat-button class="btn-style" color="warn" style="margin-left: 10px;" [mat-dialog-close]="data" (click)="Close()">Cancel</button>
+        <i class="material-icons" style="color: green;margin-left: 10px;font-size: 25px;vertical-align: middle" *ngIf="isCheckvisible">check_circle</i>
+        <i class="material-icons" style="color: red;margin-left: 10px;font-size: 25px;vertical-align: middle" *ngIf="isCancelvisible">error</i>
+      <label style="margin-left: 10px;">{{OfferApplyMessage}}</label>
+    </div>
+    <div class="col-12">
+      <label><strong>Total Amount :</strong> {{total_amount}}</label>
+    </div>
+    <div class="col-12" *ngIf="isdetailsvisible">
+      <label><strong>After Discount :</strong> {{AmountAfterDiscount}}</label>
+      <label style="margin-left: 10px"><strong>Promo Code :</strong> {{PromoCode}}</label>
     </div>
   </div>
 </div>

@@ -17,6 +17,9 @@ export interface Offers{
     maximum_bill_status : string;
     maximum_bill_amount : string;
     restaurent_id : number;
+    offers_status : string;
+    insert_by : string;
+    insert_date : string;
 }
 export interface OfferUp{
     offers_id : number;
@@ -38,4 +41,5 @@ export interface OfferUp{
     minbill_amount : string;
     maximum_bill_status : string;
     maximum_bill_amount : string;
+    offers_status : string;
 }

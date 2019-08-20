@@ -33,7 +33,7 @@
                 <label class="labels_style" >Valid From & To Dates</label>
               </div>
               <div class="col-6" style="position: relative">
-                <mat-slide-toggle class="slidetoggle_wrap" name="dates_slide" [(ngModel)]="dates_slide" [color]="color" (change)="onDatesValid()"></mat-slide-toggle>
+                <mat-slide-toggle class="slidetoggle_wrap" name="dates_slide" [(ngModel)]="dates_slide" [color]="color" (change)="onDatesValid()" [disabled]="dates_disable"></mat-slide-toggle>
               </div>
             </div>
             <div class="row col-md-12" style="padding-top: 10px;padding-bottom:5px;">
@@ -85,7 +85,7 @@
                 <label class="labels_style">Select offer Application Days</label>
               </div>
               <div class="col-6" style="position: relative">
-                <mat-slide-toggle class="slidetoggle_wrap" name="days_slide" [(ngModel)]="days_slide" [color]="color" (change)="onDaysValid()"></mat-slide-toggle>
+                <mat-slide-toggle class="slidetoggle_wrap" name="days_slide" [(ngModel)]="days_slide" [color]="color" (change)="onDaysValid()" [disabled]="days_disable"></mat-slide-toggle>
               </div>
             </div>
             <div class="row col-md-12" style="padding-top: 10px;padding-bottom: 5px;">
@@ -166,7 +166,14 @@
               </mat-form-field>
             </div>
           </div>
-          <div class="row col-12">
+          <div class="row col-md-12">
+            <mat-form-field class="col-md-4 mat-form-wrap" style="margin-top: 10px;margin-bottom: 5px;margin-right: 10px;">
+              <mat-label>Select Type</mat-label>
+              <mat-select style="color :gray" [(ngModel)] = "offerstatus">
+                <mat-option style="color :gray" value="Active">Active</mat-option>
+                <mat-option style="color :gray" value="InActive">In Active</mat-option>
+              </mat-select>
+            </mat-form-field>
             <button mat-raised-button class="btn-style" (click)="onsaveclick()">{{buttoncontent}}</button>
             <button mat-raised-button class="btn-style" style="margin-left: 15px;" (click)="onclearclick()"> <!-- class="clearbtn-style" -->
               Clear
@@ -222,7 +229,7 @@
           <ng-container matColumnDef="actions">
             <th mat-header-cell *matHeaderCellDef>Edit</th>
             <td mat-cell *matCellDef="let element; let i=index;">
-              <button mat-icon-button style="color:gray;margin-right: 10px;" (click)="RowSelected(i,element.offers_id,element.promo_code_name,element.promo_code,element.percentage,element.from_date,element.to_date,element.from_time,element.to_time,element.Active_dare_status,element.Active_time_status,element.minbill_status,element.maximum_bill_status,element.Day_status,element.Day_type,element.Days,element.minbill_amount,element.maximum_bill_amount)">
+              <button mat-icon-button style="color:gray;margin-right: 10px;" (click)="RowSelected(i,element.offers_id,element.promo_code_name,element.promo_code,element.percentage,element.from_date,element.to_date,element.from_time,element.to_time,element.Active_dare_status,element.Active_time_status,element.minbill_status,element.maximum_bill_status,element.Day_status,element.Day_type,element.Days,element.minbill_amount,element.maximum_bill_amount,element.offers_status,element.insert_by,element.insert_date)">
                 <mat-icon aria-label="Edit">edit</mat-icon>
               </button>
             </td>

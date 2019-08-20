@@ -12,6 +12,7 @@ import { Miscollection } from '../shared/miscollection';
 import { Restaurant } from '../shared/interfaces/restaurant';
 import { Managermodel } from '../shared/interfaces/managermodel';
 import { Walletsmodel } from '../shared/walletsmodel';
+import { Prints } from '../shared/interfaces/Prints';
 
 @Injectable({
   providedIn: 'root'
@@ -33,11 +34,11 @@ export class RestaurantService {
     params = params.append('restaurent_id', restaurent_id+"");
     return this.http.post<Responce>(`${this.Baseurl+"OffersList"}`,params);
   }
-  public SelectedOffer (restaurent_id : number,promo_code : string){
+  public ActiveOffers (restaurent_id : number){
     let params = new HttpParams();
     params = params.append('restaurent_id', restaurent_id+"");
-    params = params.append('promo_code', promo_code);
-    return this.http.post<Responce>(`${"http://localhost:57649/SelectedOffer"}`,params);
+    params = params.append('offers_status', "Active");
+    return this.http.post<Responce>(`${this.Baseurl+"ActiveOffers"}`,params);
   }
   public UpdateOffers (offer : OfferUp){
     return this.http.post<JsResponse>(`${this.Baseurl+"OfferUpdate"}`,offer);
@@ -234,6 +235,16 @@ export class RestaurantService {
     //parms =parms.append('insert_date', insert_date+"");
     return this.http.post<JsResponse>(`${this.Baseurl+"Orderinsert"}`,parms);
   }
+  public updateorder(quantity:any[]=[],total:any[]=[],restaurent_id:number,table_defination_id:number,order_status:string,)
+  {
+    let parms =new HttpParams();
+    parms =parms.append('quantity', quantity+"");
+    parms =parms.append('total', total+"");
+    parms =parms.append('restaurent_id', restaurent_id+"");
+    parms =parms.append('table_defination_id', table_defination_id+"");
+    parms =parms.append('order_status', order_status+"");
+    return this.http.post<JsResponse>(`${this.Baseurl+"orderupdate"}`,parms);
+  }
   public getcaptains(restaurent_id:number)
   {
     let parms =new HttpParams();
@@ -253,6 +264,13 @@ export class RestaurantService {
     parms = parms.append('table_defination_id', table_defination_id+"")
     return this.http.post(`${this.Baseurl+"getorderitems"}`,parms);
   }
-  
+  public PrintInsert(print : Prints){
+    return this.http.post<JsResponse>(`${"http://localhost:57649/printinsert"}`,print);
+  }
+  public Getbillpayemnts(restaurent_id:number)
+  {
+    let parms =new HttpParams();
+    parms =parms.append('restaurent_id', restaurent_id+"")
+    return this.http.post(`${this.Baseurl+"Getbillpayemnts"}`,parms);
+  }
  }
-

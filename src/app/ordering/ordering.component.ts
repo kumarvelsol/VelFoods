@@ -120,9 +120,11 @@ export class OrderingComponent implements OnInit {
     {
       alert("Please fill all fields");
     }
-    else if(this.buttoncontent= "Save")
+    else 
     {
-      //this.table_name=this.table_name;
+      if(this.buttoncontent== "Save")
+      {
+        //this.table_name=this.table_name;
       //this.table_pax=this.table_pax;
       this.order_captain = this.table_capatain;
       for(let i=0;i<this.dataSource.length;i++)
@@ -148,8 +150,46 @@ export class OrderingComponent implements OnInit {
           {
             alert("Order Added Succesfully.!");
             this.onclear();
-          }else{ alert("Failed to Insert data");}
+            //this.quantity = null;this.total = null;
+          }else{ alert("Failed to Insert data");
+          //this.quantity = null;this.total = null;
+          }
        });
+      }
+      else if(this.buttoncontent== "Modify")
+      {
+        //this.table_name=this.table_name;
+      //this.table_pax=this.table_pax;
+      this.order_captain = this.table_capatain;
+      for(let i=0;i<this.dataSource.length;i++)
+      {
+        this.itemnames.push(this.dataSource[i].order_itemname);
+        this.itemnameid.push(this.dataSource[i].itemname_id );
+        this.Rate.push(this.dataSource[i].order_rate);
+        this.quantity.push(this.dataSource[i].order_quantity);
+        this.total.push(this.dataSource[i].order_totalamount);
+        this.tax.push(this.dataSource[i].order_tax_amount);
+      }
+      this.restaurent_id=1;
+      this.table_defination_id= this.table_name;
+      this.order_status="Running";
+      //this.insert_by="aaa";
+      //this.insert_date=this.insert_date;
+      //this.kot_id=this.kot_id;
+      this.service.updateorder(this.quantity,this.total,1,
+                              this.table_defination_id,this.order_status,
+                              ).subscribe(data =>
+        {
+          if(data.code == 200)
+          {
+            alert("Order Updated Succesfully.!");
+            this.onclear();
+            //this.quantity = null;this.total = null;
+          }else{ alert("Failed to Update data");
+          //this.quantity = null;this.total = null;
+          }
+       });
+      }
     }
   }
   table_description:string;table_status:string;table_steward:string;table_view:string;
