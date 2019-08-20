@@ -34,11 +34,11 @@ Baseurl = 'http://localhost:57649/';
     params = params.append('restaurent_id', restaurent_id+"");
     return this.http.post<Responce>(`${this.Baseurl+"OffersList"}`,params);
   }
-  public SelectedOffer (restaurent_id : number,promo_code : string){
+  public ActiveOffers (restaurent_id : number){
     let params = new HttpParams();
     params = params.append('restaurent_id', restaurent_id+"");
-    params = params.append('promo_code', promo_code);
-    return this.http.post<Responce>(`${"http://localhost:57649/SelectedOffer"}`,params);
+    params = params.append('offers_status', "Active");
+    return this.http.post<Responce>(`${this.Baseurl+"ActiveOffers"}`,params);
   }
   public UpdateOffers (offer : OfferUp){
     return this.http.post<JsResponse>(`${this.Baseurl+"OfferUpdate"}`,offer);

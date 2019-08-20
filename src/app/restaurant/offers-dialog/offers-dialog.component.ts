@@ -41,11 +41,9 @@ export class OffersDialogComponent implements OnInit {
     this.total_amount = data.total_amount;
   }
   ngOnInit() {
-    this.service.OffersList(1).subscribe((data : Responce) =>
+    this.service.ActiveOffers(1).subscribe((data : Responce) =>
     {
       this.offers_count = data.Data.length;
-      //this.kot_id = this.count + 1;
-      console.log(data);
       this.Offers = data.Data;
     });
   }
@@ -59,9 +57,6 @@ export class OffersDialogComponent implements OnInit {
   Discount : number;
   AmountAfterDiscount : number;
   onbuttonclick($event,Promo){
-    //this.amount = 0;
-    //this.PromoCode = promo_code;
-    //console.log(this.PromoCode);
     this.SelectedOffer = Promo.promo_code_name;
     this.PromoCode = Promo.promo_code;
     // console.log("Min Status : "+ Promo.minbill_status+"\nMin Amount : "+ Promo.minbill_amount);
@@ -72,62 +67,47 @@ export class OffersDialogComponent implements OnInit {
     // console.log("Time Status : "+ Promo.Active_time_status+"\nFrom Time : "+ Promo.from_time+"\nTo Time : "+ Promo.to_time);
     // console.log("Date Status : "+ Promo.Active_dare_status+"\nFrom Amount : "+ Promo.from_date+"\nTo Date : "+ Promo.to_date);
     let date: Date = new Date();
+    console.log(this.datepipe.transform(date.toTimeString(),'hh:mm'));
     if(Promo.Active_dare_status == "true"){
-      //console.log(Promo.Active_dare_status+","+date.toDateString());
       if(this.datepipe.transform(date.toDateString(),'yyyy-MM-dd')>= Promo.from_date && this.datepipe.transform(date.toDateString(),'yyyy-MM-dd') <= Promo.to_date){
         this.DateCheck = true;
         this.OfferCheck = true;
-        console.log("Date True");
       }else{
         this.DateCheck = false;
         this.OfferCheck = false;
-        console.log("Date False");
       }
     }else if(Promo.Day_status == "true"){
-      console.log("Days : "+Promo.Days);
       var splittedDays = Promo.Days.split(",",7);
-      console.log(splittedDays.length);
       var day: string[] = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
       var TodayDay = day[date.getDay()]; 
-      console.log(TodayDay);
       if(splittedDays.includes(TodayDay)){
         this.DayCheck = true;
         this.OfferCheck = true;
-        console.log("Day True");
       }else{
         this.DayCheck = false;
         this.OfferCheck = false;
-        console.log("Day False");
       }
     }
     if(Promo.Active_time_status == "true"){
+      console.log(this.datepipe.transform(date.toTimeString(),'hh:mm'));
       this.TimeCheck = true;
-      // if(){
-      //   this.TimeCheck = true;
-      // }else{
-      //   this.TimeCheck = false;
-      // }
     }else{
       this.TimeCheck = true;
     }
     if(Promo.minbill_status == "true"){
       if(this.total_amount >= Promo.minbill_amount){
         this.MinBillCheck = true;
-        console.log("Min Bill True");
       }else{
         this.MinBillCheck = false;
-        console.log("Min Bill False");
       }
-      console.log("Tot : "+ this.total_amount+"\nMin Amount : "+Promo.minbill_amount)
     }else{
       this.MinBillCheck = true;
     }
     if(this.DateCheck == false || this.DayCheck == false || this.MinBillCheck == false){
-      this.OfferApplyMessage = "This Offer is not Available at this Time..!";
+      this.OfferApplyMessage = "This Offer can't apply to this Bill..!";
       this.isCheckvisible = false;
       this.isCancelvisible = true;
       this.isdetailsvisible = false;
-      console.log(this.OfferApplyMessage);
       this.data.AmountAfterDiscount = this.total_amount;
       this.data.DiscountAmount = 0;
       this.data.OfferId = 0;
@@ -160,27 +140,10 @@ export class OffersDialogComponent implements OnInit {
       this.data.MinBillAmount = Promo.minbill_amount;
       this.data.PromoCode = Promo.promo_code;
     }
-    // this.service.SelectedOffer(1,this.PromoCode).subscribe((data : Responce) =>
-    // {
-    //   console.log(data);
-    //   if(data.code == 200){
-    //     if(data.Data[0].Active_dare_status == "true"){
-    //     }else if(data.Data[0].Day_status == "true"){
-    //     }
-    //   }else{
-    //   }
-    //     //this.dataSource = data.Data;
-    //     // this.listcount = data.Data.length;
-    //     // for(let i =0;i<this.listcount;i++)
-    //     // {
-    //     //   this.totalamount = data.Data[i].order_totalamount;
-    //     //   this.amount = this.amount + this.totalamount;
-    //     // }
-    // });
   }
   apply(){
     if(this.OfferApplyMessage == "None"){
-      alert("Please Select the Offer and apply");
+      alert("Please Select the Offer & Click on Apply");
     }
   }
   Close(){
