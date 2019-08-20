@@ -203,11 +203,13 @@ export class OrderingComponent implements OnInit {
   onclear()
   {
     this.table_name = null;this.table_pax = null;this.table_capatain = "";
-    this.dataSource = null;this.order_status = "";
-    this.buttoncontent= "Save";
+    this.itemnames = [];this.itemnameid = [];this.quantity = [];
+    this.tax = [];this.total = [];this.Rate = [];
+    this.dataSource = [];this.order_status = "";this.disablesave = true;
+    this.buttoncontent= "Save";this.disableadd = true;
   }
   onbuttonclick($event,table_name,BACKGROUND_COLOR){
-    this.dataSource = null;
+    this.dataSource = [];
     this.colorr = BACKGROUND_COLOR;
    this.tname = table_name;
    if(this.tname != null)
@@ -235,7 +237,7 @@ export class OrderingComponent implements OnInit {
    }
    else if(this.colorr == "Orange")
    {
-     this.disableadd = true;
+     this.dataSource = [];
      this.order_status = "Running";
       this.service.getorderitems(1,this.tname).subscribe((data : Responce) =>
       {
@@ -313,6 +315,7 @@ export class OrderingComponent implements OnInit {
       });
   
       dialogRef.afterClosed().subscribe(result => {
+        this.dataSource = [];
         if(result.action == 'Add')
         {
           console.log(result);
@@ -320,6 +323,7 @@ export class OrderingComponent implements OnInit {
           this.dataSource = this.orders; 
           this.dataSource = [...this.dataSource];
           console.log(this.dataSource);
+          this.buttoncontent = "Save";
         }
         else if(result.action == 'Update')
         {
