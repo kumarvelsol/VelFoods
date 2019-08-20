@@ -54,7 +54,7 @@ export class TableStatusComponent implements OnInit {
   Payment_disable : boolean;
   availOffer_disable : boolean;
   print_disable : boolean;
-  tables_disable : boolean;
+  tables_disable : boolean; 
   ngOnInit()
   {
     this.Payment_disable = true;
@@ -100,6 +100,7 @@ export class TableStatusComponent implements OnInit {
           }
           this.table_name = this.tname;
           this.table_pax = data.Data[0].table_pax;
+          this.table_defination_id = data.Data[0].table_defination_id;
      });
   }
   Parsing_data : ParsingData[];
@@ -173,13 +174,14 @@ export class TableStatusComponent implements OnInit {
       alert("Please select the Occupied Table to apply an offer");
     }
   }
-  public NavigateClick(table_name:number,table_pax:number,amount:number)
+  public NavigateClick(table_name:number,table_pax:number,amount:number,table_defination_id:number)
   {
     let navigationExtras: NavigationExtras = {
       queryParams: {
         "tablename":this.table_name = table_name, 
         "pax":this.table_pax = table_pax,
         "amount":this.amount= amount,
+        "tid":this.table_defination_id= table_defination_id,
       }
     };
     console.log("name",this.table_name);console.log("pax",this.table_pax);console.log("amount",this.amount);

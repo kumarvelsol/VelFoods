@@ -13,13 +13,14 @@ import { Restaurant } from '../shared/interfaces/restaurant';
 import { Managermodel } from '../shared/interfaces/managermodel';
 import { Walletsmodel } from '../shared/walletsmodel';
 import { Prints } from '../shared/interfaces/Prints';
+import { Billpayment } from '../shared/billpayment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RestaurantService {
-Baseurl = 'http://localhost:57649/';
-// Baseurl = 'http://school.edujinni.in/';
+//Baseurl = 'http://localhost:57649/';
+ Baseurl = 'http://school.edujinni.in/';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json'
@@ -257,10 +258,22 @@ Baseurl = 'http://localhost:57649/';
   public PrintInsert(print : Prints){
     return this.http.post<JsResponse>(`${"http://localhost:57649/printinsert"}`,print);
   }
+  public getprintid(restaurent_id:number,table_defination_id : number,print_status:string)
+  {
+    let parms =new HttpParams();
+    parms =parms.append('restaurent_id', restaurent_id+"")
+    parms =parms.append('table_defination_id', table_defination_id+"")
+    parms =parms.append('print_status', print_status+"")
+    return this.http.post(`${this.Baseurl+"getprintid"}`,parms);
+  }
   public Getbillpayemnts(restaurent_id:number)
   {
     let parms =new HttpParams();
     parms =parms.append('restaurent_id', restaurent_id+"")
     return this.http.post(`${this.Baseurl+"Getbillpayemnts"}`,parms);
+  }
+  public billinsert(bill_in:Billpayment)
+  {
+    return this.http.post(`${this.Baseurl+"billinsert"}`,bill_in);
   }
  }
