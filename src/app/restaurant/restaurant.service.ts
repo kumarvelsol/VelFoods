@@ -274,7 +274,7 @@ export class RestaurantService {
     parms =parms.append('restaurent_id', restaurent_id+"")
     parms =parms.append('table_defination_id', table_defination_id+"")
     parms =parms.append('print_status', print_status+"")
-    return this.http.post(`${this.Baseurl+"getprintid"}`,parms);
+    return this.http.post<Responce>(`${this.Baseurl+"getprintid"}`,parms);
   }
   public Getbillpayemnts(restaurent_id:number)
   {

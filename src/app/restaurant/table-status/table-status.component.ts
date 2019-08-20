@@ -79,6 +79,10 @@ export class TableStatusComponent implements OnInit {
       this.print_disable = true;
       this.availOffer_disable = true;
       this.Payment_disable = false;
+      this.service.getprintid(1,table_defination_id,"Printed").subscribe((data : Responce) =>
+      {
+        this.amount = data.Data[0].total_after_discount;
+      });
     }else if(BACKGROUND_COLOR == "Green"){
       this.print_disable = true;
       this.availOffer_disable = true;

@@ -95,4 +95,8 @@ export interface Data {
     order_status:string;
     order_tax_amount: number;
     print_id : number;
+    total_amount : number,
+    total_after_discount : number,
+    discount_amount : number,
+    print_status : string,
 }
