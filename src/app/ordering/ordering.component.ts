@@ -66,8 +66,8 @@ export class OrderingComponent implements OnInit {
   tables :Data[]; table_pax : number;
   listcount: number; tname:number; table_capatain : string;
   kotid : number;count : number;
-  greencount:number=0;orangecount:number=0;redcount:number=0;whitecount:number=0;bluecount:number=0;
-  disableadd:boolean=true;
+  greencount:number=0;orangecount:number=0;redcount:number=0;bluecount:number=0;Darkslategraycount:number=0;
+  disableadd:boolean=true;disablesave:boolean=true;
   @ViewChild(MatTable) table: MatTable<any>; 
   constructor(private service : RestaurantService,public dialog: MatDialog) {
    }
@@ -99,13 +99,13 @@ export class OrderingComponent implements OnInit {
         {
           this.orangecount= ++this.orangecount;
         }
+        else if(this.rooms[i].BACKGROUND_COLOR == "Darkslategray")
+        {
+          this.Darkslategraycount= ++this.Darkslategraycount;
+        }
         else if(this.rooms[i].BACKGROUND_COLOR == "Blue")
         {
           this.bluecount= ++this.bluecount;
-        }
-        else if(this.rooms[i].BACKGROUND_COLOR == "White")
-        {
-          this.whitecount= ++this.whitecount;
         }
         else if(this.rooms[i].BACKGROUND_COLOR == "Red")
         {
@@ -148,11 +148,14 @@ export class OrderingComponent implements OnInit {
         {
           if(data.code == 200)
           {
+            this.quantity = [];this.total = [];
             alert("Order Added Succesfully.!");
             this.onclear();
-            //this.quantity = null;this.total = null;
-          }else{ alert("Failed to Insert data");
-          //this.quantity = null;this.total = null;
+          }
+          else
+          { 
+            alert("Failed to Insert data");
+            this.quantity = [];this.total = [];
           }
        });
       }
@@ -182,11 +185,14 @@ export class OrderingComponent implements OnInit {
         {
           if(data.code == 200)
           {
+            this.quantity = [];this.total = [];
             alert("Order Updated Succesfully.!");
             this.onclear();
-            //this.quantity = null;this.total = null;
-          }else{ alert("Failed to Update data");
-          //this.quantity = null;this.total = null;
+          }
+          else
+          { 
+            alert("Failed to Update data");
+            this.quantity = [];this.total = [];
           }
        });
       }
@@ -207,6 +213,7 @@ export class OrderingComponent implements OnInit {
    if(this.tname != null)
    {
      this.disableadd = false;
+     this.disablesave = false;
    }
    if(this.colorr == "Green")
    {
@@ -228,6 +235,7 @@ export class OrderingComponent implements OnInit {
    }
    else if(this.colorr == "Orange")
    {
+     this.disableadd = true;
      this.order_status = "Running";
       this.service.getorderitems(1,this.tname).subscribe((data : Responce) =>
       {

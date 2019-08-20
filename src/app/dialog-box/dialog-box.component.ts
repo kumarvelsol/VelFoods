@@ -21,7 +21,7 @@ export interface UsersData {
 export class DialogBoxComponent implements OnInit {
   action:string;itemnames:Data[];order_itemname:string;orderlist:Responce;
   local_data:any;order_quantity:number;order_id:number=0;order_rate:number;order_totalamount:number=0;
-  order_tax:number;
+  order_tax:number;disable:boolean=false;
   constructor(
     public dialogRef: MatDialogRef<DialogBoxComponent>,
     @Optional() @Inject(MAT_DIALOG_DATA) public data: UsersData, public service:RestaurantService) {
@@ -32,11 +32,10 @@ export class DialogBoxComponent implements OnInit {
     this.order_quantity = this.local_data.order_quantity;
   }
   ngOnInit() {
-    // if(this.action == "Update")
-    // {
-    //   this.itemname_item_name = this.data.itemname_item_name;
-    //   this.order_quantity = this.data.order_quantity;
-    // }
+    if(this.action == "Update")
+    {
+      this.disable = true;
+    }
     this.service.getitemnames(1).subscribe((data:Responce)=> {
       this.itemnames = data.Data;
     });
