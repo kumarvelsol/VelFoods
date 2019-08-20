@@ -192,22 +192,19 @@ export class OffersComponent implements OnInit {
       }else{
         this.from_date = this.datepipe.transform(this.from_date,'yyyy-MM-dd');
         this.to_date = this.datepipe.transform(this.to_date,'yyyy-MM-dd');
-        console.log(this.from_date +" "+ this.to_date);
         this.dates = true;
       }
     }else{
       this.dates = true;
-      this.from_date = null;
-      this.to_date = null;
+      this.from_date = "";
+      this.to_date = "";
     }
     //times slide
     if(this.times_slide == true){
       if(this.from_time == null || this.to_time == null){
         this.times = false;
-        console.log("Time : "+this.from_time+" "+this.to_time);
         alert("Please Enter Time fields Or Switch off the Time Section");
       }else{
-        console.log("Time : "+this.from_time+" "+this.to_time);
         this.times = true;
       }
     }else{
@@ -286,7 +283,6 @@ export class OffersComponent implements OnInit {
     }else{
       if(this.maxbill == false || this.minbill == false || this.dates == false || this.times == false || this.days == false){
       }else{
-        alert(this.daysSelected+" "+this.selecteddays);
         if(this.buttoncontent == "Save"){
           let date: Date = new Date();
           let offers : Offers = {
@@ -358,6 +354,9 @@ export class OffersComponent implements OnInit {
     }
   }
   onclearclick(){
+    this.promo_name = null;
+    this.promo_code = null;
+    this.percentage = null;
     this.dates_slide = false;
     this.onDatesValid();
     this.times_slide = false;

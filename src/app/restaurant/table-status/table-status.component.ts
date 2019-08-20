@@ -59,7 +59,7 @@ export class TableStatusComponent implements OnInit {
   ngOnInit()
   {
     let date: Date = new Date();
-    //console.log(this.datepipe.transform(date.toTimeString(),'hh:mm'));
+    //console.log(this.datepipe.transform(date.toTimeString(),"hh:mm:ss"));
     this.Payment_disable = true;
     this.availOffer_disable = true;
     this.print_disable = true;
