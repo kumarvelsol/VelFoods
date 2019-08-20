@@ -70,6 +70,9 @@ export interface Data {
     minbill_amount : string;
     maximum_bill_status : string;
     maximum_bill_amount : string;
+    offers_status : string;
+    insert_by : string;
+    insert_date : string;
     table_pax : number;
     table_capatain : string;
     table_name : string;

@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ServiceService } from 'src/app/service.service';
 import { order, room } from 'src/app/Model/ordermodel';
 import { RestaurantService } from '../restaurant.service';
+import { DatePipe } from '@angular/common';
 import { Responce, Data, JsResponse } from 'src/app/shared/js-response';
 import { OffersDialogComponent } from '../offers-dialog/offers-dialog.component';
 import { MatDialog, MatTable, MatTableDataSource, MatDialogConfig } from '@angular/material';
@@ -34,7 +35,7 @@ export interface ParsingData {
 })
 export class TableStatusComponent implements OnInit {
   @ViewChild(MatTable) table: MatTable<any>; 
-  constructor(private service : RestaurantService,public dialog: MatDialog,private router: Router) { }
+  constructor(private service : RestaurantService,public datepipe: DatePipe,public dialog: MatDialog,private router: Router) { }
   userlist:order;
   rooms : room[];
   count: number;
@@ -57,6 +58,8 @@ export class TableStatusComponent implements OnInit {
   tables_disable : boolean; 
   ngOnInit()
   {
+    let date: Date = new Date();
+    //console.log(this.datepipe.transform(date.toTimeString(),"hh:mm:ss"));
     this.Payment_disable = true;
     this.availOffer_disable = true;
     this.print_disable = true;
@@ -112,6 +115,7 @@ export class TableStatusComponent implements OnInit {
         this.AmountAfterDiscount = this.amount;
         this.ActualAmount = this.amount;
       }
+      let date: Date = new Date();
       let print_data : Prints = {
         table_defination_id : this.Table_Id,
         total_amount : this.ActualAmount,
@@ -121,7 +125,7 @@ export class TableStatusComponent implements OnInit {
         restaurent_id : 1,
         total_after_discount : this.AmountAfterDiscount,
         insert_by : "velsol",
-        insert_date : "2019-08-19",
+        insert_date : this.datepipe.transform(date.toDateString(),'yyyy-MM-dd'),
       }
       console.log(print_data);
       this.service.PrintInsert(print_data).subscribe((data : JsResponse) =>{
@@ -137,9 +141,6 @@ export class TableStatusComponent implements OnInit {
   Discount_amount : number = 0;
   AmountAfterDiscount : number;
   ActualAmount: number;
-  onsettleclick(){
-
-  }
   onofferclick(): void{
     if(this.amount > 0){
       let p_data : ParsingData = {
