@@ -67,7 +67,7 @@ export class OffersDialogComponent implements OnInit {
     // console.log("Time Status : "+ Promo.Active_time_status+"\nFrom Time : "+ Promo.from_time+"\nTo Time : "+ Promo.to_time);
     // console.log("Date Status : "+ Promo.Active_dare_status+"\nFrom Amount : "+ Promo.from_date+"\nTo Date : "+ Promo.to_date);
     let date: Date = new Date();
-    console.log(this.datepipe.transform(date.toTimeString(),'hh:mm'));
+    //console.log(this.datepipe.transform(date.toTimeString(),'hh:mm'));
     if(Promo.Active_dare_status == "true"){
       if(this.datepipe.transform(date.toDateString(),'yyyy-MM-dd')>= Promo.from_date && this.datepipe.transform(date.toDateString(),'yyyy-MM-dd') <= Promo.to_date){
         this.DateCheck = true;

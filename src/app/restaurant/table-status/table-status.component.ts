@@ -58,6 +58,8 @@ export class TableStatusComponent implements OnInit {
   tables_disable : boolean;
   ngOnInit()
   {
+    let date: Date = new Date();
+    //console.log(this.datepipe.transform(date.toTimeString(),'hh:mm'));
     this.Payment_disable = true;
     this.availOffer_disable = true;
     this.print_disable = true;
