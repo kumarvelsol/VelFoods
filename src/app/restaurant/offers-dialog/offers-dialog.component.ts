@@ -41,7 +41,7 @@ export class OffersDialogComponent implements OnInit {
     this.total_amount = data.total_amount;
   }
   ngOnInit() {
-    this.service.OffersList(1).subscribe((data : Responce) =>
+    this.service.ActiveOffers(1).subscribe((data : Responce) =>
     {
       this.offers_count = data.Data.length;
       this.Offers = data.Data;

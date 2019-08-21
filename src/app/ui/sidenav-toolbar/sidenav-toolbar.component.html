@@ -1,0 +1,103 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav mode = "over" class="sidenav">
+  <!-- modes = "over,push,side" -->
+    <div style="width: 100%;height : 150px;text-align: center">
+      <a>
+        <!-- https://lakewangaryschool.sa.edu.au/wp-content/uploads/2017/11/placeholder-profile-sq.jpg -->
+        <img [src]="imageUrl" style="width: 100px; height: 100px; border-radius: 50%;margin-top: 25px;">
+      </a>
+    </div>
+    <div style="background-color: darkslategrey;color:white;text-align: center;width: 100%;height:50px;padding-top: 5px;">
+      <p>
+        <label style="font-size: 20px;font-family: Montserrat, sans-serif;margin-top: 5px"><strong>{{EmployeeName}}</strong></label>
+        <label style="font-size: 12px;margin-left: 6px;margin-top: 5px">({{EmployeeDesignation}})</label>
+      </p>
+    </div>
+    <mat-nav-list>
+      <mat-list-item><mat-icon class="material-icons" style="color:black;margin-left: 7px;font-size: 25px;vertical-align: middle" >home</mat-icon><a mat-list-item [routerLink]="['/ordering']">Home</a></mat-list-item>
+      <mat-list-item><mat-icon class="material-icons" style="color:black;margin-left: 9px;font-size: 23px;vertical-align: middle;" >dashboard</mat-icon><a mat-list-item>DashBoard</a></mat-list-item>
+    </mat-nav-list>
+    <mat-accordion multi="true" [displayMode]="displayMode" style="background-color: white">
+      <mat-expansion-panel class="mat-elevation-z0">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon class="material-icons" style="color:black;margin-right: 16px" >school</mat-icon>Masters
+          </mat-panel-title>
+          <!-- <mat-panel-description>
+            <mat-icon>account_circle</mat-icon>
+          </mat-panel-description> -->
+        </mat-expansion-panel-header>
+        <mat-nav-list>
+          <mat-list-item><a mat-list-item [routerLink]="['/property']">Property</a></mat-list-item>
+          <mat-list-item><a mat-list-item [routerLink]="['/restaurants']">Restaurant</a></mat-list-item>
+          <mat-list-item><a mat-list-item [routerLink]="['/tax']">Tax</a></mat-list-item>
+          <mat-list-item><a mat-list-item [routerLink]="['/itemCategory']">Itemcategory</a></mat-list-item>
+          <mat-list-item><a mat-list-item [routerLink]="['/itemNames']">ItemNames</a></mat-list-item>
+          <mat-list-item><a mat-list-item [routerLink]="['/offers']">Offers</a></mat-list-item>
+          <mat-list-item><a mat-list-item [routerLink]="['/bankswallets']">Banks&Wallets</a></mat-list-item>
+          <mat-list-item><a mat-list-item [routerLink]="['/tabledefinition']">TableDefinition</a></mat-list-item>
+          <mat-list-item><a mat-list-item [routerLink]="['/managers']">Managers</a></mat-list-item>
+          <mat-list-item><a mat-list-item [routerLink]="['/employeedepartment']">EmployeeDepartment</a></mat-list-item>
+          <mat-list-item><a mat-list-item [routerLink]="['/employeeregistration']">EmployeeRegistration</a></mat-list-item>
+        </mat-nav-list>
+      </mat-expansion-panel>
+      <mat-expansion-panel class="mat-elevation-z0">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon class="material-icons" style="color:black;margin-right: 16px" >library_add</mat-icon>Operations
+          </mat-panel-title>
+          <!-- <mat-panel-description>
+            <mat-icon>map</mat-icon>
+          </mat-panel-description> -->
+        </mat-expansion-panel-header>
+        <mat-nav-list>
+          <mat-list-item><a mat-list-item [routerLink]="['/tablebooking']">Reservation</a></mat-list-item>
+          <mat-list-item><a mat-list-item [routerLink]="['/Paidouts']">Paidouts</a></mat-list-item>
+          <mat-list-item><a mat-list-item [routerLink]="['/tablestatus']">TableStatus</a></mat-list-item>
+          <mat-list-item><a mat-list-item [routerLink]="['/BillPayment']">BillPayment</a></mat-list-item>
+        </mat-nav-list>
+      </mat-expansion-panel>
+      <mat-expansion-panel class="mat-elevation-z0">
+        <mat-expansion-panel-header>
+          <mat-panel-title style="margin-left: 0px">
+            <mat-icon class="material-icons" style="color:black;margin-right: 16px" >print</mat-icon>Reports
+          </mat-panel-title>
+          <!-- <mat-panel-description>
+            <mat-icon>map</mat-icon>
+          </mat-panel-description> -->
+        </mat-expansion-panel-header>
+        <mat-nav-list>
+          <mat-list-item>Item Rate List</mat-list-item>
+          <mat-list-item>Item Wise Sale</mat-list-item>
+        </mat-nav-list>
+      </mat-expansion-panel>
+    </mat-accordion>
+    <mat-nav-list>
+      <mat-list-item><a mat-list-item [routerLink]="['/login']">Login</a></mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content style="background-color: #EDEFF0">
+    <mat-toolbar style="background-color: darkslategray">
+      <mat-toolbar-row>
+        <!-- (click)= "opened=!opened" -->
+        <button mat-icon-button (click)= "sidenav.toggle()">
+          <mat-icon style="color:white" aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+        <label style="color: white;margin-top : 8px;margin-left:15px;font-family: Montserrat, sans-serif;font-size: 20px"><strong>{{RestaurantName}}</strong></label>
+        <span class="spacer"></span>
+        <div style="height: 100%;width: 100px;text-align: center">
+          <li style="list-style-type: none;margin-top: 8px;">
+            <label style="color: white;font-size: 15px;font-family: Montserrat, sans-serif;"><strong>{{TodayDate}}</strong></label>
+          </li>
+          <li style="list-style-type: none;margin-top: -25px;text-align: center">
+            <label style="color: white;font-size: 13px;font-family: Montserrat, sans-serif;"><strong>{{TodayTime}}</strong></label>
+          </li>
+        </div>
+        <button mat-icon-button (click)= "logoutClick()">
+          <mat-icon class="toolbar-icons material-icons" style="color:white;margin-right: 15px" >power_settings_new</mat-icon>
+        </button>
+      </mat-toolbar-row>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
