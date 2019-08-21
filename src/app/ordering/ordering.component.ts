@@ -315,7 +315,7 @@ export class OrderingComponent implements OnInit {
       });
   
       dialogRef.afterClosed().subscribe(result => {
-        this.dataSource = [];
+        this.orders = [];
         if(result.action == 'Add')
         {
           console.log(result);
@@ -324,6 +324,7 @@ export class OrderingComponent implements OnInit {
           this.dataSource = [...this.dataSource];
           console.log(this.dataSource);
           this.buttoncontent = "Save";
+          this.table.renderRows();
         }
         else if(result.action == 'Update')
         {
