@@ -6,7 +6,7 @@
           <mat-card-title style="font-size: 20px; text-align:center; margin-left: 170px; font-weight:bold;">Tableview</mat-card-title>
           <mat-divider style="font-size: 1px; margin-top: 26px; " class="mat-divider"></mat-divider>
           <div class="col-md-12" style="padding-top: 10px;overflow: auto; height: 300px;">
-            <button *ngFor="let room of rooms"  [ngStyle]="{'background-color':room.BACKGROUND_COLOR}"  mat-raised-button  class="button-style" name="room.table_name" (click)="onbuttonclick($event,room.table_name,room.BACKGROUND_COLOR)">{{room.table_name}}</button>
+            <button *ngFor="let room of rooms"  [ngStyle]="{'background-color':room.BACKGROUND_COLOR,'color': room.textcolor}"  mat-raised-button  class="button-style" name="room.table_name" (click)="onbuttonclick($event,room.table_name,room.BACKGROUND_COLOR)">{{room.table_name}}</button>
           </div>
           <div class="col-4 mat-form-wrap" style="text-align: center">
             <button mat-mini-fab color="warn" style="font-size: 18px;font-weight:bold;color: white" class="col-12">{{redcount}}</button>
