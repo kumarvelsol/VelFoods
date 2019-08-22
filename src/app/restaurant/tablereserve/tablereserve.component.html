@@ -3,7 +3,7 @@
     <div class="col-md-6">
       <mat-card class="row example-card parent">
         <div class="block child">
-          <p style="margin-top: 20px; margin-left: 15px; color: gray; font-size: 24px;">Table Booking</p>
+          <p style="margin-top: 20px;">Table Booking</p>
           <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" >
             <mat-icon  style=color:gray matSuffix>person</mat-icon>
             <mat-label style="color :gray">Name</mat-label>
@@ -30,7 +30,7 @@
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
-          <mat-form-field class="col-md-12" style="color: gray;" >
+          <mat-form-field class="col-md-12 mat-form-wrap" style="color: gray;" >
             <mat-label style="color: gray;">Time</mat-label>
             <mat-icon style="color :orange" matSuffix>timer</mat-icon>
             <input matInput type="time" atp-time-picker  name="tablebooking_time"  [(ngModel)]="tablebooking_time" (click)="opentime()" >
@@ -51,8 +51,8 @@
             <mat-label style="color :gray">Spl Instructions</mat-label> 
             <input style="color :gray"  type="text" [(ngModel)]="tablebooking_splinstructions" name="tablebooking_splinstructions"  matInput>
           </mat-form-field>
-          <button mat-raised-button class="btn-style" (click)="onsubmitclick()">{{buttoncontent}}</button>
-          <button mat-raised-button class="clearbtn-style" (click)="onclearclick()">Clear</button>
+          <button mat-raised-button style="margin-top: 10px;" class="btn-style" (click)="onsubmitclick()">{{buttoncontent}}</button>&nbsp;&nbsp;&nbsp;
+          <button mat-raised-button style="margin-top: 10px;" class="btn-style" (click)="onclearclick()">Clear</button>
         </div>
       </mat-card>
     </div>
