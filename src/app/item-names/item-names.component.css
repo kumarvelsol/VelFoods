@@ -16,8 +16,6 @@
 }
 .parent{
   text-align:center;
-  height:550px;
-  margin-left: 10px;
 }
 .block {
   width: 80%;
@@ -56,8 +54,8 @@
 }
 .textSizes
 {
-    font-size: 100%;
-    color: navy;
+  font-size: 100%;
+  width: 100%;
 }
 table {
   width: 100%;
@@ -65,13 +63,12 @@ table {
 p{
   text-align: center;
   font-size: 1.5em;
-  margin: 10px;
+  margin-bottom: 10px;
   font-weight: bold;
-  color: navy;
+  color : darkslategray;
   font-family: "Montserrat", sans-serif;
   text-shadow: 0 1px 2px rgba(black,.15);
 }
-
 .heading_wrap{
   padding-top: 10px;
   padding-bottom: 10px;
@@ -96,4 +93,8 @@ p{
   margin-bottom: 15px;
   margin-top: 0px;
   font-size: 18px;
+}
+.mat-form-wrap{
+  width: 100%;
+  margin: 0px;
 }

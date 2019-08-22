@@ -20,8 +20,8 @@ import { Tabletransfermodel } from '../shared/tabletransfermodel';
   providedIn: 'root'
 })
 export class RestaurantService {
-Baseurl = 'http://localhost:57649/'; 
-//Baseurl = 'http://school.edujinni.in/';
+//Baseurl = 'http://localhost:57649/'; 
+ Baseurl = 'http://school.edujinni.in/';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json'
@@ -301,9 +301,29 @@ Baseurl = 'http://localhost:57649/';
     parms =parms.append('BACKGROUND_COLOR', BACKGROUND_COLOR+"")
     return this.http.post(`${this.Baseurl+"occupied"}`,parms);
   }
-  public transferinsert(transfer:Tabletransfermodel)
+  // public transferinsert(table_t_itemname:string,table_t_rate:number,table_t_quantity:number,table_t_totalamount:number,kot_id:number,table_t_captain:string,table_t_tax_amount:number,restaurent_id:number,itemname_id:number,table_defination_id:number,)
+  // {
+  //   let parms =new HttpParams();
+  //   parms =parms.append('table_t_itemname', table_t_itemname+"");
+  //   parms =parms.append('table_t_rate', table_t_rate+"");
+  //   parms =parms.append('table_t_quantity', table_t_quantity+"");
+  //   parms =parms.append('table_t_totalamount', table_t_totalamount+"");
+  //   parms =parms.append('kot_id', kot_id+"");
+  //   parms =parms.append('table_t_captain', table_t_captain+"");
+  //   parms =parms.append('table_t_tax_amount', table_t_tax_amount+"");
+  //   parms =parms.append('restaurent_id', restaurent_id+"");
+  //   parms =parms.append('itemname_id', itemname_id+"");
+  //   parms =parms.append('table_defination_id', table_defination_id+"");
+  //   return this.http.post<JsResponse>(`${this.Baseurl+"tabletransfer"}`,parms);
+  // }
+  public transferinsert(restaurent_id:number,table_defination_id:number,order_status:string,tid:number)
   {
-    return this.http.post<JsResponse>(`${this.Baseurl+"tabletransfer"}`,transfer);
+    let parms =new HttpParams();
+    parms =parms.append('restaurent_id', restaurent_id+"");
+    parms =parms.append('table_defination_id', table_defination_id+"");
+    parms =parms.append('order_status', order_status+"");
+    parms =parms.append('tid', tid+"");
+    return this.http.post<JsResponse>(`${this.Baseurl+"tabletransfer"}`,parms);
   }
   public gettablecolor(restaurent_id:number,BACKGROUND_COLOR:string)
   {

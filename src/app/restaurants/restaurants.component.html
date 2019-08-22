@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-lg-6">
+    <div class="col-md-6">
       <mat-card class="col-lg-12 row example-card parent">
         <div class="block child">
           <p style="margin-top: 20px;">Restaurant Details</p>
@@ -25,19 +25,17 @@
               <mat-option *ngFor="let mn of managerslist" [value]="mn.manger_name">{{mn.manger_name}}</mat-option> 
             </mat-select>
           </mat-form-field>
-          <mat-label style="color:gray;" style="margin-left: 0px; font-size: 25;font-weight: bold">Status :</mat-label>
+          <mat-label style="font-size: 20px;">Status    :</mat-label>
           <mat-radio-group aria-label="Select an option" [(ngModel)]="restaruent_status" name="restaruent_status">
-            <mat-radio-button style="margin-left: 25px" value="Active">Active</mat-radio-button>
-            <mat-radio-button style="margin-left: 25px" value="InActive">InActive</mat-radio-button>
+            <mat-radio-button style="margin-left: 20px" value="Active">Active</mat-radio-button>
+            <mat-radio-button style="margin-left: 20px" value="InActive">InActive</mat-radio-button>
           </mat-radio-group>
-          <div class="col-md-12">
-              <button mat-raised-button class="btn-style" (click)="onsubmitclick()">{{buttoncontent}}</button>
-              <button mat-raised-button class="clearbtn-style" (click)="onclearclick()">Clear</button>
-          </div>
+          <button style="margin-top: 10px;" mat-raised-button class="btn-style" (click)="onsubmitclick()">{{buttoncontent}}</button>&nbsp;&nbsp;
+          <button style="margin-top: 10px;" mat-raised-button class="btn-style" (click)="onclearclick()">Clear</button>
         </div>
       </mat-card>
     </div>
-    <div class="col-lg-6">
+    <div class="col-md-6">
       <div class="example-container mat-elevation-z1">
         <table mat-table [dataSource]="dataSource">
           <ng-container matColumnDef="restaurent_id">
