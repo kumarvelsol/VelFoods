@@ -325,4 +325,11 @@ export class RestaurantService {
     parms =parms.append('tid', tid+"");
     return this.http.post<JsResponse>(`${this.Baseurl+"tabletransfer"}`,parms);
   }
+  public gettablecolor(restaurent_id:number,BACKGROUND_COLOR:string)
+  {
+    let parms =new HttpParams();
+    parms =parms.append('restaurent_id', restaurent_id+"")
+    parms =parms.append('BACKGROUND_COLOR', BACKGROUND_COLOR+"")
+    return this.http.post(`${this.Baseurl+"gettablecolor"}`,parms);
+  }
  }
