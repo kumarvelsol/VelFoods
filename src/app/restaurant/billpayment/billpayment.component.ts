@@ -3,6 +3,8 @@ import { RestaurantService } from '../restaurant.service';
 import { Responce, JsResponse } from '../../shared/js-response';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Billpayment } from 'src/app/shared/billpayment';
+import { Tabledefinition } from 'src/app/shared/tabledefinition';
+import { stringify } from '@angular/core/src/util';
 
 @Component({
   selector: 'app-billpayment',
@@ -17,6 +19,9 @@ export class BillpaymentComponent implements OnInit {
   banklist;walletlist;count : number = 0; tablelist : Responce;billment_id : number;
   table_name : number; table_pax : number; amount : number;bill_amount :number; due_amount : number;
   print_id : number;payment_status : string;table_defination_id : number;jsRes : JsResponse; 
+  pendingg : boolean=false;  comp : boolean=false; paidouts : boolean=false; misCollections : boolean=false;
+  reference : string; mobile_no : number; name : string; restaurent_id : number;
+  table_capatain : string;table_description : string;table_status : string;table_steward : string;table_view:string;
 
   constructor(public service1 : RestaurantService,private route: ActivatedRoute) {
     this.route.queryParams.subscribe(params => {
@@ -24,6 +29,7 @@ export class BillpaymentComponent implements OnInit {
       this.table_pax = params["pax"];
       this.amount = params["amount"];
       this.table_defination_id =params["tid"];
+      this.restaurent_id = params["resid"];
     });
     console.log(this.table_name);console.log(this.table_defination_id);
    }
@@ -48,7 +54,7 @@ export class BillpaymentComponent implements OnInit {
             this.billment_id = this.count + 1;
             console.log(data);
           });
-          this.service1.getprintid(1,this.table_defination_id,"printed").subscribe((data: Responce) =>
+          this.service1.getprintid(1,this.table_defination_id,"Printed").subscribe((data: Responce) =>
             {
               this.print_id = data.Data[0].print_id;
             });
@@ -224,6 +230,31 @@ export class BillpaymentComponent implements OnInit {
     else {this.type_of_payment = "";this.Amoount = null; }
     console.log(this.checked4);console.log(this.type_of_payment);
   }
+  
+  public onpendingchange(value)
+  {
+    this.paidouts = !value;
+    if(this.paidouts == true)
+    {
+      this.comp = true;this.pendingg = false;
+    }
+    else
+    {
+      this.comp = false;this.pendingg = false;
+    }
+  }
+  public oncompchange(value)
+  {
+    this.misCollections = !value;
+    if(this.misCollections == true)
+    {
+      this.comp = false;this.pendingg = true;
+    }
+    else
+    {
+      this.comp = false;this.pendingg = false;
+    }
+  }
   public onsubmitclick()
   {
     let a : Billpayment = {
@@ -239,8 +270,23 @@ export class BillpaymentComponent implements OnInit {
       payment_mode : this.type_of_payment,
       payment_status : this.payment_status,
       table_defination_id : this.table_defination_id,
+      name : this.name,
+      mobile_no : this.mobile_no,
+      reference : this.reference,
       restaurent_id : 1
     }
+    let b : Tabledefinition = {
+      BACKGROUND_COLOR:"Green",
+      restaurent_id:this.restaurent_id,
+      table_defination_id : this.table_defination_id,
+      table_capatain : this.table_capatain,
+      table_description: this.table_description,
+      table_name: this.table_name,
+      table_pax: this.table_pax,
+      table_status: this.table_status,
+      table_steward: this.table_steward,
+      table_view : this.table_view,
+  }
     this.service1.billinsert(a).subscribe((data : JsResponse) =>
     {
       this.jsRes = data;
@@ -249,5 +295,9 @@ export class BillpaymentComponent implements OnInit {
             alert("BillPayment Added Succesfully.!");
           }else{ alert("Failed to Insert data");}
    });
+  }
+  onclearclick()
+  {
+
   }
 }

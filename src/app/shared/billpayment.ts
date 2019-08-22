@@ -12,4 +12,7 @@ export interface Billpayment {
     payment_status : string;
     restaurent_id : number;
     table_defination_id : number;
+    name : string;
+    mobile_no : number;
+    reference : string;
 }
