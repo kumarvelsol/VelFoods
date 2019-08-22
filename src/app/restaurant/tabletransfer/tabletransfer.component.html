@@ -3,22 +3,20 @@
     <div class="row">
       <div class="col-md-6">
         <mat-card class="row example-card parent">
-          <div class="block child">
-            <p style="margin-top: 20px; margin-left: 15px; color: gray; font-size: 24px;">Table Transfer</p>
-            <div class="row col-md-12">
-              <mat-form-field class="col-md-6 mat-form-wrap" style="color :gray">
-                <mat-label style="color :gray">Occupied Tables</mat-label>
-                <mat-select style="color :gray" [(ngModel)]="occupiedtablen" (ngModelChange)="onOccupiedChange()" disableRipple>
-                  <mat-option *ngFor="let occ of occupiedlist" [value]="occ.table_name">{{occ.table_name}}</mat-option>
-                </mat-select>
-              </mat-form-field>
-              <mat-form-field class="col-md-6 mat-form-wrap" style="color :gray">
-                <mat-label style="color :gray">Vacant Tables</mat-label>
-                <mat-select style="color :gray" [(ngModel)]="vacanttablen" (ngModelChange)="onVacantChange()" disableRipple>
-                  <mat-option *ngFor="let vac of vacantlist" [value]="vac.table_name">{{vac.table_name}}</mat-option>
-                </mat-select>
-              </mat-form-field>
-            </div>
+          <p style="margin-top: 20px; margin-left: 15px; color: gray; font-size: 24px;">Table Transfer</p>
+          <div class="row col-md-12">
+            <mat-form-field class="col-md-6 mat-form-wrap" style="color :gray">
+              <mat-label style="color :gray">Occupied Tables</mat-label>
+              <mat-select style="color :gray" [(ngModel)]="occupiedtablen" (ngModelChange)="onOccupiedChange()" disableRipple>
+                <mat-option *ngFor="let occ of occupiedlist" [value]="occ.table_name">{{occ.table_name}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="col-md-6 mat-form-wrap" style="color :gray">
+              <mat-label style="color :gray">Occupied Tables</mat-label>
+              <mat-select style="color :gray" [(ngModel)]="occupiedtablen" (ngModelChange)="onOccupiedChange()" disableRipple>
+                <mat-option *ngFor="let occ of occupiedlist" [value]="occ.table_name">{{occ.table_name}}</mat-option>
+              </mat-select>
+            </mat-form-field>
           </div>
         </mat-card>
       </div>
