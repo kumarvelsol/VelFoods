@@ -18,7 +18,7 @@ table {
     color: white;
     width : 120px;
     height: 50px;
-    left: 400px;
+    left: 350px;
     margin-bottom: 15px;
     margin-top: 15px;
     font-size: 18px;
@@ -28,9 +28,19 @@ table {
     background-color: #33B5E5;
     width : 120px;
     height: 50px;
-    margin-left: 500px;
+    margin-left: 400px;
     margin-bottom: 15px;
     margin-top: 15px;
+    font-size: 18px;
+  }
+  .clearbtn-style1{
+    color: white;
+    background-color: #33B5E5;
+    width : 120px;
+    height: 50px;
+    margin-left: 700px;
+    margin-bottom: 15px;
+    margin-top: -65px;
     font-size: 18px;
   }
   .parent{
