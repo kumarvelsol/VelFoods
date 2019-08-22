@@ -12,6 +12,7 @@ import { OffersComponent } from './offers/offers.component';
 import { TablereserveComponent } from './tablereserve/tablereserve.component';
 import { SettledbillsComponent } from './Billsettle/settledbills/settledbills.component';
 import { BillpaymentComponent } from './billpayment/billpayment.component';
+import { TabletransferComponent }  from './tabletransfer/tabletransfer.component';
 import { PaidoutTabComponentComponent } from './paidout-tab-component/paidout-tab-component.component';
 const routes: Routes = [
   {path:'',pathMatch:'full',component:LoginpageComponent},
@@ -26,6 +27,7 @@ const routes: Routes = [
   {path:'tablebooking',component:TablereserveComponent},
   // {path:'SettledBills',component:SettledbillsComponent},
   {path:'BillPayment',component:BillpaymentComponent},
+  {path:'tabletransfer',component:TabletransferComponent},
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],

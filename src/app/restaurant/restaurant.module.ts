@@ -21,10 +21,11 @@ import { TableStatusComponent } from './table-status/table-status.component';
 import { BillsettledailogComponent } from './Billsettle/billsettledailog/billsettledailog.component';
 import { MiscollectionComponent } from './miscollection/miscollection.component';
 import { PaidoutTabComponentComponent } from './paidout-tab-component/paidout-tab-component.component';
+import { TabletransferComponent } from './tabletransfer/tabletransfer.component';
 
 
 @NgModule({
-  declarations: [LoginpageComponent, PropertyComponent, TaxpageComponent,TabledefinitionComponent, PaidoutsmiscolComponent, OffersComponent, BankwallettabbarComponent, BanksComponent, WalletsComponent,TablereserveComponent, TableStatusComponent, SettledbillsComponent, BillpaymentComponent, BillsettledailogComponent, MiscollectionComponent, PaidoutTabComponentComponent],
+  declarations: [LoginpageComponent, PropertyComponent, TaxpageComponent,TabledefinitionComponent, PaidoutsmiscolComponent, OffersComponent, BankwallettabbarComponent, BanksComponent, WalletsComponent,TablereserveComponent, TableStatusComponent, SettledbillsComponent, BillpaymentComponent, BillsettledailogComponent, MiscollectionComponent, PaidoutTabComponentComponent, TabletransferComponent],
 
   imports: [
     CommonModule,
