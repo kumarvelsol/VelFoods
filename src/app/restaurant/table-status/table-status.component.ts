@@ -58,12 +58,13 @@ export class TableStatusComponent implements OnInit {
   tables_disable : boolean; 
   ngOnInit()
   {
-    let date: Date = new Date();
-    console.log(date.toTimeString().replace(/.*(\d{2}:\d{2}):\d{2}.*/, "$1"));
     this.Payment_disable = true;
     this.availOffer_disable = true;
     this.print_disable = true;
     this.tables_disable = false;
+    this.LoadingList();
+  }
+  LoadingList(){
     this.service.gettabledata(1).subscribe((data : Responce) =>
     {
       this.count = data.Data.length;
@@ -79,7 +80,6 @@ export class TableStatusComponent implements OnInit {
         }
       }
       this.tables = data.Data;
-      
     });
   }
   Table_Id: number;
@@ -144,15 +144,28 @@ export class TableStatusComponent implements OnInit {
         insert_by : "velsol",
         insert_date : this.datepipe.transform(date.toDateString(),'yyyy-MM-dd'),
       }
-      console.log(print_data);
       this.service.PrintInsert(print_data).subscribe((data : JsResponse) =>{
         if(data.code == 200){
           alert(data.message);
+          this.LoadingList();
+          this.ClearList();
         }else{
           alert(data.message);
+          this.LoadingList();
+          this.ClearList();
         }
       })
     }
+  }
+  ClearList(){
+    this.amount = null;
+    this.tname = null;
+    this.dataSource = null;
+    this.Discount_amount = null;
+    this.ActualAmount = null;
+    this.Table_Id = null;
+    this.OffId = null;
+    this.AmountAfterDiscount = null;
   }
   Offer_Id : number = 0;
   OffId : number;
