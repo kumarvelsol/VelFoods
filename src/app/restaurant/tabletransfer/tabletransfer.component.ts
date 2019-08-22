@@ -66,6 +66,11 @@ export class TabletransferComponent implements OnInit {
   count:number;tid:number;
   table_t_itemname:string;table_t_rate:number;table_t_quantity:number;table_t_totalamount:number;kot_id:number;
   table_t_captain:string;table_t_tax_amount:number;restaurent_id:number;itemname_id:number;table_defination_id:number;
+  
+  onclear()
+  {
+    this.dataSource = null;this.dataSource2  = null;this.occupiedtablen = null;this.vacanttablen = null;
+  }
   onsaveclick()
   {
     this.tid = this.vacanttablen;
@@ -74,10 +79,12 @@ export class TabletransferComponent implements OnInit {
         if(this.jsRes.code==200)
         {
           alert("Table Transfered Successfully");
+          this.onclear();
         }
         else
         {
           alert("Failed to transfer table");
+          this.onclear();
         }
     });
     // console.log(this.dataSource2);
