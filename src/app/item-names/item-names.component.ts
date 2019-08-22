@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ItemcategoryServiceService } from '../itemcategory-service.service';
-import { NgForm } from '@angular/forms';
 import { RestaurantService } from '../restaurant/restaurant.service';
 import { itemnames } from '../shared/interfaces/empcate';
-import { convertActionBinding } from '@angular/compiler/src/compiler_util/expression_converter';
 
 @Component({
   selector: 'app-item-names',
@@ -35,9 +32,7 @@ export class ItemNamesComponent implements OnInit
     takeaway_tax_percentage : number; dinein_tax_percentage : number; hd_tax_percentage : number;
     emplist;empregistration_name : string; item_name : string;
     constructor(public service:RestaurantService) { }
-
   displayedColumns: string[] = ['itemname_id', 'itemname_item_name', 'itemname_reportingname','item_dinein_amount','item_dinein_tax','item_takeaway_amount','item_takeaway_tax','item_homedelivary_amount','item_homedelivary_tax','item_homedelivery_deliverycharges', 'itemname_status','actions'];
-  
   ngOnInit() 
   {
     this.buttoncontent ="Save";

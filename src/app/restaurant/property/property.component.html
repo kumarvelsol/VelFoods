@@ -1,120 +1,82 @@
-    <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <mat-card class="row example-card parent">
-              <div class="block child">
-                  <p style="margin-top: 0px; margin-left: 15px; color: gray; font-size: 24px;text-align: center">Property Definition</p>
-                <div style="text-align: center">
-                  <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray;text-align: center;width: 95%;margin-left: -20px;" appearance="outline">
-                      <mat-icon style="color:gray;" matSuffix>restaurant</mat-icon>
-                      <mat-label style="color :gray">Property Name</mat-label>
-                      <input style="color :gray" [(ngModel)]="property_name" type="text" matInput required>
-                  </mat-form-field>
-                </div>
-                <div class="row col-md-12">
-                  <div class="col-md-6 ">
-                    <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" appearance="outline">
-                      <mat-icon style="color:gray;" matSuffix> location_on</mat-icon>
-                      <mat-label style="color :gray">Address</mat-label>
-                      <input style="color :gray" [(ngModel)]="property_address" type="text" matInput required>
-                    </mat-form-field>
-                  </div>
-                  <div class="col-md-6 ">
-                    <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" appearance="outline">
-                      <mat-icon style="color:gray;" matSuffix>call</mat-icon>
-                      <mat-label style="color :gray">Contact No</mat-label>
-                      <input style="color :gray" [(ngModel)]="property_mobile_no" type="number" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  matInput required>
-                    </mat-form-field>
-                  </div>
-                </div>
-                <div class="row col-md-12">
-                  <div class="col-md-6 ">
-                    <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" appearance="outline">
-                        <mat-icon style="color:gray;" matSuffix> my_location</mat-icon>
-                        <mat-label style="color :gray">Landmark</mat-label>
-                        <input style="color :gray" [(ngModel)]="property_land_mark" type="text" matInput required>
-                    </mat-form-field>
-                  </div>
-                  <div class="col-md-6 ">
-                    <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" appearance="outline">
-                        <mat-icon style="color:gray;" matSuffix>contact_phone</mat-icon>
-                        <mat-label style="color :gray">Landline</mat-label>
-                        <input style="color :gray" [(ngModel)]="property_landline" type="number" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  matInput required>
-                    </mat-form-field>
-                  </div>
-                </div>
-                <div class="row col-md-12">
-                  <div class="col-md-6 ">
-                    <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" appearance="outline">
-                        <mat-icon style="color:gray;" matSuffix>location_city</mat-icon>
-                        <mat-label style="color :gray">City</mat-label>
-                        <input style="color :gray" [(ngModel)]="property_city"   type="text" pattern="^[A-Za-z]+$" ng-pattern-restrict  matInput required>
-                    </mat-form-field>
-                  </div>
-                  <div class="col-md-6 ">
-                    <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" appearance="outline">
-                        <mat-icon style="color:gray;" matSuffix>email</mat-icon>
-                        <mat-label style="color :gray">Email</mat-label>
-                        <input style="color :gray" [(ngModel)]="property_email" type="email" name="email" ngModel [email]="true" matInput required>
-                    </mat-form-field>
-                  </div>
-                </div>
-                <div class="row col-md-12">
-                  <div class="col-md-6 ">
-                    <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" appearance="outline">
-                        <mat-label style="color :gray">State</mat-label>
-                          <mat-select style="color :gray" [(ngModel)]="property_state" disableRipple>
-                            <mat-option style="color :gray" value="Andhra Pradesh">Andhra Pradesh</mat-option>
-                            <mat-option style="color :gray" value="Telangana">Telangana</mat-option>
-                            <mat-option style="color :gray" value="Telangana">Tamilnadu</mat-option>
-                            <mat-option style="color :gray" value="Telangana">Kerala</mat-option>
-                          </mat-select>
-                      </mat-form-field>
-                  </div>
-                  <div class="col-md-6 ">
-                    <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" appearance="outline">
-                      <mat-icon style="color:gray;" matSuffix>public</mat-icon>
-                      <mat-label style="color :gray">Website</mat-label>
-                      <input style="color :gray" [(ngModel)]="property_website" type="text" matInput required>
-                    </mat-form-field>
-                  </div>
-                </div>
-                <div class="row col-md-12">
-                  <div class="col-md-6 ">
-                    <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" appearance="outline">
-                      <mat-icon style="color:gray;" matSuffix>code</mat-icon>
-                      <mat-label style="color :gray">Pincode</mat-label>
-                      <input style="color :gray" [(ngModel)]="property_pincode" type="number" maxlength="6" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  matInput required>
-                    </mat-form-field>
-                  </div>
-                  <div class="col-md-6 ">
-                    <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" appearance="outline">
-                      <mat-icon style="color:gray;" matSuffix>code</mat-icon>
-                      <mat-label style="color :gray">GST</mat-label>
-                      <input style="color :gray" [(ngModel)]="property_gst" type="text" maxlength="13" matInput required>
-                    </mat-form-field>
-                  </div>
-                </div>
-                <div class="row col-md-12">
-                  <div class="col-md-6 ">
-                    <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" appearance="outline">
-                        <mat-icon style="color:gray;" matSuffix>location_city</mat-icon>
-                        <mat-label style="color :gray">Country</mat-label>
-                        <input style="color :gray" [(ngModel)]="property_country" type="text" matInput required>
-                    </mat-form-field>
-                  </div>
-                  <div class="col-md-6 ">
-                    <div>
-                      <!-- <button mat-raised-button class="btn-style2" (click)="onmodify()">Modify</button> -->
-                      <button mat-raised-button class="btn-style1" (click)="onsave()">{{buttoncontent}}</button>
-                      <!-- <button mat-raised-button class="btn-style" (click)="onclear()">Clear</button> -->
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </mat-card>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <mat-card class="row example-card parent mat-elevation-z3">
+        <div class="block child">
+          <p style="margin-top: 15px;margin-bottom: 15px;">Property Definition</p>
+          <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray;text-align: center;" appearance="outline">
+              <mat-icon style="color:gray;" matSuffix>restaurant</mat-icon>
+              <mat-label style="color :gray">Property Name</mat-label>
+              <input style="color :gray" [(ngModel)]="property_name" type="text" matInput required>
+          </mat-form-field>
+          <mat-form-field class="col-md-6 mat-form-wrap" style="color :gray" appearance="outline">
+            <mat-icon style="color:gray;" matSuffix> location_on</mat-icon>
+            <mat-label style="color :gray">Address</mat-label>
+            <input style="color :gray" [(ngModel)]="property_address" type="text" matInput required>
+          </mat-form-field>
+          <mat-form-field class="col-md-6 mat-form-wrap" style="color :gray" appearance="outline">
+            <mat-icon style="color:gray;" matSuffix>call</mat-icon>
+            <mat-label style="color :gray">Contact No</mat-label>
+            <input style="color :gray" [(ngModel)]="property_mobile_no" type="number" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  matInput required>
+          </mat-form-field>
+          <mat-form-field class="col-md-6 mat-form-wrap" style="color :gray" appearance="outline">
+              <mat-icon style="color:gray;" matSuffix> my_location</mat-icon>
+              <mat-label style="color :gray">Landmark</mat-label>
+              <input style="color :gray" [(ngModel)]="property_land_mark" type="text" matInput required>
+          </mat-form-field>
+          <mat-form-field class="col-md-6 mat-form-wrap" style="color :gray" appearance="outline">
+              <mat-icon style="color:gray;" matSuffix>contact_phone</mat-icon>
+              <mat-label style="color :gray">Landline</mat-label>
+              <input style="color :gray" [(ngModel)]="property_landline" type="number" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  matInput required>
+          </mat-form-field>
+          <mat-form-field class="col-md-6 mat-form-wrap" style="color :gray" appearance="outline">
+              <mat-icon style="color:gray;" matSuffix>location_city</mat-icon>
+              <mat-label style="color :gray">City</mat-label>
+              <input style="color :gray" [(ngModel)]="property_city"   type="text" pattern="^[A-Za-z]+$" ng-pattern-restrict  matInput required>
+          </mat-form-field>
+          <mat-form-field class="col-md-6 mat-form-wrap" style="color :gray" appearance="outline">
+              <mat-icon style="color:gray;" matSuffix>email</mat-icon>
+              <mat-label style="color :gray">Email</mat-label>
+              <input style="color :gray" [(ngModel)]="property_email" type="email" name="email" ngModel [email]="true" matInput required>
+          </mat-form-field>
+          <mat-form-field class="col-md-6 mat-form-wrap" style="color :gray" appearance="outline">
+            <mat-label style="color :gray">State</mat-label>
+            <mat-select style="color :gray" [(ngModel)]="property_state" disableRipple>
+              <mat-option style="color :gray" value="Andhra Pradesh">Andhra Pradesh</mat-option>
+              <mat-option style="color :gray" value="Telangana">Telangana</mat-option>
+              <mat-option style="color :gray" value="Telangana">Tamilnadu</mat-option>
+              <mat-option style="color :gray" value="Telangana">Kerala</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="col-md-6 mat-form-wrap" style="color :gray" appearance="outline">
+            <mat-icon style="color:gray;" matSuffix>public</mat-icon>
+            <mat-label style="color :gray">Website</mat-label>
+            <input style="color :gray" [(ngModel)]="property_website" type="text" matInput required>
+          </mat-form-field>
+          <mat-form-field class="col-md-6 mat-form-wrap" style="color :gray" appearance="outline">
+            <mat-icon style="color:gray;" matSuffix>code</mat-icon>
+            <mat-label style="color :gray">Pincode</mat-label>
+            <input style="color :gray" [(ngModel)]="property_pincode" type="number" maxlength="6" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  matInput required>
+          </mat-form-field>
+          <mat-form-field class="col-md-6 mat-form-wrap" style="color :gray" appearance="outline">
+            <mat-icon style="color:gray;" matSuffix>code</mat-icon>
+            <mat-label style="color :gray">GST</mat-label>
+            <input style="color :gray" [(ngModel)]="property_gst" type="text" maxlength="13" matInput required>
+          </mat-form-field>
+          <mat-form-field class="col-md-6 mat-form-wrap" style="color :gray" appearance="outline">
+            <mat-icon style="color:gray;" matSuffix>location_city</mat-icon>
+            <mat-label style="color :gray">Country</mat-label>
+            <input style="color :gray" [(ngModel)]="property_country" type="text" matInput required>
+          </mat-form-field>
+          <div class="col-md-12 mat-form-wrap" style="margin-bottom: 15px;">
+            <div>
+              <!-- <button mat-raised-button class="btn-style2" (click)="onmodify()">Modify</button> -->
+              <button mat-raised-button class="btn-style1" (click)="onsave()">{{buttoncontent}}</button>
+              <!-- <button mat-raised-button class="btn-style" (click)="onclear()">Clear</button> -->
+            </div>
           </div>
         </div>
-      </div>
-
-  
+      </mat-card>
+    </div>
+  </div>
+</div>
