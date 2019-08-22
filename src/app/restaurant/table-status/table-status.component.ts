@@ -69,7 +69,17 @@ export class TableStatusComponent implements OnInit {
       this.count = data.Data.length;
       this.kot_id = this.count + 1;
       console.log(data);
-      this.tables =data.Data;
+      for(let i=0;i<this.count;i++){
+        if(data.Data[i].BACKGROUND_COLOR == "Darkslategray"){
+          data.Data[i].textcolor = "white";
+        }else if(data.Data[i].BACKGROUND_COLOR == "Green"){
+          data.Data[i].textcolor = "white";
+        }else{
+          data.Data[i].textcolor = "black";
+        }
+      }
+      this.tables = data.Data;
+      
     });
   }
   Table_Id: number;

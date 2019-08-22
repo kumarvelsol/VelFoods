@@ -68,10 +68,10 @@ export class OrderingComponent implements OnInit {
   kotid : number;count : number;
   greencount:number=0;orangecount:number=0;redcount:number=0;bluecount:number=0;Darkslategraycount:number=0;
   disableadd:boolean=true;disablesave:boolean=true;
+  //textcolor : string;
   @ViewChild(MatTable) table: MatTable<any>; 
   constructor(private service : RestaurantService,public dialog: MatDialog) {
-   }
-  
+  }
   ngOnInit() {
     this.gettingtablenumbers();
     this.service.getorders(1).subscribe((data : Responce) =>
@@ -110,6 +110,15 @@ export class OrderingComponent implements OnInit {
         else if(this.rooms[i].BACKGROUND_COLOR == "Red")
         {
           this.redcount= ++this.redcount;
+        }
+      }
+      for(let i=0;i<data.Data.length;i++){
+        if(data.Data[i].BACKGROUND_COLOR == "Darkslategray"){
+          data.Data[i].textcolor = "white";
+        }else if(data.Data[i].BACKGROUND_COLOR == "Green"){
+          data.Data[i].textcolor = "white";
+        }else{
+          data.Data[i].textcolor = "black";
         }
       }
     });
@@ -203,11 +212,13 @@ export class OrderingComponent implements OnInit {
   onclear()
   {
     this.table_name = null;this.table_pax = null;this.table_capatain = "";
-    this.dataSource = null;this.order_status = "";
-    this.buttoncontent= "Save";
+    this.itemnames = [];this.itemnameid = [];this.quantity = [];
+    this.tax = [];this.total = [];this.Rate = [];
+    this.dataSource = [];this.order_status = "";this.disablesave = true;
+    this.buttoncontent= "Save";this.disableadd = true;
   }
   onbuttonclick($event,table_name,BACKGROUND_COLOR){
-    this.dataSource = null;
+    this.dataSource = [];
     this.colorr = BACKGROUND_COLOR;
    this.tname = table_name;
    if(this.tname != null)
@@ -235,7 +246,7 @@ export class OrderingComponent implements OnInit {
    }
    else if(this.colorr == "Orange")
    {
-     this.disableadd = true;
+     this.dataSource = [];
      this.order_status = "Running";
       this.service.getorderitems(1,this.tname).subscribe((data : Responce) =>
       {
@@ -313,6 +324,7 @@ export class OrderingComponent implements OnInit {
       });
   
       dialogRef.afterClosed().subscribe(result => {
+        this.orders = [];
         if(result.action == 'Add')
         {
           console.log(result);
@@ -320,6 +332,8 @@ export class OrderingComponent implements OnInit {
           this.dataSource = this.orders; 
           this.dataSource = [...this.dataSource];
           console.log(this.dataSource);
+          this.buttoncontent = "Save";
+          this.table.renderRows();
         }
         else if(result.action == 'Update')
         {

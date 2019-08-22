@@ -23,6 +23,7 @@ import { OffersDialogComponent } from './restaurant/offers-dialog/offers-dialog.
 import { EmployeedepartmentComponent } from './employeedepartment/employeedepartment.component';
 import { EmployeeregistrationComponent } from './employeeregistration/employeeregistration.component';
 import { BillsettledailogComponent } from './restaurant/Billsettle/billsettledailog/billsettledailog.component';
+import { SidenavToolbarComponent } from './ui/sidenav-toolbar/sidenav-toolbar.component';
 
 @NgModule({
   declarations: [ 
@@ -36,6 +37,7 @@ import { BillsettledailogComponent } from './restaurant/Billsettle/billsettledai
     DialogBoxComponent,
     EmployeedepartmentComponent,OffersDialogComponent,
     EmployeeregistrationComponent,
+    SidenavToolbarComponent,
   ],
   imports: [
     MaterialModule,MatDialogModule,

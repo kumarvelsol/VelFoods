@@ -14,6 +14,7 @@ import { Managermodel } from '../shared/interfaces/managermodel';
 import { Walletsmodel } from '../shared/walletsmodel';
 import { Prints } from '../shared/interfaces/Prints';
 import { Billpayment } from '../shared/billpayment';
+import { Tabletransfermodel } from '../shared/tabletransfermodel';
 
 @Injectable({
   providedIn: 'root'
@@ -285,5 +286,23 @@ Baseurl = 'http://localhost:57649/';
   public billinsert(bill_in:Billpayment)
   {
     return this.http.post(`${this.Baseurl+"billinsert"}`,bill_in);
+  }
+  public gettingvacanttables(restaurent_id:number,BACKGROUND_COLOR:string)
+  {
+    let parms =new HttpParams();
+    parms =parms.append('restaurent_id', restaurent_id+"");
+    parms =parms.append('BACKGROUND_COLOR', BACKGROUND_COLOR+"")
+    return this.http.post(`${this.Baseurl+"vacant"}`,parms);
+  }
+  public gettingoccupiedtables(restaurent_id:number,BACKGROUND_COLOR:string)
+  {
+    let parms =new HttpParams();
+    parms =parms.append('restaurent_id', restaurent_id+"");
+    parms =parms.append('BACKGROUND_COLOR', BACKGROUND_COLOR+"")
+    return this.http.post(`${this.Baseurl+"occupied"}`,parms);
+  }
+  public transferinsert(transfer:Tabletransfermodel)
+  {
+    return this.http.post<JsResponse>(`${this.Baseurl+"tabletransfer"}`,transfer);
   }
  }

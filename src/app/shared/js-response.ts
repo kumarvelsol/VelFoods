@@ -99,4 +99,5 @@ export interface Data {
     total_after_discount : number,
     discount_amount : number,
     print_status : string,
+    textcolor : string,
 }
