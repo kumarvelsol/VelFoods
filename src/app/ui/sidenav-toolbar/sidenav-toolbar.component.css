@@ -1,8 +1,9 @@
 .sidenav-container{
     height: 100%;
 }
-/* .sidenav{
-} */
+.sidenav{
+  width: 300px;
+}
 .toolbar-icons {
     padding: 0 14px;
 }
@@ -17,3 +18,14 @@
   justify-content: space-between;
   align-items: left;
 }
+/* .with-bg {
+  background: url('/src/assets/images/Background.jpg') no-repeat center;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  max-height: 150px;
+} */
