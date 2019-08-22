@@ -138,7 +138,7 @@ export class TableStatusComponent implements OnInit {
         total_amount : this.ActualAmount,
         offers_id : this.OffId,
         discount_amount : this.Discount_amount,
-        print_status : "Prited",
+        print_status : "Printed",
         restaurent_id : 1,
         total_after_discount : this.AmountAfterDiscount,
         insert_by : "velsol",
@@ -193,7 +193,7 @@ export class TableStatusComponent implements OnInit {
       alert("Please select the Occupied Table to apply an offer");
     }
   }
-  public NavigateClick(table_name:number,table_pax:number,amount:number,table_defination_id:number)
+  public NavigateClick(table_name:number,table_pax:number,amount:number,table_defination_id:number,restaurent_id:number)
   {
     let navigationExtras: NavigationExtras = {
       queryParams: {
@@ -201,6 +201,7 @@ export class TableStatusComponent implements OnInit {
         "pax":this.table_pax = table_pax,
         "amount":this.amount= amount,
         "tid":this.table_defination_id= table_defination_id,
+        "resid":this.restaurent_id= restaurent_id,
       }
     };
     console.log("name",this.table_name);console.log("pax",this.table_pax);console.log("amount",this.amount);
