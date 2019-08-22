@@ -1,176 +1,176 @@
 <div class="container">
   <div class="row">
-        <div class="col-md-12">
-            <mat-card class="row example-card">
-              <div class="block child">
-                <p>ItemName</p>
-                <mat-form-field class="col-lg-6">
-                  <mat-label>---select category---</mat-label>
-                  <mat-select [(ngModel)]="itemcategory_id">
-                    <mat-option *ngFor="let itm of itemcategory" [value]="itm.itemcategory_id">{{itm.item_name}}</mat-option> 
-                  </mat-select>
-                </mat-form-field>
-                <mat-form-field class="col-lg-6">
-                  <mat-label style="color: gray;">Item Name</mat-label>
-                  <mat-icon style="color :gray" matSuffix>developer_board</mat-icon>          
-                  <input matInput [(ngModel)]="itemname_item_name" required>
-                </mat-form-field>
-                <mat-form-field class="col-lg-6">
-                  <mat-label style="color: gray;">Item Description</mat-label>
-                  <mat-icon style="color :gray" matSuffix>developer_board</mat-icon>          
-                  <input matInput [(ngModel)]="itemname_description" required>
-                </mat-form-field>
-                <mat-form-field class="col-lg-6">
-                  <mat-label>---select reportingname---</mat-label>
-                  <mat-select style="color :gray" [(ngModel)]="itemname_reportingname" disableRipple>
-                    <mat-option *ngFor="let emp of emplist" [value]="emp.empregistration_name">{{emp.empregistration_name}}</mat-option>
-                  </mat-select>
-                </mat-form-field>
-                <mat-form-field class="col-lg-6">
-                  <input matInput [matDatepicker]="picker" [(ngModel)]="itemname_active_from" placeholder="Active from" required>
-                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                  <mat-datepicker #picker></mat-datepicker>
-                </mat-form-field>  
-                <mat-radio-group aria-labelledby="example-radio-group-label" class="col-lg-6" [(ngModel)]="itemname_status">
-                  <label class="example-radio-button" > Status :</label>
-                  <mat-radio-button value="Active">Active</mat-radio-button>
-                  <mat-radio-button style="margin-left:10px;" value="InActive">InActive</mat-radio-button>
-                </mat-radio-group> <br><br>
-              </div>
-              <div class="block child">
-                  <h6>DineIn:-</h6>
-                  <mat-form-field class="col-lg-6">
-                    <mat-label style="color: gray;">enter amount</mat-label>
-                    <mat-icon style="color :gray" matSuffix>monetization_on</mat-icon>          
-                    <input matInput  [(ngModel)]="item_dinein_amount" required >
-                  </mat-form-field>
-                  <mat-form-field  class="col-lg-6" >
-                    <mat-label>---select Tax---</mat-label>
-                  <mat-select [(ngModel)]="dinein_tax_percentage" (click)="onChange()">
-                    <mat-option *ngFor="let tax of taxlist" [value]="tax.tax_percentage">{{tax.tax_percentage}}</mat-option>
-                  </mat-select>
-                  </mat-form-field>
-                  <mat-form-field class="col-lg-12">
-                      <mat-label style="color: gray;">Total amount</mat-label>
-                      <mat-icon style="color :gray" matSuffix>monetization_on</mat-icon>          
-                      <input matInput [(ngModel)]="itemname_dinein_total" value="{{(item_dinein_amount*dinein_tax_percentage/100)+  +item_dinein_amount}}" >
-                  </mat-form-field>
-                </div>
-                <div class="block child">
-                  <h6>TakeAway:-</h6>
-                  <mat-form-field   class="col-md-6" style="color: gray;">
-                    <mat-label style="color: gray;">amount</mat-label>
-                    <mat-icon style="color :gray" matSuffix>monetization_on</mat-icon>          
-                    <input matInput  (keyup)="onTakeAwayLabel($event)" [(ngModel)]="item_takeaway_amount" required>
-                  </mat-form-field>
-                  <mat-form-field  class="col-lg-6" >
-                    <mat-label>---select Tax---</mat-label>
-                    <mat-select [(ngModel)]="takeaway_tax_percentage" (click)="onChangee()">
-                      <mat-option *ngFor="let tax of taxlist" [value]="tax.tax_percentage">{{tax.tax_percentage}}</mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                  <mat-form-field class="col-lg-12">
-                    <mat-label style="color: gray;">Total amount</mat-label>
-                    <mat-icon style="color :gray" matSuffix>monetization_on</mat-icon>          
-                    <input matInput (keyup)="onDineInnLabel($event)" [(ngModel)]="itemname_takeaway_total" value="{{(item_takeaway_amount * takeaway_tax_percentage/100) + +item_takeaway_amount}}" >
-                  </mat-form-field>
-                </div>
-                <div class="block child">
-                  <h6>HomeDelivary:-</h6>
-                  <mat-form-field class="col-md-6" style="color: gray;">
-                    <mat-label style="color: gray;">amount</mat-label>
-                    <mat-icon style="color :gray" matSuffix>monetization_on</mat-icon>          
-                    <input matInput   (keyup)="onHDeliveryLabel($event)" [(ngModel)]="item_homedelivary_amount" required>
-                  </mat-form-field>
-                  <mat-form-field  class="col-lg-6" >
-                      <mat-label>---select Tax---</mat-label>
-                      <mat-select [(ngModel)]="hd_tax_percentage" (click)="onChangeee()">
-                        <mat-option *ngFor="let tax of taxlist" [value]="tax.tax_percentage">{{tax.tax_percentage}}</mat-option>
-                      </mat-select>
-                  </mat-form-field>
-                  <mat-form-field class="col-md-6" style="color: gray;">
-                    <mat-label style="color: gray;">Delivary charges</mat-label>
-                    <mat-icon style="color :gray" matSuffix>monetization_on</mat-icon>          
-                    <input matInput   (keyup)="onHDeliveryLabel($event)" [(ngModel)]="item_homedelivery_deliverycharges" required>
-                  </mat-form-field>
-                  <mat-form-field class="col-lg-6">
-                      <mat-label style="color: gray;">Total amount</mat-label>
-                      <mat-icon style="color :gray" matSuffix>monetization_on</mat-icon>          
-                      <input matInput (keyup)="onDineInnLabel($event)" [(ngModel)]="itemname_homedelivary_total" value="{{(item_homedelivary_amount * hd_tax_percentage/100) + +item_homedelivary_amount + +item_homedelivery_deliverycharges}}">
-                  </mat-form-field>
-                </div>
-                <div class="col-md-12">
-                  <button mat-raised-button style="margin-left: 300px; margin-top: 10px;" class="btn-style" (click)="onsaveclick()">{{buttoncontent}}</button>&nbsp;&nbsp;
-                  <button style="margin: 10px;" class="btn-style"  (click)="onclearclick()">clear</button>
-                </div>
-              </mat-card>
-            </div>
-            <div class="col-md-12">
-              <div class="example-container mat-elevation-z1">
-                <table mat-table [dataSource]="dataSource">
-                  <ng-container matColumnDef="itemname_id">
-                    <th mat-header-cell *matHeaderCellDef class="textSizes"> ID </th>
-                    <td mat-cell *matCellDef="let element"> {{element.itemname_id}} </td>
-                  </ng-container>
-                  <ng-container matColumnDef="itemname_item_name">
-                    <th mat-header-cell *matHeaderCellDef class="textSizes"> Name </th>
-                    <td mat-cell *matCellDef="let element"> {{element.itemname_item_name}} </td>
-                  </ng-container>
-                  <ng-container matColumnDef="itemname_reportingname">
-                    <th mat-header-cell *matHeaderCellDef class="textSizes"> Reporting Name </th>
-                    <td mat-cell *matCellDef="let element"> {{element.itemname_reportingname}} </td>
-                  </ng-container>
-                  <ng-container matColumnDef="item_dinein_amount">
-                    <th mat-header-cell *matHeaderCellDef class="textSizes"> DineIn </th>
-                    <td mat-cell *matCellDef="let element"> {{element.item_dinein_amount}} </td>
-                  </ng-container>
-                  <ng-container matColumnDef="item_dinein_tax">
-                    <th mat-header-cell *matHeaderCellDef class="textSizes"> Tax </th>
-                    <td mat-cell *matCellDef="let element"> {{element.item_dinein_tax}} </td>
-                  </ng-container>
-                  <ng-container matColumnDef="item_takeaway_amount">
-                    <th mat-header-cell *matHeaderCellDef class="textSizes"> TakeAway </th>
-                    <td mat-cell *matCellDef="let element"> {{element.item_takeaway_amount}} </td>
-                  </ng-container>
-                  <ng-container matColumnDef="item_takeaway_tax">
-                    <th mat-header-cell *matHeaderCellDef class="textSizes"> Tax </th>
-                    <td mat-cell *matCellDef="let element"> {{element.item_takeaway_tax}} </td>
-                  </ng-container>
-                  <ng-container matColumnDef="item_homedelivary_amount">
-                    <th mat-header-cell *matHeaderCellDef class="textSizes"> HomeDelivery </th>
-                    <td mat-cell *matCellDef="let element"> {{element.item_homedelivary_amount}} </td>
-                  </ng-container>
-                  <ng-container matColumnDef="item_homedelivary_tax">
-                    <th mat-header-cell *matHeaderCellDef class="textSizes"> Tax </th>
-                    <td mat-cell *matCellDef="let element"> {{element.item_homedelivary_tax}} </td>
-                  </ng-container>
-                  <ng-container matColumnDef="item_homedelivery_deliverycharges">
-                    <th mat-header-cell *matHeaderCellDef class="textSizes"> DeliveryCharge </th>
-                    <td mat-cell *matCellDef="let element"> {{element.item_homedelivery_deliverycharges}} </td>
-                  </ng-container>
-                  <ng-container matColumnDef="itemname_status">
-                    <th mat-header-cell *matHeaderCellDef class="textSizes"> Status </th>
-                    <td mat-cell *matCellDef="let element"> {{element.itemname_status}} 
-                  </ng-container>
-                  <ng-container matColumnDef="actions">
-                    <th mat-header-cell *matHeaderCellDef>Edit</th>
-                    <td mat-cell *matCellDef="let element; let i=index;"> 
-                      <button mat-icon-button style="color:gray;margin-right: 10px;" 
-                      (click)="RowSelected(i,element.itemname_id,element.itemname_item_name,element.itemname_description,
-                      element.itemname_reportingname,element.itemname_active_from,element.item_dinein_amount,
-                      element.item_dinein_tax,element.itemname_dinein_total,
-                      element.item_takeaway_amount,element.item_takeaway_tax,
-                      element.itemname_takeaway_total,element.item_homedelivary_amount,
-                      element.item_homedelivary_tax,element.item_homedelivery_deliverycharges,
-                      element.itemname_homedelivary_total,element.itemname_status,element.itemcategory_id)">
-                        <mat-icon aria-label="Edit">edit</mat-icon>
-                      </button>
-                    </td>
-                  </ng-container>
-                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                </table>
-              </div>
-            </div>
+    <div class="col-md-12">
+      <mat-card class="row example-card">
+        <div class="block child">
+          <p>ItemName</p>
+          <mat-form-field class="col-lg-6">
+            <mat-label>---select category---</mat-label>
+            <mat-select [(ngModel)]="itemcategory_id">
+              <mat-option *ngFor="let itm of itemcategory" [value]="itm.itemcategory_id">{{itm.item_name}}</mat-option> 
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="col-lg-6">
+            <mat-label style="color: gray;">Item Name</mat-label>
+            <mat-icon style="color :gray" matSuffix>developer_board</mat-icon>          
+            <input matInput [(ngModel)]="itemname_item_name" required>
+          </mat-form-field>
+          <mat-form-field class="col-lg-6">
+            <mat-label style="color: gray;">Item Description</mat-label>
+            <mat-icon style="color :gray" matSuffix>developer_board</mat-icon>          
+            <input matInput [(ngModel)]="itemname_description" required>
+          </mat-form-field>
+          <mat-form-field class="col-lg-6">
+            <mat-label>---select reportingname---</mat-label>
+            <mat-select style="color :gray" [(ngModel)]="itemname_reportingname" disableRipple>
+              <mat-option *ngFor="let emp of emplist" [value]="emp.empregistration_name">{{emp.empregistration_name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="col-lg-6">
+            <input matInput [matDatepicker]="picker" [(ngModel)]="itemname_active_from" placeholder="Active from" required>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>  
+          <mat-radio-group aria-labelledby="example-radio-group-label" class="col-lg-6" [(ngModel)]="itemname_status">
+            <label class="example-radio-button" > Status :</label>
+            <mat-radio-button value="Active">Active</mat-radio-button>
+            <mat-radio-button style="margin-left:10px;" value="InActive">InActive</mat-radio-button>
+          </mat-radio-group> <br><br>
+        </div>
+        <div class="block child">
+            <h6>DineIn:-</h6>
+            <mat-form-field class="col-lg-6">
+              <mat-label style="color: gray;">enter amount</mat-label>
+              <mat-icon style="color :gray" matSuffix>monetization_on</mat-icon>          
+              <input matInput  [(ngModel)]="item_dinein_amount" required >
+            </mat-form-field>
+            <mat-form-field  class="col-lg-6" >
+              <mat-label>---select Tax---</mat-label>
+            <mat-select [(ngModel)]="dinein_tax_percentage" (click)="onChange()">
+              <mat-option *ngFor="let tax of taxlist" [value]="tax.tax_percentage">{{tax.tax_percentage}}</mat-option>
+            </mat-select>
+            </mat-form-field>
+            <mat-form-field class="col-lg-12">
+                <mat-label style="color: gray;">Total amount</mat-label>
+                <mat-icon style="color :gray" matSuffix>monetization_on</mat-icon>          
+                <input matInput [(ngModel)]="itemname_dinein_total" value="{{(item_dinein_amount*dinein_tax_percentage/100)+  +item_dinein_amount}}" >
+            </mat-form-field>
           </div>
-        </div> 
+          <div class="block child">
+            <h6>TakeAway:-</h6>
+            <mat-form-field   class="col-md-6" style="color: gray;">
+              <mat-label style="color: gray;">amount</mat-label>
+              <mat-icon style="color :gray" matSuffix>monetization_on</mat-icon>          
+              <input matInput  (keyup)="onTakeAwayLabel($event)" [(ngModel)]="item_takeaway_amount" required>
+            </mat-form-field>
+            <mat-form-field  class="col-lg-6" >
+              <mat-label>---select Tax---</mat-label>
+              <mat-select [(ngModel)]="takeaway_tax_percentage" (click)="onChangee()">
+                <mat-option *ngFor="let tax of taxlist" [value]="tax.tax_percentage">{{tax.tax_percentage}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="col-lg-12">
+              <mat-label style="color: gray;">Total amount</mat-label>
+              <mat-icon style="color :gray" matSuffix>monetization_on</mat-icon>          
+              <input matInput (keyup)="onDineInnLabel($event)" [(ngModel)]="itemname_takeaway_total" value="{{(item_takeaway_amount * takeaway_tax_percentage/100) + +item_takeaway_amount}}" >
+            </mat-form-field>
+          </div>
+          <div class="block child">
+            <h6>HomeDelivary : </h6>
+            <mat-form-field class="col-md-6" style="color: gray;">
+              <mat-label style="color: gray;">amount</mat-label>
+              <mat-icon style="color :gray" matSuffix>monetization_on</mat-icon>          
+              <input matInput   (keyup)="onHDeliveryLabel($event)" [(ngModel)]="item_homedelivary_amount" required>
+            </mat-form-field>
+            <mat-form-field  class="col-lg-6" >
+              <mat-label>---select Tax---</mat-label>
+              <mat-select [(ngModel)]="hd_tax_percentage" (click)="onChangeee()">
+                <mat-option *ngFor="let tax of taxlist" [value]="tax.tax_percentage">{{tax.tax_percentage}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="col-md-6" style="color: gray;">
+              <mat-label style="color: gray;">Delivary charges</mat-label>
+              <mat-icon style="color :gray" matSuffix>monetization_on</mat-icon>          
+              <input matInput   (keyup)="onHDeliveryLabel($event)" [(ngModel)]="item_homedelivery_deliverycharges" required>
+            </mat-form-field>
+            <mat-form-field class="col-lg-6">
+              <mat-label style="color: gray;">Total amount</mat-label>
+              <mat-icon style="color :gray" matSuffix>monetization_on</mat-icon>          
+              <input matInput (keyup)="onDineInnLabel($event)" [(ngModel)]="itemname_homedelivary_total" value="{{(item_homedelivary_amount * hd_tax_percentage/100) + +item_homedelivary_amount + +item_homedelivery_deliverycharges}}">
+            </mat-form-field>
+          </div>
+          <div class="col-md-12" style="text-align: center">
+            <button mat-raised-button style="margin-top: 10px;" class="btn-style" (click)="onsaveclick()">{{buttoncontent}}</button>&nbsp;&nbsp;
+            <button mat-raised-button style="margin-top: 10px;" class="btn-style"  (click)="onclearclick()">Clear</button>
+          </div>
+        </mat-card>
+      </div>
+    <div class="col-md-12">
+      <div class="example-container mat-elevation-z1">
+        <table mat-table [dataSource]="dataSource">
+          <ng-container matColumnDef="itemname_id">
+            <th mat-header-cell *matHeaderCellDef class="textSizes"> ID </th>
+            <td mat-cell *matCellDef="let element"> {{element.itemname_id}} </td>
+          </ng-container>
+          <ng-container matColumnDef="itemname_item_name">
+            <th mat-header-cell *matHeaderCellDef class="textSizes"> Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.itemname_item_name}} </td>
+          </ng-container>
+          <ng-container matColumnDef="itemname_reportingname">
+            <th mat-header-cell *matHeaderCellDef class="textSizes"> Reporting Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.itemname_reportingname}} </td>
+          </ng-container>
+          <ng-container matColumnDef="item_dinein_amount">
+            <th mat-header-cell *matHeaderCellDef class="textSizes"> DineIn </th>
+            <td mat-cell *matCellDef="let element"> {{element.item_dinein_amount}} </td>
+          </ng-container>
+          <ng-container matColumnDef="item_dinein_tax">
+            <th mat-header-cell *matHeaderCellDef class="textSizes"> Tax </th>
+            <td mat-cell *matCellDef="let element"> {{element.item_dinein_tax}} </td>
+          </ng-container>
+          <ng-container matColumnDef="item_takeaway_amount">
+            <th mat-header-cell *matHeaderCellDef class="textSizes"> TakeAway </th>
+            <td mat-cell *matCellDef="let element"> {{element.item_takeaway_amount}} </td>
+          </ng-container>
+          <ng-container matColumnDef="item_takeaway_tax">
+            <th mat-header-cell *matHeaderCellDef class="textSizes"> Tax </th>
+            <td mat-cell *matCellDef="let element"> {{element.item_takeaway_tax}} </td>
+          </ng-container>
+          <ng-container matColumnDef="item_homedelivary_amount">
+            <th mat-header-cell *matHeaderCellDef class="textSizes"> HomeDelivery </th>
+            <td mat-cell *matCellDef="let element"> {{element.item_homedelivary_amount}} </td>
+          </ng-container>
+          <ng-container matColumnDef="item_homedelivary_tax">
+            <th mat-header-cell *matHeaderCellDef class="textSizes"> Tax </th>
+            <td mat-cell *matCellDef="let element"> {{element.item_homedelivary_tax}} </td>
+          </ng-container>
+          <ng-container matColumnDef="item_homedelivery_deliverycharges">
+            <th mat-header-cell *matHeaderCellDef class="textSizes"> DeliveryCharge </th>
+            <td mat-cell *matCellDef="let element"> {{element.item_homedelivery_deliverycharges}} </td>
+          </ng-container>
+          <ng-container matColumnDef="itemname_status">
+            <th mat-header-cell *matHeaderCellDef class="textSizes"> Status </th>
+            <td mat-cell *matCellDef="let element"> {{element.itemname_status}} 
+          </ng-container>
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>Edit</th>
+            <td mat-cell *matCellDef="let element; let i=index;"> 
+              <button mat-icon-button style="color:gray;margin-right: 10px;" 
+              (click)="RowSelected(i,element.itemname_id,element.itemname_item_name,element.itemname_description,
+              element.itemname_reportingname,element.itemname_active_from,element.item_dinein_amount,
+              element.item_dinein_tax,element.itemname_dinein_total,
+              element.item_takeaway_amount,element.item_takeaway_tax,
+              element.itemname_takeaway_total,element.item_homedelivary_amount,
+              element.item_homedelivary_tax,element.item_homedelivery_deliverycharges,
+              element.itemname_homedelivary_total,element.itemname_status,element.itemcategory_id)">
+                <mat-icon aria-label="Edit">edit</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div> 
