@@ -11,7 +11,7 @@ import { RestaurantsComponent } from './restaurants/restaurants.component';
 import { ItemCategoryComponent } from './item-category/item-category.component';
 import { ItemNamesComponent } from './item-names/item-names.component';
 import { RestaurantModule } from './restaurant/restaurant.module';
-import { MatDialogModule } from '@angular/material';
+import { MatDialogModule,MatSidenavModule } from '@angular/material';
 import { MaterialModule } from './shared/material.module';
 import { LoginComponent } from './login/login.component';
 import { OrderingComponent } from './ordering/ordering.component';
@@ -42,7 +42,7 @@ import { SidenavToolbarComponent } from './ui/sidenav-toolbar/sidenav-toolbar.co
   imports: [
     MaterialModule,MatDialogModule,
     BrowserModule,AppRoutingModule,
-    ReactiveFormsModule,FormsModule,
+    ReactiveFormsModule,FormsModule,MatSidenavModule,
     BrowserAnimationsModule,RestaurantModule,
     CoreModule,AmazingTimePickerModule,
     CommonModule,HttpClientModule, 

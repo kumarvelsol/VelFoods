@@ -22,6 +22,7 @@ export class BillpaymentComponent implements OnInit {
   pendingg : boolean=false;  comp : boolean=false; paidouts : boolean=false; misCollections : boolean=false;
   reference : string; mobile_no : number; name : string; restaurent_id : number;
   table_capatain : string;table_description : string;table_status : string;table_steward : string;table_view:string;
+  name1 : string;name2:string;mobile_no1 : number;mobile_no2 : number;
 
   constructor(public service1 : RestaurantService,private route: ActivatedRoute) {
     this.route.queryParams.subscribe(params => {
@@ -237,10 +238,14 @@ export class BillpaymentComponent implements OnInit {
     if(this.paidouts == true)
     {
       this.comp = true;this.pendingg = false;
+      this.name = this.name1;this.mobile_no = this.mobile_no1;
+      this.payment_status = "Pending";
     }
     else
     {
       this.comp = false;this.pendingg = false;
+      this.name = this.name2;this.mobile_no = this.mobile_no2;
+      this.payment_status = "Complementory";
     }
   }
   public oncompchange(value)
@@ -295,9 +300,16 @@ export class BillpaymentComponent implements OnInit {
             alert("BillPayment Added Succesfully.!");
           }else{ alert("Failed to Insert data");}
    });
+   this.onclearclick();
   }
   onclearclick()
   {
-
+    this.table_name = null; this.table_pax = null;this.amount = null;
+    this.am[0] = "";this.am[1] = "";this.am[2] = "";this.am[3] = "";this.am[4] = "";
+    this.tr[0] = "";this.tr[1] = "";this.tr[2] = "";this.tr[3] = "";
+    this.bank = "";this.bank1 = "";this.bank2 = "";this.bank3 = "";
+    this.due_amount = null;this.bill_amount = null;
+    this.name1 =""; this.mobile_no1 = null;this.reference = "";
+    this.name2 =""; this.mobile_no2 = null; 
   }
 }

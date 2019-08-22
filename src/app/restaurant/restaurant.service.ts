@@ -21,7 +21,7 @@ import { Tabletransfermodel } from '../shared/tabletransfermodel';
 })
 export class RestaurantService {
 //Baseurl = 'http://localhost:57649/'; 
- Baseurl = 'http://school.edujinni.in/';
+Baseurl = 'http://school.edujinni.in/';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json'
@@ -304,5 +304,12 @@ export class RestaurantService {
   public transferinsert(transfer:Tabletransfermodel)
   {
     return this.http.post<JsResponse>(`${this.Baseurl+"tabletransfer"}`,transfer);
+  }
+  public gettablecolor(restaurent_id:number,BACKGROUND_COLOR:string)
+  {
+    let parms =new HttpParams();
+    parms =parms.append('restaurent_id', restaurent_id+"")
+    parms =parms.append('BACKGROUND_COLOR', BACKGROUND_COLOR+"")
+    return this.http.post(`${this.Baseurl+"gettablecolor"}`,parms);
   }
  }
