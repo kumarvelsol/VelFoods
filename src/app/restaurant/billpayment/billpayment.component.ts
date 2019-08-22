@@ -254,10 +254,14 @@ export class BillpaymentComponent implements OnInit {
     if(this.misCollections == true)
     {
       this.comp = false;this.pendingg = true;
+      this.name = this.name2;this.mobile_no = this.mobile_no2;
+      this.payment_status = "Complementory";
     }
     else
     {
       this.comp = false;this.pendingg = false;
+      this.name = this.name1;this.mobile_no = this.mobile_no1;
+      this.payment_status = "Pending";
     }
   }
   public onsubmitclick()
