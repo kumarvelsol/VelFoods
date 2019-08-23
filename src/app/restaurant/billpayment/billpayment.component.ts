@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Billpayment } from 'src/app/shared/billpayment';
 import { Tabledefinition } from 'src/app/shared/tabledefinition';
 import { stringify } from '@angular/core/src/util';
+import { DatePipe,formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-billpayment',
@@ -22,9 +23,9 @@ export class BillpaymentComponent implements OnInit {
   pendingg : boolean=false;  comp : boolean=false; paidouts : boolean=false; misCollections : boolean=false;
   reference : string; mobile_no : number; name : string; restaurent_id : number;
   table_capatain : string;table_description : string;table_status : string;table_steward : string;table_view:string;
-  name1 : string;name2:string;mobile_no1 : number;mobile_no2 : number;
+  name1 : string;name2:string;mobile_no1 : number;mobile_no2 : number; insert_date :string;today= new Date();
 
-  constructor(public service1 : RestaurantService,private route: ActivatedRoute) {
+  constructor(public service1 : RestaurantService,public datepipe: DatePipe,private route: ActivatedRoute) {
     this.route.queryParams.subscribe(params => {
       this.table_name = params["tablename"];
       this.table_pax = params["pax"];
@@ -282,7 +283,7 @@ export class BillpaymentComponent implements OnInit {
       name : this.name,
       mobile_no : this.mobile_no,
       reference : this.reference,
-      restaurent_id : 1
+      restaurent_id : 1,
     }
     let b : Tabledefinition = {
       BACKGROUND_COLOR:"Green",
@@ -296,6 +297,7 @@ export class BillpaymentComponent implements OnInit {
       table_steward: this.table_steward,
       table_view : this.table_view,
   }
+  this.insert_date = formatDate(this.today, 'dd-MM-yyyy hh:mm:ss a', 'en-US', '+0530');
     this.service1.billinsert(a).subscribe((data : JsResponse) =>
     {
       this.jsRes = data;
@@ -304,6 +306,7 @@ export class BillpaymentComponent implements OnInit {
             alert("BillPayment Added Succesfully.!");
           }else{ alert("Failed to Insert data");}
    });
+   console.log(this.insert_date);
    this.onclearclick();
   }
   onclearclick()

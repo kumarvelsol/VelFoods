@@ -100,4 +100,5 @@ export interface Data {
     discount_amount : number,
     print_status : string,
     textcolor : string,
+    username:string;
 }

@@ -78,3 +78,9 @@ export interface bank{
     empregistration_id:number;
     restaurent_id:number;
 }
+
+export interface login{
+    username:string;
+    password:string;
+    resid:number;
+}

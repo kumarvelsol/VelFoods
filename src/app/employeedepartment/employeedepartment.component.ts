@@ -14,6 +14,7 @@ export class EmployeedepartmentComponent implements OnInit {
   empdepartement_status:string;
   buttoncontent:string;
   count:number;
+  resid:number;
   displayedColumns : string[] =['empdepartement_id','empdepartement_name','empdepartement_status','actions'];
   dataSource;
   constructor(public service :RestaurantService) {  }
@@ -33,7 +34,7 @@ export class EmployeedepartmentComponent implements OnInit {
       empdepartement_id:this.empdepartement_id,
       empdepartement_name:this.empdepartement_name,
       empdepartement_status:this.empdepartement_status,
-      restaurent_id:1
+      restaurent_id:this.resid
     }
     if(this.buttoncontent =="Save"){
     this.service.addempcate(empc).subscribe(data=>{
