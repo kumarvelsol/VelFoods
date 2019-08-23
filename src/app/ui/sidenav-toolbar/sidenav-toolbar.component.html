@@ -1,5 +1,5 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #sidenav mode = "over" class="sidenav">
+  <mat-sidenav #sidenav mode = "side" class="sidenav">
   <!-- modes = "over,push,side" -->
     <div style="width: 300px;height : 200px;text-align: center;background : url('assets/images/Background.jpg') no-repeat center">
       <!-- <div class="with-bg"></div> -->
@@ -57,9 +57,11 @@
         <mat-nav-list>
           <mat-list-item><a mat-list-item [routerLink]="['/tablebooking']">Reservation</a></mat-list-item>
           <mat-list-item><a mat-list-item [routerLink]="['/tabletransfer']">Table Transfer</a></mat-list-item>
+          <mat-list-item><a mat-list-item [routerLink]="['/takeaway']">Takeaway</a></mat-list-item>
           <mat-list-item><a mat-list-item [routerLink]="['/Paidouts']">Paidouts</a></mat-list-item>
           <mat-list-item><a mat-list-item [routerLink]="['/tablestatus']">TableStatus</a></mat-list-item>
-          <mat-list-item><a mat-list-item [routerLink]="['/BillPayment']">BillPayment</a></mat-list-item>
+          <!-- <mat-list-item><a mat-list-item [routerLink]="['/BillPayment']">BillPayment</a></mat-list-item> -->
+          <mat-list-item><a mat-list-item [routerLink]="['/settledbills']">SettledBills</a></mat-list-item>
         </mat-nav-list>
       </mat-expansion-panel>
       <mat-expansion-panel class="mat-elevation-z0">

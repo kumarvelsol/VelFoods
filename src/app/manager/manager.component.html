@@ -44,14 +44,14 @@
               <mat-option *ngFor="let re of restaurents" [value]="re.restaurent_id">{{re.restaurent_name}}</mat-option> 
             </mat-select>
           </mat-form-field>
-          <mat-label style="color:gray;" style="margin-left: 0px; font-size: 25;font-weight: bold">Status :</mat-label>
+          <mat-label style="font-size: 20px;">Status    :</mat-label>&nbsp;&nbsp;
           <mat-radio-group aria-label="Select an option" [(ngModel)]="manger_status" name="manger_status">
-            <mat-radio-button style="margin-left: 25px" value="Active">Active</mat-radio-button>
-            <mat-radio-button style="margin-left: 25px" value="InActive">InActive</mat-radio-button>
+            <mat-radio-button style="margin-left: 20px" value="Active">Active</mat-radio-button>
+            <mat-radio-button style="margin-left: 20px" value="InActive">InActive</mat-radio-button>
           </mat-radio-group>
           <div class="col-md-12">
-              <button mat-raised-button class="btn-style" (click)="onsaveclick()">{{buttoncontent}}</button>
-              <button mat-raised-button class="clearbtn-style" (click)="onclearclick()">Clear</button>
+            <button mat-raised-button style="margin-top: 10px;" class="btn-style" (click)="onsaveclick()">{{buttoncontent}}</button>&nbsp;&nbsp;&nbsp;
+            <button mat-raised-button style="margin-top: 10px;" class="btn-style" (click)="onclearclick()">Clear</button>
           </div>
         </div>
       </mat-card>

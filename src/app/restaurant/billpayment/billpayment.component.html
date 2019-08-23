@@ -1,233 +1,180 @@
-<div class="container card">
-  <div class = "row">
-      <p style="margin-top: 20px; margin-left: 500px; color: gray; font-size: 24px;">Bill Payment</p>
-  </div>
-<div class="row" style="margin-bottom: 20px;"> 
-  <mat-card class="row example-card parent">
-      <div class="row col-md-12">
-        <div class="col-md-3 mat-form-wrap">
-          <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" appearance="outline">
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <mat-card class="row example-card parent">
+        <div class="block child" style="width: 90%">
+          <p style="margin-top: 20px;">Bill Payment</p>
+          <mat-form-field class="col-md-3 mat-form-wrap" style="color :gray" appearance="outline">
             <mat-icon style="color :gray" matSuffix>developer_board</mat-icon>
             <mat-label style="color :gray">BillNo</mat-label>
             <input style="color :gray"  type="text" [(ngModel)]="billment_id" name="billment_id"  matInput>
           </mat-form-field>
-        </div>
-        <div class="col-md-3 mat-form-wrap">
-          <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" appearance="outline">
+          <mat-form-field class="col-md-3 mat-form-wrap" style="color :gray" appearance="outline">
             <mat-icon style="color :gray" matSuffix>developer_board</mat-icon>
             <mat-label style="color :gray">Table</mat-label>
             <input style="color :gray"  type="text" [(ngModel)]="table_name" name="table_name"  matInput>
           </mat-form-field>
-        </div>
-        <div class="col-md-3 mat-form-wrap">
-          <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" appearance="outline" >
+          <mat-form-field class="col-md-3 mat-form-wrap" style="color :gray" appearance="outline" >
             <mat-label style="color :gray">Pax</mat-label>
             <input style="color :gray"  type="text" [(ngModel)]="table_pax" name="table_pax"  matInput>
           </mat-form-field>
-        </div>
-        <div class="col-md-3 mat-form-wrap">
-          <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" appearance="outline"  >
+          <mat-form-field class="col-md-3 mat-form-wrap" style="color :gray" appearance="outline"  >
             <mat-label style="color :gray">Amount</mat-label>
             <input style="color :gray"  type="text" [(ngModel)]="amount" name="amount"  matInput>
           </mat-form-field>
-        </div>
-      </div>
-  </mat-card>
-</div>
-<div class="row">
-  <div class="row col-md-12">
-  <div class="col-md-6 mat-form-wrap; let j = index;" >
-    <mat-checkbox value="checked" [disabled]="checking1" [required]="true" style="margin-left: 20px;" (change)="toggleVisibility(checked)">Cash</mat-checkbox>
-    </div>
-    <div class="col-md-6 mat-form-wrap;let j = index;">
-      <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray;width:50%;margin-left:265px;" appearance="outline">
-        <mat-icon style="color :gray" matSuffix>monetization_on</mat-icon>
-        <mat-label style="color :gray" >Amount</mat-label>
-        <input style="color :gray" [disabled]="checking1"  type="text" name="Amoount"  [(ngModel)] = "am[0]" (change)="onChange($event)" matInput>
-      </mat-form-field>
-    </div>
-    </div>
-</div>
-<div class="row">
-    <div class="row col-md-12">
-      <div class="col-md-3 mat-form-wrap; let j = index;">
-        <mat-checkbox value="checked1" [disabled]="checking2" [required]="true" style="margin-left: 20px;" (change)="toggleVisibility1(checked1)">Card</mat-checkbox>
-    </div>
-      <div class="col-md-3 mat-form-wrap">
-          <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" appearance="outline" >
+          <div class="row col-md-12" style="text-align: left">
+            <div class="col-md-6 mat-form-wrap; let j = index;" style="padding-top: 30px;">
+              <mat-checkbox value="checked" [disabled]="checking1" [required]="true" style="margin-left: 20px;" (change)="toggleVisibility(checked)">Cash</mat-checkbox>
+            </div>
+            <div class="col-md-6 let j = index;" style="text-align: right;">
+              <mat-form-field class="mat-form-wrap" style="color :gray;" appearance="outline">
+                <mat-icon style="color :gray" matSuffix>monetization_on</mat-icon>
+                <mat-label style="color :gray" >Amount</mat-label>
+                <input style="color :gray" [disabled]="checking1"  type="text" name="Amoount"  [(ngModel)] = "am[0]" (change)="onChange($event)" matInput>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row col-md-12" style="text-align: left">
+            <div class="col-md-3 mat-form-wrap; let j = index;" style="padding-top: 30px;">
+              <mat-checkbox value="checked1" [disabled]="checking2" [required]="true" style="margin-left: 20px;" (change)="toggleVisibility1(checked1)">Card</mat-checkbox>
+            </div>
+            <mat-form-field class="col-md-3 mat-form-wrap" style="color :gray" appearance="outline" >
               <mat-label style="color :gray">Bank Name</mat-label>
               <mat-select style="color :gray" [(ngModel)]="bank" [disabled]="checking2" disableRipple name="bank">
                   <mat-option *ngFor="let bb of banklist" [value]="bb.bank_name">{{bb.bank_name}}</mat-option>
               </mat-select>
             </mat-form-field>
-    </div>
-      <div class="col-md-3 mat-form-wrap">
-        <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" appearance="outline">
-          <mat-icon style="color :gray" matSuffix>developer_board</mat-icon>
-          <mat-label style="color :gray">Transaction Id</mat-label>
-          <input style="color :gray"  [disabled]="checking2" type="text" name="transaction_id"  [(ngModel)] = "tr[0]" matInput>
-        </mat-form-field>
-      </div>
-      <div class="col-md-3 mat-form-wrap;let j = index;">
-          <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" appearance="outline">
-            <mat-icon style="color :gray" matSuffix>monetization_on</mat-icon>
-            <mat-label style="color :gray">Amount</mat-label>
-            <input style="color :gray"  [disabled]="checking2" type="text" name="Amoount" [(ngModel)] = "am[1]" (change)="onChange1($event)" matInput>
-          </mat-form-field>
-        </div>
-      </div>
-  </div>
-  <div class="row">
-      <div class="row col-md-12">
-        <div class="col-md-3 mat-form-wrap; let j = index;">
-          <mat-checkbox value="checked2" [disabled]="checking3" [required]="true" style="margin-left: 20px;"  (change)="toggleVisibility2(checked2)">Online</mat-checkbox>
-      </div>
-        <div class="col-md-3 mat-form-wrap">
-            <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" appearance="outline" >
-                <mat-label style="color :gray">Bank Name</mat-label>
-                <mat-select style="color :gray"  [disabled]="checking3" [(ngModel)]="bank1" disableRipple name="bank1">
-                  <mat-option *ngFor="let bb of banklist" [value]="bb.bank_name">{{bb.bank_name}}</mat-option>
-                </mat-select>
+            <mat-form-field class="col-md-3 mat-form-wrap" style="color :gray" appearance="outline">
+              <mat-icon style="color :gray" matSuffix>developer_board</mat-icon>
+              <mat-label style="color :gray">Transaction Id</mat-label>
+              <input style="color :gray"  [disabled]="checking2" type="text" name="transaction_id"  [(ngModel)] = "tr[0]" matInput>
+            </mat-form-field>
+            <div class="col-md-3 mat-form-wrap;let j = index;">
+              <mat-form-field class="mat-form-wrap" style="color :gray" appearance="outline">
+                <mat-icon style="color :gray" matSuffix>monetization_on</mat-icon>
+                <mat-label style="color :gray">Amount</mat-label>
+                <input style="color :gray"  [disabled]="checking2" type="text" name="Amoount" [(ngModel)] = "am[1]" (change)="onChange1($event)" matInput>
               </mat-form-field>
-        </div>
-        <div class="col-md-3 mat-form-wrap">
-        <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" appearance="outline">
-          <mat-icon style="color :gray" matSuffix>developer_board</mat-icon>
-          <mat-label style="color :gray">Transaction Id</mat-label>
-          <input style="color :gray"   [disabled]="checking3" type="text" name="transaction_id" [(ngModel)] = "tr[1]"  matInput>
-        </mat-form-field>
-      </div>
-          <div class="col-md-3 mat-form-wrap;let j = index;">
-              <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" appearance="outline">
+            </div>
+          </div>
+          <div class="row col-md-12" style="text-align: left">
+            <div class="col-md-3 mat-form-wrap; let j = index;" style="padding-top: 30px;">
+              <mat-checkbox value="checked2" [disabled]="checking3" [required]="true" style="margin-left: 20px;"  (change)="toggleVisibility2(checked2)">Online</mat-checkbox>
+            </div>
+            <mat-form-field class="col-md-3 mat-form-wrap" style="color :gray" appearance="outline" >
+              <mat-label style="color :gray">Bank Name</mat-label>
+              <mat-select style="color :gray"  [disabled]="checking3" [(ngModel)]="bank1" disableRipple name="bank1">
+                <mat-option *ngFor="let bb of banklist" [value]="bb.bank_name">{{bb.bank_name}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="col-md-3 mat-form-wrap" style="color :gray" appearance="outline">
+              <mat-icon style="color :gray" matSuffix>developer_board</mat-icon>
+              <mat-label style="color :gray">Transaction Id</mat-label>
+              <input style="color :gray"   [disabled]="checking3" type="text" name="transaction_id" [(ngModel)] = "tr[1]"  matInput>
+            </mat-form-field>
+            <div class="col-md-3 mat-form-wrap;let j = index;">
+              <mat-form-field class="mat-form-wrap" style="color :gray" appearance="outline">
                 <mat-icon style="color :gray" matSuffix>monetization_on</mat-icon>
                 <mat-label style="color :gray">Amount</mat-label>
                 <input style="color :gray"  [disabled]="checking3"  type="text" name="Amoount" [(ngModel)] = "am[2]" (change)="onChange2($event)"  matInput>
               </mat-form-field>
             </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="row col-md-12">
-          <div class="col-md-3 mat-form-wrap;let j = index;">
-            <mat-checkbox  value="checked3" [disabled]="checking4" [required]="true" style="margin-left: 20px;"  (change)="toggleVisibility3(checked3)">Wallet</mat-checkbox>
-        </div>
-          <div class="col-md-3 mat-form-wrap">
-              <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" appearance="outline" >
-                  <mat-label style="color :gray">Wallet Name</mat-label>
-                  <mat-select style="color :gray" [disabled]="checking4" [(ngModel)]="bank2" disableRipple name="bank2">
-                    <mat-option *ngFor="let bb of walletlist" [value]="bb.wallet_name">{{bb.wallet_name}}</mat-option>
-                  </mat-select>
-                </mat-form-field>
           </div>
-          <div class="col-md-3 mat-form-wrap">
-              <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" appearance="outline" >
-                <mat-icon style="color :gray" matSuffix>developer_board</mat-icon>
-                <mat-label style="color :gray">Transaction Id</mat-label>
-                <input style="color :gray"  [disabled]="checking4" type="text" name="transaction_id" [(ngModel)] = "tr[2]"  matInput>
+          <div class="row col-md-12" style="text-align: left">
+            <div class="col-md-3 mat-form-wrap;let j = index;" style="padding-top: 30px;">
+              <mat-checkbox  value="checked3" [disabled]="checking4" [required]="true" style="margin-left: 20px;"  (change)="toggleVisibility3(checked3)">Wallet</mat-checkbox>
+            </div>
+            <mat-form-field class="col-md-3 mat-form-wrap" style="color :gray" appearance="outline" >
+              <mat-label style="color :gray">Wallet Name</mat-label>
+              <mat-select style="color :gray" [disabled]="checking4" [(ngModel)]="bank2" disableRipple name="bank2">
+                <mat-option *ngFor="let bb of walletlist" [value]="bb.wallet_name">{{bb.wallet_name}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="col-md-3 mat-form-wrap" style="color :gray" appearance="outline" >
+              <mat-icon style="color :gray" matSuffix>developer_board</mat-icon>
+              <mat-label style="color :gray">Transaction Id</mat-label>
+              <input style="color :gray"  [disabled]="checking4" type="text" name="transaction_id" [(ngModel)] = "tr[2]"  matInput>
+            </mat-form-field>
+            <div class="col-md-3 mat-form-wrap;let j = index;">
+              <mat-form-field class="mat-form-wrap" style="color :gray" appearance="outline">
+                <mat-icon style="color :gray" matSuffix>monetization_on</mat-icon>
+                <mat-label style="color :gray">Amount</mat-label>
+                <input style="color :gray" [disabled]="checking4"  type="text" name="Amoount" [(ngModel)] = "am[3]" (change)="onChange3($event)" matInput>
               </mat-form-field>
             </div>
-            <div class="col-md-3 mat-form-wrap;let j = index;">
-                <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" appearance="outline">
-                  <mat-icon style="color :gray" matSuffix>monetization_on</mat-icon>
-                  <mat-label style="color :gray">Amount</mat-label>
-                  <input style="color :gray" [disabled]="checking4"  type="text" name="Amoount" [(ngModel)] = "am[3]" (change)="onChange3($event)" matInput>
-                </mat-form-field>
-              </div>
           </div>
-      </div>
-      <div class="row">
-          <div class="row col-md-12">
-            <div class="col-md-3 mat-form-wrap;let j = index;">
+          <div class="row col-md-12" style="text-align: left">
+            <div class="col-md-3 mat-form-wrap;let j = index;" style="padding-top: 30px;">
               <mat-checkbox value="checked4" [disabled]="checking5" [required]="true" style="margin-left: 20px;"  (change)="toggleVisibility4(checked4)">Cheque</mat-checkbox>
+            </div>
+            <mat-form-field class="col-md-3 mat-form-wrap" style="color :gray" appearance="outline" >
+              <mat-label style="color :gray">Bank Name</mat-label>
+              <mat-select style="color :gray" [disabled]="checking5" [(ngModel)]="bank3" disableRipple name="bank3">
+                <mat-option *ngFor="let bb of banklist" [value]="bb.bank_name">{{bb.bank_name}}</mat-option>
+              </mat-select> 
+            </mat-form-field>
+            <mat-form-field class="col-md-3 mat-form-wrap" style="color :gray" appearance="outline">
+              <mat-icon style="color :gray" matSuffix>developer_board</mat-icon>
+              <mat-label style="color :gray">Cheque No</mat-label>
+              <input style="color :gray" [disabled]="checking5"  type="text" name="transaction_id" [(ngModel)] = "tr[3]" matInput>
+            </mat-form-field>
+            <div class="col-md-3 mat-form-wrap;let j = index;">
+              <mat-form-field class="mat-form-wrap" style="color :gray" appearance="outline">
+                <mat-icon style="color :gray" matSuffix>monetization_on</mat-icon>
+                <mat-label style="color :gray">Amount</mat-label>
+                <input style="color :gray" [disabled]="checking5"  type="text" name="Amoount" [(ngModel)] = "am[4]" (change)="onChange4($event)"  matInput>
+              </mat-form-field>
+            </div>
           </div>
-            <div class="col-md-3 mat-form-wrap">
-                <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" appearance="outline" >
-                    <mat-label style="color :gray">Bank Name</mat-label>
-                    <mat-select style="color :gray" [disabled]="checking5" [(ngModel)]="bank3" disableRipple name="bank3">
-                      <mat-option *ngFor="let bb of banklist" [value]="bb.bank_name">{{bb.bank_name}}</mat-option>
-                    </mat-select> 
-                  </mat-form-field>
+          <mat-form-field class="col-md-4 mat-form-wrap" style="color :gray" appearance="outline">
+            <mat-icon style="color :gray" matSuffix>developer_board</mat-icon>
+            <mat-label style="color :gray">Bill Amount</mat-label>
+            <input style="color :gray"  type="text" [(ngModel)]="amount" name="amount"  matInput>
+          </mat-form-field>
+          <mat-form-field class="col-md-4 mat-form-wrap" style="color :gray" appearance="outline">
+            <mat-icon style="color :gray" matSuffix>developer_board</mat-icon>
+            <mat-label style="color :gray">Paid Amount</mat-label>
+            <input style="color :gray"  type="text" [(ngModel)]="bill_amount" name="bill_amount"  (change)="onBillChange($event)" matInput>
+          </mat-form-field>
+          <mat-form-field class="col-md-4 mat-form-wrap" style="color :gray" appearance="outline" >
+            <mat-label style="color :gray">Difference</mat-label>
+            <input style="color :gray"  type="text" [(ngModel)]="due_amount" name="due_amount"  matInput>
+          </mat-form-field>
+          <mat-radio-group class="row" style="text-align: left;" required>
+            <div class="col-md-12">
+              <mat-radio-button class="col-md-3" value="paidouts" (change)="onpendingchange(paidouts)">Pending</mat-radio-button>
+              <mat-form-field class="col-md-3 mat-form-wrap" style="color :gray;" appearance="outline" >
+                <mat-label style="color :gray">Name</mat-label>
+                <input style="color :gray;"  type="text" [disabled]="pendingg" name="name" [(ngModel)] = "name1"  matInput>
+              </mat-form-field>
+              <mat-form-field class="col-md-3 mat-form-wrap" style="color :gray;" appearance="outline" >
+                <mat-label style="color :gray">Contact No</mat-label>
+                <input style="color :gray;"  type="text" [disabled]="pendingg" name="mobile_no" [(ngModel)] = "mobile_no1" matInput>
+              </mat-form-field>
             </div>
-            <div class="col-md-3 mat-form-wrap">
-                <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" appearance="outline">
-                  <mat-icon style="color :gray" matSuffix>developer_board</mat-icon>
-                  <mat-label style="color :gray">Cheque No</mat-label>
-                  <input style="color :gray" [disabled]="checking5"  type="text" name="transaction_id" [(ngModel)] = "tr[3]" matInput>
-                </mat-form-field>
-              </div>
-              <div class="col-md-3 mat-form-wrap;let j = index;">
-                  <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" appearance="outline">
-                    <mat-icon style="color :gray" matSuffix>monetization_on</mat-icon>
-                    <mat-label style="color :gray">Amount</mat-label>
-                    <input style="color :gray" [disabled]="checking5"  type="text" name="Amoount" [(ngModel)] = "am[4]" (change)="onChange4($event)"  matInput>
-                  </mat-form-field>
-                </div>
+            <div class="col-md-12">
+              <mat-radio-button class="col-md-3" value="misCollections" (change)="oncompchange(misCollections)" >Complementory</mat-radio-button>
+              <mat-form-field class="col-md-3 mat-form-wrap" style="color :gray;" appearance="outline" >
+                <mat-label style="color :gray">Name</mat-label>
+                <input style="color :gray;"  type="text" [disabled]="comp" name="name" [(ngModel)] = "name2" matInput>
+              </mat-form-field>
+              <mat-form-field class="col-md-3 mat-form-wrap" style="color :gray;" appearance="outline" >
+                <mat-label style="color :gray">Contact No</mat-label>
+                <input style="color :gray;"  type="text" [disabled]="comp" name="mobile_no" [(ngModel)] = "mobile_no2" matInput>
+              </mat-form-field>
+              <mat-form-field class="col-md-3 mat-form-wrap" style="color :gray;" appearance="outline" >
+                <mat-label style="color :gray">Reference</mat-label>
+                <input style="color :gray;"  type="text" [disabled]="comp" name="reference" [(ngModel)] = "reference" matInput>
+              </mat-form-field>
             </div>
+          </mat-radio-group>
+          <button mat-raised-button style="margin-top: 10px;" class="btn-style" (click)="onsubmitclick()">OK</button>&nbsp;&nbsp;&nbsp;
+          <button mat-raised-button style="margin-top: 10px;" class="btn-style" (click)="onclearclick()">
+            <!-- <mat-icon>clear_all</mat-icon> -->
+            Clear
+          </button>
         </div>
-        <div class="row">
-        <mat-card class="row example-card parent">
-          <div class="row col-md-12">
-            <div class="col-md-4 mat-form-wrap">
-              <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" appearance="outline">
-                <mat-icon style="color :gray" matSuffix>developer_board</mat-icon>
-                <mat-label style="color :gray">Bill Amount</mat-label>
-                <input style="color :gray"  type="text" [(ngModel)]="amount" name="amount"  matInput>
-              </mat-form-field>
-            </div>
-            <div class="col-md-4 mat-form-wrap">
-              <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" appearance="outline">
-                <mat-icon style="color :gray" matSuffix>developer_board</mat-icon>
-                <mat-label style="color :gray">Paid Amount</mat-label>
-                <input style="color :gray"  type="text" [(ngModel)]="bill_amount" name="bill_amount"  (change)="onBillChange($event)" matInput>
-              </mat-form-field>
-            </div>
-            <div class="col-md-4 mat-form-wrap">
-              <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" appearance="outline" >
-                <mat-label style="color :gray">Difference</mat-label>
-                <input style="color :gray"  type="text" [(ngModel)]="due_amount" name="due_amount"  matInput>
-              </mat-form-field>
-            </div>
-          </div>
       </mat-card>
     </div>
-    <div class = "row">
-        <mat-card class="row example-card child">
-      <div class="row col-md-12">
-        <div class="col-md-12 mat-form-wrap">
-          <mat-radio-group style="margin-bottom: 60px;margin-top: 60px;margin-left: 100px; " required>
-            <mat-radio-button value="paidouts" [disabled]="pendingg" style="margin-left: 100px;" (change)="onpendingchange(paidouts)">Pending</mat-radio-button>&nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <mat-form-field class="col-md-4 mat-form-wrap" style="color :gray;width:200px" appearance="outline" >
-              <mat-label style="color :gray">Name</mat-label>
-              <input style="color :gray;"  type="text" name="name" [(ngModel)] = "name1"  matInput>
-            </mat-form-field>
-            <mat-form-field class="col-md-4 mat-form-wrap" style="color :gray;width:200px" appearance="outline" >
-              <mat-label style="color :gray">Contact No</mat-label>
-              <input style="color :gray;"  type="text" name="mobile_no" [(ngModel)] = "mobile_no1" matInput>
-            </mat-form-field>
-            <mat-radio-button value="misCollections" [disabled]="comp" style="margin-left: 200px;" (change)="oncompchange(misCollections)" >Complementory</mat-radio-button>
-            <mat-form-field class="col-md-4 mat-form-wrap" style="color :gray;width:200px" appearance="outline" >
-              <mat-label style="color :gray">Name</mat-label>
-              <input style="color :gray;"  type="text" name="name" [(ngModel)] = "name2" matInput>
-            </mat-form-field>
-            <mat-form-field class="col-md-4 mat-form-wrap" style="color :gray;width:200px" appearance="outline" >
-              <mat-label style="color :gray">Contact No</mat-label>
-              <input style="color :gray;"  type="text" name="mobile_no" [(ngModel)] = "mobile_no2" matInput>
-            </mat-form-field>
-            <mat-form-field class="col-md-4 mat-form-wrap" style="color :gray;width:200px" appearance="outline" >
-              <mat-label style="color :gray">Reference</mat-label>
-              <input style="color :gray;"  type="text" name="reference" [(ngModel)] = "reference" matInput>
-            </mat-form-field>
-          </mat-radio-group>
-      </div>
-    </div>
-    </mat-card>
-    </div>
-      <div class="row">
-        <button mat-raised-button class="btn-style" (click)="onsubmitclick()">OK</button>
-        <button mat-icon-button class="clearbtn-style" (click)="onclearclick()">
-          <mat-icon>clear_all</mat-icon>
-        </button>
-        </div>
+  </div>
 </div>
-

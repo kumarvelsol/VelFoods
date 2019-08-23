@@ -1,21 +1,20 @@
 <div class="container"> 
   <div class="row">
+    <div class="col-md-12">
     <mat-card class="example-card">
       <div class="row">
-        <div class="col-md-6" >
+        <div class="col-md-6">
           <div class="col-12 text-center">
-            <p>Running Tables</p>
+            <p style="margin-top: 10px;">Occupied Tables</p>
           </div>
           <div class="col-md-12" style="padding-top: 10px;overflow: auto; height: 400px;">
             <button *ngFor="let room of tables"  [ngStyle]="{'background-color':room.BACKGROUND_COLOR,'color': room.textcolor}"  mat-raised-button  class="button-style colors" name="room.table_name" (click)="onbuttonclick($event,room.table_name,room.table_defination_id,room.BACKGROUND_COLOR)" [disabled]="tables_disable">{{room.table_name}}</button>
           </div>
         </div>
         <div class="col-md-6">
-          <div class="col-12 text-center">
-            <label class="col-3">Table No :</label>
-            <label class="col-3" >{{tname}}</label>
-            <label class="col-4">Total Amount :</label>
-            <label class="col-2">{{amount}}</label>
+          <div class="col-12 text-left" style="margin-top: 13px;">
+            <label class="col-6" style="font-size: 17px;">Table No : {{tname}}</label>
+            <label class="col-6" style="font-size: 17px;">Total Amount : {{amount}}</label>
           </div>
           <div class="example-container mat-elevation-z1">
             <table mat-table [dataSource]="dataSource">

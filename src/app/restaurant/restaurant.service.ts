@@ -20,8 +20,8 @@ import { Tabletransfermodel } from '../shared/tabletransfermodel';
   providedIn: 'root'
 })
 export class RestaurantService {
- Baseurl = 'http://localhost:57649/'; 
- //Baseurl = 'http://school.edujinni.in/';
+//Baseurl = 'http://localhost:57649/'; 
+Baseurl = 'http://school.edujinni.in/';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json'
@@ -335,4 +335,18 @@ export class RestaurantService {
   public login (log:login){
     return this.http.post<JsResponse>(`${this.Baseurl+"login"}`,log);
   }
+  public billsettle(restaurent_id:number,insert_date:string)
+  {
+    let parms =new HttpParams();
+    parms =parms.append('restaurent_id', restaurent_id+"")
+    parms =parms.append('insert_date', insert_date+"")
+    return this.http.post(`${this.Baseurl+"billsettle"}`,parms);
+  }
+  public billsettleid(restaurent_id:number,billment_id:number)
+  {
+    let parms =new HttpParams();
+    parms =parms.append('restaurent_id', restaurent_id+"")
+    parms =parms.append('billment_id', billment_id+"")
+    return this.http.post(`${this.Baseurl+"billsettleid"}`,parms);
+   }
  }

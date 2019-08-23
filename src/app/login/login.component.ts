@@ -8,7 +8,7 @@ import { login } from '../shared/interfaces/empcate';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  imageUrl : string = "assets/images/logo.png";
   constructor(public service :RestaurantService) { }
   username:string;
   password:string;
@@ -37,6 +37,6 @@ export class LoginComponent implements OnInit {
         }
 
       })
-    }
-  
+   
   }
+}

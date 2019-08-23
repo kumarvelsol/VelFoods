@@ -2,8 +2,7 @@ table {
     width: 100%;
   }
   .example-card{
-    /* background-color: #33B5E5; */
-    margin-top: 20px;
+    margin-top: 50px;
     width: 100%;
     margin-left: 0px;
   }
@@ -25,27 +24,34 @@ table {
   }
   .parent{
     text-align:center;
-    height:790px;
   }
   .block {
     width: 80%;
   }
   .child {
+    margin-top: -50px;
     margin:auto;
   }
   .example-container {
-    height: 790px;
+    height: 330px;
+    overflow: auto; 
+    margin-top: 10px;
+    border-radius: 5px;
+    width: 100%;
+  }
+  .example-containerr {
+    height: 320px;
     overflow: auto; 
     margin-top: 20px;
     border-radius: 5px;
     margin-bottom: 20px;
   }
-  p{
-    text-align: center;
-    font-size: 1.5em;
-    margin-bottom: 10px;
-    font-weight: bold;
-    color : darkslategray;
-    font-family: "Montserrat", sans-serif;
-    text-shadow: 0 1px 2px rgba(black,.15);
-  }
+p{
+  text-align: center;
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color : darkslategray;
+  font-family: "Montserrat", sans-serif;
+  text-shadow: 0 1px 2px rgba(black,.15);
+}
