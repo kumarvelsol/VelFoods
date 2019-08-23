@@ -20,8 +20,13 @@ import { Tabletransfermodel } from '../shared/tabletransfermodel';
   providedIn: 'root'
 })
 export class RestaurantService {
+<<<<<<< HEAD
 //Baseurl = 'http://localhost:57649/'; 
 Baseurl = 'http://school.edujinni.in/';
+=======
+Baseurl = 'http://localhost:57649/'; 
+//Baseurl = 'http://school.edujinni.in/';
+>>>>>>> 97559a3dce76592cbbbb9ae82ed013c14e535755
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json'

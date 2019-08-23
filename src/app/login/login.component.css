@@ -1,16 +1,41 @@
-.form{
-    margin-left: 15px;
-    padding: 10px;
-}
-.dic{
+.example-card{
+    /* background-color: #33B5E5; */
+    margin-top: 20px;
+    margin-bottom: 20px;
     width: 100%;
+    margin-left: 0px;
 }
-.mainwrap{
-    padding-top: 50px;
-    height: 400px;
+.mat-form-wrap{
+    width: 100%;
+    margin: 0px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.btn-style{
+    background-color: #33B5E5;
+    color: white;
+    width : 120px;
+    height: 50px;
+    left: 0px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    font-size: 18px;
+}
+.parent{
+    text-align:center;
+}
+.block {
     width: 80%;
+}
+.child {
     margin:auto;
-    margin-top: 120px;
+}
+p{
     text-align: center;
-    margin-left: 300px;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color : darkslategray;
+    font-family :   Palatino, Palatino Linotype, Georgia, Times, "Times New Roman", serif;
+    text-shadow: 0 1px 2px rgba(black,.15);
 }

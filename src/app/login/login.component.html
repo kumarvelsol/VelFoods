@@ -1,34 +1,24 @@
-<div class="container">
-  <div class="row">
-    <div class="col-lg-6">
-  
-      <mat-card class="col-lg-6" class="mainwrap">
-  
-          <span style="font-size: 32px; font-weight: bold; font-family: Arial, Helvetica, sans-serif; color:black; " >Login </span>
-        <div class="dic">
-          <mat-form-field appearance="legacy" class="form">
-              <mat-label>Username</mat-label>
-              <input matInput placeholder="Placeholder" [(ngModel)]="username" name="username">
-              <mat-icon matSuffix>account_circle</mat-icon>
-             
-            </mat-form-field>
-          </div>
-          <div class="dic">
-            <mat-form-field appearance="legacy" class="form">
-                <mat-label>password</mat-label>
-                <input matInput placeholder="Placeholder" [(ngModel)]="password" name="password">
-                <mat-icon matSuffix>lock</mat-icon>
-                
-              </mat-form-field>
-            </div>
-            <div class="btn-style">
-                <button mat-raised-button style="width: 150px;height:40px;margin-top:20px; " color="primary" (click)="onsaveclick()">save</button>
-            </div>
+<div class="container" style="margin: 0 auto;">
+  <div class="row" style="margin: 0 auto;">
+    <div class="col-md-4" style="margin: 0 auto;">
+      <mat-card class="row example-card parent mat-elevation-z3">
+        <div class="block child">
+          <img [src]="imageUrl" style="width: 100px;margin-top: 20px;">
+          <p style="margin-top: 13px;font-family: Palatino, Palatino Linotype, Georgia, Times, Times New Roman, serif;">VelFoods</p>
+          <!-- <span style="font-size: 32px; font-weight: bold; font-family: Arial, Helvetica, sans-serif; color:black; " >Login </span> -->
+          <mat-form-field class="col-md-12" style="color :gray;" appearance="outline">
+            <mat-label>Username</mat-label>
+            <input matInput [(ngModel)]="username" name="username">
+            <mat-icon matSuffix>account_circle</mat-icon>
+          </mat-form-field>
+          <mat-form-field class="col-md-12" style="color :gray;" appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput [(ngModel)]="password" name="password">
+            <mat-icon matSuffix>lock</mat-icon>
+          </mat-form-field>
+          <button mat-raised-button style="margin-top: 5px;" class="btn-style" (click)="onsaveclick()">Save</button>
+        </div>
       </mat-card>
-      <div class="col-lg-6">
-  <button mat-raised-button class="btn-style" (click)="onsaveclick()"></button>
-      </div>
     </div>
   </div>
-  </div>
-
+</div>
