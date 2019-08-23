@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
   imageUrl : string = "assets/images/logo.png";
   constructor() { }
   username:string;
@@ -23,7 +24,7 @@ export class LoginComponent implements OnInit {
       this.username ="";
       this.password ="";
     }
-    else if(this.username =='manager' && this.password =='manager'){
+    else if(this.username =='manger' && this.password =='manger'){
       alert("manger login success");
       this.username ="";
       this.password ="";
