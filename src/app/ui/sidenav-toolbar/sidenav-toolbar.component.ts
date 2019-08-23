@@ -3,6 +3,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { DatePipe } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-sidenav-toolbar',
   templateUrl: './sidenav-toolbar.component.html',
@@ -15,12 +16,17 @@ export class SidenavToolbarComponent implements OnInit {
   RestaurantName : string;
   TodayDate : string;
   TodayTime : string;
+  resid : number;
   imageUrl : string = "assets/images/Profile.jpg";
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
   .pipe(
     map(result => result.matches)
   );
-  constructor(private breakpointObserver: BreakpointObserver,public datepipe: DatePipe) { }
+  constructor(private breakpointObserver: BreakpointObserver,public datepipe: DatePipe,private route: ActivatedRoute) { 
+    this.route.queryParams.subscribe(params => {
+      this.resid = params["resid"];
+    });
+  }
   ngOnInit() {
     let date: Date = new Date();
     this.EmployeeName = "Velsol";

@@ -2,6 +2,7 @@ export interface JsResponse {
     message : string;
     code    : number;
     Data    : string;
+    resid : number;
 }
 export interface Responce {
     message : string;
