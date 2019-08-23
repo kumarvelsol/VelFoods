@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { RestaurantService } from '../restaurant/restaurant.service';
+import { login } from '../shared/interfaces/empcate';
 
 @Component({
   selector: 'app-login',
@@ -7,33 +9,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  constructor(public service :RestaurantService) { }
   username:string;
   password:string;
+  resid:number;
     ngOnInit() {
     }
     onsaveclick(){
-      if(this.username =='admin' && this.password =='admin'){
-        alert("admin login success");
-        this.username ="";
-        this.password ="";
+      let log :login ={
+        username :this.username,
+        password :this.password,
+        resid:this.resid
       }
-      else if(this.username =='casier' && this.password =='casier'){
-        alert("casier login success");
-        this.username ="";
-        this.password ="";
-      }
-      else if(this.username =='manger' && this.password =='manger'){
-        alert("manger login success");
-        this.username ="";
-        this.password ="";
-      }
-      else{
-        alert("please check the values");
-        this.username ="";
-        this.password ="";
-      }
-  
+      this.service.login(log).subscribe(data =>{
+        if(data.code ==200){
+         alert(data.message);
+         this.username ="";
+         this.password ="";
+         this.ngOnInit();
+        }
+        else
+        {
+          this.username ="";
+          this.password ="";
+          alert(data.message);
+          this.ngOnInit();
+        }
+
+      })
     }
   
   }

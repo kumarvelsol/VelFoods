@@ -3,7 +3,7 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Offers, OfferUp } from '../shared/interfaces/offers';
 import { JsResponse, Responce } from '../../app/shared/js-response';
 import { Property } from '../shared/property';
-import { EmployeeCategory, EmployeeRegistration, itemcategory, itemnames, bank } from '../shared/interfaces/empcate';
+import { EmployeeCategory, EmployeeRegistration, itemcategory, itemnames, bank, login } from '../shared/interfaces/empcate';
 import { Tabledefinition } from '../shared/tabledefinition';
 import { Tax } from '../shared/interfaces/tax';
 import { Tablebooking } from '../shared/tablebooking';
@@ -20,8 +20,8 @@ import { Tabletransfermodel } from '../shared/tabletransfermodel';
   providedIn: 'root'
 })
 export class RestaurantService {
-//Baseurl = 'http://localhost:57649/'; 
- Baseurl = 'http://school.edujinni.in/';
+ Baseurl = 'http://localhost:57649/'; 
+ //Baseurl = 'http://school.edujinni.in/';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json'
@@ -331,5 +331,8 @@ export class RestaurantService {
     parms =parms.append('restaurent_id', restaurent_id+"")
     parms =parms.append('BACKGROUND_COLOR', BACKGROUND_COLOR+"")
     return this.http.post(`${this.Baseurl+"gettablecolor"}`,parms);
+  }
+  public login (log:login){
+    return this.http.post<JsResponse>(`${this.Baseurl+"login"}`,log);
   }
  }
