@@ -23,6 +23,10 @@ export class LoginComponent implements OnInit {
         
         resid:this.resid
       }
+      this.service.getlogin(this.username,this.password).subscribe(data =>{
+        console.log("resid",this.resid);
+        
+      })
       console.log(this.resid);
       this.service.login(log).subscribe(data =>{
         if(data.code ==200){
@@ -30,9 +34,7 @@ export class LoginComponent implements OnInit {
          alert(data.message);
          this.username ="";
          this.password ="";
-         //this.ngOnInit();
          this.NavigateClick(this.resid);
-          
         }
         else
         {
@@ -41,8 +43,8 @@ export class LoginComponent implements OnInit {
           alert(data.message);
           this.ngOnInit();
         }
-
       })
+      
      
   }
   public NavigateClick(resid:number)
