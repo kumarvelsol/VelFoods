@@ -24,6 +24,7 @@ import { EmployeedepartmentComponent } from './employeedepartment/employeedepart
 import { EmployeeregistrationComponent } from './employeeregistration/employeeregistration.component';
 import { BillsettledailogComponent } from './restaurant/Billsettle/billsettledailog/billsettledailog.component';
 import { SidenavToolbarComponent } from './ui/sidenav-toolbar/sidenav-toolbar.component';
+import { TakeawaydialogComponent } from './restaurant/takeaway/takeawaydialog/takeawaydialog.component';
 
 @NgModule({
   declarations: [ 
@@ -49,7 +50,7 @@ import { SidenavToolbarComponent } from './ui/sidenav-toolbar/sidenav-toolbar.co
   ],
   entryComponents: [
     DialogBoxComponent,OffersDialogComponent,
-    BillsettledailogComponent
+    BillsettledailogComponent,TakeawaydialogComponent
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]
