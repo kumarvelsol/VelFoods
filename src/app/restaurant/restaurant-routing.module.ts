@@ -25,7 +25,7 @@ const routes: Routes = [
   {path:'Paidouts',component:PaidoutTabComponentComponent},
   {path:'bankswallets',component:BankwallettabbarComponent},
   {path:'tablebooking',component:TablereserveComponent},
-  // {path:'SettledBills',component:SettledbillsComponent},
+  {path:'settledbills',component:SettledbillsComponent},
   {path:'BillPayment',component:BillpaymentComponent},
   {path:'tabletransfer',component:TabletransferComponent},
 ];
