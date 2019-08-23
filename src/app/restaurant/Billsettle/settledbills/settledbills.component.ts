@@ -24,7 +24,7 @@ export class SettledbillsComponent implements OnInit {
     this.insert_date = "";
     this.service1.billsettleid(1,this.billment_id).subscribe((data:Apiresponse) =>
       {
-        this.dataSource = data.Data;
+        this.dataSource = data.Data; 
       });
   }
   public onChangee()
