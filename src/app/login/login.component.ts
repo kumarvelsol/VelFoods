@@ -14,8 +14,8 @@ export class LoginComponent implements OnInit {
   username:string;
   password:string;
   resid:number;
-    ngOnInit() {
-    }
+  ngOnInit() {
+  }
     onsaveclick(){
       let log :login ={
         username :this.username,
