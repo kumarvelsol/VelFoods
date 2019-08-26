@@ -31,7 +31,7 @@ const routes: Routes = [
   {path:'BillPayment',component:BillpaymentComponent},
   {path:'tabletransfer',component:TabletransferComponent},
   {path:'takeaway',component:TakeawayComponent},
-  {path:'sidenav-toolbar',component:SidenavToolbarComponent}
+  {path:'Sidenav-Toolbar',component:SidenavToolbarComponent}
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],
