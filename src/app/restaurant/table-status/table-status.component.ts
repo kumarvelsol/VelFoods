@@ -47,7 +47,7 @@ export class TableStatusComponent implements OnInit {
   quantity:any[] =[];
   total:any[] =[];
   restaurent_id:number;
-  tax:any[] =[]; totalamount : number; amount : number;
+  tax:any[] =[]; totalamount : number; amount : number; 
   rows: Array<{order_itemname:string, order_rate:number,order_tax:number,order_quantity:number,order_totalamount:number}> = [];
   array =[];
   dataSource ;
@@ -85,14 +85,30 @@ export class TableStatusComponent implements OnInit {
   Table_Id: number;
   onbuttonclick($event,table_name,table_defination_id,BACKGROUND_COLOR)
   {
-    if(BACKGROUND_COLOR == "Darkslategray"){
+    
+    if(BACKGROUND_COLOR == "Darkslategray"){debugger;
+      this.tname = table_name;
+      this.table_defination_id = this.tname;
+    //   this.service.gettbldefid(1,this.tname,"Printed").subscribe((data : Responce) =>
+    //  {
+    //       this.table_defination_id = data.Data[0].table_defination_id;
+    //  });
+      this.service.getprintid(1,this.tname,"Printed").subscribe((data : Responce) =>
+      {
+        this.amount = data.Data[0].total_after_discount;
+        this.table_defination_id = data.Data[0].table_defination_id;
+      });
+      if(this.table_defination_id == 0 || this.table_defination_id == null)
+      {
+        this.Payment_disable = true;
+        alert("please check the table definition id ");
+      }
+      else
+      {
       this.print_disable = true;
       this.availOffer_disable = true;
       this.Payment_disable = false;
-      this.service.getprintid(1,table_defination_id,"Printed").subscribe((data : Responce) =>
-      {
-        this.amount = data.Data[0].total_after_discount;
-      });
+      }
     }else if(BACKGROUND_COLOR == "Green"){
       this.print_disable = true;
       this.availOffer_disable = true;
@@ -101,12 +117,9 @@ export class TableStatusComponent implements OnInit {
       this.print_disable = false;
       this.availOffer_disable = false;
       this.Payment_disable = true;
-    }
-    this.amount = 0;
-    this.tname = table_name;
-    this.Table_Id = table_defination_id;
-    this.service.getorderitems(1,this.tname).subscribe((data : Responce) =>
-     {
+
+      this.service.getorderitems(1,this.tname).subscribe((data : Responce) =>
+      {
           this.dataSource = data.Data;
           console.log(this.dataSource);
           this.listcount = data.Data.length;
@@ -119,6 +132,18 @@ export class TableStatusComponent implements OnInit {
           this.table_pax = data.Data[0].table_pax;
           this.table_defination_id = data.Data[0].table_defination_id;
      });
+    }
+    this.service.getorderitems(1,this.tname).subscribe((data : Responce) =>
+      {
+          this.dataSource = data.Data;
+          this.table_name = this.tname;
+          this.table_pax = data.Data[0].table_pax;
+          this.table_defination_id = data.Data[0].table_defination_id;
+      });
+    this.amount = 0;
+    this.tname = table_name;
+    this.Table_Id = table_defination_id;
+    
   }
   Parsing_data : ParsingData[];
   onsaveclick(){
@@ -143,6 +168,7 @@ export class TableStatusComponent implements OnInit {
         total_after_discount : this.AmountAfterDiscount,
         insert_by : "velsol",
         insert_date : this.datepipe.transform(date.toDateString(),'yyyy-MM-dd'),
+        table_name : this.tname,
       }
       this.service.PrintInsert(print_data).subscribe((data : JsResponse) =>{
         if(data.code == 200){

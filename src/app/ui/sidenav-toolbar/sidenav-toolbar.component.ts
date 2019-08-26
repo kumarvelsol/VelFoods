@@ -29,7 +29,7 @@ export class SidenavToolbarComponent implements OnInit {
     });
   }
   ngOnInit() {
-    this.router.navigate(['/login']);
+   // this.router.navigate(['/login']);
     //this.service.getrestaurent().subscribe(data => {
 
     // })

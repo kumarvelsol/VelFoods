@@ -20,8 +20,8 @@ import { Tabletransfermodel } from '../shared/tabletransfermodel';
   providedIn: 'root'
 })
 export class RestaurantService {
-Baseurl = 'http://localhost:57649/'; 
-//Baseurl = 'http://school.edujinni.in/';
+//Baseurl = 'http://localhost:57649/'; 
+Baseurl = 'http://school.edujinni.in/';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json'
@@ -269,11 +269,11 @@ Baseurl = 'http://localhost:57649/';
   public PrintInsert(print : Prints){
     return this.http.post<JsResponse>(`${this.Baseurl+"printinsert"}`,print);
   }
-  public getprintid(restaurent_id:number,table_defination_id : number,print_status:string)
+  public getprintid(restaurent_id:number,table_name : number,print_status:string)
   {
     let parms =new HttpParams();
     parms =parms.append('restaurent_id', restaurent_id+"")
-    parms =parms.append('table_defination_id', table_defination_id+"")
+    parms =parms.append('table_name', table_name+"")
     parms =parms.append('print_status', print_status+"")
     return this.http.post<Responce>(`${this.Baseurl+"getprintid"}`,parms);
   }
