@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
   onsaveclick(){
-    this.router.navigate(["/sidenavtoolbar"]);
+    this.router.navigate(["/Home"]);
 
     let log :login ={
       username :this.username,

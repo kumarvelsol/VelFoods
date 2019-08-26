@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatToolbarModule, MatDialogModule,MatButtonModule, MatSelectModule,MatSidenavModule, MatIconModule, MatTabsModule,MatListModule,MatTableModule,MatInputModule } from '@angular/material';
-import { RestaurantRoutingModule } from './restaurant-routing.module';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { MaterialModule } from '../shared/material.module';
@@ -32,9 +31,7 @@ import { PettyCashComponent } from './petty-cash/petty-cash.component';
 
   imports: [
     CommonModule,
-    RestaurantRoutingModule,
     SharedModule,
-    MaterialModule,
     MatToolbarModule,
     MatButtonModule, MatSidenavModule,
     MatListModule, MatTableModule,

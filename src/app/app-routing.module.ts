@@ -26,7 +26,7 @@ const routes: Routes = [
   //{path:'restaurant',loadChildren:'./restaurant/restaurant.module#RestaurantModule'},
   {path:'',redirectTo: 'login', pathMatch: 'full'},
   {path:'login',component:LoginComponent},
-  { path:'sidenavtoolbar',
+  { path:'Home',
     component:SidenavToolbarComponent,
     children : [
       {path:'',redirectTo: 'ordering', pathMatch: 'full'},
@@ -40,7 +40,7 @@ const routes: Routes = [
       {path:'offers',component:OffersComponent},
       {path:'employeedepartment',component:EmployeedepartmentComponent},
       {path:'employeeregistration',component:EmployeeregistrationComponent},
-      {path:'tabledefinition',component:TabledefinitionComponent,pathMatch: 'full'},
+      {path:'tabledefinition',component:TabledefinitionComponent},
       {path:'Paidouts',component:PaidoutTabComponentComponent},
       {path:'bankswallets',component:BankwallettabbarComponent},
 
