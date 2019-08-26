@@ -16,6 +16,7 @@ import { TabletransferComponent }  from './tabletransfer/tabletransfer.component
 import { PaidoutTabComponentComponent } from './paidout-tab-component/paidout-tab-component.component';
 import { TakeawayComponent } from './takeaway/takeaway.component';
 import { SidenavToolbarComponent } from '../ui/sidenav-toolbar/sidenav-toolbar.component';
+import { LoginComponent } from '../login/login.component';
 const routes: Routes = [
   {path:'',pathMatch:'full',component:LoginpageComponent},
   {path:'property',component:PropertyComponent},
@@ -31,7 +32,8 @@ const routes: Routes = [
   {path:'BillPayment',component:BillpaymentComponent},
   {path:'tabletransfer',component:TabletransferComponent},
   {path:'takeaway',component:TakeawayComponent},
-  {path:'Sidenav-Toolbar',component:SidenavToolbarComponent}
+  {path:'Sidenav-Toolbar',component:SidenavToolbarComponent},
+  {path:'login',component:LoginComponent}
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],

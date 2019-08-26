@@ -8,4 +8,5 @@ export interface Prints{
     total_after_discount : number;
     insert_by : string;
     insert_date : string;
+    table_name : number;
 }

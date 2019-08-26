@@ -269,11 +269,11 @@ Baseurl = 'http://school.edujinni.in/';
   public PrintInsert(print : Prints){
     return this.http.post<JsResponse>(`${this.Baseurl+"printinsert"}`,print);
   }
-  public getprintid(restaurent_id:number,table_defination_id : number,print_status:string)
+  public getprintid(restaurent_id:number,table_name : number,print_status:string)
   {
     let parms =new HttpParams();
     parms =parms.append('restaurent_id', restaurent_id+"")
-    parms =parms.append('table_defination_id', table_defination_id+"")
+    parms =parms.append('table_name', table_name+"")
     parms =parms.append('print_status', print_status+"")
     return this.http.post<Responce>(`${this.Baseurl+"getprintid"}`,parms);
   }
@@ -339,7 +339,7 @@ Baseurl = 'http://school.edujinni.in/';
     let parms =new HttpParams();
     parms =parms.append('username', username+"")
     parms =parms.append('password', password+"")
-    return this.http.post(`${this.Baseurl+"sucess"}`,parms);
+    return this.http.post<JsResponse>(`${this.Baseurl+"sucess"}`,parms);
   }
   public billsettle(restaurent_id:number,insert_date:string)
   {
