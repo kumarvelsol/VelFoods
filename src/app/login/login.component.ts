@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
       })
       console.log(this.resid);
       this.service.login(log).subscribe(data =>{
-        if(data.code ==200){
+        if(data.code == 200){
           this.resid = data.resid;
          alert(data.message);
          this.username ="";
@@ -44,18 +44,15 @@ export class LoginComponent implements OnInit {
           this.ngOnInit();
         }
       })
-      
-     
   }
   public NavigateClick(resid:number)
-      {
-        let navigationExtras: NavigationExtras = {
-          queryParams: {
-            "resid":this.resid = resid,
-          }
-        };
-        this.router.navigate(['/sidenav-toolbar'],navigationExtras); 
-        console.log(this.resid);
+  {
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        "resid":this.resid = resid,
       }
-      
+    };
+    this.router.navigate(['src/app/ui/sidenav-toolbar'],navigationExtras); 
+    console.log(this.resid);
+  }
 }
