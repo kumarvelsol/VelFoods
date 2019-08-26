@@ -16,51 +16,52 @@ export class LoginComponent implements OnInit {
   resid:number;
   ngOnInit() {
   }
-    onsaveclick(){
-      let log :login ={
-        username :this.username,
-        password :this.password,
-        
-        resid:this.resid
-      }
-      this.service.getlogin(this.username,this.password).subscribe(data =>{
-       // console.log("resid",this.resid);
-        
-      })
+  onsaveclick(){
+    this.router.navigate(["/sidenavtoolbar"]);
+
+    let log :login ={
+      username :this.username,
+      password :this.password,
       
-      this.service.login(log).subscribe(data =>{
-        if(data.code ==200){
-          this.resid = data.resid;
-         alert(data.message);
-         this.username ="";
-         this.password ="";
-        //  let navigationExtras: NavigationExtras = {
-        //   queryParams: {
-        //     "resid":this.resid = this.resid,
-        //   }
-        // };
-        this.router.navigate(['/Sidenav-Toolbar']);//,navigationExtras); 
-        console.log(this.resid);
-        // this.NavigateClick(this.resid);
-        }
-        else
-        {
-          this.username ="";
-          this.password ="";
-          alert(data.message);
-          this.ngOnInit();
-        }
-      })
+      resid:this.resid
+    }
+    this.service.getlogin(this.username,this.password).subscribe(data =>{
+     // console.log("resid",this.resid);
+      
+    })
+    
+    this.service.login(log).subscribe(data =>{
+      if(data.code ==200){
+        this.resid = data.resid;
+       alert(data.message);
+       this.username ="";
+       this.password ="";
+      //  let navigationExtras: NavigationExtras = {
+      //   queryParams: {
+      //     "resid":this.resid = this.resid,
+      //   }
+      // };
+      this.router.navigate(['src/app/ui/Sidenav-Toolbar']);//,navigationExtras); 
+      console.log(this.resid);
+      // this.NavigateClick(this.resid);
+      }
+      else
+      {
+        this.username ="";
+        this.password ="";
+        alert(data.message);
+        this.ngOnInit();
+      }
+    })
   }
   public NavigateClick(resid:number)
-      {
-        let navigationExtras: NavigationExtras = {
-          queryParams: {
-            "resid":this.resid = resid,
-          }
-        };
-        this.router.navigate(['/sidenav-toolbar'],navigationExtras); 
-        console.log(this.resid);
+  {
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        "resid":this.resid = resid,
       }
-      
+    };
+    this.router.navigate(['src/app/ui/sidenav-toolbar'],navigationExtras); 
+    console.log(this.resid);
+  }
 }

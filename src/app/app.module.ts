@@ -16,7 +16,6 @@ import { MaterialModule } from './shared/material.module';
 import { LoginComponent } from './login/login.component';
 import { OrderingComponent } from './ordering/ordering.component';
 import { AmazingTimePickerModule } from 'amazing-time-picker';
-//import { DialogBoxComponent } from './dialog-box/dialog-box.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DialogBoxComponent } from './dialog-box/dialog-box.component';
 import { OffersDialogComponent } from './restaurant/offers-dialog/offers-dialog.component';
@@ -46,7 +45,7 @@ import { TakeawaydialogComponent } from './restaurant/takeaway/takeawaydialog/ta
     ReactiveFormsModule,FormsModule,MatSidenavModule,
     BrowserAnimationsModule,RestaurantModule,
     CoreModule,AmazingTimePickerModule,
-    CommonModule,HttpClientModule, 
+    CommonModule,HttpClientModule,
   ],
   entryComponents: [
     DialogBoxComponent,OffersDialogComponent,

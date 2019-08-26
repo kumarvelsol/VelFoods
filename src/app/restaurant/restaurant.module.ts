@@ -24,10 +24,11 @@ import { PaidoutTabComponentComponent } from './paidout-tab-component/paidout-ta
 import { TabletransferComponent } from './tabletransfer/tabletransfer.component';
 import { TakeawayComponent } from './takeaway/takeaway.component';
 import { TakeawaydialogComponent } from './takeaway/takeawaydialog/takeawaydialog.component';
+import { PettyCashComponent } from './petty-cash/petty-cash.component';
 
 
 @NgModule({
-  declarations: [LoginpageComponent, PropertyComponent, TaxpageComponent,TabledefinitionComponent, PaidoutsmiscolComponent, OffersComponent, BankwallettabbarComponent, BanksComponent, WalletsComponent,TablereserveComponent, TableStatusComponent, SettledbillsComponent, BillpaymentComponent, BillsettledailogComponent, MiscollectionComponent, PaidoutTabComponentComponent, TabletransferComponent, TakeawayComponent, TakeawaydialogComponent],
+  declarations: [LoginpageComponent, PropertyComponent, TaxpageComponent,TabledefinitionComponent, PaidoutsmiscolComponent, OffersComponent, BankwallettabbarComponent, BanksComponent, WalletsComponent,TablereserveComponent, TableStatusComponent, SettledbillsComponent, BillpaymentComponent, BillsettledailogComponent, MiscollectionComponent, PaidoutTabComponentComponent, TabletransferComponent, TakeawayComponent, TakeawaydialogComponent, PettyCashComponent],
 
   imports: [
     CommonModule,
