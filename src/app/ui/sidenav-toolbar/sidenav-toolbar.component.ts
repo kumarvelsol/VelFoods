@@ -3,6 +3,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { DatePipe } from '@angular/common';
+import { RestaurantService } from 'src/app/restaurant/restaurant.service';
 import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-sidenav-toolbar',
@@ -28,6 +29,9 @@ export class SidenavToolbarComponent implements OnInit {
     });
   }
   ngOnInit() {
+    //this.service.getrestaurent().subscribe(data => {
+
+    // })
     let date: Date = new Date();
     this.EmployeeName = "Velsol";
     this.EmployeeDesignation = "Admin";
