@@ -24,24 +24,17 @@ export class LoginComponent implements OnInit {
         resid:this.resid
       }
       this.service.getlogin(this.username,this.password).subscribe(data =>{
-       // console.log("resid",this.resid);
+        console.log("resid",this.resid);
         
       })
-      
+      console.log(this.resid);
       this.service.login(log).subscribe(data =>{
         if(data.code ==200){
           this.resid = data.resid;
          alert(data.message);
          this.username ="";
          this.password ="";
-        //  let navigationExtras: NavigationExtras = {
-        //   queryParams: {
-        //     "resid":this.resid = this.resid,
-        //   }
-        // };
-        this.router.navigate(['/Sidenav-Toolbar']);//,navigationExtras); 
-        console.log(this.resid);
-        // this.NavigateClick(this.resid);
+         this.NavigateClick(this.resid);
         }
         else
         {
@@ -51,6 +44,8 @@ export class LoginComponent implements OnInit {
           this.ngOnInit();
         }
       })
+      
+     
   }
   public NavigateClick(resid:number)
       {
@@ -59,7 +54,7 @@ export class LoginComponent implements OnInit {
             "resid":this.resid = resid,
           }
         };
-        this.router.navigate(['/sidenav-toolbar'],navigationExtras); 
+        this.router.navigate(['/Sidenav-Toolbar'],navigationExtras); 
         console.log(this.resid);
       }
       

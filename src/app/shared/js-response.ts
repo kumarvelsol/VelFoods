@@ -10,6 +10,10 @@ export interface Responce {
     Data    : Data[];
 }
 export interface Data {
+    A:string;
+    plan_name:string;
+    plan_percentage:number;
+    plan_id:number;
     empdepartement_id:number;
     empdepartement_name:string;
     empdepartement_status:string;
