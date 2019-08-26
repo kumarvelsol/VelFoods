@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RestaurantService } from '../restaurant/restaurant.service';
 import { login } from '../shared/interfaces/empcate';
+import { NavigationExtras, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,32 +10,52 @@ import { login } from '../shared/interfaces/empcate';
 })
 export class LoginComponent implements OnInit {
   imageUrl : string = "assets/images/logo.png";
-  constructor(public service :RestaurantService) { }
+  constructor(private router: Router,public service :RestaurantService) { }
   username:string;
   password:string;
   resid:number;
   ngOnInit() {
   }
-  onsaveclick(){
-    let log :login ={
-      username :this.username,
-      password :this.password,
-      resid:this.resid
-    }
-    this.service.login(log).subscribe(data =>{
-      if(data.code ==200){
-        alert(data.message);
-        this.username ="";
-        this.password ="";
-        this.ngOnInit();
+    onsaveclick(){
+      let log :login ={
+        username :this.username,
+        password :this.password,
+        
+        resid:this.resid
       }
-      else
-      {
-        this.username ="";
-        this.password ="";
-        alert(data.message);
-        this.ngOnInit();
-      }
-    });
+      this.service.getlogin(this.username,this.password).subscribe(data =>{
+        console.log("resid",this.resid);
+        
+      })
+      console.log(this.resid);
+      this.service.login(log).subscribe(data =>{
+        if(data.code ==200){
+          this.resid = data.resid;
+         alert(data.message);
+         this.username ="";
+         this.password ="";
+         this.NavigateClick(this.resid);
+        }
+        else
+        {
+          this.username ="";
+          this.password ="";
+          alert(data.message);
+          this.ngOnInit();
+        }
+      })
+      
+     
   }
+  public NavigateClick(resid:number)
+      {
+        let navigationExtras: NavigationExtras = {
+          queryParams: {
+            "resid":this.resid = resid,
+          }
+        };
+        this.router.navigate(['/sidenav-toolbar'],navigationExtras); 
+        console.log(this.resid);
+      }
+      
 }
