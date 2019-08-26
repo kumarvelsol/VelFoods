@@ -21,8 +21,8 @@ import { Takeawayplan } from '../shared/takeawayplan';
   providedIn: 'root'
 })
 export class RestaurantService {
-Baseurl = 'http://localhost:57649/'; 
-//Baseurl = 'http://school.edujinni.in/';
+//Baseurl = 'http://localhost:57649/'; 
+Baseurl = 'http://school.edujinni.in/';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json'
@@ -280,10 +280,11 @@ Baseurl = 'http://localhost:57649/';
     return this.http.post<Responce>(`${this.Baseurl+"getplannames"}`,parms);
   }
   public getprintid(restaurent_id:number,table_defination_id : number,print_status:string)
+  public getprintid(restaurent_id:number,table_name : number,print_status:string)
   {
     let parms =new HttpParams();
     parms =parms.append('restaurent_id', restaurent_id+"")
-    parms =parms.append('table_defination_id', table_defination_id+"")
+    parms =parms.append('table_name', table_name+"")
     parms =parms.append('print_status', print_status+"")
     return this.http.post<Responce>(`${this.Baseurl+"getprintid"}`,parms);
   }
@@ -349,7 +350,7 @@ Baseurl = 'http://localhost:57649/';
     let parms =new HttpParams();
     parms =parms.append('username', username+"")
     parms =parms.append('password', password+"")
-    return this.http.post(`${this.Baseurl+"sucess"}`,parms);
+    return this.http.post<JsResponse>(`${this.Baseurl+"sucess"}`,parms);
   }
   public billsettle(restaurent_id:number,insert_date:string)
   {

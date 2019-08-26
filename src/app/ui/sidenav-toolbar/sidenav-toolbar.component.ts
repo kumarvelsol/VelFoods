@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { DatePipe } from '@angular/common';
 import { RestaurantService } from 'src/app/restaurant/restaurant.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-sidenav-toolbar',
   templateUrl: './sidenav-toolbar.component.html',
@@ -23,12 +23,13 @@ export class SidenavToolbarComponent implements OnInit {
   .pipe(
     map(result => result.matches)
   );
-  constructor(private breakpointObserver: BreakpointObserver,public datepipe: DatePipe,private route: ActivatedRoute) { 
+  constructor(private breakpointObserver: BreakpointObserver,public datepipe: DatePipe,private route: ActivatedRoute,private router : Router) { 
     this.route.queryParams.subscribe(params => {
       this.resid = params["resid"];
     });
   }
   ngOnInit() {
+   // this.router.navigate(['/login']);
     //this.service.getrestaurent().subscribe(data => {
 
     // })
