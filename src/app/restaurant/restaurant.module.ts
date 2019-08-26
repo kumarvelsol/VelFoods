@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatToolbarModule, MatDialogModule,MatButtonModule, MatSelectModule,MatSidenavModule, MatIconModule, MatTabsModule,MatListModule,MatTableModule,MatInputModule } from '@angular/material';
-import { RestaurantRoutingModule } from './restaurant-routing.module';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { MaterialModule } from '../shared/material.module';
@@ -24,16 +23,15 @@ import { PaidoutTabComponentComponent } from './paidout-tab-component/paidout-ta
 import { TabletransferComponent } from './tabletransfer/tabletransfer.component';
 import { TakeawayComponent } from './takeaway/takeaway.component';
 import { TakeawaydialogComponent } from './takeaway/takeawaydialog/takeawaydialog.component';
+import { PettyCashComponent } from './petty-cash/petty-cash.component';
 
 
 @NgModule({
-  declarations: [LoginpageComponent, PropertyComponent, TaxpageComponent,TabledefinitionComponent, PaidoutsmiscolComponent, OffersComponent, BankwallettabbarComponent, BanksComponent, WalletsComponent,TablereserveComponent, TableStatusComponent, SettledbillsComponent, BillpaymentComponent, BillsettledailogComponent, MiscollectionComponent, PaidoutTabComponentComponent, TabletransferComponent, TakeawayComponent, TakeawaydialogComponent],
+  declarations: [LoginpageComponent, PropertyComponent, TaxpageComponent,TabledefinitionComponent, PaidoutsmiscolComponent, OffersComponent, BankwallettabbarComponent, BanksComponent, WalletsComponent,TablereserveComponent, TableStatusComponent, SettledbillsComponent, BillpaymentComponent, BillsettledailogComponent, MiscollectionComponent, PaidoutTabComponentComponent, TabletransferComponent, TakeawayComponent, TakeawaydialogComponent, PettyCashComponent],
 
   imports: [
     CommonModule,
-    RestaurantRoutingModule,
     SharedModule,
-    MaterialModule,
     MatToolbarModule,
     MatButtonModule, MatSidenavModule,
     MatListModule, MatTableModule,

@@ -15,13 +15,14 @@ import { Walletsmodel } from '../shared/walletsmodel';
 import { Prints } from '../shared/interfaces/Prints';
 import { Billpayment } from '../shared/billpayment';
 import { Tabletransfermodel } from '../shared/tabletransfermodel';
+import { Takeawayplan } from '../shared/takeawayplan';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RestaurantService {
-Baseurl = 'http://localhost:57649/'; 
-//Baseurl = 'http://school.edujinni.in/';
+//Baseurl = 'http://localhost:57649/'; 
+Baseurl = 'http://school.edujinni.in/';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json'
@@ -269,6 +270,16 @@ Baseurl = 'http://localhost:57649/';
   public PrintInsert(print : Prints){
     return this.http.post<JsResponse>(`${this.Baseurl+"printinsert"}`,print);
   }
+  public PrintInserttakeaway(printt : Takeawayplan){
+    return this.http.post<JsResponse>(`${this.Baseurl+"printinsert"}`,printt);
+  }
+  public getplans(restaurent_id:number)
+  {
+    let parms =new HttpParams();
+    parms = parms.append('restaurent_id', restaurent_id+"");
+    return this.http.post<Responce>(`${this.Baseurl+"getplannames"}`,parms);
+  }
+  public getprintid(restaurent_id:number,table_defination_id : number,print_status:string)
   public getprintid(restaurent_id:number,table_name : number,print_status:string)
   {
     let parms =new HttpParams();

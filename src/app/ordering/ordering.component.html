@@ -1,32 +1,53 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-6">
-      <mat-card class="example-card">
-        <div class="row col-lg-12">
-          <mat-card-title style="font-size: 20px; text-align:center; margin-left: 170px; font-weight:bold;">Tableview</mat-card-title>
-          <mat-divider style="font-size: 1px; margin-top: 26px; " class="mat-divider"></mat-divider>
-          <div class="col-md-12" style="padding-top: 10px;overflow: auto; height: 300px;">
+      <mat-card class="row example-card parent">
+        <div class="block child">
+          <p style="margin-top: 0px;">Take Order</p>
+          <div class="col-md-12" style="padding-top: 10px;overflow: auto; height: 280px;text-align: left">
             <button *ngFor="let room of rooms"  [ngStyle]="{'background-color':room.BACKGROUND_COLOR,'color': room.textcolor}"  mat-raised-button  class="button-style" name="room.table_name" (click)="onbuttonclick($event,room.table_name,room.BACKGROUND_COLOR)">{{room.table_name}}</button>
           </div>
-          <div class="col-4 mat-form-wrap" style="text-align: center">
-            <button mat-mini-fab color="warn" style="font-size: 18px;font-weight:bold;color: white" class="col-12">{{redcount}}</button>
-            <mat-label class="mat-form-field col-12" style="font-size: 20px; text-align: center;margin-top: 5px; font-weight:bold;">Repair</mat-label>
-          </div>
-          <div class="col-4 mat-form-wrap" style="text-align: center">
-            <button mat-mini-fab [ngStyle]="{'background-color':'green'}" style="font-size: 18px;font-weight:bold;color : white" class="col-12">{{greencount}}</button>
-            <mat-label class="mat-form-field col-12" style="font-size: 20px; text-align: center;margin-top: 5px; font-weight:bold;">Vacant</mat-label>
-          </div>
-          <div class="col-4 mat-form-wrap" style="text-align: center">
-            <button mat-mini-fab [ngStyle]="{'background-color':'orange'}"  style="font-size: 18px;font-weight:bold;color: white" class="col-12" >{{orangecount}}</button>
-            <mat-label class="mat-form-field col-12" style="font-size: 20px; text-align: center;margin-top: 5px; font-weight:bold;">Occupied</mat-label>
-          </div>
-          <div class="col-4 mat-form-wrap" style="text-align: center">
-            <button mat-mini-fab [ngStyle]="{'background-color':'Darkslategray'}" style="font-size: 18px;font-weight:bold;color: white" class="col-12" >{{Darkslategraycount}}</button>
-            <mat-label class="mat-form-field col-12" style="font-size: 20px; text-align: center;margin-top: 5px; font-weight:bold;">Billing</mat-label>
-          </div>
-          <div class="col-4 mat-form-wrap" style="text-align: center">
-            <button mat-mini-fab [ngStyle]="{'background-color':'blue'}" style="font-size: 18px;font-weight:bold;color: white" class="col-12">{{bluecount}}</button>
-            <mat-label class="mat-form-field col-12" style="font-size: 20px; background-color: white; text-align: center;margin-top: 5px; font-weight:bold; ">Reservation</mat-label>
+          <div class="row">
+            <div class="col-4 mat-form-wrap" style="text-align: center">
+              <div class="col-12">
+                <button mat-mini-fab color="warn" style="font-size: 18px;font-weight:bold;color: white" class="col-12">{{redcount}}</button>
+              </div>
+              <div class="col-12" style="margin-top: 5px">
+                <mat-label class="mat-form-field col-12" style="font-size: 20px; text-align: center;margin-top: 5px; font-weight:bold;">Repair</mat-label>
+              </div>
+            </div>
+            <div class="col-4 mat-form-wrap" style="text-align: center">
+              <div class="col-12">
+                <button mat-mini-fab [ngStyle]="{'background-color':'green'}" style="font-size: 18px;font-weight:bold;color : white" class="col-12">{{greencount}}</button>
+              </div>
+              <div class="col-12" style="margin-top: 5px">
+                <mat-label class="mat-form-field col-12" style="font-size: 20px; text-align: center;margin-top: 5px; font-weight:bold;">Vacant</mat-label>
+              </div>
+            </div>
+            <div class="col-4 mat-form-wrap" style="text-align: center">
+              <div class="col-12">
+                <button mat-mini-fab [ngStyle]="{'background-color':'orange'}"  style="font-size: 18px;font-weight:bold;color: white" class="col-12" >{{orangecount}}</button>
+              </div>
+              <div class="col-12" style="margin-top: 5px">
+                <mat-label class="mat-form-field col-12" style="font-size: 20px; text-align: center;margin-top: 5px; font-weight:bold;">Occupied</mat-label>
+              </div>
+            </div>
+            <div class="col-4 mat-form-wrap" style="text-align: center">
+              <div class="col-12">
+                <button mat-mini-fab [ngStyle]="{'background-color':'Darkslategray'}" style="font-size: 18px;font-weight:bold;color: white" class="col-12" >{{Darkslategraycount}}</button>
+              </div>
+              <div class="col-12" style="margin-top: 5px">
+                <mat-label class="mat-form-field col-12" style="font-size: 20px; text-align: center;margin-top: 5px; font-weight:bold;">Billing</mat-label>
+              </div>
+            </div>
+            <div class="col-4 mat-form-wrap" style="text-align: center">
+              <div class="col-12">
+                <button mat-mini-fab [ngStyle]="{'background-color':'blue'}" style="font-size: 18px;font-weight:bold;color: white" class="col-12">{{bluecount}}</button>
+              </div>
+              <div class="col-12" style="margin-top: 5px">
+                <mat-label class="mat-form-field col-12" style="font-size: 20px;text-align: center;margin-top: 5px; font-weight:bold; ">Reservation</mat-label>
+              </div>
+            </div>
           </div>
         </div>
         <!-- <mat-button-toggle-group name="fontStyle" ([ngModel])="roomselected" aria-label="Font Style">
@@ -36,10 +57,12 @@
     </div>
     <!-- itemsselectionmatcard -->
     <div class="col-lg-6">
-      <mat-card class="example-card2">
+      <mat-card class="example-card2 parent">
         <div class="row col-12 mat-form-wrap">
-          <mat-label class="col-3" style="font-size: 20px; font-weight:bold;margin-top: 15px;">Resturant:</mat-label>
-          <input type="text" style="height: 30px;width:355px;margin-top: 15px; " name="resname">
+          <mat-label class="col-3" style="text-align: left;font-size: 20px; font-weight:bold;margin-top: 15px;">Resturant:</mat-label>
+          <input class="col-3" style="margin-top: 15px;" type="text" [(ngModel)] = "resname" name="resname">
+          <mat-label class="col-3" style="text-align: left;font-size: 20px; font-weight:bold;margin-top: 15px;">Table:</mat-label>
+          <input class="col-3" type="text" style="margin-top: 15px;" [(ngModel)] = "table_name" name="table_name" >
           <!-- <mat-form-field appearance="legacy" class="col-6">
             <mat-label>Select a Resturant</mat-label>
             <mat-select  matNativeControl requireds>
@@ -50,36 +73,18 @@
           </mat-form-field> -->
         </div>
         <div class="row col-12 mat-form-wrap">
-          <mat-label class="col-3" style="font-size: 20px; font-weight:bold;">Table:</mat-label>
-          <input class="col-3 " type="text" [(ngModel)] = "table_name" name="table_name" >
-          <mat-label class="col-3" style="font-size: 20px; font-weight:bold;">Pax:</mat-label>
+          <mat-label class="col-3" style="text-align: left;font-size: 20px; font-weight:bold;">Kot:</mat-label>
+          <input type="text" class="col-3" [(ngModel)] = "kot_id" name = "kot_id" >
+          <mat-label class="col-3" style="text-align: left;font-size: 20px; font-weight:bold;">Pax:</mat-label>
           <input class="col-3" type="text" [(ngModel)] = "table_pax" name="table_pax" >
         </div>
         <div class="row col-12 mat-form-wrap">
-          <mat-label class="col-3" style="font-size: 20px; font-weight:bold;">Kot:</mat-label>
-          <input type="text" class="col-3" [(ngModel)] = "kot_id" name = "kot_id" >
-          <mat-label class="col-3" style="font-size: 20px; font-weight:bold;">Status:</mat-label>
+          <mat-label class="col-3" style="text-align: left;font-size: 20px; font-weight:bold;">Captian:</mat-label>
+          <input type="text" class="col-3" [(ngModel)] = "table_capatain" name = "table_capatain" >
+          <mat-label class="col-3" style="text-align: left;font-size: 20px; font-weight:bold;">Status:</mat-label>
           <input class="col-3" type="text" [(ngModel)]="order_status">
         </div>
-        <div class="row col-12 mat-form-wrap">
-          <mat-label class="col-3" style="font-size: 20px; font-weight:bold;">Captian:</mat-label>
-          <input type="text" class="col-3" [(ngModel)] = "table_capatain" name = "table_capatain" >
-          <!-- <mat-form-field class="col-md-6 mat-form-wrap" style="color :gray"  >
-            <mat-label style="color :gray">Select a Captian</mat-label>
-             <mat-select [(ngModel)]="table_capatain" > 
-              <mat-option *ngFor="let cap of tables" [value]="cap.table_capatain">{{cap.table_capatain}}</mat-option> 
-            </mat-select>
-          </mat-form-field>  -->
-          <!-- <mat-form-field appearance="legacy" class="col-6">
-             <mat-label>Select a Captian</mat-label>
-            <mat-select  matNativeControl requireds>
-              <mat-option value="srikar">srikar</mat-option>
-              <mat-option value="umesh">umesh</mat-option>
-              <mat-option value="kumar">kumar</mat-option>
-            </mat-select> 
-          </mat-form-field> -->
-        </div>
-        <button class="col-12" mat-button (click)="openDialog('Add',{})" [disabled]="disableadd" mat-flat-button color="primary">Add Row</button>
+        <button class="col-10" mat-button (click)="openDialog('Add',{})" [disabled]="disableadd" mat-flat-button color="primary">Add Row</button>
         <div class="col-12">
           <div class="example-container mat-elevation-z1">
             <table mat-table [dataSource]="dataSource">
@@ -132,15 +137,14 @@
             </table>
           </div>
         </div>
-        <div class="col-12">
-          <button style="margin-left: 90px; width: 100px; " mat-botton mat-flat-button color="primary" [disabled]="disablesave" (click)="onsaveclick()" >{{buttoncontent}}</button>
-          <button style="margin-left: 120px; width: 100px; " mat-botton mat-flat-button color="primary" (click)="onclear()" >Clear</button>
+        <div class="col-12" style="text-align: center">
+          <button class="btn-style" mat-raised-button style="margin-top: 10px;" [disabled]="disablesave" (click)="onsaveclick()" >{{buttoncontent}}</button>&nbsp;&nbsp;&nbsp;
+          <button class="btn-style" mat-raised-button style="margin-top: 10px;" (click)="onclear()" >Clear</button>
         </div>
         <!-- <div class="col-12">
           <button style="margin-left: 180px; width: 100px; " mat-botton mat-flat-button color="primary" >Clear</button>
         </div> -->
       </mat-card>
     </div>
-    </div>
-    </div>
-    
+  </div>
+</div>
