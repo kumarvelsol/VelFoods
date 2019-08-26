@@ -339,7 +339,7 @@ Baseurl = 'http://localhost:57649/';
     let parms =new HttpParams();
     parms =parms.append('username', username+"")
     parms =parms.append('password', password+"")
-    return this.http.post(`${this.Baseurl+"sucess"}`,parms);
+    return this.http.post<JsResponse>(`${this.Baseurl+"sucess"}`,parms);
   }
   public billsettle(restaurent_id:number,insert_date:string)
   {

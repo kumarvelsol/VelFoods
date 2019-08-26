@@ -8,6 +8,7 @@ export interface Responce {
     message : string;
     code    : number;
     Data    : Data[];
+    resid : number;
 }
 export interface Data {
     empdepartement_id:number;
@@ -102,4 +103,5 @@ export interface Data {
     print_status : string,
     textcolor : string,
     username:string;
+    resid : number;
 }
