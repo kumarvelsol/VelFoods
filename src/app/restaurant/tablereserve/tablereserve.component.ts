@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavigationExtras, Router } from '@angular/router';
+import { NavigationExtras, Router, ActivatedRoute } from '@angular/router';
 import { RestaurantService } from '../restaurant.service';
 import { Apiresponse } from 'src/app/shared/apiresponse';
 import { Data } from 'src/app/shared/data';
@@ -7,6 +7,7 @@ import { MatTableDataSource } from '@angular/material';
 import { JsResponse } from '../../shared/js-response';
 import { Tablebooking } from 'src/app/shared/tablebooking';
 import { AmazingTimePickerService } from 'amazing-time-picker';
+import { LoginComponent } from 'src/app/login/login.component';
 
 export interface Restaurant {
   id: string;
@@ -29,7 +30,11 @@ export class TablereserveComponent implements OnInit {
     tablebooking_pax : number;    tablebooking_mobile_no : number;
     tablebooking_advance : number;    tablebooking_time : string;
     tablebooking_splinstructions : string;    restaurent_id : number; tablebooking_date : string;
-  constructor(private router: Router,public service1 : RestaurantService,private atp: AmazingTimePickerService) { }
+  constructor(private router: Router,public service1 : RestaurantService,private atp: AmazingTimePickerService,private route: ActivatedRoute) {
+    this.route.queryParams.subscribe(params => {
+      this.restaurent_id = LoginComponent.rid;
+    });
+   }
   opentime() {
     const amazingTimePicker = this.atp.open();
     amazingTimePicker.afterClose().subscribe(time => {
@@ -39,14 +44,14 @@ export class TablereserveComponent implements OnInit {
   }
   ngOnInit() {
   this.buttoncontent = "Save";
-  this.service1.getrestaurent(1).subscribe((data:Apiresponse) =>{
+  this.service1.getrestaurent(this.restaurent_id).subscribe((data:Apiresponse) =>{
     this.restaurents = data.Data;
   });
   this.gettablelist();
 }
   gettablelist()
   {
-    this.service1.gettablebooking(1).subscribe((data:Apiresponse)=> {
+    this.service1.gettablebooking(this.restaurent_id).subscribe((data:Apiresponse)=> {
       this.tabledatalist = data;
       this.abDatasource = new MatTableDataSource(this.tabledatalist.Data);
     });
@@ -68,7 +73,7 @@ export class TablereserveComponent implements OnInit {
         tablebooking_splinstructions : this.tablebooking_splinstructions,
         tablebooking_time : this.tablebooking_time,
         tablebookingf_name : this.tablebookingf_name,
-        restaurent_id : 1, 
+        restaurent_id : this.restaurent_id, 
        }
       this.service1.createtablebooking(a).subscribe((data : JsResponse) => {
 
@@ -91,7 +96,7 @@ export class TablereserveComponent implements OnInit {
         tablebooking_time : this.tablebooking_time,
         tablebooking_mobile_no : this.tablebooking_mobile_no,
         tablebooking_splinstructions : this.tablebooking_splinstructions,
-        restaurent_id : 1,
+        restaurent_id : this.restaurent_id,
        }
       this.service1.updatetablebooking(a).subscribe((data : JsResponse) => {
 
@@ -131,7 +136,7 @@ export class TablereserveComponent implements OnInit {
         "advance":this.tablebooking_advance = advance,
       }
     };
-    this.router.navigate(['/ordering'],navigationExtras); 
+    this.router.navigate(['/Home'],navigationExtras); 
   }
   public onclearclick()
   {

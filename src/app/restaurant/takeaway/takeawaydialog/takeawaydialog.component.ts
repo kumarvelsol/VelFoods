@@ -1,8 +1,9 @@
 import { Component, OnInit, Optional, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { RestaurantService } from '../../restaurant.service';
-import { Data } from '@angular/router';
+import { Data, ActivatedRoute } from '@angular/router';
 import { Responce } from 'src/app/shared/js-response';
+import { LoginComponent } from 'src/app/login/login.component';
 
 export interface UsersData {
   order_itemname:string;
@@ -22,10 +23,13 @@ export interface UsersData {
 export class TakeawaydialogComponent implements OnInit {
   action:string;itemnames:Data[];order_itemname:string;orderlist:Responce;
   local_data:any;order_quantity:number;order_id:number=0;order_rate:number;order_totalamount:number=0;
-  order_tax:number;disable:boolean=false;
+  order_tax:number;disable:boolean=false;restaurent_id:number;
 
   constructor(public dialogRef: MatDialogRef<TakeawaydialogComponent>,
-    @Optional() @Inject(MAT_DIALOG_DATA) public data: UsersData, public service:RestaurantService) {
+    @Optional() @Inject(MAT_DIALOG_DATA) public data: UsersData, public service:RestaurantService,private route: ActivatedRoute) {
+      this.route.queryParams.subscribe(params => {
+        this.restaurent_id = LoginComponent.rid;
+      });
       console.log(data);
     this.local_data = {...data};
     this.action = this.local_data.action;
@@ -38,13 +42,13 @@ export class TakeawaydialogComponent implements OnInit {
     {
       this.disable = true;
     }
-    this.service.getitemnames(1).subscribe((data:Responce)=> {
+    this.service.getitemnames(this.restaurent_id).subscribe((data:Responce)=> {
       this.itemnames = data.Data;
     });
   }
   onChange() {  
     console.log(this.data.order_itemname);
-    this.service.getitemnames(1).subscribe((data:Responce)=> {
+    this.service.getitemnames(this.restaurent_id).subscribe((data:Responce)=> {
       this.orderlist = data;
       for(let i=0;i<this.orderlist.Data.length;i++)
       {
