@@ -24,15 +24,13 @@ export class SidenavToolbarComponent implements OnInit {
     map(result => result.matches)
   );
   constructor(private breakpointObserver: BreakpointObserver,public datepipe: DatePipe,private route: ActivatedRoute,private router : Router) { 
+    
+  }
+  ngOnInit() {
     this.route.queryParams.subscribe(params => {
       this.resid = params["resid"];
     });
-  }
-  ngOnInit() {
-   // this.router.navigate(['/login']);
-    //this.service.getrestaurent().subscribe(data => {
-
-    // })
+    
     let date: Date = new Date();
     this.EmployeeName = "Velsol";
     this.EmployeeDesignation = "Admin";

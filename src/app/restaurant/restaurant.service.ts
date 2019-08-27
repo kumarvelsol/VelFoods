@@ -16,6 +16,7 @@ import { Prints } from '../shared/interfaces/Prints';
 import { Billpayment } from '../shared/billpayment';
 import { Tabletransfermodel } from '../shared/tabletransfermodel';
 import { Takeawayplan } from '../shared/takeawayplan';
+import { ActivatedRoute } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +29,13 @@ Baseurl = 'http://localhost:57649/';
       'Content-Type':  'application/json'
     })
   };
-  constructor(private http : HttpClient){ }
+  restaurent_id : number;
+  constructor(private http : HttpClient,public route : ActivatedRoute){
+    this.route.queryParams.subscribe(params => {
+      this.restaurent_id = params["resid"];
+    });
+    console.log("rservice",this.restaurent_id);
+   }
   public AddOffer (offer : Offers){
     return this.http.post<JsResponse>(`${this.Baseurl+"OfferAdding"}`,offer);
   }
@@ -169,6 +176,7 @@ Baseurl = 'http://localhost:57649/';
   }
   public TaxList(restaurent_id : number){
     let parms = new HttpParams();
+    restaurent_id = this.restaurent_id;
     parms = parms.append('restaurent_id',restaurent_id+"");
     return this.http.post<Responce>(`${this.Baseurl+"TaxList"}`,parms);
   }
