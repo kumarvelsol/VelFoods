@@ -91,7 +91,7 @@ export class TableStatusComponent implements OnInit {
   onbuttonclick($event,table_name,table_defination_id,BACKGROUND_COLOR)
   {
     
-    if(BACKGROUND_COLOR == "Darkslategray"){
+    if(BACKGROUND_COLOR == "Darkslategray"){ 
       this.tname = table_name;
       this.table_defination_id = this.tname;
       this.service.getprintid(this.restaurent_id,this.tname,"Printed").subscribe((data : Responce) =>
