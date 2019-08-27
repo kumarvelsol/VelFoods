@@ -6,6 +6,7 @@ import { JsResponse } from 'src/app/shared/js-response';
 import { Apiresponse } from 'src/app/shared/apiresponse';
 import { ActivatedRoute } from '@angular/router';
 import { LoginComponent } from 'src/app/login/login.component';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-settledbills',
@@ -22,8 +23,9 @@ export class SettledbillsComponent implements OnInit {
     });
    }
   jsRes : JsResponse; insert_date : string; billment_id : number;
-
+  
   ngOnInit() {
+    
   }
   public onChange(event : number)
   {
@@ -36,6 +38,7 @@ export class SettledbillsComponent implements OnInit {
   public onChangee()
   {
     this.billment_id = null;
+    this.insert_date = formatDate(this.insert_date, 'yyyy-MM-dd', 'en-US', '+0530');
     this.service1.billsettle(this.restaurent_id,this.insert_date).subscribe((data:Apiresponse) =>
     {
       this.dataSource = data.Data;
