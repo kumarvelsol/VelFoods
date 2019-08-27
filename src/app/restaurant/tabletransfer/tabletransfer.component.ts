@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { RestaurantService } from '../restaurant.service';
 import { Responce, JsResponse } from 'src/app/shared/js-response';
 import { Tabletransfermodel } from 'src/app/shared/tabletransfermodel';
+import { ActivatedRoute } from '@angular/router';
+import { LoginComponent } from 'src/app/login/login.component';
 
 @Component({
   selector: 'app-tabletransfer',
@@ -17,19 +19,23 @@ export class TabletransferComponent implements OnInit {
   order_rate:any[] =[];order_totalamount:any[] =[];order_tax_amount:any[] =[];
   kot_idd:any[] =[];order_captain:any[] =[];itemname_idd:any[]=[];jsRes :JsResponse;
   vacanttablen:number;occupiedtablen:number;
-  constructor(private service:RestaurantService) { }
+  constructor(private service:RestaurantService,private route: ActivatedRoute) {
+    this.route.queryParams.subscribe(params => {
+      this.restaurent_id = LoginComponent.rid;
+    });
+   }
 
   ngOnInit() {
-    this.service.gettingoccupiedtables(1,"Orange").subscribe((data : Responce) =>{
+    this.service.gettingoccupiedtables(this.restaurent_id,"Orange").subscribe((data : Responce) =>{
       this.occupiedlist = data.Data;
     });
-    this.service.gettingvacanttables(1,"Green").subscribe((data : Responce) =>{
+    this.service.gettingvacanttables(this.restaurent_id,"Green").subscribe((data : Responce) =>{
       this.vacantlist = data.Data;
     });
   }
   onOccupiedChange()
   {
-    this.service.getorderitems(1,this.occupiedtablen).subscribe((data : Responce) =>
+    this.service.getorderitems(this.restaurent_id,this.occupiedtablen).subscribe((data : Responce) =>
       {
         for(let i=0;i<data.Data.length;i++)
         {
@@ -74,7 +80,7 @@ export class TabletransferComponent implements OnInit {
   onsaveclick()
   {
     this.tid = this.vacanttablen;
-    this.service.transferinsert(1,this.occupiedtablen,"Running",this.tid).subscribe((data:JsResponse) =>{
+    this.service.transferinsert(this.restaurent_id,this.occupiedtablen,"Running",this.tid).subscribe((data:JsResponse) =>{
       this.jsRes = data;
         if(this.jsRes.code==200)
         {

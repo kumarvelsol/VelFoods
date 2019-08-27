@@ -2,11 +2,12 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { RestaurantService } from '../restaurant.service';
 import { MatDialog, MatTable } from '@angular/material';
 import { TakeawaydialogComponent } from './takeawaydialog/takeawaydialog.component';
-import { Router, NavigationExtras } from '@angular/router';
+import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
 import { Prints } from 'src/app/shared/interfaces/Prints';
 import { DatePipe } from '@angular/common';
 import { JsResponse } from 'src/app/shared/js-response';
 import { Takeawayplan } from 'src/app/shared/takeawayplan';
+import { LoginComponent } from 'src/app/login/login.component';
 
 @Component({
   selector: 'app-takeaway',
@@ -23,11 +24,15 @@ export class TakeawayComponent implements OnInit {
   AmountAfterDiscount : number;
   ActualAmount: number;plan_name:string;
   OffId : number;planslist;
-  constructor(private router: Router,public datepipe: DatePipe,private service : RestaurantService,public dialog: MatDialog) { }
+  constructor(private router: Router,public datepipe: DatePipe,private service : RestaurantService,public dialog: MatDialog,private route: ActivatedRoute) { 
+    this.route.queryParams.subscribe(params => {
+      this.restaurent_id = LoginComponent.rid;
+    });
+  }
 
   ngOnInit() {
     this.openDialog('Add',{});
-    this.service.getplans(1).subscribe(data =>{
+    this.service.getplans(this.restaurent_id).subscribe(data =>{
       this.planslist = data.Data;
     });
     console.log(this.planslist);
@@ -97,7 +102,7 @@ export class TakeawayComponent implements OnInit {
   planpercentage:number;
   onplanchange()
   {
-    this.service.getplans(1).subscribe(data =>{
+    this.service.getplans(this.restaurent_id).subscribe(data =>{
       this.planslist = data.Data;
       for(let i=0;i<data.Data.length;i++)
       {
@@ -114,13 +119,12 @@ export class TakeawayComponent implements OnInit {
   }
     public onpaymentclick()
     {
-      debugger;
       let date: Date = new Date();
       let print_data : Takeawayplan = {
         total_amount : this.amount,
         discount_amount : (this.gtotalamount * this.planpercentage) / 100,
         print_status : "Printed",
-        restaurent_id : 1,
+        restaurent_id : this.restaurent_id,
         total_after_discount : this.gtotalamount,
         parcel_charges : this.parcelamount,
         status : "Takeaway",

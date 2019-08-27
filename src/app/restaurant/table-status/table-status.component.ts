@@ -7,7 +7,8 @@ import { Responce, Data, JsResponse } from 'src/app/shared/js-response';
 import { OffersDialogComponent } from '../offers-dialog/offers-dialog.component';
 import { MatDialog, MatTable, MatTableDataSource, MatDialogConfig } from '@angular/material';
 import { Prints } from 'src/app/shared/interfaces/Prints';
-import { NavigationExtras, Router } from '@angular/router';
+import { NavigationExtras, Router, ActivatedRoute } from '@angular/router';
+import { LoginComponent } from 'src/app/login/login.component';
 
 export interface PeriodicElement {
   ItemName : string;
@@ -35,7 +36,11 @@ export interface ParsingData {
 })
 export class TableStatusComponent implements OnInit {
   @ViewChild(MatTable) table: MatTable<any>; 
-  constructor(private service : RestaurantService,public datepipe: DatePipe,public dialog: MatDialog,private router: Router) { }
+  constructor(private service : RestaurantService,public datepipe: DatePipe,public dialog: MatDialog,private router: Router,private route: ActivatedRoute) {
+    this.route.queryParams.subscribe(params => {
+      this.restaurent_id = LoginComponent.rid;
+    });
+   }
   userlist:order;
   rooms : room[];
   count: number;
@@ -65,7 +70,7 @@ export class TableStatusComponent implements OnInit {
     this.LoadingList();
   }
   LoadingList(){
-    this.service.gettabledata(1).subscribe((data : Responce) =>
+    this.service.gettabledata(this.restaurent_id).subscribe((data : Responce) =>
     {
       this.count = data.Data.length;
       this.kot_id = this.count + 1;
@@ -93,7 +98,7 @@ export class TableStatusComponent implements OnInit {
     //  {
     //       this.table_defination_id = data.Data[0].table_defination_id;
     //  });
-      this.service.getprintid(1,this.tname,"Printed").subscribe((data : Responce) =>
+      this.service.getprintid(this.restaurent_id,this.tname,"Printed").subscribe((data : Responce) =>
       {
         this.amount = data.Data[0].total_after_discount;
         this.table_defination_id = data.Data[0].table_defination_id;
@@ -118,7 +123,7 @@ export class TableStatusComponent implements OnInit {
       this.availOffer_disable = false;
       this.Payment_disable = true;
 
-      this.service.getorderitems(1,this.tname).subscribe((data : Responce) =>
+      this.service.getorderitems(this.restaurent_id,this.tname).subscribe((data : Responce) =>
       {
           this.dataSource = data.Data;
           console.log(this.dataSource);
@@ -133,7 +138,7 @@ export class TableStatusComponent implements OnInit {
           this.table_defination_id = data.Data[0].table_defination_id;
      });
     }
-    this.service.getorderitems(1,this.tname).subscribe((data : Responce) =>
+    this.service.getorderitems(this.restaurent_id,this.tname).subscribe((data : Responce) =>
       {
           this.dataSource = data.Data;
           this.table_name = this.tname;
@@ -164,7 +169,7 @@ export class TableStatusComponent implements OnInit {
         offers_id : this.OffId,
         discount_amount : this.Discount_amount,
         print_status : "Printed",
-        restaurent_id : 1,
+        restaurent_id : this.restaurent_id,
         total_after_discount : this.AmountAfterDiscount,
         insert_by : "velsol",
         insert_date : this.datepipe.transform(date.toDateString(),'yyyy-MM-dd'),
