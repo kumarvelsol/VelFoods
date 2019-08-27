@@ -114,7 +114,6 @@ export class TakeawayComponent implements OnInit {
   }
     public onpaymentclick()
     {
-      debugger;
       let date: Date = new Date();
       let print_data : Takeawayplan = {
         total_amount : this.amount,

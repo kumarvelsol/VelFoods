@@ -27,12 +27,12 @@ export class LoginComponent implements OnInit {
     }
     this.service.getlogin(this.username,this.password).subscribe(data =>{
      // console.log("resid",this.resid);
-      
+      this.resid = data.resid;
     })
     
     this.service.login(log).subscribe(data =>{
       if(data.code ==200){
-        this.resid = data.resid;
+        //this.resid = data.resid;
        alert(data.message);
        this.username ="";
        this.password ="";
