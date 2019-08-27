@@ -17,8 +17,8 @@ table {
 .btn-style{
   background-color: #33B5E5;
   color: white;
-  width : 120px;
-  height: 50px;
+  width : 105px;
+  height: 40px;
   left: 0px;
   margin-bottom: 15px;
   margin-top: 15px;
@@ -39,9 +39,6 @@ table {
   margin-top: 20px;
   border-radius: 5px;
   margin-bottom: 20px;
-}
-.container {
-  color : black;
 }
 p{
   text-align: center;

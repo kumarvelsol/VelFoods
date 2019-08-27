@@ -25,12 +25,14 @@
               <mat-option *ngFor="let mn of managerslist" [value]="mn.manger_name">{{mn.manger_name}}</mat-option> 
             </mat-select>
           </mat-form-field>
-          <mat-label style="font-size: 20px;">Status    :</mat-label>
-          <mat-radio-group aria-label="Select an option" [(ngModel)]="restaruent_status" name="restaruent_status">
-            <mat-radio-button style="margin-left: 20px" value="Active">Active</mat-radio-button>
-            <mat-radio-button style="margin-left: 20px" value="InActive">InActive</mat-radio-button>
-          </mat-radio-group>
-          <button style="margin-top: 10px;" mat-raised-button class="btn-style" (click)="onsubmitclick()">{{buttoncontent}}</button>&nbsp;&nbsp;
+          <div class="col-12">
+            <mat-label style="font-size: 20px;">Status    :</mat-label>
+            <mat-radio-group aria-label="Select an option" [(ngModel)]="restaruent_status" name="restaruent_status">
+              <mat-radio-button style="margin-left: 10px" value="Active">Active</mat-radio-button>
+              <mat-radio-button style="margin-left: 10px" value="InActive">InActive</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <button style="margin-top: 10px;" mat-raised-button class="btn-style" (click)="onsubmitclick()">{{buttoncontent}}</button>&nbsp;&nbsp;&nbsp;
           <button style="margin-top: 10px;" mat-raised-button class="btn-style" (click)="onclearclick()">Clear</button>
         </div>
       </mat-card>
@@ -39,32 +41,32 @@
       <div class="example-container mat-elevation-z1">
         <table mat-table [dataSource]="dataSource">
           <ng-container matColumnDef="restaurent_id">
-            <th mat-header-cell *matHeaderCellDef> Id </th>
+            <th mat-header-cell *matHeaderCellDef class="textSizes"> Id </th>
             <td mat-cell *matCellDef="let i"> {{i.restaurent_id}} </td>
           </ng-container>
           <ng-container matColumnDef="restaurent_name">
-            <th mat-header-cell *matHeaderCellDef> Restaurant Name </th>
+            <th mat-header-cell *matHeaderCellDef class="textSizes"> Restaurant Name </th>
             <td mat-cell *matCellDef="let i"> {{i.restaurent_name}} </td>
           </ng-container>
           <ng-container matColumnDef="restaurent_address">
-            <th mat-header-cell *matHeaderCellDef> Address </th>
+            <th mat-header-cell *matHeaderCellDef class="textSizes"> Address </th>
             <td mat-cell *matCellDef="let i"> {{i.restaurent_address}} </td>
           </ng-container>
           <ng-container matColumnDef="restaurent_mobile_no">
-            <th mat-header-cell *matHeaderCellDef> Mobile </th>
+            <th mat-header-cell *matHeaderCellDef class="textSizes"> Mobile </th>
             <td mat-cell *matCellDef="let i"> {{i.restaurent_mobile_no}} </td>
           </ng-container>
           <ng-container matColumnDef="restrent_manger">
-            <th mat-header-cell *matHeaderCellDef> Manager </th>
+            <th mat-header-cell *matHeaderCellDef class="textSizes"> Manager </th>
             <td mat-cell *matCellDef="let i"> {{i.restrent_manger}} </td>
           </ng-container>
           <ng-container matColumnDef="restaruent_status">
-            <th mat-header-cell *matHeaderCellDef> Status </th>
+            <th mat-header-cell *matHeaderCellDef class="textSizes"> Status </th>
             <td mat-cell *matCellDef="let i"> {{i.restaruent_status}} </td>
           </ng-container>
           <!-- actions -->
           <ng-container matColumnDef="actions">
-            <th mat-header-cell *matHeaderCellDef>Edit</th>
+            <th mat-header-cell *matHeaderCellDef class="textSizes">Edit</th>
             <td mat-cell *matCellDef="let i; let j=index;"> 
               <button mat-icon-button style="color:gray;margin-right: 10px;" (click)="RowSelected(j,i.restaurent_id,i.restaurent_name,i.restaurent_address,i.restaurent_mobile_no,i.restrent_manger,i.restaruent_status)">
                 <mat-icon aria-label="Edit">edit</mat-icon>

@@ -1,3 +1,85 @@
-<p>
-  petty-cash works!
-</p>
+<div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <mat-card class="row example-card parent">
+          <div class="block child">
+            <p style="margin-top: 20px;">Petty Cash</p>
+            <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" >
+              <mat-icon style="color:gray;" matSuffix>code</mat-icon>
+              <mat-label style="color :gray">Name</mat-label>
+              <input style="color :gray" [(ngModel)]="name" type="text" matInput required>
+            </mat-form-field>
+            <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" >
+              <mat-icon style="color:gray;" matSuffix>code</mat-icon>
+              <mat-label style="color :gray">Percentage</mat-label>
+              <input style="color :gray" [(ngModel)]="percentage" type="number" maxlength="2" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" matInput required>
+            </mat-form-field>
+            <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray">
+              <mat-label style="color :gray">Employee Name</mat-label>
+              <mat-select style="color :gray" [(ngModel)]="empregistration_name" disableRipple>
+                <mat-option *ngFor="let emp of emplist" [value]="emp.empregistration_name">{{emp.empregistration_name}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray" >
+              <mat-label style="color :gray">Active From</mat-label>
+              <input style="color :gray" [(ngModel)]="activefrom" [matDatepicker]="picker" matInput required>
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <div class="col-md-12">
+              <mat-label style="font-size: 20px;">Status    :</mat-label>&nbsp;&nbsp;
+              <mat-radio-group [(ngModel)]="status" aria-label="Status" required>
+                <mat-radio-button style="margin-left: 20px" value="Active">Active</mat-radio-button>
+                <mat-radio-button style="margin-left: 20px" value="InActive">InActive</mat-radio-button>
+              </mat-radio-group>
+            </div>
+            <button mat-raised-button style="margin-top: 10px;" class="btn-style" (click)="onsave()">{{buttoncontent}}</button>&nbsp;&nbsp;&nbsp;
+            <button mat-raised-button style="margin-top: 10px;" class="btn-style" (click)="onclear()">Clear</button>
+          </div>
+        </mat-card>
+      </div>
+      <div class="col-md-6">
+        <div class="example-container mat-elevation-z1">
+          <table mat-table [dataSource]="dataSource">
+            <ng-container matColumnDef="tax_id">
+              <th mat-header-cell *matHeaderCellDef> Tax Id </th>
+              <td mat-cell *matCellDef="let element"> {{element.tax_id}} </td>
+            </ng-container>
+            <ng-container matColumnDef="tax_name">
+              <th mat-header-cell *matHeaderCellDef> Tax Name </th>
+              <td mat-cell *matCellDef="let element"> {{element.tax_name}} </td>
+            </ng-container>
+            <ng-container matColumnDef="tax_percentage">
+              <th mat-header-cell *matHeaderCellDef> Percentage </th>
+              <td mat-cell *matCellDef="let element"> {{element.tax_percentage}} </td>
+            </ng-container>
+            <ng-container matColumnDef="tax_employeename">
+              <th mat-header-cell *matHeaderCellDef> Reporting Name </th>
+              <td mat-cell *matCellDef="let element"> {{element.tax_employeename}} </td>
+            </ng-container>
+            <ng-container matColumnDef="tax_Active_from">
+              <th mat-header-cell *matHeaderCellDef> Active From </th>
+              <td mat-cell *matCellDef="let element"> {{element.tax_Active_from}} </td>
+            </ng-container>
+            <ng-container matColumnDef="tax_status">
+              <th mat-header-cell *matHeaderCellDef> Status </th>
+              <td mat-cell *matCellDef="let element"> {{element.tax_status}} </td>
+            </ng-container>
+            <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef>Edit</th>
+              <td mat-cell *matCellDef="let element; let i=index;">
+                <button mat-icon-button style="color:gray;margin-right: 10px;" (click)="RowSelected(i,element.tax_id,element.tax_name,element.tax_percentage,element.tax_employeename,element.tax_Active_from,element.tax_status)">
+                  <mat-icon aria-label="Edit">edit</mat-icon>
+                </button>
+                <!-- <button mat-icon-button style="color:gray;margin-right: 10px;" (click)="RowDelete(i,element.taxid,element.taxname,element.percentage,element.reportname,element.activefrom,element.status)">
+                  <mat-icon aria-label="Edit">delete</mat-icon>
+                </button> -->
+              </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
