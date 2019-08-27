@@ -298,7 +298,7 @@ export class BillpaymentComponent implements OnInit {
       table_steward: this.table_steward,
       table_view : this.table_view,
   }
-  this.insert_date = formatDate(this.today, 'dd-MM-yyyy hh:mm:ss a', 'en-US', '+0530');
+  this.insert_date = formatDate(this.today, 'dd-MM-yyyy', 'en-US', '+0530');
     this.service1.billinsert(a).subscribe((data : JsResponse) =>
     {
       this.jsRes = data;

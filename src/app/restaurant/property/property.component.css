@@ -13,9 +13,11 @@
 .btn-style1{
   background-color: #33B5E5;
   color: white;
-  width: 150px;
-  height: 50px;
-  margin-top: 9px;
+  width: 140px;
+  height: 40px;
+  left: 0px;
+  margin-bottom: 15px;
+  margin-top: 0px;
   font-size: 18px;
 }
 .parent{

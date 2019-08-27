@@ -25,10 +25,10 @@
           </mat-form-field>
           <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray"  >
             <mat-label style="color :gray">Status</mat-label>
-              <mat-select style="color :gray" [(ngModel)]="table_status" disableRipple name="table_status">
-                <mat-option style="color :gray" value="Active">Active</mat-option>
-                <mat-option style="color :gray" value="DeActive">DeActive</mat-option>
-              </mat-select>
+            <mat-select style="color :gray" [(ngModel)]="table_status" disableRipple name="table_status">
+              <mat-option style="color :gray" value="Active">Active</mat-option>
+              <mat-option style="color :gray" value="DeActive">DeActive</mat-option>
+            </mat-select>
           </mat-form-field>
           <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray"  >
             <mat-label style="color :gray">Captain</mat-label>
@@ -42,39 +42,38 @@
               <mat-option style="color :gray" *ngFor="let emp of employee" [value]="emp.empregistration_name">{{emp.empregistration_name}}</mat-option>
             </mat-select>
           </mat-form-field>
-
           <!-- <button *ngFor="let id of tid; let j = index;" mat-raised-button class="btn-style" matInput>{{tid[j]}}</button> -->
           <button mat-raised-button style="margin-top: 10px;" class="btn-style" [style.backgroundColor]="buttonColor" (click)="onSaveclick()">{{buttoncontent}}</button>&nbsp;&nbsp;&nbsp;
           <button mat-raised-button style="margin-top: 10px;" class="btn-style" (click)="onclearclick()">Clear</button>
         </div>
       </mat-card>
-    </div> 
+    </div>
     <div class="col-lg-6">
       <div class="example-container mat-elevation-z1">
         <table mat-table [dataSource]="abDatasource">
           <ng-container matColumnDef="table_defination_id">
-            <th mat-header-cell *matHeaderCellDef> Id </th>
+            <th mat-header-cell *matHeaderCellDef class="textSizes"> Id </th>
             <td mat-cell *matCellDef="let i"> {{i.table_defination_id}} </td>
           </ng-container>
           <ng-container matColumnDef="table_name">
-            <th mat-header-cell *matHeaderCellDef> Table Name/No </th>
+            <th mat-header-cell *matHeaderCellDef class="textSizes"> Table Name/No </th>
             <td mat-cell *matCellDef="let i"> {{i.table_name}} </td>
           </ng-container>
           <ng-container matColumnDef="table_pax">
-            <th mat-header-cell *matHeaderCellDef> Pax </th>
+            <th mat-header-cell *matHeaderCellDef class="textSizes"> Pax </th>
             <td mat-cell *matCellDef="let i"> {{i.table_pax}} </td>
           </ng-container>
           <ng-container matColumnDef="table_view">
-            <th mat-header-cell *matHeaderCellDef> View </th>
+            <th mat-header-cell *matHeaderCellDef class="textSizes"> View </th>
             <td mat-cell *matCellDef="let i"> {{i.table_view}} </td>
           </ng-container>
           <ng-container matColumnDef="table_status">
-            <th mat-header-cell *matHeaderCellDef> Status </th>
+            <th mat-header-cell *matHeaderCellDef class="textSizes"> Status </th>
             <td mat-cell *matCellDef="let i"> {{i.table_status}} </td>
           </ng-container>
           <!-- actions -->
           <ng-container matColumnDef="actions">
-            <th mat-header-cell *matHeaderCellDef>Edit</th>
+            <th mat-header-cell *matHeaderCellDef class="textSizes">Edit</th>
             <td mat-cell *matCellDef="let i; let j=index;"> 
               <button mat-icon-button style="color:gray;margin-right: 10px;" (click)="RowSelected(j,i.table_defination_id,i.table_name,i.table_pax,i.table_description,i.table_status,i.table_view,i.table_capatain,i.table_steward)">
                 <mat-icon aria-label="Edit">edit</mat-icon>
