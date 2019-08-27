@@ -3,7 +3,8 @@ import { RestaurantService } from '../restaurant/restaurant.service';
 import { EmployeeRegistration } from '../shared/interfaces/empcate';
 import { EmptyOutletComponent } from '@angular/router/src/components/empty_outlet';
 import { debug } from 'util';
-import { Data } from '@angular/router';
+import { Data, ActivatedRoute } from '@angular/router';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-employeeregistration',
@@ -29,19 +30,22 @@ export class EmployeeregistrationComponent implements OnInit {
   count:number;empdept:Data[];
   displayedColumns : string[] =['empregistration_id','empregistration_name','empregistration_mobile_no','empregistration_status','actions'];
   dataSource;
-  constructor(public service: RestaurantService) { }
-
+  constructor(public service: RestaurantService,public route : ActivatedRoute) { 
+    this.route.queryParams.subscribe(params => {
+      this.restaurent_id = LoginComponent.rid;
+    })
+   }
   ngOnInit() {
     this.buttoncontent="Save";
     this.buttoncontent1="Clear";
-    this.service.getempreg(1).subscribe(data =>
+    this.service.getempreg(this.restaurent_id).subscribe(data =>
       {
         this.dataSource = data.Data;
         console.log(this.dataSource);
         this.count =data.Data.length;
         this.empregistration_id = ++this.count;
       });
-      this.service.getempcategory(1).subscribe(data =>
+      this.service.getempcategory(this.restaurent_id).subscribe(data =>
         {
           this.empdept = data.Data;
         });
@@ -60,7 +64,7 @@ export class EmployeeregistrationComponent implements OnInit {
       empregistration_login_type:this.empregistration_login_type,
       Username:this.Username,
       password:this.password,
-      restaurent_id:1
+      restaurent_id:this.restaurent_id
 
     }
     if(this.buttoncontent =="Save")
