@@ -34,7 +34,6 @@ Baseurl = 'http://localhost:57649/';
     this.route.queryParams.subscribe(params => {
       this.restaurent_id = params["resid"];
     });
-    console.log("rservice",this.restaurent_id);
    }
   public AddOffer (offer : Offers){
     return this.http.post<JsResponse>(`${this.Baseurl+"OfferAdding"}`,offer);
@@ -176,7 +175,6 @@ Baseurl = 'http://localhost:57649/';
   }
   public TaxList(restaurent_id : number){
     let parms = new HttpParams();
-    restaurent_id = this.restaurent_id;
     parms = parms.append('restaurent_id',restaurent_id+"");
     return this.http.post<Responce>(`${this.Baseurl+"TaxList"}`,parms);
   }

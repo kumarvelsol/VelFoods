@@ -4,6 +4,8 @@ import { Tax } from 'src/app/shared/interfaces/tax';
 import { MatTableDataSource } from '@angular/material';
 import { Responce } from 'src/app/shared/js-response';
 import { Data } from 'src/app/shared/data';
+import { ActivatedRoute } from '@angular/router';
+import { LoginComponent } from 'src/app/login/login.component';
 @Component({
   selector: 'app-taxpage',
   templateUrl: './taxpage.component.html',
@@ -12,14 +14,19 @@ import { Data } from 'src/app/shared/data';
 export class TaxpageComponent implements OnInit {
   rows: Array<{taxid:number, taxname:string,percentage:number,reportname:string,activefrom:string,status:string}> = [];
   //data: any = [{taxid:1, taxname:"Five",percentage:5,reportname:"Dharani",status:"Active"}, {taxid:2, taxname:"Three",percentage:3,reportname:"Dharani",status:"Active"} ];
-  dataSource;buttoncontent : string = "Save";
+  dataSource;buttoncontent : string = "Save"; restaurent_id : number;
   taxid : number; taxname : string; percentage : number; reportname : string; activefrom : string; status : string; empregistration_name : string;
   emplist;
   displayedColumns : string[] = ["tax_id", "tax_name","tax_percentage", "tax_employeename","tax_Active_from","tax_status","actions"];
-  constructor(public service : RestaurantService){}
+  constructor(public service : RestaurantService,public route : ActivatedRoute){
+    this.route.queryParams.subscribe(params =>
+      {
+        this.restaurent_id = LoginComponent.rid;
+      })
+  }
   ngOnInit() {
     this.LoadingList();
-    this.service.getempreg(1).subscribe(data =>
+    this.service.getempreg(this.restaurent_id).subscribe(data =>
       {
         this.emplist = data.Data;
       });
@@ -49,7 +56,7 @@ export class TaxpageComponent implements OnInit {
           tax_percentage : this.percentage,
           tax_Active_from : this.activefrom,
           tax_status : this.status,
-          restaurent_id : 1,
+          restaurent_id : this.restaurent_id,
           tax_employeename : this.empregistration_name,
         }
         this.service.AddTax(tax).subscribe(data=>{
@@ -61,7 +68,7 @@ export class TaxpageComponent implements OnInit {
           }
         });
       }else if(this.buttoncontent == "Update"){
-        this.service.UpdateTax(this.taxid,this.taxname,this.percentage,this.activefrom,this.status,1,this.empregistration_name).subscribe(data=>{
+        this.service.UpdateTax(this.taxid,this.taxname,this.percentage,this.activefrom,this.status,this.restaurent_id,this.empregistration_name).subscribe(data=>{
           if(data.code == 200){
             alert(data.message);
             this.onclear();
@@ -74,7 +81,7 @@ export class TaxpageComponent implements OnInit {
     this.onclear();
   }
   public LoadingList(){
-    this.service.TaxList(1).subscribe(data =>{
+    this.service.TaxList(this.restaurent_id).subscribe(data =>{
       this.dataSource = new MatTableDataSource(data.Data);
     });
   }

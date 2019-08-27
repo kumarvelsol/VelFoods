@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { RestaurantService } from '../restaurant/restaurant.service';
 import { EmployeeCategory } from '../shared/interfaces/empcate';
 import { MatTableDataSource } from '@angular/material';
+import { ActivatedRoute } from '@angular/router';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-employeedepartment',
@@ -14,14 +16,18 @@ export class EmployeedepartmentComponent implements OnInit {
   empdepartement_status:string;
   buttoncontent:string;
   count:number;
-  resid:number;
+  resid:number;restaurent_id : number;
   displayedColumns : string[] =['empdepartement_id','empdepartement_name','empdepartement_status','actions'];
   dataSource;
-  constructor(public service :RestaurantService) {  }
+  constructor(public service :RestaurantService,public route : ActivatedRoute) { 
+    this.route.queryParams.subscribe(params => {
+      this.restaurent_id = LoginComponent.rid;
+    })
+   }
   
   ngOnInit() {
     this.buttoncontent = "Save";
-    this.service.getempcategory(1).subscribe(data =>
+    this.service.getempcategory(this.restaurent_id).subscribe(data =>
     {
       this.dataSource = new MatTableDataSource(data.Data);
       this.count =data.Data.length;
@@ -34,7 +40,7 @@ export class EmployeedepartmentComponent implements OnInit {
       empdepartement_id:this.empdepartement_id,
       empdepartement_name:this.empdepartement_name,
       empdepartement_status:this.empdepartement_status,
-      restaurent_id:this.resid
+      restaurent_id:this.restaurent_id
     }
     if(this.buttoncontent =="Save"){
     this.service.addempcate(empc).subscribe(data=>{

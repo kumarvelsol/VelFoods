@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { RestaurantService } from '../restaurant/restaurant.service';
 import { itemnames } from '../shared/interfaces/empcate';
+import { ActivatedRoute } from '@angular/router';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-item-names',
@@ -31,24 +33,29 @@ export class ItemNamesComponent implements OnInit
     buttoncontent:string; itemcategory; taxlist; 
     takeaway_tax_percentage : number; dinein_tax_percentage : number; hd_tax_percentage : number;
     emplist;empregistration_name : string; item_name : string;
-    constructor(public service:RestaurantService) { }
+    constructor(public service:RestaurantService,public route : ActivatedRoute) { 
+      this.route.queryParams.subscribe(params =>
+        {
+          this.restaurent_id = LoginComponent.rid;
+        })
+    }
   displayedColumns: string[] = ['itemname_id', 'itemname_item_name', 'itemname_reportingname','item_dinein_amount','item_dinein_tax','item_takeaway_amount','item_takeaway_tax','item_homedelivary_amount','item_homedelivary_tax','item_homedelivery_deliverycharges', 'itemname_status','actions'];
   ngOnInit() 
   {
     this.buttoncontent ="Save";
-    this.service.getitemnames(1).subscribe(data =>
+    this.service.getitemnames(this.restaurent_id).subscribe(data =>
       {
         this.dataSource = data.Data;
       });
-      this.service.getitemcate(1).subscribe(data =>
+      this.service.getitemcate(this.restaurent_id).subscribe(data =>
         {
           this.itemcategory = data.Data;
         });
-        this.service.TaxList(1).subscribe(data =>
+        this.service.TaxList(this.restaurent_id).subscribe(data =>
           {
             this.taxlist = data.Data;
           });
-          this.service.getempreg(1).subscribe(data =>
+          this.service.getempreg(this.restaurent_id).subscribe(data =>
             {
               this.emplist = data.Data;
             });
@@ -68,7 +75,7 @@ export class ItemNamesComponent implements OnInit
       item_homedelivary_amount:this.item_homedelivary_amount,
       item_homedelivary_tax:this.hd_tax_percentage,
       item_homedelivery_deliverycharges:this.item_homedelivery_deliverycharges,
-      restaurent_id:1,
+      restaurent_id:this.restaurent_id,
       itemcategory_id:this.itemcategory_id,
       itemname_dinein_total:this.itemname_dinein_total,
       itemname_takeaway_total:this.itemname_takeaway_total,

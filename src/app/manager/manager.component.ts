@@ -6,6 +6,8 @@ import { Data } from 'src/app/shared/data';
 import { MatTableDataSource } from '@angular/material';
 import { JsResponse } from '../shared/js-response';
 import { Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-manager',
@@ -21,10 +23,14 @@ export class ManagerComponent implements OnInit {
   manger_id:number;manger_name:string;restaurent_id:number;manger_mobile_no:string;
   manger_status:string;manger_id_proof: string;manger_id_no:string;
   
-  constructor(private service:RestaurantService) { }
+  constructor(private service:RestaurantService,public route : ActivatedRoute) {
+    this.route.queryParams.subscribe(params => {
+      this.restaurent_id = LoginComponent.rid;
+    })
+   }
   ngOnInit() {
     this.buttoncontent = "Save";
-    this.service.getrestaurent(1).subscribe((data:Apiresponse) =>{
+    this.service.getrestaurent(this.restaurent_id).subscribe((data:Apiresponse) =>{
       this.restaurents = data.Data;
       console.log(this.restaurents);
     });
@@ -32,7 +38,7 @@ export class ManagerComponent implements OnInit {
   }
   getmanagers()
   {
-    this.service.getmanagers(1).subscribe((data:Apiresponse) =>{
+    this.service.getmanagers(this.restaurent_id).subscribe((data:Apiresponse) =>{
       this.managerslist = data;
       this.dataSource = new MatTableDataSource(this.managerslist.Data);
     });
