@@ -39,7 +39,7 @@ table {
 .btn-style{
     background-color: #33B5E5;
     color: white;
-    width : 120px;
+    width : 105px;
     height: 40px;
     left: 0px;
     margin-bottom: 15px;
@@ -72,4 +72,16 @@ p{
     color : darkslategray;
     font-family: "Montserrat", sans-serif;
     text-shadow: 0 1px 2px rgba(black,.15);
+}
+.mat-cell,.mat-header-cell {
+    padding-right: 15px;
+    width: max-content;
+    white-space: nowrap;
+}
+.textSizes
+{
+    font-size: 15px;
+    font-weight: bold;
+    color : darkslategray;
+    font-family: "Montserrat", sans-serif;
 }

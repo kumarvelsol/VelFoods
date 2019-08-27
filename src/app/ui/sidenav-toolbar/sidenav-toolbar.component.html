@@ -17,73 +17,71 @@
         </p>
       </div>
     </div>
-    <div>
-      <mat-nav-list style="margin-top: 200px;">
-        <mat-list-item><mat-icon class="material-icons" style="color:black;margin-left: 7px;font-size: 25px;vertical-align: middle" >home</mat-icon><a mat-list-item [routerLink]="['ordering']">Take Order</a></mat-list-item>
-        <mat-list-item><mat-icon class="material-icons" style="color:black;margin-left: 9px;font-size: 23px;vertical-align: middle;" >dashboard</mat-icon><a mat-list-item>DashBoard</a></mat-list-item>
-      </mat-nav-list>
-      <mat-accordion multi="true" [displayMode]="displayMode" style="background-color: white">
-        <mat-expansion-panel class="mat-elevation-z0">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              <mat-icon class="material-icons" style="color:black;margin-right: 16px" >school</mat-icon>Masters
-            </mat-panel-title>
-            <!-- <mat-panel-description>
-              <mat-icon>account_circle</mat-icon>
-            </mat-panel-description> -->
-          </mat-expansion-panel-header>
-          <mat-nav-list>
-            <mat-list-item><a mat-list-item [routerLink]="['property']">Property</a></mat-list-item>
-            <mat-list-item><a mat-list-item [routerLink]="['restaurants']">Restaurant</a></mat-list-item>
-            <mat-list-item><a mat-list-item [routerLink]="['tax']">Tax</a></mat-list-item>
-            <mat-list-item><a mat-list-item [routerLink]="['itemCategory']">Itemcategory</a></mat-list-item>
-            <mat-list-item><a mat-list-item [routerLink]="['itemNames']">ItemNames</a></mat-list-item>
-            <mat-list-item><a mat-list-item [routerLink]="['offers']">Offers</a></mat-list-item>
-            <mat-list-item><a mat-list-item [routerLink]="['bankswallets']">Banks&Wallets</a></mat-list-item>
-            <mat-list-item><a mat-list-item [routerLink]="['tabledefinition']">TableDefinition</a></mat-list-item>
-            <mat-list-item><a mat-list-item [routerLink]="['managers']">Managers</a></mat-list-item>
-            <mat-list-item><a mat-list-item [routerLink]="['employeedepartment']">EmployeeDepartment</a></mat-list-item>
-            <mat-list-item><a mat-list-item [routerLink]="['employeeregistration']">EmployeeRegistration</a></mat-list-item>
-          </mat-nav-list>
-        </mat-expansion-panel>
-        <mat-expansion-panel class="mat-elevation-z0">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              <mat-icon class="material-icons" style="color:black;margin-right: 16px" >library_add</mat-icon>Operations
-            </mat-panel-title>
-            <!-- <mat-panel-description>
-              <mat-icon>map</mat-icon>
-            </mat-panel-description> -->
-          </mat-expansion-panel-header>
-          <mat-nav-list>
-            <mat-list-item><a mat-list-item [routerLink]="['tablebooking']">Reservation</a></mat-list-item>
-            <mat-list-item><a mat-list-item [routerLink]="['tabletransfer']">Table Transfer</a></mat-list-item>
-            <mat-list-item><a mat-list-item [routerLink]="['takeaway']">Takeaway</a></mat-list-item>
-            <mat-list-item><a mat-list-item [routerLink]="['Paidouts']">Paidouts</a></mat-list-item>
-            <mat-list-item><a mat-list-item [routerLink]="['tablestatus']">TableStatus</a></mat-list-item>
-            <!-- <mat-list-item><a mat-list-item [routerLink]="['/BillPayment']">BillPayment</a></mat-list-item> -->
-            <mat-list-item><a mat-list-item [routerLink]="['settledbills']">SettledBills</a></mat-list-item>
-          </mat-nav-list>
-        </mat-expansion-panel>
-        <mat-expansion-panel class="mat-elevation-z0">
-          <mat-expansion-panel-header>
-            <mat-panel-title style="margin-left: 0px">
-              <mat-icon class="material-icons" style="color:black;margin-right: 16px" >print</mat-icon>Reports
-            </mat-panel-title>
-            <!-- <mat-panel-description>
-              <mat-icon>map</mat-icon>
-            </mat-panel-description> -->
-          </mat-expansion-panel-header>
-          <mat-nav-list>
-            <mat-list-item>Item Rate List</mat-list-item>
-            <mat-list-item>Item Wise Sale</mat-list-item>
-          </mat-nav-list>
-        </mat-expansion-panel>
-      </mat-accordion>
-      <mat-nav-list>
-        <mat-list-item><a mat-list-item [routerLink]="['/login']">Login</a></mat-list-item>
-      </mat-nav-list>
-    </div>
+    <mat-nav-list>
+      <mat-list-item><mat-icon class="material-icons" style="color:black;margin-left: 7px;font-size: 25px;vertical-align: middle" >home</mat-icon><a mat-list-item [routerLink]="['ordering']">Take Order</a></mat-list-item>
+      <mat-list-item><mat-icon class="material-icons" style="color:black;margin-left: 9px;font-size: 23px;vertical-align: middle;" >dashboard</mat-icon><a mat-list-item>DashBoard</a></mat-list-item>
+    </mat-nav-list>
+    <mat-accordion multi="true" [displayMode]="displayMode" style="background-color: white">
+      <mat-expansion-panel class="mat-elevation-z0">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon class="material-icons" style="color:black;margin-right: 16px" >school</mat-icon>Masters
+          </mat-panel-title>
+          <!-- <mat-panel-description>
+            <mat-icon>account_circle</mat-icon>
+          </mat-panel-description> -->
+        </mat-expansion-panel-header>
+        <mat-nav-list>
+          <mat-list-item><a mat-list-item [routerLink]="['property']">Property</a></mat-list-item>
+          <mat-list-item><a mat-list-item [routerLink]="['restaurants']">Restaurant</a></mat-list-item>
+          <mat-list-item><a mat-list-item [routerLink]="['tax']">Tax</a></mat-list-item>
+          <mat-list-item><a mat-list-item [routerLink]="['itemCategory']">Itemcategory</a></mat-list-item>
+          <mat-list-item><a mat-list-item [routerLink]="['itemNames']">ItemNames</a></mat-list-item>
+          <mat-list-item><a mat-list-item [routerLink]="['offers']">Offers</a></mat-list-item>
+          <mat-list-item><a mat-list-item [routerLink]="['bankswallets']">Banks&Wallets</a></mat-list-item>
+          <mat-list-item><a mat-list-item [routerLink]="['tabledefinition']">TableDefinition</a></mat-list-item>
+          <mat-list-item><a mat-list-item [routerLink]="['managers']">Managers</a></mat-list-item>
+          <mat-list-item><a mat-list-item [routerLink]="['employeedepartment']">EmployeeDepartment</a></mat-list-item>
+          <mat-list-item><a mat-list-item [routerLink]="['employeeregistration']">EmployeeRegistration</a></mat-list-item>
+        </mat-nav-list>
+      </mat-expansion-panel>
+      <mat-expansion-panel class="mat-elevation-z0">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon class="material-icons" style="color:black;margin-right: 16px" >library_add</mat-icon>Operations
+          </mat-panel-title>
+          <!-- <mat-panel-description>
+            <mat-icon>map</mat-icon>
+          </mat-panel-description> -->
+        </mat-expansion-panel-header>
+        <mat-nav-list>
+          <mat-list-item><a mat-list-item [routerLink]="['tablebooking']">Reservation</a></mat-list-item>
+          <mat-list-item><a mat-list-item [routerLink]="['tabletransfer']">Table Transfer</a></mat-list-item>
+          <mat-list-item><a mat-list-item [routerLink]="['takeaway']">Takeaway</a></mat-list-item>
+          <mat-list-item><a mat-list-item [routerLink]="['Paidouts']">Paidouts</a></mat-list-item>
+          <mat-list-item><a mat-list-item [routerLink]="['tablestatus']">TableStatus</a></mat-list-item>
+          <!-- <mat-list-item><a mat-list-item [routerLink]="['/BillPayment']">BillPayment</a></mat-list-item> -->
+          <mat-list-item><a mat-list-item [routerLink]="['settledbills']">SettledBills</a></mat-list-item>
+        </mat-nav-list>
+      </mat-expansion-panel>
+      <mat-expansion-panel class="mat-elevation-z0">
+        <mat-expansion-panel-header>
+          <mat-panel-title style="margin-left: 0px">
+            <mat-icon class="material-icons" style="color:black;margin-right: 16px" >print</mat-icon>Reports
+          </mat-panel-title>
+          <!-- <mat-panel-description>
+            <mat-icon>map</mat-icon>
+          </mat-panel-description> -->
+        </mat-expansion-panel-header>
+        <mat-nav-list>
+          <mat-list-item>Item Rate List</mat-list-item>
+          <mat-list-item>Item Wise Sale</mat-list-item>
+        </mat-nav-list>
+      </mat-expansion-panel>
+    </mat-accordion>
+    <mat-nav-list>
+      <mat-list-item><a mat-list-item [routerLink]="['/login']">Login</a></mat-list-item>
+    </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content style="background-color: #EDEFF0">
     <mat-toolbar style="background-color: darkslategray">
