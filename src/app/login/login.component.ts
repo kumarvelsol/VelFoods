@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
   onsaveclick(){
+    // this.router.navigate(["Home"]);
     let log :login ={
       username :this.username,
       password :this.password,
@@ -54,7 +55,7 @@ export class LoginComponent implements OnInit {
         "resid": resid = LoginComponent.rid,
       }
     }
-    this.router.navigate(["/Home"],navigationExtras);
+    this.router.navigate(["Home"],navigationExtras);
     console.log("rr",LoginComponent.rid);
   }
 }
