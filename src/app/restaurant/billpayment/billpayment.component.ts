@@ -6,6 +6,7 @@ import { Billpayment } from 'src/app/shared/billpayment';
 import { Tabledefinition } from 'src/app/shared/tabledefinition';
 import { stringify } from '@angular/core/src/util';
 import { DatePipe,formatDate } from '@angular/common';
+import { LoginComponent } from 'src/app/login/login.component';
 
 @Component({
   selector: 'app-billpayment',
@@ -31,7 +32,7 @@ export class BillpaymentComponent implements OnInit {
       this.table_pax = params["pax"];
       this.amount = params["amount"];
       this.table_defination_id =params["tid"];
-      this.restaurent_id = params["resid"];
+      this.restaurent_id = LoginComponent.rid;
     });
     console.log(this.table_name);console.log(this.table_defination_id);
    }
@@ -42,21 +43,21 @@ export class BillpaymentComponent implements OnInit {
       {
         this.am[i] = 0;
       }
-      this.service1.getbanks(1).subscribe(data =>
+      this.service1.getbanks(this.restaurent_id).subscribe(data =>
         {
           this.banklist = data.Data;
         });
-        this.service1.getwallets(1).subscribe(data =>
+        this.service1.getwallets(this.restaurent_id).subscribe(data =>
           {
             this.walletlist = data.Data;
           });
-          this.service1.Getbillpayemnts(1).subscribe((data : Responce) =>
+          this.service1.Getbillpayemnts(this.restaurent_id).subscribe((data : Responce) =>
           {
             this.count = data.Data.length;
             this.billment_id = this.count + 1;
             console.log(data);
           });
-          this.service1.getprintid(1,this.table_defination_id,"Printed").subscribe((data: Responce) =>
+          this.service1.getprintid(this.restaurent_id,this.table_defination_id,"Printed").subscribe((data: Responce) =>
             {
               this.print_id = data.Data[0].print_id;
             });
@@ -283,7 +284,7 @@ export class BillpaymentComponent implements OnInit {
       name : this.name,
       mobile_no : this.mobile_no,
       reference : this.reference,
-      restaurent_id : 1,
+      restaurent_id : this.restaurent_id,
     }
     let b : Tabledefinition = {
       BACKGROUND_COLOR:"Green",
