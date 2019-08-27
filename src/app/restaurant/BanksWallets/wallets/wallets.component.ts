@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { RestaurantService } from '../../restaurant.service';
 import { Walletsmodel } from 'src/app/shared/walletsmodel';
 import { JsResponse, Data } from 'src/app/shared/js-response';
+import { ActivatedRoute } from '@angular/router';
+import { LoginComponent } from 'src/app/login/login.component';
 
 @Component({
   selector: 'app-wallets',
@@ -12,17 +14,21 @@ export class WalletsComponent implements OnInit {
   rows: Array<{walletid:string, walletcode:string,walletname:string,reportname:string,status:string}> = [];
   dataSource;buttoncontent:string;JsResponse; walletdata : Data[];
   wallet_id:string;wallet_code:string;wallet_name:string;wallet_reporting_name:string;wallet_status:string;
-  empregistration_name : string;emplist;
+  empregistration_name : string;emplist; restaurent_id : number;
   displayedColumns: string[] = ["wallet_id", "wallet_code","wallet_name", "wallet_reporting_name","wallet_status","actions"];
-  constructor(public service : RestaurantService) { }
+  constructor(public service : RestaurantService,public route : ActivatedRoute) { 
+    this.route.queryParams.subscribe(params =>{
+      this.restaurent_id = LoginComponent.rid;
+    })
+  }
 
   ngOnInit() {
     this.buttoncontent = "Save";
-    this.service.getwallets(1).subscribe((data :JsResponse )=>
+    this.service.getwallets(this.restaurent_id).subscribe((data :JsResponse )=>
       {
         this.dataSource = data.Data;
       });
-      this.service.getempreg(1).subscribe(data =>
+      this.service.getempreg(this.restaurent_id).subscribe(data =>
         {
           this.emplist = data.Data;
         });
@@ -44,7 +50,7 @@ export class WalletsComponent implements OnInit {
       wallet_reporting_name:this.empregistration_name,
       wallet_status:this.wallet_status,
       empregistration_id:1,
-      restaurent_id:1
+      restaurent_id:this.restaurent_id
     }
     if(this.buttoncontent =="Save")
    {

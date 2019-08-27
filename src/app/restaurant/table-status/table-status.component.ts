@@ -244,6 +244,6 @@ export class TableStatusComponent implements OnInit {
       }
     };
     console.log("name",this.table_name);console.log("pax",this.table_pax);console.log("amount",this.amount);
-    this.router.navigate(['/BillPayment'],navigationExtras); 
+    this.router.navigate(['Home/BillPayment'],navigationExtras); 
   }
 }

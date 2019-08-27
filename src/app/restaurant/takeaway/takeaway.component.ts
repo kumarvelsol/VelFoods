@@ -144,6 +144,6 @@ export class TakeawayComponent implements OnInit {
         "amount":this.gtotalamount = gtotalamount
       }
     };
-    this.router.navigate(['/BillPayment'],navigationExtras); 
+    this.router.navigate(['Home/BillPayment'],navigationExtras); 
   }
 }
