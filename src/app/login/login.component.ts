@@ -46,7 +46,6 @@ export class LoginComponent implements OnInit {
         alert(data.message);
       }
     })
-    
   }
   NavigateClick(resid : number)
   {
