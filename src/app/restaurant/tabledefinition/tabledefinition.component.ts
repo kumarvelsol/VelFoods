@@ -4,7 +4,8 @@ import { JsResponse, Responce } from '../../shared/js-response';
 import { Apiresponse } from 'src/app/shared/apiresponse';
 import { MatTableDataSource } from '@angular/material';
 import { Tabledefinition } from 'src/app/shared/tabledefinition';
-import { Data } from '@angular/router';
+import { Data, ActivatedRoute } from '@angular/router';
+import { LoginComponent } from 'src/app/login/login.component';
 
 export interface Captain {
   cid: string;
@@ -41,9 +42,13 @@ export class TabledefinitionComponent implements OnInit {
   table_defination_id : number;    table_capatain : string;    table_description: string;
     table_name: number=0;    table_pax: number;    table_status: string; 
     table_steward: string;    table_view : string; jsRes : JsResponse;
-    count:number;captains:Data[];stewards:Data[];employee:Data[];
+    count:number;captains:Data[];stewards:Data[];employee:Data[]; restaurent_id : number;
   displayedColumns: string[] = ['table_defination_id','table_name','table_pax','table_view','table_status','actions']; //'view','captain','steward',
-  constructor(public service1 : RestaurantService) { }
+  constructor(public service1 : RestaurantService,public route : ActivatedRoute) { 
+    this.route.queryParams.subscribe(params => {
+     this.restaurent_id = LoginComponent.rid;
+    })
+  }
 
   ngOnInit() {
     this.buttoncontent = "Save";
@@ -54,7 +59,7 @@ export class TabledefinitionComponent implements OnInit {
   }
   gettabledata()
   {
-    this.service1.gettabledata(1).subscribe((data:Apiresponse)=> {
+    this.service1.gettabledata(this.restaurent_id).subscribe((data:Apiresponse)=> {
       this.tabledatalist = data;
       console.log(this.tabledatalist);
       this.count = data.Data.length;
@@ -65,21 +70,21 @@ export class TabledefinitionComponent implements OnInit {
   }
   getcaptains()
   {
-    this.service1.getcaptains(1).subscribe((data:Apiresponse) =>{
+    this.service1.getcaptains(this.restaurent_id).subscribe((data:Apiresponse) =>{
       this.captains = data.Data;
       console.log(this.captains);
     });
   }
   getstewards()
   {
-    this.service1.getstewards(1).subscribe((data:Apiresponse) =>{
+    this.service1.getstewards(this.restaurent_id).subscribe((data:Apiresponse) =>{
       this.stewards = data.Data;
       console.log(this.stewards);
     });
   }
   getemployees()
   {
-    this.service1.getempreg(1).subscribe(data =>
+    this.service1.getempreg(this.restaurent_id).subscribe(data =>
       {
         this.employee = data.Data;
         console.log(this.employee);
@@ -95,7 +100,7 @@ export class TabledefinitionComponent implements OnInit {
     {
       let a : Tabledefinition = {
         BACKGROUND_COLOR:"Green",
-        restaurent_id:1,
+          restaurent_id:this.restaurent_id,
           table_defination_id : this.table_defination_id,
           table_capatain : this.table_capatain,
           table_description: this.table_description,
@@ -119,7 +124,7 @@ export class TabledefinitionComponent implements OnInit {
     {
       let a : Tabledefinition = {
         BACKGROUND_COLOR:"Green",
-        restaurent_id:1,
+        restaurent_id:this.restaurent_id,
         table_defination_id : this.table_defination_id,
         table_capatain : this.table_capatain,
         table_description: this.table_description,

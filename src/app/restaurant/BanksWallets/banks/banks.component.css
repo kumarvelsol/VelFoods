@@ -16,8 +16,8 @@ table {
 .btn-style{
   background-color: #33B5E5;
   color: white;
-  width : 120px;
-  height: 50px;
+  width : 105px;
+  height: 40px;
   left: 0px;
   margin-bottom: 15px;
   margin-top: 15px;
@@ -32,6 +32,19 @@ table {
 }
 .child {
   margin:auto;
+}
+.mat-cell,.mat-header-cell {
+  min-width: 90px;
+  padding-right: 15px;
+  width: max-content;
+  white-space: nowrap;
+}
+.textSizes
+{
+  font-size: 15px;
+  font-weight: bold;
+  color : darkslategray;
+  font-family: "Montserrat", sans-serif;
 }
 .example-container {
   height: 550px;

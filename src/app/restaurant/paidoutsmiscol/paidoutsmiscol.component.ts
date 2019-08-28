@@ -5,6 +5,8 @@ import { Apiresponse } from 'src/app/shared/apiresponse';
 import { JsResponse } from '../../shared/js-response';;
 import { Data } from 'src/app/shared/data';
 import { Paidouts } from 'src/app/shared/paidouts';
+import { ActivatedRoute } from '@angular/router';
+import { LoginComponent } from 'src/app/login/login.component';
 
 @Component({
   selector: 'app-paidoutsmiscol',
@@ -22,7 +24,10 @@ export class PaidoutsmiscolComponent implements OnInit {
   checked1: boolean = false;checked2: boolean = false;checked3: boolean = false;checked4: boolean = false;
   checking1:boolean=false;checking2:boolean=false;checking3:boolean=false;checking4:boolean=false;checking5:boolean=false;
   banklist;walletlist;
-  constructor(public service1 : RestaurantService) {
+  constructor(public service1 : RestaurantService,private route: ActivatedRoute) {
+    this.route.queryParams.subscribe(params => {
+      this.restaurent_id = LoginComponent.rid;
+    });
    }
 
   ngOnInit() {
@@ -30,11 +35,11 @@ export class PaidoutsmiscolComponent implements OnInit {
       {
         this.am[i] = 0;
       }
-      this.service1.getbanks(1).subscribe(data =>
+      this.service1.getbanks(this.restaurent_id).subscribe(data =>
         {
           this.banklist = data.Data;
         });
-        this.service1.getwallets(1).subscribe(data =>
+        this.service1.getwallets(this.restaurent_id).subscribe(data =>
           {
             this.walletlist = data.Data;
           });
@@ -84,7 +89,7 @@ public onChange4(event : number)
     paidout_name : this.paidout_name,
     paidout_pariticular : this.paidout_pariticular,
     paidout_reportingname : this.paidout_reportingname,
-    restaurent_id : 1,
+    restaurent_id : this.restaurent_id,
     transaction_id : this.transaction_id,
     type_of_payment : this.type_of_payment,
     Amoount : this.total_amount,

@@ -15,6 +15,8 @@ import { Walletsmodel } from '../shared/walletsmodel';
 import { Prints } from '../shared/interfaces/Prints';
 import { Billpayment } from '../shared/billpayment';
 import { Tabletransfermodel } from '../shared/tabletransfermodel';
+import { Takeawayplan } from '../shared/takeawayplan';
+import { ActivatedRoute } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +29,12 @@ Baseurl = 'http://localhost:57649/';
       'Content-Type':  'application/json'
     })
   };
-  constructor(private http : HttpClient){ }
+  restaurent_id : number;
+  constructor(private http : HttpClient,public route : ActivatedRoute){
+    this.route.queryParams.subscribe(params => {
+      this.restaurent_id = params["resid"];
+    });
+   }
   public AddOffer (offer : Offers){
     return this.http.post<JsResponse>(`${this.Baseurl+"OfferAdding"}`,offer);
   }
@@ -269,6 +276,16 @@ Baseurl = 'http://localhost:57649/';
   public PrintInsert(print : Prints){
     return this.http.post<JsResponse>(`${this.Baseurl+"printinsert"}`,print);
   }
+  public PrintInserttakeaway(printt : Takeawayplan){
+    return this.http.post<JsResponse>(`${this.Baseurl+"printinsert"}`,printt);
+  }
+  public getplans(restaurent_id:number)
+  {
+    let parms =new HttpParams();
+    parms = parms.append('restaurent_id', restaurent_id+"");
+    return this.http.post<Responce>(`${this.Baseurl+"getplannames"}`,parms);
+  }
+  public getprintid(restaurent_id:number,table_defination_id : number,print_status:string)
   public getprintid(restaurent_id:number,table_name : number,print_status:string)
   {
     let parms =new HttpParams();

@@ -7,6 +7,8 @@ import { DatePipe } from '@angular/common';
 import { AmazingTimePickerService } from 'amazing-time-picker';
 import { DateAdapter, MAT_DATE_FORMATS} from '@angular/material/core';
 import { AppDateAdapter, APP_DATE_FORMATS } from 'src/app/shared/format-datepicker';
+import { ActivatedRoute } from '@angular/router';
+import { LoginComponent } from 'src/app/login/login.component';
 @Component({
   selector: 'app-offers',
   templateUrl: './offers.component.html',
@@ -17,7 +19,12 @@ import { AppDateAdapter, APP_DATE_FORMATS } from 'src/app/shared/format-datepick
   ]
 })
 export class OffersComponent implements OnInit {
-  constructor(public service : RestaurantService,public datepipe: DatePipe,private atp: AmazingTimePickerService) { }
+  restaurent_id : number;
+  constructor(public service : RestaurantService,public datepipe: DatePipe,private atp: AmazingTimePickerService,public route : ActivatedRoute) {
+    this.route.queryParams.subscribe(params => {
+      this.restaurent_id = LoginComponent.rid;
+    })
+   }
   opentime() {
     const amazingTimePicker = this.atp.open();
     amazingTimePicker.afterClose().subscribe(time => {
@@ -303,7 +310,7 @@ export class OffersComponent implements OnInit {
             minbill_amount : this.minbill_amount,
             maximum_bill_status : this.maxdis_slide+"",
             maximum_bill_amount : this.maxdis_amount,
-            restaurent_id : 1,
+            restaurent_id : this.restaurent_id,
             offers_status : this.offerstatus,
             insert_by : "Velsol",
             insert_date : this.datepipe.transform(date.toDateString(),'yyyy-MM-dd'),
@@ -337,7 +344,7 @@ export class OffersComponent implements OnInit {
             minbill_amount : this.minbill_amount,
             maximum_bill_status : this.maxdis_slide+"",
             maximum_bill_amount : this.maxdis_amount,
-            restaurent_id : 1,
+            restaurent_id : this.restaurent_id,
             offers_status : this.offerstatus,
           }
           this.service.UpdateOffers(offerup).subscribe(data=>{
@@ -423,7 +430,7 @@ export class OffersComponent implements OnInit {
     this.sun_disable = false;
   }
   public LoadingList(){
-    this.service.OffersList(1).subscribe(data =>{
+    this.service.OffersList(this.restaurent_id).subscribe(data =>{
       this.dataSource = new MatTableDataSource(data.Data);
     });
   }

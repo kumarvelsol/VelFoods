@@ -1,6 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import {MAT_DIALOG_DATA} from '@angular/material';
 import {MatDialogRef} from '@angular/material';
+import { ActivatedRoute } from '@angular/router';
+import { LoginComponent } from 'src/app/login/login.component';
 
 @Component({
   selector: 'app-billsettledailog',
@@ -8,10 +10,14 @@ import {MatDialogRef} from '@angular/material';
   styleUrls: ['./billsettledailog.component.css']
 })
 export class BillsettledailogComponent implements OnInit {
-  dataSource;
+  dataSource;restaurent_id:number;
   displayedColumns:string[] =['itemname','rate','quantity','tax','total'];
   constructor(public thisDialogRef: MatDialogRef<BillsettledailogComponent>,
-     @Inject(MAT_DIALOG_DATA) public data: string) { }
+     @Inject(MAT_DIALOG_DATA) public data: string,private route: ActivatedRoute) {
+      this.route.queryParams.subscribe(params => {
+        this.restaurent_id = LoginComponent.rid;
+      });
+      }
 
   ngOnInit() {
   }

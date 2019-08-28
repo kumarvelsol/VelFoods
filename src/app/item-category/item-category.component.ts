@@ -4,7 +4,8 @@ import { NgForm } from '@angular/forms';
 import { RestaurantService } from '../restaurant/restaurant.service';
 import { itemcategory } from '../shared/interfaces/empcate';
 import { toDate } from '@angular/common/src/i18n/format_date';
-import { Data } from '@angular/router';
+import { Data, ActivatedRoute } from '@angular/router';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-item-category',
@@ -22,17 +23,22 @@ export class ItemCategoryComponent implements OnInit {
   employee:Data[];
   restaurent_id:number;
   count:number;
-  constructor(public service:RestaurantService) { }  
+  constructor(public service:RestaurantService,private route: ActivatedRoute) { 
+    this.route.queryParams.subscribe(params => {
+      this.restaurent_id = LoginComponent.rid;
+    });
+
+  }  
   displayedColumns: string[] = ['itemcategory_id', 'item_name', 'item_reporting_name', 'item_status','actions'];
   dataSource;
   ngOnInit() {
     this.buttoncontent ="Save";
-    this.service.getitemcate(1).subscribe(data =>
+    this.service.getitemcate(this.restaurent_id).subscribe(data =>
       {
         this.dataSource = data.Data;
         console.log(this.dataSource);
       });
-      this.service.getempreg(1).subscribe(data =>
+      this.service.getempreg(this.restaurent_id).subscribe(data =>
         {
           this.employee = data.Data;
           console.log(this.employee);
@@ -46,7 +52,7 @@ export class ItemCategoryComponent implements OnInit {
       item_active_from:this.item_active_from,
       item_status:this.item_status,
       item_reporting_name:this.item_reporting_name,
-      restaurent_id:1
+      restaurent_id:this.restaurent_id
     }
     if(this.buttoncontent =="Save"){
       this.service.additemca(item).subscribe(data =>{

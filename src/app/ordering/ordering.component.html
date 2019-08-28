@@ -88,39 +88,32 @@
         <div class="col-12">
           <div class="example-container mat-elevation-z1">
             <table mat-table [dataSource]="dataSource">
-              <!--- Note that these columns can be defined in any order.
-                  The actual rendered columns are set as a property on the row definition" -->
-                  <!-- <ng-container matColumnDef="order_id">
-                    <th mat-header-cell *matHeaderCellDef> Id </th>
-                    <td mat-cell *matCellDef="let element"> {{element.order_id}} </td>
-                  </ng-container> -->
-              <!-- ItemName Column -->
               <ng-container matColumnDef="order_itemname">
-                <th mat-header-cell *matHeaderCellDef> ItemName </th>
+                <th mat-header-cell *matHeaderCellDef class="textSizes"> ItemName </th>
                 <td mat-cell *matCellDef="let element"> {{element.order_itemname}} </td>
               </ng-container>
               <!-- Rate Column -->
               <ng-container matColumnDef="order_rate">
-                <th mat-header-cell *matHeaderCellDef> Rate </th>
+                <th mat-header-cell *matHeaderCellDef class="textSizes"> Rate </th>
                 <td mat-cell *matCellDef="let element"> {{element.order_rate}} </td>
               </ng-container>
               <!-- Quantity Column -->
               <ng-container matColumnDef="order_quantity">
-                <th mat-header-cell *matHeaderCellDef> Quantity </th>
+                <th mat-header-cell *matHeaderCellDef class="textSizes"> Quantity </th>
                 <td mat-cell *matCellDef="let element"> {{element.order_quantity}} </td>
               </ng-container>
               <!-- Tax Column -->
               <ng-container matColumnDef="order_tax_amount">
-                <th mat-header-cell *matHeaderCellDef> Tax in % </th>
+                <th mat-header-cell *matHeaderCellDef class="textSizes"> Tax in % </th>
                 <td mat-cell *matCellDef="let element"> {{element.order_tax_amount}} </td>
               </ng-container>
               <ng-container matColumnDef="order_totalamount">
-                <th mat-header-cell *matHeaderCellDef> Totalamount </th>
+                <th mat-header-cell *matHeaderCellDef class="textSizes"> Totalamount </th>
                 <td mat-cell *matCellDef="let element"> {{element.order_totalamount}} </td>
               </ng-container>
               <!-- Action Column -->
               <ng-container matColumnDef="action">
-                <th mat-header-cell *matHeaderCellDef> Action </th>
+                <th mat-header-cell *matHeaderCellDef class="textSizes"> Action </th>
                 <td mat-cell *matCellDef="let element" class="action-link"> 
                   <button mat-icon-button style="color:gray" (click)="openDialog('Update',element)">
                     <mat-icon aria-label="Edit">edit</mat-icon>

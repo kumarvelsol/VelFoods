@@ -4,6 +4,9 @@ import { BillsettledailogComponent } from '../billsettledailog/billsettledailog.
 import { RestaurantService } from '../../restaurant.service';
 import { JsResponse } from 'src/app/shared/js-response';
 import { Apiresponse } from 'src/app/shared/apiresponse';
+import { ActivatedRoute } from '@angular/router';
+import { LoginComponent } from 'src/app/login/login.component';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-settledbills',
@@ -12,17 +15,22 @@ import { Apiresponse } from 'src/app/shared/apiresponse';
 })
 export class SettledbillsComponent implements OnInit {
   rows: Array<{billno:string, table:string,date:string,Total:string,Tax:string,Discounttype:string,Discount:number,Status:string}> = [];
-  dataSource;
+  dataSource;restaurent_id:number;
   displayedColumns:string[] =['billment_id','table_defination_id','insert_date','amount','payment_status'];
-  constructor(public dialog: MatDialog,public service1 : RestaurantService) { }
+  constructor(public dialog: MatDialog,public service1 : RestaurantService,private route: ActivatedRoute) {
+    this.route.queryParams.subscribe(params => {
+      this.restaurent_id = LoginComponent.rid;
+    });
+   }
   jsRes : JsResponse; insert_date : string; billment_id : number;
-
+  
   ngOnInit() {
+    
   }
   public onChange(event : number)
   {
     this.insert_date = "";
-    this.service1.billsettleid(1,this.billment_id).subscribe((data:Apiresponse) =>
+    this.service1.billsettleid(this.restaurent_id,this.billment_id).subscribe((data:Apiresponse) =>
       {
         this.dataSource = data.Data; 
       });
@@ -30,7 +38,8 @@ export class SettledbillsComponent implements OnInit {
   public onChangee()
   {
     this.billment_id = null;
-    this.service1.billsettle(1,this.insert_date).subscribe((data:Apiresponse) =>
+    this.insert_date = formatDate(this.insert_date, 'yyyy-MM-dd', 'en-US', '+0530');
+    this.service1.billsettle(this.restaurent_id,this.insert_date).subscribe((data:Apiresponse) =>
     {
       this.dataSource = data.Data;
     });

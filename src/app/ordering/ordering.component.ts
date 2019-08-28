@@ -7,9 +7,10 @@ import { LOCALE_DATA } from '@angular/common/src/i18n/locale_data';
 import { element } from '@angular/core/src/render3';
 import { RestaurantService } from '../restaurant/restaurant.service';
 import { Responce, JsResponse } from '../shared/js-response';
-import { Data } from '@angular/router';
+import { Data, ActivatedRoute } from '@angular/router';
 import { Apiresponse } from '../shared/apiresponse';
 import { Tabledefinition } from '../shared/tabledefinition';
+import { LoginComponent } from '../login/login.component';
 
 export interface UsersData {
   order_id:number;
@@ -70,11 +71,14 @@ export class OrderingComponent implements OnInit {
   disableadd:boolean=true;disablesave:boolean=true;
   //textcolor : string;
   @ViewChild(MatTable) table: MatTable<any>; 
-  constructor(private service : RestaurantService,public dialog: MatDialog) {
+  constructor(private service : RestaurantService,public dialog: MatDialog,public route : ActivatedRoute) {
+    this.route.queryParams.subscribe(params => {
+      this.restaurent_id = LoginComponent.rid;
+    });
   }
   ngOnInit() {
     this.gettingtablenumbers();
-    this.service.getorders(1).subscribe((data : Responce) =>
+    this.service.getorders(this.restaurent_id).subscribe((data : Responce) =>
     {
       this.count = data.Data.length;
       this.kot_id = this.count + 1;
@@ -84,8 +88,9 @@ export class OrderingComponent implements OnInit {
   }
   gettingtablenumbers()
   {
-    this.service.gettabledata(1).subscribe((data : Responce) =>
+    this.service.gettabledata(this.restaurent_id).subscribe((data : Responce) =>
     {
+      this.greencount = 0;this.orangecount = 0; this.Darkslategraycount = 0;this.bluecount = 0;this.redcount = 0;
       this.userlist=data;
       this.rooms = this.userlist.Data;
       console.log(this.rooms);
@@ -145,13 +150,13 @@ export class OrderingComponent implements OnInit {
         this.total.push(this.dataSource[i].order_totalamount);
         this.tax.push(this.dataSource[i].order_tax_amount);
       }
-      this.restaurent_id=1;
+      this.restaurent_id=this.restaurent_id;
       this.table_defination_id= this.table_name;
       this.order_status="Running";
       //this.insert_by="aaa";
       //this.insert_date=this.insert_date;
       //this.kot_id=this.kot_id;
-      this.service.addingorder(this.itemnames,this.Rate,this.quantity,this.total,this.tax,1,this.itemnameid,
+      this.service.addingorder(this.itemnames,this.Rate,this.quantity,this.total,this.tax,this.restaurent_id,this.itemnameid,
                               this.table_defination_id,this.order_captain,this.order_status,
                               ).subscribe(data =>
         {
@@ -159,12 +164,14 @@ export class OrderingComponent implements OnInit {
           {
             this.quantity = [];this.total = [];
             alert("Order Added Succesfully.!");
+            this.gettingtablenumbers();
             this.onclear();
           }
           else
           { 
             alert("Failed to Insert data");
-            this.quantity = [];this.total = [];
+            this.gettingtablenumbers();
+            this.onclear();
           }
        });
       }
@@ -182,13 +189,13 @@ export class OrderingComponent implements OnInit {
         this.total.push(this.dataSource[i].order_totalamount);
         this.tax.push(this.dataSource[i].order_tax_amount);
       }
-      this.restaurent_id=1;
+      this.restaurent_id=this.restaurent_id;
       this.table_defination_id= this.table_name;
       this.order_status="Running";
       //this.insert_by="aaa";
       //this.insert_date=this.insert_date;
       //this.kot_id=this.kot_id;
-      this.service.updateorder(this.quantity,this.total,1,
+      this.service.updateorder(this.quantity,this.total,this.restaurent_id,
                               this.table_defination_id,this.order_status,
                               ).subscribe(data =>
         {
@@ -196,12 +203,14 @@ export class OrderingComponent implements OnInit {
           {
             this.quantity = [];this.total = [];
             alert("Order Updated Succesfully.!");
+            this.gettingtablenumbers();
             this.onclear();
           }
           else
           { 
             alert("Failed to Update data");
-            this.quantity = [];this.total = [];
+            this.gettingtablenumbers();
+            this.onclear();
           }
        });
       }
@@ -216,6 +225,7 @@ export class OrderingComponent implements OnInit {
     this.tax = [];this.total = [];this.Rate = [];this.orders = [];
     this.dataSource = [];this.order_status = "";this.disablesave = true;
     this.buttoncontent= "Save";this.disableadd = true;
+    //this.gettingtablenumbers();
   }
   onbuttonclick($event,table_name,BACKGROUND_COLOR){
     this.dataSource = [];
@@ -230,7 +240,7 @@ export class OrderingComponent implements OnInit {
    {
     this.order_status = "Active";
     this.buttoncontent= "Save";
-    this.service.gettabledata(1).subscribe((data : Responce) =>
+    this.service.gettabledata(this.restaurent_id).subscribe((data : Responce) =>
       {
         this.listcount = data.Data.length;
         for(let i = 1;i<=this.listcount;i++)
@@ -248,7 +258,7 @@ export class OrderingComponent implements OnInit {
    {
      this.dataSource = [];
      this.order_status = "Running";
-      this.service.getorderitems(1,this.tname).subscribe((data : Responce) =>
+      this.service.getorderitems(this.restaurent_id,this.tname).subscribe((data : Responce) =>
       {
         this.table_name = table_name;
         this.table_pax = data.Data[0].table_pax;
@@ -260,7 +270,11 @@ export class OrderingComponent implements OnInit {
         this.buttoncontent = "Modify";
       });
    }
-   
+   else if(this.colorr == "Darkslategray")
+   {
+    alert("This table's Bill was not settled, Please select another table!");
+    this.onclear();
+   }
    
    
   //  this.service.gettabledata(1).subscribe((data : Responce) =>
