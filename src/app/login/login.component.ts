@@ -19,13 +19,13 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
   onsaveclick(){
+    // this.router.navigate(["Home"]);
     let log :login ={
       username :this.username,
       password :this.password,
+      
       resid:this.resid
     }
-    this.service.getlogin(this.username,this.password).subscribe(data =>{    
-
     
     this.service.getlogin(this.username,this.password).subscribe(data =>{
       this.resid = data.resid;
@@ -35,12 +35,6 @@ export class LoginComponent implements OnInit {
     })
     this.service.login(log).subscribe(data =>{
       if(data.code ==200){
-        this.resid = data.resid;
-        this.router.navigate(["/Home"]);
-       alert(data.message);
-       this.username ="";
-       this.password ="";
-      console.log(this.resid);
        alert(data.message);
        this.username ="";
        this.password ="";
