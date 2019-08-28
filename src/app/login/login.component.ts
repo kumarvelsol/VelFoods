@@ -31,13 +31,14 @@ export class LoginComponent implements OnInit {
       this.resid = data.resid;
       LoginComponent.rid = this.resid;
       console.log("restid",LoginComponent.rid);
-      this.NavigateClick(LoginComponent.rid);
+      
     })
     this.service.login(log).subscribe(data =>{
       if(data.code ==200){
        alert(data.message);
        this.username ="";
        this.password ="";
+       this.NavigateClick(LoginComponent.rid);
       }
       else
       {
