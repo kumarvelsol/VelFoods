@@ -17,33 +17,24 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
   onsaveclick(){
-    this.router.navigate(["/Home"]);
+    
 
     let log :login ={
       username :this.username,
       password :this.password,
-      
       resid:this.resid
     }
-    this.service.getlogin(this.username,this.password).subscribe(data =>{
-     // console.log("resid",this.resid);
-      
+    this.service.getlogin(this.username,this.password).subscribe(data =>{    
     })
     
     this.service.login(log).subscribe(data =>{
       if(data.code ==200){
         this.resid = data.resid;
+        this.router.navigate(["/Home"]);
        alert(data.message);
        this.username ="";
        this.password ="";
-      //  let navigationExtras: NavigationExtras = {
-      //   queryParams: {
-      //     "resid":this.resid = this.resid,
-      //   }
-      // };
-      this.router.navigate(['src/app/ui/Sidenav-Toolbar']);//,navigationExtras); 
       console.log(this.resid);
-      // this.NavigateClick(this.resid);
       }
       else
       {
