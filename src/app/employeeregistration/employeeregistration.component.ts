@@ -51,6 +51,7 @@ export class EmployeeregistrationComponent implements OnInit {
         });
   }
   onsaveclick(){
+    debugger;
     let empr:EmployeeRegistration ={
       empregistration_id:this.empregistration_id,
       empregistration_name:this.empregistration_name,
