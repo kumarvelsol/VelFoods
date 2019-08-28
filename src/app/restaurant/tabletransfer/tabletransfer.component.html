@@ -76,7 +76,7 @@
       </div>
     </div>
     <div class="col-md-12" style="text-align: center">
-      <button mat-raised-button style="margin-top: 10px;" class="btn-style" (click)="ontransferclick()">Transfer</button>&nbsp;&nbsp;&nbsp;
+      <button mat-raised-button style="margin-top: 10px;" class="btn-style" (click)="ontransferclick()" [disabled]="disable">Transfer</button>&nbsp;&nbsp;&nbsp;
       <button mat-raised-button style="margin-top: 10px;" class="btn-style" (click)="onsaveclick()">Save</button>&nbsp;&nbsp;&nbsp;
       <button mat-raised-button style="margin-top: 10px;" class="btn-style" (click)="onclear()">Clear</button>
     </div>

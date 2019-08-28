@@ -18,7 +18,7 @@ export class TabletransferComponent implements OnInit {
   order_id:any[] =[];order_itemname:any[] =[];order_quantity:any[] =[];
   order_rate:any[] =[];order_totalamount:any[] =[];order_tax_amount:any[] =[];
   kot_idd:any[] =[];order_captain:any[] =[];itemname_idd:any[]=[];jsRes :JsResponse;
-  vacanttablen:number;occupiedtablen:number;
+  vacanttablen:number;occupiedtablen:number;disable:boolean = false;
   constructor(private service:RestaurantService,private route: ActivatedRoute) {
     this.route.queryParams.subscribe(params => {
       this.restaurent_id = LoginComponent.rid;
@@ -66,7 +66,8 @@ export class TabletransferComponent implements OnInit {
     else
     {
       this.dataSource2 = this.dataSource;
-      this.dataSource = null; 
+      this.dataSource = null;
+      this.disable = true; 
     }
   }
   count:number;tid:number;
@@ -75,7 +76,7 @@ export class TabletransferComponent implements OnInit {
   
   onclear()
   {
-    this.dataSource = null;this.dataSource2  = null;this.occupiedtablen = null;this.vacanttablen = null;
+    this.dataSource = null;this.dataSource2  = null;this.occupiedtablen = null;this.vacanttablen = null;this.disable = false;
   }
   onsaveclick()
   {
