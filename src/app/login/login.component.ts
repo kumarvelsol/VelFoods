@@ -26,10 +26,10 @@ export class LoginComponent implements OnInit {
       
       resid:this.resid
     }
-    
     this.service.getlogin(this.username,this.password).subscribe(data =>{
       this.resid = data.resid;
-      LoginComponent.rid = this.resid;
+      //  LoginComponent.rid=1;
+       LoginComponent.rid = this.resid;
       console.log("restid",LoginComponent.rid);
       this.NavigateClick(LoginComponent.rid);
     })
