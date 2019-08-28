@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
     }
     this.service.getlogin(this.username,this.password).subscribe(data =>{
       this.resid = data.resid;
-      //  LoginComponent.rid=1;
+       // LoginComponent.rid=1;
        LoginComponent.rid = this.resid;
       console.log("restid",LoginComponent.rid);
       
