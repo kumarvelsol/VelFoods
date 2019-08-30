@@ -64,6 +64,7 @@ export class OrderingComponent implements OnInit {
   redd :'red';
   colorr:string;
   colorFlag: any;
+  resname :string;
   tables :Data[]; table_pax : number;
   listcount: number; tname:number; table_capatain : string;
   kotid : number;count : number;
@@ -75,9 +76,12 @@ export class OrderingComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.restaurent_id = LoginComponent.rid;
     });
+    // restaurentName
+    this.resname =LoginComponent.na;
   }
   ngOnInit() {
     this.gettingtablenumbers();
+    this.resname =LoginComponent.na;
     this.service.getorders(this.restaurent_id).subscribe((data : Responce) =>
     {
       this.count = data.Data.length;
@@ -90,6 +94,7 @@ export class OrderingComponent implements OnInit {
   {
     this.service.gettabledata(this.restaurent_id).subscribe((data : Responce) =>
     {
+      this.greencount = 0;this.orangecount = 0; this.Darkslategraycount = 0;this.bluecount = 0;this.redcount = 0;
       this.userlist=data;
       this.rooms = this.userlist.Data;
       console.log(this.rooms);
@@ -163,12 +168,14 @@ export class OrderingComponent implements OnInit {
           {
             this.quantity = [];this.total = [];
             alert("Order Added Succesfully.!");
+            this.gettingtablenumbers();
             this.onclear();
           }
           else
           { 
             alert("Failed to Insert data");
-            this.quantity = [];this.total = [];
+            this.gettingtablenumbers();
+            this.onclear();
           }
        });
       }
@@ -200,12 +207,14 @@ export class OrderingComponent implements OnInit {
           {
             this.quantity = [];this.total = [];
             alert("Order Updated Succesfully.!");
+            this.gettingtablenumbers();
             this.onclear();
           }
           else
           { 
             alert("Failed to Update data");
-            this.quantity = [];this.total = [];
+            this.gettingtablenumbers();
+            this.onclear();
           }
        });
       }
@@ -220,6 +229,7 @@ export class OrderingComponent implements OnInit {
     this.tax = [];this.total = [];this.Rate = [];this.orders = [];
     this.dataSource = [];this.order_status = "";this.disablesave = true;
     this.buttoncontent= "Save";this.disableadd = true;
+    //this.gettingtablenumbers();
   }
   onbuttonclick($event,table_name,BACKGROUND_COLOR){
     this.dataSource = [];
@@ -264,7 +274,11 @@ export class OrderingComponent implements OnInit {
         this.buttoncontent = "Modify";
       });
    }
-   
+   else if(this.colorr == "Darkslategray")
+   {
+    alert("This table's Bill was not settled, Please select another table!");
+    this.onclear();
+   }
    
    
   //  this.service.gettabledata(1).subscribe((data : Responce) =>

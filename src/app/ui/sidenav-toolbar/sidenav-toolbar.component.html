@@ -91,7 +91,18 @@
         <button mat-icon-button (click)= "sidenav.toggle()">
           <mat-icon style="color:white" aria-label="Side nav toggle icon">menu</mat-icon>
         </button>
+        <!-- RestaurantName -->
         <label style="color: white;margin-top : 8px;margin-left:15px;font-family: Montserrat, sans-serif;font-size: 20px"><strong>{{RestaurantName}}</strong></label>
+        <!-- <mat-select [(ngModel)]="restaurent_id" style="color: white;margin-top : 8px;margin-left:15px;font-family: Montserrat, sans-serif;font-size: 20px" > 
+          <mat-option *ngFor="let re of restaurants" [value]="re.restaurent_id">{{re.restaurent_name}}</mat-option> 
+        </mat-select> -->
+        <mat-form-field>
+          <mat-select>
+            <mat-option *ngFor="let res of restaurants" [value]="re.restaurent_id" style="width:100px; background-color:white; font-size: 10px;">
+              {{re.restaurent_name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
         <span class="spacer"></span>
         <div style="height: 100%;width: 100px;text-align: center">
           <li style="list-style-type: none;margin-top: 8px;">

@@ -318,21 +318,6 @@ Baseurl = 'http://school.edujinni.in/';
     parms =parms.append('BACKGROUND_COLOR', BACKGROUND_COLOR+"")
     return this.http.post(`${this.Baseurl+"occupied"}`,parms);
   }
-  // public transferinsert(table_t_itemname:string,table_t_rate:number,table_t_quantity:number,table_t_totalamount:number,kot_id:number,table_t_captain:string,table_t_tax_amount:number,restaurent_id:number,itemname_id:number,table_defination_id:number,)
-  // {
-  //   let parms =new HttpParams();
-  //   parms =parms.append('table_t_itemname', table_t_itemname+"");
-  //   parms =parms.append('table_t_rate', table_t_rate+"");
-  //   parms =parms.append('table_t_quantity', table_t_quantity+"");
-  //   parms =parms.append('table_t_totalamount', table_t_totalamount+"");
-  //   parms =parms.append('kot_id', kot_id+"");
-  //   parms =parms.append('table_t_captain', table_t_captain+"");
-  //   parms =parms.append('table_t_tax_amount', table_t_tax_amount+"");
-  //   parms =parms.append('restaurent_id', restaurent_id+"");
-  //   parms =parms.append('itemname_id', itemname_id+"");
-  //   parms =parms.append('table_defination_id', table_defination_id+"");
-  //   return this.http.post<JsResponse>(`${this.Baseurl+"tabletransfer"}`,parms);
-  // }
   public transferinsert(restaurent_id:number,table_defination_id:number,order_status:string,tid:number)
   {
     let parms =new HttpParams();
@@ -349,8 +334,11 @@ Baseurl = 'http://school.edujinni.in/';
     parms =parms.append('BACKGROUND_COLOR', BACKGROUND_COLOR+"")
     return this.http.post(`${this.Baseurl+"gettablecolor"}`,parms);
   }
-  public login (log:login){
-    return this.http.post<JsResponse>(`${this.Baseurl+"login"}`,log);
+  public login (username:string,password:string){
+    let parms =new HttpParams();
+    parms =parms.append('username', username+"")
+    parms =parms.append('password', password+"")
+    return this.http.post<JsResponse>(`${this.Baseurl+"login"}`,parms);
   }
   public getlogin(username:string,password:string){
     let parms =new HttpParams();
@@ -371,5 +359,8 @@ Baseurl = 'http://school.edujinni.in/';
     parms =parms.append('restaurent_id', restaurent_id+"")
     parms =parms.append('billment_id', billment_id+"")
     return this.http.post(`${this.Baseurl+"billsettleid"}`,parms);
+   }
+   public getrestos(){
+     return this.http.get(`${this.Baseurl+"Restaurents"}`);
    }
  }

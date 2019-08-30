@@ -3,6 +3,9 @@ export interface JsResponse {
     code    : number;
     Data    : string;
     resid : number;
+    user : string;
+    passw :string;
+    rname : string;
 }
 export interface Responce {
     message : string;

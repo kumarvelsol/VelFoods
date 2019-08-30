@@ -29,7 +29,7 @@ export class EmployeedepartmentComponent implements OnInit {
     this.buttoncontent = "Save";
     this.service.getempcategory(this.restaurent_id).subscribe(data =>
     {
-      this.dataSource = new MatTableDataSource(data.Data);
+      this.dataSource = data.Data;
       this.count =data.Data.length;
       this.empdepartement_id = ++this.count;
     });
