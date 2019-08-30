@@ -122,9 +122,9 @@ export class TableStatusComponent implements OnInit {
       }
       else
       {
-      this.print_disable = true;
-      this.availOffer_disable = true;
-      this.Payment_disable = false;
+        this.print_disable = true;
+        this.availOffer_disable = true;
+        this.Payment_disable = false;
       }
     }
     else if(BACKGROUND_COLOR == "Green")
