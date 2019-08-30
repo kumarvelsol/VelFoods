@@ -106,7 +106,6 @@ export class TakeawayComponent implements OnInit {
   planpercentage:number;
   onplanchange()
   {
-    debugger;
     this.service.ActiveOffers(this.restaurent_id).subscribe(data =>{
       this.planslist = data.Data;
       console.log(this.planslist);
@@ -114,8 +113,6 @@ export class TakeawayComponent implements OnInit {
       {
         if(this.percentage == data.Data[i].percentage)
         {
-          debugger;
-          //this.planpercentage = data.Data[i].percentage;
           this.discamount = (this.amount * this.percentage) / 100;
           this.gtotalamount = this.gtotalamount - (this.amount * this.percentage) / 100 ;
           //this.amount = this.gtotalamount;
