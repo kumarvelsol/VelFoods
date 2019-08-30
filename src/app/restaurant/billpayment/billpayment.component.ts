@@ -21,8 +21,8 @@ export class BillpaymentComponent implements OnInit {
   banklist;walletlist;count : number = 0; tablelist : Responce;billment_id : number;
   table_name : number; table_pax : number; amount : number;bill_amount :number; due_amount : number;
   print_id : number;payment_status : string;table_defination_id : number;jsRes : JsResponse; 
-  pendingg : boolean=true;  comp : boolean=true; paidouts : boolean=false; misCollections : boolean=false;
-  reference : string; mobile_no : number; name : string; restaurent_id : number;
+  pendingg : boolean=true;  comp : boolean=true; paidouts : boolean=true; misCollections : boolean=true;
+  reference : string; mobile_no : number; name : string; restaurent_id : number; billam : boolean = true;
   table_capatain : string;table_description : string;table_status : string;table_steward : string;table_view:string;
   name1 : string;name2:string;mobile_no1 : number;mobile_no2 : number; insert_date :string;today= new Date();
 
@@ -57,7 +57,7 @@ export class BillpaymentComponent implements OnInit {
             this.billment_id = this.count + 1;
             console.log(data);
           });
-          this.service1.getprintid(this.restaurent_id,this.table_defination_id,"Printed").subscribe((data: Responce) =>
+          this.service1.getprintid(this.restaurent_id,this.table_defination_id).subscribe((data: Responce) =>
             {
               this.print_id = data.Data[0].print_id;
             });
@@ -117,14 +117,7 @@ export class BillpaymentComponent implements OnInit {
       this.payment_status = "Settled";
     }
   }
-  public onBillChange($event)
-  {
-    this.due_amount = this.amount - this.bill_amount;
-    if(this.due_amount != 0)
-    {
-      this.pendingg = false; this.comp = false;
-    }
-  }
+
 
   toggleVisibility(value){
     this.checked = !value;

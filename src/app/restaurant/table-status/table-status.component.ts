@@ -90,14 +90,26 @@ export class TableStatusComponent implements OnInit {
   Table_Id: number;
   onbuttonclick($event,table_name,table_defination_id,BACKGROUND_COLOR)
   {
-    
-    if(BACKGROUND_COLOR == "Darkslategray"){ 
+    if(BACKGROUND_COLOR == "Darkslategray")
+    { 
       this.tname = table_name;
       this.table_defination_id = this.tname;
-      this.service.getprintid(this.restaurent_id,this.tname,"Printed").subscribe((data : Responce) =>
+      this.service.getprintid(this.restaurent_id,this.table_defination_id).subscribe((data : Responce) =>
       {
         this.amount = data.Data[0].total_after_discount;
         this.table_defination_id = data.Data[0].table_defination_id;
+      });
+      this.service.gettabledata(this.restaurent_id).subscribe((data : Responce) =>
+      {
+        this.listcount = data.Data.length;
+        for(let i = 1;i<=this.listcount;i++)
+        {
+            if(i == this.tname)
+            {
+              this.table_name = table_name;
+              this.table_pax = data.Data[i-1].table_pax;
+            }
+        }
       });
       if(this.table_defination_id == 0 || this.table_defination_id == null)
       {
@@ -110,11 +122,17 @@ export class TableStatusComponent implements OnInit {
       this.availOffer_disable = true;
       this.Payment_disable = false;
       }
-    }else if(BACKGROUND_COLOR == "Green"){
+    }
+    else if(BACKGROUND_COLOR == "Green")
+    {
       this.print_disable = true;
       this.availOffer_disable = true;
       this.Payment_disable = true;
-    }else{
+      this.dataSource = null;
+    }
+    else if(BACKGROUND_COLOR == "Orange")
+    {
+      this.tname = table_name;
       this.print_disable = false;
       this.availOffer_disable = false;
       this.Payment_disable = true;
@@ -130,17 +148,23 @@ export class TableStatusComponent implements OnInit {
             this.amount = this.amount + this.totalamount;
           }
           this.table_name = this.tname;
-          this.table_pax = data.Data[0].table_pax;
-          this.table_defination_id = data.Data[0].table_defination_id;
+          this.table_defination_id = this.tname;
+          console.log(this.table_pax);
      });
-    }
-    this.service.getorderitems(this.restaurent_id,this.tname).subscribe((data : Responce) =>
+     this.service.gettabledata(this.restaurent_id).subscribe((data : Responce) =>
       {
-          this.dataSource = data.Data;
-          this.table_name = this.tname;
-          this.table_pax = data.Data[0].table_pax;
-          this.table_defination_id = data.Data[0].table_defination_id;
+        this.listcount = data.Data.length;
+        for(let i = 1;i<=this.listcount;i++)
+        {
+            if(i == this.tname)
+            {
+              this.table_name = table_name;
+              this.table_pax = data.Data[i-1].table_pax;
+            }
+        }
       });
+    }
+    
     this.amount = 0;
     this.tname = table_name;
     this.Table_Id = table_defination_id;

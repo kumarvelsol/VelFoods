@@ -134,7 +134,7 @@
           <mat-form-field class="col-md-4 mat-form-wrap" style="color :gray" appearance="outline">
             <mat-icon style="color :gray" matSuffix>developer_board</mat-icon>
             <mat-label style="color :gray">Paid Amount</mat-label>
-            <input style="color :gray"  type="text" [(ngModel)]="bill_amount" name="bill_amount"  (change)="onBillChange($event)" matInput>
+            <input style="color :gray"  type="text" [disabled]="billam" [(ngModel)]="bill_amount" name="bill_amount"   matInput>
           </mat-form-field>
           <mat-form-field class="col-md-4 mat-form-wrap" style="color :gray" appearance="outline" >
             <mat-label style="color :gray">Difference</mat-label>
@@ -142,7 +142,7 @@
           </mat-form-field>
           <mat-radio-group class="row" style="text-align: left;" required>
             <div class="col-md-12">
-              <mat-radio-button class="col-md-3" [disabled]="pendingg" value="paidouts" (change)="onpendingchange(paidouts)">Pending</mat-radio-button>
+              <mat-radio-button class="col-md-3"  value="paidouts" (change)="onpendingchange(paidouts)">Pending</mat-radio-button>
               <mat-form-field class="col-md-3 mat-form-wrap" style="color :gray;" appearance="outline" >
                 <mat-label style="color :gray">Name</mat-label>
                 <input style="color :gray;"  type="text" [disabled]="pendingg" name="name" [(ngModel)] = "name1"  matInput>
@@ -153,7 +153,7 @@
               </mat-form-field>
             </div>
             <div class="col-md-12">
-              <mat-radio-button class="col-md-3" [disabled]="comp" value="misCollections" (change)="oncompchange(misCollections)" >Complementory</mat-radio-button>
+              <mat-radio-button class="col-md-3"  value="misCollections" (change)="oncompchange(misCollections)" >Complementory</mat-radio-button>
               <mat-form-field class="col-md-3 mat-form-wrap" style="color :gray;" appearance="outline" >
                 <mat-label style="color :gray">Name</mat-label>
                 <input style="color :gray;"  type="text" [disabled]="comp" name="name" [(ngModel)] = "name2" matInput>

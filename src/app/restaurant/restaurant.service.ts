@@ -283,14 +283,12 @@ Baseurl = 'http://localhost:57649/';
     parms = parms.append('restaurent_id', restaurent_id+"");
     return this.http.post<Responce>(`${this.Baseurl+"getplannames"}`,parms);
   }
-  public getprintid(restaurent_id:number,table_defination_id : number,print_status:string)
-  public getprintid(restaurent_id:number,table_name : number,print_status:string)
+  public getprintid(restaurent_id:number,table_defination_id : number)
   {
     let parms =new HttpParams();
     parms =parms.append('restaurent_id', restaurent_id+"")
-    parms =parms.append('table_name', table_name+"")
-    parms =parms.append('print_status', print_status+"")
-    return this.http.post<Responce>(`${this.Baseurl+"getprintid"}`,parms);
+    parms =parms.append('table_defination_id', table_defination_id+"")
+    return this.http.post<Responce>(`${this.Baseurl+"getorderprints"}`,parms);
   }
   public Getbillpayemnts(restaurent_id:number)
   {
