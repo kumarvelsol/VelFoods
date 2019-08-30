@@ -37,7 +37,6 @@
   width: 150px;
 }
 .mat-cell,.mat-header-cell {
-  min-width: 90px;
   padding-right: 15px;
   width: max-content;
   white-space: nowrap;

@@ -73,7 +73,10 @@ export class OffersDialogComponent implements OnInit {
       }else{
         this.DateCheck = false;
       }
-    }else if(Promo.Day_status == "true"){
+    }else{
+      this.DateCheck = true;
+    }
+    if(Promo.Day_status == "true"){
       var splittedDays = Promo.Days.split(",",7);
       var day: string[] = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
       var TodayDay = day[date.getDay()]; 
@@ -82,6 +85,8 @@ export class OffersDialogComponent implements OnInit {
       }else{
         this.DayCheck = false;
       }
+    }else{
+      this.DayCheck = true;
     }
     if(Promo.Active_time_status == "true"){
       let date: Date = new Date();
