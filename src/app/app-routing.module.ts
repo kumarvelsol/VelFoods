@@ -21,6 +21,7 @@ import { SettledbillsComponent } from './restaurant/Billsettle/settledbills/sett
 import { BillpaymentComponent } from './restaurant/billpayment/billpayment.component';
 import { TabletransferComponent } from './restaurant/tabletransfer/tabletransfer.component';
 import { TakeawayComponent } from './restaurant/takeaway/takeaway.component';
+import { PettyCashComponent } from './restaurant/petty-cash/petty-cash.component';
 const routes: Routes = [
   //{path:'',pathMatch:'full',redirectTo:'restaurant'},
   //{path:'restaurant',loadChildren:'./restaurant/restaurant.module#RestaurantModule'},
@@ -43,6 +44,7 @@ const routes: Routes = [
       {path:'tabledefinition',component:TabledefinitionComponent},
       {path:'Paidouts',component:PaidoutTabComponentComponent},
       {path:'bankswallets',component:BankwallettabbarComponent},
+      {path:'pettycash',component:PettyCashComponent},
 
       {path:'tablestatus',component:TableStatusComponent},
       {path:'tablebooking',component:TablereserveComponent},

@@ -21,8 +21,8 @@ export class BillpaymentComponent implements OnInit {
   banklist;walletlist;count : number = 0; tablelist : Responce;billment_id : number;
   table_name : number; table_pax : number; amount : number;bill_amount :number; due_amount : number;
   print_id : number;payment_status : string;table_defination_id : number;jsRes : JsResponse; 
-  pendingg : boolean=true;  comp : boolean=true; paidouts : boolean=false; misCollections : boolean=false;
-  reference : string; mobile_no : number; name : string; restaurent_id : number;
+  pendingg : boolean=true;  comp : boolean=true; paidouts : boolean=true; misCollections : boolean=true;
+  reference : string; mobile_no : number; name : string; restaurent_id : number; billam : boolean = true;
   table_capatain : string;table_description : string;table_status : string;table_steward : string;table_view:string;
   name1 : string;name2:string;mobile_no1 : number;mobile_no2 : number; insert_date :string;today= new Date();
 
@@ -57,74 +57,133 @@ export class BillpaymentComponent implements OnInit {
             this.billment_id = this.count + 1;
             console.log(data);
           });
-          this.service1.getprintid(this.restaurent_id,this.table_defination_id,"Printed").subscribe((data: Responce) =>
+          this.service1.getprintid(this.restaurent_id,this.table_defination_id).subscribe((data: Responce) =>
             {
               this.print_id = data.Data[0].print_id;
             });
   }
   public onChange(event : number)
   {
-    this.bank_name = "";
+    debugger;
     this.total_amount = this.am[0];
-    this.bill_amount = this.am[0];
-    this.due_amount = this.amount - this.bill_amount;
-    if(this.due_amount == 0)
+    if(parseInt(this.total_amount.toString()) > parseInt(this.amount.toString()))
     {
-      this.payment_status = "Settled";
+      this.am[0] = 0;
+      alert("Please enter valid amount");
+    }
+    else
+    {
+      this.bank_name = "";
+      this.total_amount = this.am[0];
+      this.bill_amount = this.am[0];
+      this.due_amount = this.amount - this.bill_amount;
+      if(this.due_amount == 0)
+      {
+        this.payment_status = "Settled";
+      }
+      else if(this.due_amount != 0)
+      {
+        this.pendingg = false; this.comp = false;
+      }
     }
   }
   public onChange1(event : number)
   {
-    this.bank_name = this.bank;
     this.total_amount = this.am[1];
-    this.bill_amount = this.am[1];
-    this.due_amount = this.amount - this.bill_amount;
-    if(this.due_amount == 0)
+    if(parseInt(this.total_amount.toString()) > parseInt(this.amount.toString()))
     {
-      this.payment_status = "Settled";
+      this.am[1] = 0;
+      alert("Please enter valid amount");
+    }
+    else
+    {
+      this.bank_name = this.bank;
+      this.total_amount = this.am[1];
+      this.bill_amount = this.am[1];
+      this.due_amount = this.amount - this.bill_amount;
+      if(this.due_amount == 0)
+      {
+        this.payment_status = "Settled";
+      }
+      else if(this.due_amount != 0)
+      {
+        this.pendingg = false; this.comp = false;
+      }
     }
   }
   public onChange2(event : number)
   {
-    this.bank_name = this.bank1;
     this.total_amount = this.am[2];
-    this.bill_amount = this.am[2];
-    this.due_amount = this.amount - this.bill_amount;
-    if(this.due_amount == 0)
+    if(parseInt(this.total_amount.toString()) > parseInt(this.amount.toString()))
     {
-      this.payment_status = "Settled";
+      this.am[2] = 0;
+      alert("Please enter valid amount");
+    }
+    else
+    {
+      this.bank_name = this.bank1;
+      this.total_amount = this.am[2];
+      this.bill_amount = this.am[2];
+      this.due_amount = this.amount - this.bill_amount;
+      if(this.due_amount == 0)
+      {
+        this.payment_status = "Settled";
+      }
+      else if(this.due_amount != 0)
+      {
+        this.pendingg = false; this.comp = false;
+      }
     }
   }
   public onChange3(event : number)
   {
-    this.bank_name = this.bank2;
     this.total_amount = this.am[3];
-    this.bill_amount = this.am[3];
-    this.due_amount = this.amount - this.bill_amount;
-    if(this.due_amount == 0)
+    if(parseInt(this.total_amount.toString()) > parseInt(this.amount.toString()))
     {
-      this.payment_status = "Settled";
+      this.am[3] = 0;
+      alert("Please enter valid amount");
+    }
+    else
+    {
+      this.bank_name = this.bank2;
+      this.total_amount = this.am[3];
+      this.bill_amount = this.am[3];
+      this.due_amount = this.amount - this.bill_amount;
+      if(this.due_amount == 0)
+      {
+        this.payment_status = "Settled";
+      }
+      else if(this.due_amount != 0)
+      {
+        this.pendingg = false; this.comp = false;
+      }
     }
   }
   public onChange4(event : number)
   {
-    this.bank_name = this.bank3;
     this.total_amount = this.am[4];
-    this.bill_amount = this.am[4];
-    this.due_amount = this.amount - this.bill_amount;
-    if(this.due_amount == 0)
+    if(parseInt(this.total_amount.toString()) > parseInt(this.amount.toString()))
     {
-      this.payment_status = "Settled";
+      this.am[4] = 0;
+      alert("Please enter valid amount");
+    }
+    else
+    {
+      this.bank_name = this.bank3;
+      this.total_amount = this.am[4];
+      this.bill_amount = this.am[4];
+      this.due_amount = this.amount - this.bill_amount;
+      if(this.due_amount == 0)
+      {
+        this.payment_status = "Settled";
+      }
+      else if(this.due_amount != 0)
+      {
+        this.pendingg = false; this.comp = false;
+      }
     }
   }
-  public onBillChange($event)
-  {
-    this.due_amount = this.amount - this.bill_amount;
-    if(this.due_amount != 0)
-    {
-      this.pendingg = false; this.comp = false;
-    }
-  }
+
 
   toggleVisibility(value){
     this.checked = !value;

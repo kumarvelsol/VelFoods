@@ -46,7 +46,7 @@
             </mat-form-field>
             <mat-form-field  class="col-lg-6" >
               <mat-label>---select Tax---</mat-label>
-            <mat-select [(ngModel)]="dinein_tax_percentage" (click)="onChange()">
+            <mat-select [(ngModel)]="dinein_tax_percentage" >
               <mat-option *ngFor="let tax of taxlist" [value]="tax.tax_percentage">{{tax.tax_percentage}}</mat-option>
             </mat-select>
             </mat-form-field>
@@ -61,18 +61,18 @@
             <mat-form-field   class="col-md-6" style="color: gray;">
               <mat-label style="color: gray;">amount</mat-label>
               <mat-icon style="color :gray" matSuffix>monetization_on</mat-icon>          
-              <input matInput  (keyup)="onTakeAwayLabel($event)" [(ngModel)]="item_takeaway_amount" required>
+              <input matInput   [(ngModel)]="item_takeaway_amount" required>
             </mat-form-field>
             <mat-form-field  class="col-lg-6" >
               <mat-label>---select Tax---</mat-label>
-              <mat-select [(ngModel)]="takeaway_tax_percentage" (click)="onChangee()">
+              <mat-select [(ngModel)]="takeaway_tax_percentage" > 
                 <mat-option *ngFor="let tax of taxlist" [value]="tax.tax_percentage">{{tax.tax_percentage}}</mat-option>
               </mat-select>
             </mat-form-field>
             <mat-form-field class="col-lg-12">
               <mat-label style="color: gray;">Total amount</mat-label>
               <mat-icon style="color :gray" matSuffix>monetization_on</mat-icon>          
-              <input matInput (keyup)="onDineInnLabel($event)" [(ngModel)]="itemname_takeaway_total" value="{{(item_takeaway_amount * takeaway_tax_percentage/100) + +item_takeaway_amount}}" >
+              <input matInput  [(ngModel)]="itemname_takeaway_total" value="{{(item_takeaway_amount * takeaway_tax_percentage/100) + +item_takeaway_amount}}" >
             </mat-form-field>
           </div>
           <div class="block child">
@@ -80,23 +80,23 @@
             <mat-form-field class="col-md-6" style="color: gray;">
               <mat-label style="color: gray;">amount</mat-label>
               <mat-icon style="color :gray" matSuffix>monetization_on</mat-icon>          
-              <input matInput   (keyup)="onHDeliveryLabel($event)" [(ngModel)]="item_homedelivary_amount" required>
+              <input matInput    [(ngModel)]="item_homedelivary_amount" required>
             </mat-form-field>
             <mat-form-field  class="col-lg-6" >
               <mat-label>---select Tax---</mat-label>
-              <mat-select [(ngModel)]="hd_tax_percentage" (click)="onChangeee()">
+              <mat-select [(ngModel)]="hd_tax_percentage" >
                 <mat-option *ngFor="let tax of taxlist" [value]="tax.tax_percentage">{{tax.tax_percentage}}</mat-option>
               </mat-select>
             </mat-form-field>
             <mat-form-field class="col-md-6" style="color: gray;">
               <mat-label style="color: gray;">Delivary charges</mat-label>
               <mat-icon style="color :gray" matSuffix>monetization_on</mat-icon>          
-              <input matInput   (keyup)="onHDeliveryLabel($event)" [(ngModel)]="item_homedelivery_deliverycharges" required>
+              <input matInput    [(ngModel)]="item_homedelivery_deliverycharges" required>
             </mat-form-field>
             <mat-form-field class="col-lg-6">
               <mat-label style="color: gray;">Total amount</mat-label>
               <mat-icon style="color :gray" matSuffix>monetization_on</mat-icon>          
-              <input matInput (keyup)="onDineInnLabel($event)" [(ngModel)]="itemname_homedelivary_total" value="{{(item_homedelivary_amount * hd_tax_percentage/100) + +item_homedelivary_amount + +item_homedelivery_deliverycharges}}">
+              <input matInput [(ngModel)]="itemname_homedelivary_total" value="{{(item_homedelivary_amount * hd_tax_percentage/100) + +item_homedelivary_amount + +item_homedelivery_deliverycharges}}">
             </mat-form-field>
           </div>
           <div class="col-md-12" style="text-align: center">

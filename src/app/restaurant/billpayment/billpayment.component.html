@@ -134,7 +134,7 @@
           <mat-form-field class="col-md-4 mat-form-wrap" style="color :gray" appearance="outline">
             <mat-icon style="color :gray" matSuffix>developer_board</mat-icon>
             <mat-label style="color :gray">Paid Amount</mat-label>
-            <input style="color :gray"  type="text" [(ngModel)]="bill_amount" name="bill_amount"  (change)="onBillChange($event)" matInput>
+            <input style="color :gray"  type="text" [disabled]="billam" [(ngModel)]="bill_amount" name="bill_amount"   matInput>
           </mat-form-field>
           <mat-form-field class="col-md-4 mat-form-wrap" style="color :gray" appearance="outline" >
             <mat-label style="color :gray">Difference</mat-label>

@@ -44,7 +44,7 @@ export class TaxpageComponent implements OnInit {
   }
   onsave()
   {
-    if(this.taxname =="" || this.percentage == null || this.reportname == "" || this.activefrom == "" || this.status == "")
+    if(this.taxname =="" || this.percentage == null  || this.activefrom == "" || this.status == "")
     {
       alert("Please fill all fields");
     }

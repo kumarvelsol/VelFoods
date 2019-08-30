@@ -14,7 +14,6 @@ import { Managermodel } from '../shared/interfaces/managermodel';
 import { Walletsmodel } from '../shared/walletsmodel';
 import { Prints } from '../shared/interfaces/Prints';
 import { Billpayment } from '../shared/billpayment';
-import { Tabletransfermodel } from '../shared/tabletransfermodel';
 import { Takeawayplan } from '../shared/takeawayplan';
 import { ActivatedRoute } from '@angular/router';
 
@@ -209,7 +208,7 @@ Baseurl = 'http://localhost:57649/';
   public updatebank(banks :bank){
     return this.http.post<JsResponse>(`${this.Baseurl+"updatebanks"}`,banks);
   }
-    public getorders(restaurent_id:number)
+  public getorders(restaurent_id:number)
   {
     let parms =new HttpParams();
     parms =parms.append('restaurent_id', restaurent_id+"")
@@ -229,8 +228,7 @@ Baseurl = 'http://localhost:57649/';
   {
     return this.http.post<JsResponse>(`${this.Baseurl+"walletupdate"}`,walletU);
   }
-  public addingorder(itemnames:any[]=[],Rate:any[]=[],quantity:any[]=[],total:any[]=[],tax:any[]=[],
-                      restaurent_id:number,itemnameid:any[]=[],table_defination_id:number,order_captain:string,order_status:string)
+  public addingorder(itemnames:any[]=[],Rate:any[]=[],quantity:any[]=[],total:any[]=[],tax:any[]=[],restaurent_id:number,itemnameid:any[]=[],table_defination_id:number,order_captain:string,order_status:string)
   {
     let parms =new HttpParams();
     //parms =parms.append('table_name', table_name+"");
@@ -291,14 +289,12 @@ Baseurl = 'http://localhost:57649/';
     parms = parms.append('restaurent_id', restaurent_id+"");
     return this.http.post<Responce>(`${this.Baseurl+"getplannames"}`,parms);
   }
-  public getprintid(restaurent_id:number,table_defination_id : number,print_status:string)
-  public getprintid(restaurent_id:number,table_name : number,print_status:string)
+  public getprintid(restaurent_id:number,table_defination_id : number)
   {
     let parms =new HttpParams();
     parms =parms.append('restaurent_id', restaurent_id+"")
-    parms =parms.append('table_name', table_name+"")
-    parms =parms.append('print_status', print_status+"")
-    return this.http.post<Responce>(`${this.Baseurl+"getprintid"}`,parms);
+    parms =parms.append('table_defination_id', table_defination_id+"")
+    return this.http.post<Responce>(`${this.Baseurl+"getorderprints"}`,parms);
   }
   public Getbillpayemnts(restaurent_id:number)
   {
@@ -359,11 +355,10 @@ Baseurl = 'http://localhost:57649/';
     parms =parms.append('insert_date', insert_date+"")
     return this.http.post(`${this.Baseurl+"billsettle"}`,parms);
   }
-  public billsettleid(restaurent_id:number,billment_id:number)
+  public billsettleid(restaurent_id:number)
   {
     let parms =new HttpParams();
     parms =parms.append('restaurent_id', restaurent_id+"")
-    parms =parms.append('billment_id', billment_id+"")
     return this.http.post(`${this.Baseurl+"billsettleid"}`,parms);
    }
    public getrestos(){

@@ -86,14 +86,16 @@ export class ItemNamesComponent implements OnInit
       this.service.additemname(itmname).subscribe(data =>{
         if(data.code ==200){
           alert(data.message);
-          this.ngOnInit();
+          
           this.onclearclick();
+          this.ngOnInit();
         }
         else
         {
           alert(data.message);
-          this.ngOnInit();
+          
           this.onclearclick();
+          this.ngOnInit();
         }
       });
     }    
@@ -129,7 +131,6 @@ export class ItemNamesComponent implements OnInit
     this.item_homedelivary_amount=Number("");
     this.item_homedelivary_tax=Number("");
     this.item_homedelivery_deliverycharges=Number("");
-    this.restaurent_id =Number("");
     this.itemcategory_id=Number("");
     this.itemname_dinein_total="";
     this.itemname_takeaway_total="";
