@@ -65,9 +65,14 @@ export class ManagerComponent implements OnInit {
         if(this.jsRes.code==200)
             {
               alert("Manager Added Succesfully.!");
+              this.onclearclick();
             }
-            else{ alert("Failed to Insert data");}
-            this.onclearclick();
+            else
+            { 
+              alert("Failed to Insert data");
+              this.onclearclick();
+            }
+            
        });
     }
     else if(this.buttoncontent == "Update")
@@ -87,7 +92,8 @@ export class ManagerComponent implements OnInit {
             {
               alert("Manager Updated Succesfully.!");
               this.onclearclick();
-            }else{ alert("Failed to Update data");}
+            }
+            else{ alert("Failed to Update data");}
             this.onclearclick();
        });
     }
