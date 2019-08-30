@@ -1,12 +1,13 @@
 <h1 mat-dialog-title>Items: <strong>{{action}}</strong></h1>
 <div mat-dialog-content>
+  <div mat-form-field *ngIf="action != 'Delete'; else elseTemplate">
   <mat-form-field *ngIf="action != 'Delete'; else elseTemplate">
     <mat-label style="color :gray">Item Category</mat-label>
     <mat-select [disabled]="disablecat" [(ngModel)]="itemcategory_id" (ngModelChange)="oncatChange()"> 
       <mat-option *ngFor="let de of itemctg" [value]="de.itemcategory_id">{{de.item_name}}</mat-option> 
     </mat-select>
   </mat-form-field>
-  <mat-form-field *ngIf="action != 'Delete'; else elseTemplate">
+  <mat-form-field >
     <mat-label style="color :gray">Item Names</mat-label>
     <mat-select [disabled]="disable" [(ngModel)]="data.order_itemname" (ngModelChange)="onnameChange()"> 
     <mat-option *ngFor="let re of itemnames" [value]="re.itemname_item_name">{{re.itemname_item_name}}</mat-option> 
@@ -15,8 +16,9 @@
   <mat-form-field>
     <input placeholder="Quantity" matInput [(ngModel)]="data.order_quantity" (ngModelChange)="onChangeQuantity()">
   </mat-form-field>
+</div>
   <ng-template #elseTemplate>
-    Sure to delete <b>{{data.itemname_item_name}}</b>?
+    Sure to delete?
   </ng-template>
 </div>
 <div mat-dialog-actions>

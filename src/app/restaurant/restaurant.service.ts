@@ -258,6 +258,15 @@ Baseurl = 'http://localhost:57649/';
     parms =parms.append('order_status', order_status+"");
     return this.http.post<JsResponse>(`${this.Baseurl+"orderupdate"}`,parms);
   }
+  public deleteorder(restaurent_id:number,table_defination_id:number,order_itemname:string)
+  {
+    let parms =new HttpParams();
+    parms =parms.append('order_status', "Running");
+    parms =parms.append('restaurent_id', restaurent_id+"");
+    parms =parms.append('table_defination_id', table_defination_id+"");
+    parms =parms.append('order_itemname', order_itemname+"");
+    return this.http.post<Responce>(`${this.Baseurl+"orderDelete"}`,parms);
+  }
   public getcaptains(restaurent_id:number)
   {
     let parms =new HttpParams();
