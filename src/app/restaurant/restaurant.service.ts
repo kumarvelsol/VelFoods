@@ -14,7 +14,6 @@ import { Managermodel } from '../shared/interfaces/managermodel';
 import { Walletsmodel } from '../shared/walletsmodel';
 import { Prints } from '../shared/interfaces/Prints';
 import { Billpayment } from '../shared/billpayment';
-import { Tabletransfermodel } from '../shared/tabletransfermodel';
 import { Takeawayplan } from '../shared/takeawayplan';
 import { ActivatedRoute } from '@angular/router';
 
@@ -22,8 +21,8 @@ import { ActivatedRoute } from '@angular/router';
   providedIn: 'root'
 })
 export class RestaurantService {
-//Baseurl = 'http://localhost:57649/'; 
-Baseurl = 'http://school.edujinni.in/';
+Baseurl = 'http://localhost:57649/';
+//Baseurl = 'http://school.edujinni.in/';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json'
@@ -203,7 +202,7 @@ Baseurl = 'http://school.edujinni.in/';
   public updatebank(banks :bank){
     return this.http.post<JsResponse>(`${this.Baseurl+"updatebanks"}`,banks);
   }
-    public getorders(restaurent_id:number)
+  public getorders(restaurent_id:number)
   {
     let parms =new HttpParams();
     parms =parms.append('restaurent_id', restaurent_id+"")
@@ -223,8 +222,7 @@ Baseurl = 'http://school.edujinni.in/';
   {
     return this.http.post<JsResponse>(`${this.Baseurl+"walletupdate"}`,walletU);
   }
-  public addingorder(itemnames:any[]=[],Rate:any[]=[],quantity:any[]=[],total:any[]=[],tax:any[]=[],
-                      restaurent_id:number,itemnameid:any[]=[],table_defination_id:number,order_captain:string,order_status:string)
+  public addingorder(itemnames:any[]=[],Rate:any[]=[],quantity:any[]=[],total:any[]=[],tax:any[]=[],restaurent_id:number,itemnameid:any[]=[],table_defination_id:number,order_captain:string,order_status:string)
   {
     let parms =new HttpParams();
     //parms =parms.append('table_name', table_name+"");
