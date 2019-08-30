@@ -64,57 +64,123 @@ export class BillpaymentComponent implements OnInit {
   }
   public onChange(event : number)
   {
-    this.bank_name = "";
+    debugger;
     this.total_amount = this.am[0];
-    this.bill_amount = this.am[0];
-    this.due_amount = this.amount - this.bill_amount;
-    if(this.due_amount == 0)
+    if(parseInt(this.total_amount.toString()) > parseInt(this.amount.toString()))
     {
-      this.payment_status = "Settled";
+      this.am[0] = 0;
+      alert("Please enter valid amount");
+    }
+    else
+    {
+      this.bank_name = "";
+      this.total_amount = this.am[0];
+      this.bill_amount = this.am[0];
+      this.due_amount = this.amount - this.bill_amount;
+      if(this.due_amount == 0)
+      {
+        this.payment_status = "Settled";
+      }
+      else if(this.due_amount != 0)
+      {
+        this.pendingg = false; this.comp = false;
+      }
     }
   }
   public onChange1(event : number)
   {
-    this.bank_name = this.bank;
     this.total_amount = this.am[1];
-    this.bill_amount = this.am[1];
-    this.due_amount = this.amount - this.bill_amount;
-    if(this.due_amount == 0)
+    if(parseInt(this.total_amount.toString()) > parseInt(this.amount.toString()))
     {
-      this.payment_status = "Settled";
+      this.am[1] = 0;
+      alert("Please enter valid amount");
+    }
+    else
+    {
+      this.bank_name = this.bank;
+      this.total_amount = this.am[1];
+      this.bill_amount = this.am[1];
+      this.due_amount = this.amount - this.bill_amount;
+      if(this.due_amount == 0)
+      {
+        this.payment_status = "Settled";
+      }
+      else if(this.due_amount != 0)
+      {
+        this.pendingg = false; this.comp = false;
+      }
     }
   }
   public onChange2(event : number)
   {
-    this.bank_name = this.bank1;
     this.total_amount = this.am[2];
-    this.bill_amount = this.am[2];
-    this.due_amount = this.amount - this.bill_amount;
-    if(this.due_amount == 0)
+    if(parseInt(this.total_amount.toString()) > parseInt(this.amount.toString()))
     {
-      this.payment_status = "Settled";
+      this.am[2] = 0;
+      alert("Please enter valid amount");
+    }
+    else
+    {
+      this.bank_name = this.bank1;
+      this.total_amount = this.am[2];
+      this.bill_amount = this.am[2];
+      this.due_amount = this.amount - this.bill_amount;
+      if(this.due_amount == 0)
+      {
+        this.payment_status = "Settled";
+      }
+      else if(this.due_amount != 0)
+      {
+        this.pendingg = false; this.comp = false;
+      }
     }
   }
   public onChange3(event : number)
   {
-    this.bank_name = this.bank2;
     this.total_amount = this.am[3];
-    this.bill_amount = this.am[3];
-    this.due_amount = this.amount - this.bill_amount;
-    if(this.due_amount == 0)
+    if(parseInt(this.total_amount.toString()) > parseInt(this.amount.toString()))
     {
-      this.payment_status = "Settled";
+      this.am[3] = 0;
+      alert("Please enter valid amount");
+    }
+    else
+    {
+      this.bank_name = this.bank2;
+      this.total_amount = this.am[3];
+      this.bill_amount = this.am[3];
+      this.due_amount = this.amount - this.bill_amount;
+      if(this.due_amount == 0)
+      {
+        this.payment_status = "Settled";
+      }
+      else if(this.due_amount != 0)
+      {
+        this.pendingg = false; this.comp = false;
+      }
     }
   }
   public onChange4(event : number)
   {
-    this.bank_name = this.bank3;
     this.total_amount = this.am[4];
-    this.bill_amount = this.am[4];
-    this.due_amount = this.amount - this.bill_amount;
-    if(this.due_amount == 0)
+    if(parseInt(this.total_amount.toString()) > parseInt(this.amount.toString()))
     {
-      this.payment_status = "Settled";
+      this.am[4] = 0;
+      alert("Please enter valid amount");
+    }
+    else
+    {
+      this.bank_name = this.bank3;
+      this.total_amount = this.am[4];
+      this.bill_amount = this.am[4];
+      this.due_amount = this.amount - this.bill_amount;
+      if(this.due_amount == 0)
+      {
+        this.payment_status = "Settled";
+      }
+      else if(this.due_amount != 0)
+      {
+        this.pendingg = false; this.comp = false;
+      }
     }
   }
 
