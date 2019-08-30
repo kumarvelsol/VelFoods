@@ -114,6 +114,7 @@ export class TableStatusComponent implements OnInit {
       this.print_disable = true;
       this.availOffer_disable = true;
       this.Payment_disable = true;
+      this.dataSource = null;
     }else{
       this.print_disable = false;
       this.availOffer_disable = false;
