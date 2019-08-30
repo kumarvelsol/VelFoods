@@ -95,16 +95,16 @@ export class OffersComponent implements OnInit {
       this.to_date_disable = false;
       this.from_date_disable = false;
 
-      //Disabling the Days Section..!
-      this.days_disable = true;
+      // //Disabling the Days Section..!
+      // this.days_disable = true;
     }else{
       this.from_date = null;
       this.to_date = null;
       this.to_date_disable = true;
       this.from_date_disable = true;
 
-      //Enabling the Days Section..!
-      this.days_disable = false;
+      // //Enabling the Days Section..!
+      // this.days_disable = false;
     }
   }
   onTimesValid(){
@@ -126,15 +126,15 @@ export class OffersComponent implements OnInit {
       this.daysSelected_disable = false;
       this.enable_checkboxes();
       
-      //Disabling the Dates Section..!
-      this.dates_disable = true;
+      // //Disabling the Dates Section..!
+      // this.dates_disable = true;
     }else{
       this.daysSelected = "";
       this.daysSelected_disable = true;
       this.disablecheckbox();
 
-      //Enabling the Dates Section..!
-      this.dates_disable = false;
+      // //Enabling the Dates Section..!
+      // this.dates_disable = false;
     }
   }
   onMinBillValid(){
@@ -450,19 +450,15 @@ export class OffersComponent implements OnInit {
       this.to_date_disable = false;
       this.from_date_disable = false;
 
-      //Day Elements
-      this.days_slide = false;
-      this.daysSelected = null;
-      this.daysSelected_disable = true;
-      this.disablecheckbox();
-    }else if(Day_status == "true"){
+    }else{
       //Date Elements
       this.dates_slide = false;
       this.from_date = null;
       this.to_date = null;
       this.to_date_disable = true;
       this.from_date_disable = true;
-
+    } 
+    if(Day_status == "true"){
       //Day Elements
       this.days_slide = true;
       this.daysSelected = Day_type;
@@ -534,8 +530,13 @@ export class OffersComponent implements OnInit {
           this.sunday = false;
         }
       }else{
-
       }
+    }else{
+      //Day Elements
+      this.days_slide = false;
+      this.daysSelected = null;
+      this.daysSelected_disable = true;
+      this.disablecheckbox();
     }
     if(Active_time_status == "true"){
       this.times_slide = true;
