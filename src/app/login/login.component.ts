@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
     //   console.log("roll",LoginComponent.rool); 
     //   console.log("resname",LoginComponent.na); 
     // })
-    this.service.login(log).subscribe(data =>{
+    this.service.login(this.username,this.password).subscribe(data =>{
       if(data.code ==200){
        alert(data.message);
        this.username ="";
