@@ -46,9 +46,9 @@ export class LoginComponent implements OnInit {
        this.username ="";
        this.password ="";
        LoginComponent.rid = data.resid;
-       LoginComponent.un =data.user;
-       LoginComponent.rool =data.passw;
-       LoginComponent.na =data.rname;
+       LoginComponent.un = data.user;
+       LoginComponent.rool = data.passw;
+       LoginComponent.na = data.rname;
        this.NavigateClick(LoginComponent.rid,LoginComponent.rool,LoginComponent.un,LoginComponent.na);
       }
       else

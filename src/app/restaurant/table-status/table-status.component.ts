@@ -164,11 +164,9 @@ export class TableStatusComponent implements OnInit {
         }
       });
     }
-    
     this.amount = 0;
     this.tname = table_name;
     this.Table_Id = table_defination_id;
-    
   }
   Parsing_data : ParsingData[];
   onsaveclick(){
