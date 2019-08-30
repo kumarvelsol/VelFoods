@@ -84,3 +84,7 @@ export interface login{
     password:string;
     resid:number;
 }
+
+export interface loginss{
+    
+}

@@ -64,6 +64,7 @@ export class OrderingComponent implements OnInit {
   redd :'red';
   colorr:string;
   colorFlag: any;
+  resname :string;
   tables :Data[]; table_pax : number;
   listcount: number; tname:number; table_capatain : string;
   kotid : number;count : number;
@@ -75,9 +76,12 @@ export class OrderingComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.restaurent_id = LoginComponent.rid;
     });
+    // restaurentName
+    this.resname =LoginComponent.na;
   }
   ngOnInit() {
     this.gettingtablenumbers();
+    this.resname =LoginComponent.na;
     this.service.getorders(this.restaurent_id).subscribe((data : Responce) =>
     {
       this.count = data.Data.length;
