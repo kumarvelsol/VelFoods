@@ -21,7 +21,7 @@ export class BillpaymentComponent implements OnInit {
   banklist;walletlist;count : number = 0; tablelist : Responce;billment_id : number;
   table_name : number; table_pax : number; amount : number;bill_amount :number; due_amount : number;
   print_id : number;payment_status : string;table_defination_id : number;jsRes : JsResponse; 
-  pendingg : boolean=false;  comp : boolean=false; paidouts : boolean=false; misCollections : boolean=false;
+  pendingg : boolean=true;  comp : boolean=true; paidouts : boolean=false; misCollections : boolean=false;
   reference : string; mobile_no : number; name : string; restaurent_id : number;
   table_capatain : string;table_description : string;table_status : string;table_steward : string;table_view:string;
   name1 : string;name2:string;mobile_no1 : number;mobile_no2 : number; insert_date :string;today= new Date();
@@ -120,6 +120,10 @@ export class BillpaymentComponent implements OnInit {
   public onBillChange($event)
   {
     this.due_amount = this.amount - this.bill_amount;
+    if(this.due_amount != 0)
+    {
+      this.pendingg = false; this.comp = false;
+    }
   }
 
   toggleVisibility(value){
