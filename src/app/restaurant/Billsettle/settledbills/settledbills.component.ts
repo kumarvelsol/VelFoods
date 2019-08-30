@@ -25,16 +25,20 @@ export class SettledbillsComponent implements OnInit {
   jsRes : JsResponse; insert_date : string; billment_id : number;
   
   ngOnInit() {
-    
-  }
-  public onChange(event : number)
-  {
-    this.insert_date = "";
-    this.service1.billsettleid(this.restaurent_id,this.billment_id).subscribe((data:Apiresponse) =>
+    this.service1.billsettleid(this.restaurent_id).subscribe((data:Apiresponse) =>
       {
         this.dataSource = data.Data; 
       });
+    
   }
+  // public onChange(event : number)
+  // {
+  //   this.insert_date = "";
+  //   this.service1.billsettleid(this.restaurent_id).subscribe((data:Apiresponse) =>
+  //     {
+  //       this.dataSource = data.Data; 
+  //     });
+  // }
   public onChangee()
   {
     this.billment_id = null;

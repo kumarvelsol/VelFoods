@@ -21,7 +21,7 @@ import { ActivatedRoute } from '@angular/router';
   providedIn: 'root'
 })
 export class RestaurantService {
-Baseurl = 'http://localhost:57649/';
+Baseurl = 'http://localhost:57649/'; 
 //Baseurl = 'http://school.edujinni.in/';
   httpOptions = {
     headers: new HttpHeaders({
@@ -157,6 +157,12 @@ Baseurl = 'http://localhost:57649/';
     let parms =new HttpParams();
     parms =parms.append('restaurent_id', restaurent_id+"")
     return this.http.post<Responce>(`${this.Baseurl+"getitemnames"}`,parms);
+  }
+  public getitemnameswithcat(restaurent_id:number,itemcategory_id:number){
+    let parms =new HttpParams();
+    parms =parms.append('restaurent_id', restaurent_id+"")
+    parms =parms.append('itemcategory_id', itemcategory_id+"")
+    return this.http.post<Responce>(`${this.Baseurl+"getitemwithcate"}`,parms);
   }
   public AddTax(tax : Tax){
     return this.http.post<JsResponse>(`${this.Baseurl+"TaxAdding"}`,tax);
@@ -349,11 +355,10 @@ Baseurl = 'http://localhost:57649/';
     parms =parms.append('insert_date', insert_date+"")
     return this.http.post(`${this.Baseurl+"billsettle"}`,parms);
   }
-  public billsettleid(restaurent_id:number,billment_id:number)
+  public billsettleid(restaurent_id:number)
   {
     let parms =new HttpParams();
     parms =parms.append('restaurent_id', restaurent_id+"")
-    parms =parms.append('billment_id', billment_id+"")
     return this.http.post(`${this.Baseurl+"billsettleid"}`,parms);
    }
    public getrestos(){

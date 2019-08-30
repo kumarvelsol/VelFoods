@@ -2,10 +2,12 @@ import { Component, Inject, Optional, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { RestaurantService } from '../restaurant/restaurant.service';
 import { Responce } from '../shared/js-response';
-import { Data } from '@angular/router';
+import { Data, ActivatedRoute } from '@angular/router';
+import { LoginComponent } from '../login/login.component';
  
 export interface UsersData {
   order_itemname:string;
+  itemcategory_id:number;
   itemname_id:number;
   order_quantity:number;
   order_rate:number;
@@ -19,30 +21,36 @@ export interface UsersData {
   styleUrls: ['./dialog-box.component.css']
 })
 export class DialogBoxComponent implements OnInit {
-  action:string;itemnames:Data[];order_itemname:string;orderlist:Responce;
+  action:string;itemnames:Data[];itemctg:Data[];order_itemname:string;orderlist:Responce;
   local_data:any;order_quantity:number;order_id:number=0;order_rate:number;order_totalamount:number=0;
-  order_tax:number;disable:boolean=false;
+  order_tax:number;disable:boolean=false;disablecat:boolean = false;itemcategory_id:number;item_name:string;
   constructor(
     public dialogRef: MatDialogRef<DialogBoxComponent>,
-    @Optional() @Inject(MAT_DIALOG_DATA) public data: UsersData, public service:RestaurantService) {
+    @Optional() @Inject(MAT_DIALOG_DATA) public data: UsersData, public service:RestaurantService,public route : ActivatedRoute) {
     console.log(data);
+    this.route.queryParams.subscribe(params => {
+      this.restaurent_id = LoginComponent.rid;
+    });
     this.local_data = {...data};
     this.action = this.local_data.action;
+    this.itemcategory_id = this.local_data.itemcategory_id;
     this.order_itemname = this.local_data.order_itemname;
     this.order_quantity = this.local_data.order_quantity;
   }
+  restaurent_id:number;
   ngOnInit() {
     if(this.action == "Update")
     {
       this.disable = true;
+      this.disablecat = true;
     }
-    this.service.getitemnames(1).subscribe((data:Responce)=> {
-      this.itemnames = data.Data;
+    this.service.getitemcate(this.restaurent_id).subscribe((data:Responce) =>{
+      this.itemctg = data.Data;
     });
   }
-  onChange() {  
+  onnameChange() {  
     console.log(this.data.order_itemname);
-    this.service.getitemnames(1).subscribe((data:Responce)=> {
+    this.service.getitemnameswithcat(this.restaurent_id,this.itemcategory_id).subscribe((data:Responce)=> {
       this.orderlist = data;
       for(let i=0;i<this.orderlist.Data.length;i++)
       {
@@ -55,6 +63,13 @@ export class DialogBoxComponent implements OnInit {
           break;
         }
       }
+    });
+  }
+  oncatChange()
+  {
+    console.log(this.itemcategory_id);
+    this.service.getitemnameswithcat(this.restaurent_id,this.itemcategory_id).subscribe((data:Responce)=> {
+      this.itemnames = data.Data;
     });
   }
   totalwotax:number;
