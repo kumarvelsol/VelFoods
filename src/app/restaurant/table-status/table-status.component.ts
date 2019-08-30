@@ -61,12 +61,14 @@ export class TableStatusComponent implements OnInit {
   availOffer_disable : boolean;
   print_disable : boolean;
   tables_disable : boolean; 
+  offerappliedtext_disable : boolean;
   ngOnInit()
   {
     this.Payment_disable = true;
     this.availOffer_disable = true;
     this.print_disable = true;
     this.tables_disable = false;
+    this.offerappliedtext_disable = false;
     this.LoadingList();
   }
   LoadingList(){
@@ -87,11 +89,13 @@ export class TableStatusComponent implements OnInit {
       this.tables = data.Data;
     });
   }
-  Table_Id: number;
+  Table_Id : number;
+  Selected_Amount : number;
+  PromoCode : string;
   onbuttonclick($event,table_name,table_defination_id,BACKGROUND_COLOR)
   {
     if(BACKGROUND_COLOR == "Darkslategray")
-    { 
+    {
       this.tname = table_name;
       this.table_defination_id = this.tname;
       this.service.getprintid(this.restaurent_id,this.table_defination_id).subscribe((data : Responce) =>
@@ -136,7 +140,6 @@ export class TableStatusComponent implements OnInit {
       this.print_disable = false;
       this.availOffer_disable = false;
       this.Payment_disable = true;
-
       this.service.getorderitems(this.restaurent_id,this.tname).subscribe((data : Responce) =>
       {
           this.dataSource = data.Data;
@@ -146,6 +149,7 @@ export class TableStatusComponent implements OnInit {
           {
             this.totalamount = data.Data[i].order_totalamount;
             this.amount = this.amount + this.totalamount;
+            this.Selected_Amount = this.amount;
           }
           this.table_name = this.tname;
           this.table_defination_id = this.tname;
@@ -225,7 +229,7 @@ export class TableStatusComponent implements OnInit {
     if(this.amount > 0){
       let p_data : ParsingData = {
         table_name : this.tname,
-        total_amount : this.amount,
+        total_amount : this.Selected_Amount,
         DiscountAmount : 0,
         AmountAfterDiscount : 0,
         OfferId : 0,
@@ -243,12 +247,15 @@ export class TableStatusComponent implements OnInit {
         this.Discount_amount = result.DiscountAmount;
         this.ActualAmount = result.total_amount;
         this.Offer_Id = result.OfferId;
+        this.PromoCode = result.PromoCode;
         this.AmountAfterDiscount = result.AmountAfterDiscount;
         console.log(this.amount);
         if(this.Offer_Id == 0){
           this.tables_disable = false;
+          this.offerappliedtext_disable = false;
         }else{
           this.tables_disable = true;
+          this.offerappliedtext_disable = true;
         }
       });
     }else{
