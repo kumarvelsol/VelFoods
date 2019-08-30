@@ -159,6 +159,12 @@ Baseurl = 'http://localhost:57649/';
     parms =parms.append('restaurent_id', restaurent_id+"")
     return this.http.post<Responce>(`${this.Baseurl+"getitemnames"}`,parms);
   }
+  public getitemnameswithcat(restaurent_id:number,itemcategory_id:number){
+    let parms =new HttpParams();
+    parms =parms.append('restaurent_id', restaurent_id+"")
+    parms =parms.append('itemcategory_id', itemcategory_id+"")
+    return this.http.post<Responce>(`${this.Baseurl+"getitemwithcate"}`,parms);
+  }
   public AddTax(tax : Tax){
     return this.http.post<JsResponse>(`${this.Baseurl+"TaxAdding"}`,tax);
   }

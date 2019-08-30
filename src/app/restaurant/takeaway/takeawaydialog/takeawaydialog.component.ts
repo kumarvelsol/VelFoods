@@ -21,9 +21,9 @@ export interface UsersData {
   styleUrls: ['./takeawaydialog.component.css']
 })
 export class TakeawaydialogComponent implements OnInit {
-  action:string;itemnames:Data[];order_itemname:string;orderlist:Responce;
+  action:string;itemnames:Data[];itemctg:Data[];order_itemname:string;orderlist:Responce;
   local_data:any;order_quantity:number;order_id:number=0;order_rate:number;order_totalamount:number=0;
-  order_tax:number;disable:boolean=false;restaurent_id:number;
+  order_tax:number;disable:boolean=false;restaurent_id:number;itemcategory_id:number;
 
   constructor(public dialogRef: MatDialogRef<TakeawaydialogComponent>,
     @Optional() @Inject(MAT_DIALOG_DATA) public data: UsersData, public service:RestaurantService,private route: ActivatedRoute) {
@@ -42,13 +42,13 @@ export class TakeawaydialogComponent implements OnInit {
     {
       this.disable = true;
     }
-    this.service.getitemnames(this.restaurent_id).subscribe((data:Responce)=> {
-      this.itemnames = data.Data;
+    this.service.getitemcate(this.restaurent_id).subscribe((data:Responce) =>{
+      this.itemctg = data.Data;
     });
   }
-  onChange() {  
+  onnameChange() {  
     console.log(this.data.order_itemname);
-    this.service.getitemnames(this.restaurent_id).subscribe((data:Responce)=> {
+    this.service.getitemnameswithcat(this.restaurent_id,this.itemcategory_id).subscribe((data:Responce)=> {
       this.orderlist = data;
       for(let i=0;i<this.orderlist.Data.length;i++)
       {
@@ -61,6 +61,12 @@ export class TakeawaydialogComponent implements OnInit {
           break;
         }
       }
+    });
+  }
+  oncatChange()
+  {
+    this.service.getitemnameswithcat(this.restaurent_id,this.itemcategory_id).subscribe((data:Responce)=> {
+      this.itemnames = data.Data;
     });
   }
   totalwotax:number;

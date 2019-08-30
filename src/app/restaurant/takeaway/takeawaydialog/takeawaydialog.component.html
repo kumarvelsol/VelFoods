@@ -1,8 +1,14 @@
 <h1 mat-dialog-title>Items: <strong>{{action}}</strong></h1>
 <div mat-dialog-content>
   <mat-form-field *ngIf="action != 'Delete'; else elseTemplate">
+    <mat-label style="color :gray">Item Category</mat-label>
+    <mat-select [disabled]="disable" [(ngModel)]="itemcategory_id" (ngModelChange)="oncatChange()"> 
+    <mat-option *ngFor="let rec of itemctg" [value]="rec.itemcategory_id">{{rec.item_name}}</mat-option> 
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field *ngIf="action != 'Delete'; else elseTemplate">
     <mat-label style="color :gray">Item Names</mat-label>
-    <mat-select [disabled]="disable" [(ngModel)]="data.order_itemname" (ngModelChange)="onChange()"> 
+    <mat-select [disabled]="disable" [(ngModel)]="data.order_itemname" (ngModelChange)="onnameChange()"> 
     <mat-option *ngFor="let re of itemnames" [value]="re.itemname_item_name">{{re.itemname_item_name}}</mat-option> 
     </mat-select>
   </mat-form-field> 

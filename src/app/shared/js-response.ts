@@ -65,7 +65,7 @@ export interface Data {
     promo_code_name : string;
     promo_code : string;
     promo_code_description : string;
-    percentage : string;
+    percentage : number;
     Active_dare_status : string;
     from_date : string;
     to_date : string;

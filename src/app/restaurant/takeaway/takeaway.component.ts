@@ -18,11 +18,12 @@ export class TakeawayComponent implements OnInit {
   dataSource;orders:any[]=[];buttoncontent:string;radio:string;
   displayedColumns: string[] = ["itemname_id", "order_itemname","order_rate","order_quantity", "order_tax_amount","order_totalamount","actions"];
   amount:number=0;parcelamount:number=0;gtotalamount:number=0;order_totalamount:number;disable:boolean=true;
+  discamount:number=0;
   @ViewChild(MatTable) table: MatTable<any>; 
   Table_Id: number;
   Discount_amount : number = 0;
   AmountAfterDiscount : number;
-  ActualAmount: number;plan_name:string;
+  ActualAmount: number;percentage:number;
   OffId : number;planslist;
   constructor(private router: Router,public datepipe: DatePipe,private service : RestaurantService,public dialog: MatDialog,private route: ActivatedRoute) { 
     this.route.queryParams.subscribe(params => {
@@ -32,7 +33,10 @@ export class TakeawayComponent implements OnInit {
 
   ngOnInit() {
     this.openDialog('Add',{});
-    this.service.getplans(this.restaurent_id).subscribe(data =>{
+    // this.service.getplans(this.restaurent_id).subscribe(data =>{
+    //   this.planslist = data.Data;
+    // });
+    this.service.ActiveOffers(this.restaurent_id).subscribe(data =>{
       this.planslist = data.Data;
     });
     console.log(this.planslist);
@@ -102,14 +106,18 @@ export class TakeawayComponent implements OnInit {
   planpercentage:number;
   onplanchange()
   {
-    this.service.getplans(this.restaurent_id).subscribe(data =>{
+    debugger;
+    this.service.ActiveOffers(this.restaurent_id).subscribe(data =>{
       this.planslist = data.Data;
+      console.log(this.planslist);
       for(let i=0;i<data.Data.length;i++)
       {
-        if(this.plan_name == data.Data[i].A)
+        if(this.percentage == data.Data[i].percentage)
         {
-          this.planpercentage = data.Data[i].plan_percentage;
-          this.gtotalamount = this.gtotalamount - (this.gtotalamount * this.planpercentage) / 100 ;
+          debugger;
+          //this.planpercentage = data.Data[i].percentage;
+          this.discamount = (this.amount * this.percentage) / 100;
+          this.gtotalamount = this.gtotalamount - (this.amount * this.percentage) / 100 ;
           //this.amount = this.gtotalamount;
           break;
         }
