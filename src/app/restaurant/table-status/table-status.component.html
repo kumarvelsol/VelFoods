@@ -16,6 +16,9 @@
             <label class="col-6" style="font-size: 17px;">Table No : {{tname}}</label>
             <label class="col-6" style="font-size: 17px;">Total Amount : {{amount}}</label>
           </div>
+          <div class="col-12 text-right" style="margin-top: 13px;" *ngIf="offerappliedtext_disable">
+            <label class="col-12" style="font-size: 12px;">Applied Offer is <label style="color: red"><strong>{{PromoCode}}</strong></label>, Discount Amount is <label style="color: red"><strong>{{Discount_amount}}</strong></label></label>
+          </div>
           <div class="example-container mat-elevation-z1">
             <table mat-table [dataSource]="dataSource">
               <!-- ItemName Column -->
