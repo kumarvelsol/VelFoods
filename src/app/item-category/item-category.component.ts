@@ -6,6 +6,7 @@ import { itemcategory } from '../shared/interfaces/empcate';
 import { toDate } from '@angular/common/src/i18n/format_date';
 import { Data, ActivatedRoute } from '@angular/router';
 import { LoginComponent } from '../login/login.component';
+import { SidenavToolbarComponent } from '../ui/sidenav-toolbar/sidenav-toolbar.component';
 
 @Component({
   selector: 'app-item-category',
@@ -23,7 +24,7 @@ export class ItemCategoryComponent implements OnInit {
   employee:Data[];
   restaurent_id:number;
   count:number;
-  constructor(public service:RestaurantService,private route: ActivatedRoute) { 
+  constructor(public service:RestaurantService,private route: ActivatedRoute,public sidenav : SidenavToolbarComponent) { 
     this.route.queryParams.subscribe(params => {
       this.restaurent_id = LoginComponent.rid;
     });
@@ -32,6 +33,7 @@ export class ItemCategoryComponent implements OnInit {
   displayedColumns: string[] = ['itemcategory_id', 'item_name', 'item_reporting_name', 'item_status','actions'];
   dataSource;
   ngOnInit() {
+    this.sidenav.ShowSpinnerHandler(true);
     this.buttoncontent ="Save";
     this.service.getitemcate(this.restaurent_id).subscribe(data =>
       {
@@ -43,8 +45,10 @@ export class ItemCategoryComponent implements OnInit {
           this.employee = data.Data;
           console.log(this.employee);
         });
+        this.sidenav.ShowSpinnerHandler(false);
   }
   onsaveclick(){
+    this.sidenav.ShowSpinnerHandler(true);
     let item:itemcategory ={
       itemcategory_id:this.itemcategory_id,
       item_name:this.item_name,
@@ -56,6 +60,7 @@ export class ItemCategoryComponent implements OnInit {
     }
     if(this.buttoncontent =="Save"){
       this.service.additemca(item).subscribe(data =>{
+        this.sidenav.ShowSpinnerHandler(false);
         if(data.code ==200){
           alert(data.message);
           this.ngOnInit();
@@ -63,6 +68,7 @@ export class ItemCategoryComponent implements OnInit {
         }
         else
         {
+          this.sidenav.ShowSpinnerHandler(false);
           alert(data.message);
           this.ngOnInit();
           this.onclearclick();
@@ -72,6 +78,7 @@ export class ItemCategoryComponent implements OnInit {
     else
     {
       this.service.updateitemca(item).subscribe(data =>{
+        this.sidenav.ShowSpinnerHandler(false);
         if(data.code ==200){
           alert(data.message);
           this.ngOnInit();
@@ -79,6 +86,7 @@ export class ItemCategoryComponent implements OnInit {
         }
         else
         {
+          this.sidenav.ShowSpinnerHandler(false);
           alert(data.message);
           this.ngOnInit();
           this.onclearclick();

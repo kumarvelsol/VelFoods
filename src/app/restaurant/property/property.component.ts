@@ -6,6 +6,7 @@ import { Data } from 'src/app/shared/data';
 import { JSONP_ERR_WRONG_RESPONSE_TYPE } from '@angular/common/http/src/jsonp';
 import { JsResponse } from '../../shared/js-response';
 import { FormControl } from '@angular/forms';
+import { SidenavToolbarComponent } from 'src/app/ui/sidenav-toolbar/sidenav-toolbar.component';
 
 @Component({
   selector: 'app-property',
@@ -19,9 +20,10 @@ export class PropertyComponent implements OnInit {
    property_website : string;   property_pincode : number;   property_gst : string;
    property_country : string;   propertylist : Apiresponse;  propertydata : Data[];
    jsRes : JsResponse;
-  constructor(private service1: RestaurantService) { }
+  constructor(private service1: RestaurantService,public sidenav : SidenavToolbarComponent) { }
 
   ngOnInit() {  
+    this.sidenav.ShowSpinnerHandler(true);
     this.buttoncontent = "Save";
     this.service1.getproperty().subscribe((data: Apiresponse) => 
     {
@@ -42,7 +44,7 @@ export class PropertyComponent implements OnInit {
       this.property_state = data.Data[0].property_state;
       this.property_website = data.Data[0].property_website;
      });
-    
+     this.sidenav.ShowSpinnerHandler(false);
 
     // if(this.property_name=="" && this.property_address=="" && this.property_land_mark=="" && this.property_city=="" && this.property_state=="" &&
     // this.property_pincode==null && this.property_country=="" && this.property_mobile_no==null && this.property_landline==null && this.property_email=="" && this.property_website=="" && this.property_gst=="")
@@ -56,6 +58,7 @@ export class PropertyComponent implements OnInit {
   }
   public onsave()
   {
+    this.sidenav.ShowSpinnerHandler(true);
     if(this.buttoncontent == "Save")
     {
       let a: Property = {
@@ -76,6 +79,7 @@ export class PropertyComponent implements OnInit {
       this.service1.createproperty(a).subscribe((data: JsResponse) => 
       {
         this.jsRes = data;
+        this.sidenav.ShowSpinnerHandler(false);
             if(this.jsRes.code==200)
             {alert("Property Added Succesfully.!");}
             else{alert("Failed to insert data");}
@@ -101,6 +105,7 @@ export class PropertyComponent implements OnInit {
       this.service1.updateproperty(a).subscribe((data: JsResponse) => 
       {
         this.jsRes = data;
+        this.sidenav.ShowSpinnerHandler(false);
         if(this.jsRes.code==200)
         {alert("Property Updated Succesfully.!");}
         else{alert("Failed to update data");}

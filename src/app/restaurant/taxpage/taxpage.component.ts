@@ -6,6 +6,7 @@ import { Responce } from 'src/app/shared/js-response';
 import { Data } from 'src/app/shared/data';
 import { ActivatedRoute } from '@angular/router';
 import { LoginComponent } from 'src/app/login/login.component';
+import { SidenavToolbarComponent } from 'src/app/ui/sidenav-toolbar/sidenav-toolbar.component';
 @Component({
   selector: 'app-taxpage',
   templateUrl: './taxpage.component.html',
@@ -18,18 +19,20 @@ export class TaxpageComponent implements OnInit {
   taxid : number; taxname : string; percentage : number; reportname : string; activefrom : string; status : string; empregistration_name : string;
   emplist;
   displayedColumns : string[] = ["tax_id", "tax_name","tax_percentage", "tax_employeename","tax_Active_from","tax_status","actions"];
-  constructor(public service : RestaurantService,public route : ActivatedRoute){
+  constructor(public service : RestaurantService,public route : ActivatedRoute,public sidenav : SidenavToolbarComponent){
     this.route.queryParams.subscribe(params =>
       {
         this.restaurent_id = LoginComponent.rid;
       })
   }
   ngOnInit() {
+    this.sidenav.ShowSpinnerHandler(true);
     this.LoadingList();
     this.service.getempreg(this.restaurent_id).subscribe(data =>
       {
         this.emplist = data.Data;
       });
+      this.sidenav.ShowSpinnerHandler(false);
   }
   onclear()
   {
@@ -44,6 +47,7 @@ export class TaxpageComponent implements OnInit {
   }
   onsave()
   {
+    this.sidenav.ShowSpinnerHandler(true);
     if(this.taxname =="" || this.percentage == null  || this.activefrom == "" || this.status == "")
     {
       alert("Please fill all fields");
@@ -60,19 +64,23 @@ export class TaxpageComponent implements OnInit {
           tax_employeename : this.empregistration_name,
         }
         this.service.AddTax(tax).subscribe(data=>{
+          this.sidenav.ShowSpinnerHandler(false);
           if(data.code == 200){
             alert(data.message);
             this.onclear();
           }else{
+            this.sidenav.ShowSpinnerHandler(false);
             alert(data.message);
           }
         });
       }else if(this.buttoncontent == "Update"){
         this.service.UpdateTax(this.taxid,this.taxname,this.percentage,this.activefrom,this.status,this.restaurent_id,this.empregistration_name).subscribe(data=>{
+          this.sidenav.ShowSpinnerHandler(false);
           if(data.code == 200){
             alert(data.message);
             this.onclear();
           }else{
+            this.sidenav.ShowSpinnerHandler(false);
             alert(data.message);
           }
         });

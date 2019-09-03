@@ -5,6 +5,7 @@ import { EmptyOutletComponent } from '@angular/router/src/components/empty_outle
 import { debug } from 'util';
 import { Data, ActivatedRoute } from '@angular/router';
 import { LoginComponent } from '../login/login.component';
+import { SidenavToolbarComponent } from '../ui/sidenav-toolbar/sidenav-toolbar.component';
 
 @Component({
   selector: 'app-employeeregistration',
@@ -30,12 +31,13 @@ export class EmployeeregistrationComponent implements OnInit {
   count:number;empdept:Data[];
   displayedColumns : string[] =['empregistration_id','empregistration_name','empregistration_mobile_no','empregistration_status','actions'];
   dataSource;
-  constructor(public service: RestaurantService,public route : ActivatedRoute) { 
+  constructor(public service: RestaurantService,public route : ActivatedRoute,public sidenav : SidenavToolbarComponent) { 
     this.route.queryParams.subscribe(params => {
       this.restaurent_id = LoginComponent.rid;
     })
    }
   ngOnInit() {
+    this.sidenav.ShowSpinnerHandler(true);
     this.buttoncontent="Save";
     this.buttoncontent1="Clear";
     this.service.getempreg(this.restaurent_id).subscribe(data =>
@@ -49,9 +51,10 @@ export class EmployeeregistrationComponent implements OnInit {
         {
           this.empdept = data.Data;
         });
+        this.sidenav.ShowSpinnerHandler(false);
   }
   onsaveclick(){
-    debugger;
+    this.sidenav.ShowSpinnerHandler(true);
     let empr:EmployeeRegistration ={
       empregistration_id:this.empregistration_id,
       empregistration_name:this.empregistration_name,
@@ -71,6 +74,7 @@ export class EmployeeregistrationComponent implements OnInit {
     if(this.buttoncontent =="Save")
     {
       this.service.addempreg(empr).subscribe(data =>{
+        this.sidenav.ShowSpinnerHandler(false);
         if(data.code ==200){
           alert(data.message);
           this.ngOnInit();
@@ -78,6 +82,7 @@ export class EmployeeregistrationComponent implements OnInit {
         }
         else
         {
+          this.sidenav.ShowSpinnerHandler(false);
           alert(data.message);
           this.ngOnInit();
           this.onclearclick();
@@ -87,6 +92,7 @@ export class EmployeeregistrationComponent implements OnInit {
     else
     {
       this.service.updateempreg(empr).subscribe(data =>{
+        this.sidenav.ShowSpinnerHandler(false);
         if(data.code ==200){
           alert(data.message);
           this.ngOnInit();
@@ -94,6 +100,7 @@ export class EmployeeregistrationComponent implements OnInit {
         }
         else
         {
+          this.sidenav.ShowSpinnerHandler(false);
           alert(data.message);
           this.ngOnInit();
           this.onclearclick();

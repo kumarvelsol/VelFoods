@@ -6,6 +6,7 @@ import { MatTableDataSource } from '@angular/material';
 import { Tabledefinition } from 'src/app/shared/tabledefinition';
 import { Data, ActivatedRoute } from '@angular/router';
 import { LoginComponent } from 'src/app/login/login.component';
+import { SidenavToolbarComponent } from 'src/app/ui/sidenav-toolbar/sidenav-toolbar.component';
 
 export interface Captain {
   cid: string;
@@ -44,13 +45,14 @@ export class TabledefinitionComponent implements OnInit {
     table_steward: string;    table_view : string; jsRes : JsResponse;
     count:number;captains:Data[];stewards:Data[];employee:Data[]; restaurent_id : number;
   displayedColumns: string[] = ['table_defination_id','table_name','table_pax','table_view','table_status','actions']; //'view','captain','steward',
-  constructor(public service1 : RestaurantService,public route : ActivatedRoute) { 
+  constructor(public service1 : RestaurantService,public route : ActivatedRoute,public sidenav : SidenavToolbarComponent) { 
     this.route.queryParams.subscribe(params => {
      this.restaurent_id = LoginComponent.rid;
     })
   }
 
   ngOnInit() {
+    this.sidenav.ShowSpinnerHandler(true);
     this.buttoncontent = "Save";
     this.gettabledata();
     this.getcaptains();
@@ -89,9 +91,11 @@ export class TabledefinitionComponent implements OnInit {
         this.employee = data.Data;
         console.log(this.employee);
       });
+      this.sidenav.ShowSpinnerHandler(false);
   }
   public onSaveclick()
   {
+    this.sidenav.ShowSpinnerHandler(true);
     if(this.table_name == null || this.table_pax == null)
     {
       alert("Please fill all fields");
@@ -113,6 +117,7 @@ export class TabledefinitionComponent implements OnInit {
        this.service1.createtable(a).subscribe((data : JsResponse) => {
 
         this.jsRes = data;
+        this.sidenav.ShowSpinnerHandler(false);
         if(this.jsRes.code==200)
             {
               alert("Table Added Succesfully.!");
@@ -137,6 +142,7 @@ export class TabledefinitionComponent implements OnInit {
      this.service1.updatetable(a).subscribe((data : JsResponse) => {
 
       this.jsRes = data;
+      this.sidenav.ShowSpinnerHandler(false);
       if(this.jsRes.code==200)
           {
             alert("Table Updated Succesfully.!");
