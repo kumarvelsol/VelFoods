@@ -3,6 +3,7 @@ import { RestaurantService } from '../restaurant/restaurant.service';
 import { itemnames } from '../shared/interfaces/empcate';
 import { ActivatedRoute } from '@angular/router';
 import { LoginComponent } from '../login/login.component';
+import { SidenavToolbarComponent } from '../ui/sidenav-toolbar/sidenav-toolbar.component';
 
 @Component({
   selector: 'app-item-names',
@@ -33,7 +34,7 @@ export class ItemNamesComponent implements OnInit
     buttoncontent:string; itemcategory; taxlist; 
     takeaway_tax_percentage : number; dinein_tax_percentage : number; hd_tax_percentage : number;
     emplist;empregistration_name : string; item_name : string;
-    constructor(public service:RestaurantService,public route : ActivatedRoute) { 
+    constructor(public service:RestaurantService,public route : ActivatedRoute,public sidenav :SidenavToolbarComponent) { 
       this.route.queryParams.subscribe(params =>
         {
           this.restaurent_id = LoginComponent.rid;
@@ -42,6 +43,7 @@ export class ItemNamesComponent implements OnInit
   displayedColumns: string[] = ['itemname_id', 'itemname_item_name', 'itemname_reportingname','item_dinein_amount','item_dinein_tax','item_takeaway_amount','item_takeaway_tax','item_homedelivary_amount','item_homedelivary_tax','item_homedelivery_deliverycharges', 'itemname_status','actions'];
   ngOnInit() 
   {
+    this.sidenav.ShowSpinnerHandler(true);
     this.buttoncontent ="Save";
     this.service.getitemnames(this.restaurent_id).subscribe(data =>
       {
@@ -59,8 +61,10 @@ export class ItemNamesComponent implements OnInit
             {
               this.emplist = data.Data;
             });
+            this.sidenav.ShowSpinnerHandler(false);
   }
   onsaveclick(){
+    this.sidenav.ShowSpinnerHandler(true);
     let itmname: itemnames ={
       itemname_id:this.itemname_id,
       itemname_item_name:this.itemname_item_name,
@@ -84,6 +88,7 @@ export class ItemNamesComponent implements OnInit
     if(this.buttoncontent =="Save")
     {
       this.service.additemname(itmname).subscribe(data =>{
+        this.sidenav.ShowSpinnerHandler(false);
         if(data.code ==200){
           alert(data.message);
           
@@ -92,6 +97,7 @@ export class ItemNamesComponent implements OnInit
         }
         else
         {
+          this.sidenav.ShowSpinnerHandler(false);
           alert(data.message);
           
           this.onclearclick();
@@ -102,6 +108,7 @@ export class ItemNamesComponent implements OnInit
     else
     {
       this.service.updateitemname(itmname).subscribe(data =>{
+        this.sidenav.ShowSpinnerHandler(false);
         if(data.code ==200){
           alert(data.message);
           this.ngOnInit();
@@ -109,6 +116,7 @@ export class ItemNamesComponent implements OnInit
         }
         else
         {
+          this.sidenav.ShowSpinnerHandler(false);
           alert(data.message);
           this.ngOnInit();
           this.onclearclick();

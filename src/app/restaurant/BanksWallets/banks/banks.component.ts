@@ -4,6 +4,7 @@ import { RestaurantService } from '../../restaurant.service';
 import { bank } from 'src/app/shared/interfaces/empcate';
 import { ActivatedRoute } from '@angular/router';
 import { LoginComponent } from 'src/app/login/login.component';
+import { SidenavToolbarComponent } from 'src/app/ui/sidenav-toolbar/sidenav-toolbar.component';
 
 
 @Component({
@@ -28,13 +29,14 @@ buttoncontent:string;
 empregistration_name : string;emplist;
 
 displayedColumns: string[] = ["bank_id", "bank_code","bank_name", "bank_reporting_name","bank_status","actions"];
-  constructor(public service :RestaurantService,public route : ActivatedRoute) {
+  constructor(public service :RestaurantService,public route : ActivatedRoute,public sidenav : SidenavToolbarComponent) {
     this.route.queryParams.subscribe(params => {
       this.restaurent_id = LoginComponent.rid;
     })
    }
 
   ngOnInit() {
+    this.sidenav.ShowSpinnerHandler(true);
     this.buttoncontent = "Save";
     this.service.getbanks(this.restaurent_id).subscribe(data =>
       {
@@ -44,6 +46,7 @@ displayedColumns: string[] = ["bank_id", "bank_code","bank_name", "bank_reportin
         {
           this.emplist = data.Data;
         });
+        this.sidenav.ShowSpinnerHandler(false);
   }
   onclearclick()
   {
@@ -58,6 +61,7 @@ displayedColumns: string[] = ["bank_id", "bank_code","bank_name", "bank_reportin
   onsaveclick()
   {
     //alert("yes");
+    this.sidenav.ShowSpinnerHandler(true);
    let bankb: bank ={
      bank_id :this.bank_id,
      bank_code:this.bank_code,
@@ -72,12 +76,14 @@ displayedColumns: string[] = ["bank_id", "bank_code","bank_name", "bank_reportin
    {
      this.service.addbank(bankb).subscribe(data =>
       {
+        this.sidenav.ShowSpinnerHandler(false);
         if(data.code ==200){
           alert(data.message);
           this.ngOnInit();
           this.onclearclick();
         }
         else{
+          this.sidenav.ShowSpinnerHandler(false);
           alert(data.message);
           this.ngOnInit();
           this.onclearclick();
@@ -88,6 +94,7 @@ displayedColumns: string[] = ["bank_id", "bank_code","bank_name", "bank_reportin
    {
      this.service.updatebank(bankb).subscribe(data =>
       {
+        this.sidenav.ShowSpinnerHandler(false);
         if(data.code ==200){
           alert(data.message);
           this.ngOnInit();
@@ -95,6 +102,7 @@ displayedColumns: string[] = ["bank_id", "bank_code","bank_name", "bank_reportin
         }
         else
         {
+          this.sidenav.ShowSpinnerHandler(false);
           alert(data.message);
           this.ngOnInit();
           this.onclearclick();

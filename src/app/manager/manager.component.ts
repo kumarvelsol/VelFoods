@@ -8,6 +8,7 @@ import { JsResponse } from '../shared/js-response';
 import { Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { LoginComponent } from '../login/login.component';
+import { SidenavToolbarComponent } from '../ui/sidenav-toolbar/sidenav-toolbar.component';
 
 @Component({
   selector: 'app-manager',
@@ -23,12 +24,13 @@ export class ManagerComponent implements OnInit {
   manger_id:number;manger_name:string;restaurent_id:number;manger_mobile_no:string;
   manger_status:string;manger_id_proof: string;manger_id_no:string;
   
-  constructor(private service:RestaurantService,public route : ActivatedRoute) {
+  constructor(private service:RestaurantService,public route : ActivatedRoute,public sidenav : SidenavToolbarComponent) {
     this.route.queryParams.subscribe(params => {
       this.restaurent_id = LoginComponent.rid;
     })
    }
   ngOnInit() {
+    this.sidenav.ShowSpinnerHandler(true);
     this.buttoncontent = "Save";
     this.service.getrestaurent(this.restaurent_id).subscribe((data:Apiresponse) =>{
       this.restaurents = data.Data;
@@ -42,9 +44,11 @@ export class ManagerComponent implements OnInit {
       this.managerslist = data;
       this.dataSource = new MatTableDataSource(this.managerslist.Data);
     });
+    this.sidenav.ShowSpinnerHandler(false);
   }
   public onsaveclick()
   {
+    this.sidenav.ShowSpinnerHandler(true);
     if(this.manger_name == "" || this.manger_mobile_no == "")
     {
       alert("Please fill all fields");
@@ -62,6 +66,7 @@ export class ManagerComponent implements OnInit {
       }
       this.service.addmanagers(a).subscribe((data : JsResponse) => {
         this.jsRes = data;
+        this.sidenav.ShowSpinnerHandler(false);
         if(this.jsRes.code==200)
             {
               alert("Manager Added Succesfully.!");
@@ -88,6 +93,7 @@ export class ManagerComponent implements OnInit {
       }
       this.service.updatemanager(a).subscribe((data : JsResponse) => {
         this.jsRes = data;
+        this.sidenav.ShowSpinnerHandler(false);
         if(this.jsRes.code==200)
             {
               alert("Manager Updated Succesfully.!");

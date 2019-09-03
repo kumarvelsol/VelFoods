@@ -4,6 +4,7 @@ import { EmployeeCategory } from '../shared/interfaces/empcate';
 import { MatTableDataSource } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
 import { LoginComponent } from '../login/login.component';
+import { SidenavToolbarComponent } from '../ui/sidenav-toolbar/sidenav-toolbar.component';
 
 @Component({
   selector: 'app-employeedepartment',
@@ -19,13 +20,14 @@ export class EmployeedepartmentComponent implements OnInit {
   resid:number;restaurent_id : number;
   displayedColumns : string[] =['empdepartement_id','empdepartement_name','empdepartement_status','actions'];
   dataSource;
-  constructor(public service :RestaurantService,public route : ActivatedRoute) { 
+  constructor(public service :RestaurantService,public route : ActivatedRoute,public sidenav : SidenavToolbarComponent) { 
     this.route.queryParams.subscribe(params => {
       this.restaurent_id = LoginComponent.rid;
     })
    }
   
   ngOnInit() {
+    this.sidenav.ShowSpinnerHandler(true);
     this.buttoncontent = "Save";
     this.service.getempcategory(this.restaurent_id).subscribe(data =>
     {
@@ -33,9 +35,10 @@ export class EmployeedepartmentComponent implements OnInit {
       this.count =data.Data.length;
       this.empdepartement_id = ++this.count;
     });
-
+    this.sidenav.ShowSpinnerHandler(false);
   }
   onsaveclick(){
+    this.sidenav.ShowSpinnerHandler(true);
     let empc:EmployeeCategory ={
       empdepartement_id:this.empdepartement_id,
       empdepartement_name:this.empdepartement_name,
@@ -44,6 +47,7 @@ export class EmployeedepartmentComponent implements OnInit {
     }
     if(this.buttoncontent =="Save"){
     this.service.addempcate(empc).subscribe(data=>{
+      this.sidenav.ShowSpinnerHandler(false);
       if(data.code ==200){
         alert(data.message);
         this.ngOnInit();
@@ -51,6 +55,7 @@ export class EmployeedepartmentComponent implements OnInit {
       }
       else
       {
+        this.sidenav.ShowSpinnerHandler(false);
         alert(data.message);
         this.ngOnInit();
         this.onclearclick();
@@ -60,6 +65,7 @@ export class EmployeedepartmentComponent implements OnInit {
   }
   else{
     this.service.updateempcategory(empc).subscribe(data=>{
+      this.sidenav.ShowSpinnerHandler(false);
       if(data.code ==200){
         alert(data.message);
         this.ngOnInit();
@@ -67,6 +73,7 @@ export class EmployeedepartmentComponent implements OnInit {
       }
       else
       {
+        this.sidenav.ShowSpinnerHandler(false);
         alert(data.message);
         this.ngOnInit();
         this.onclearclick();

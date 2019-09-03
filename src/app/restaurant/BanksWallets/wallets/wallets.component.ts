@@ -4,6 +4,7 @@ import { Walletsmodel } from 'src/app/shared/walletsmodel';
 import { JsResponse, Data } from 'src/app/shared/js-response';
 import { ActivatedRoute } from '@angular/router';
 import { LoginComponent } from 'src/app/login/login.component';
+import { SidenavToolbarComponent } from 'src/app/ui/sidenav-toolbar/sidenav-toolbar.component';
 
 @Component({
   selector: 'app-wallets',
@@ -16,13 +17,14 @@ export class WalletsComponent implements OnInit {
   wallet_id:string;wallet_code:string;wallet_name:string;wallet_reporting_name:string;wallet_status:string;
   empregistration_name : string;emplist; restaurent_id : number;
   displayedColumns: string[] = ["wallet_id", "wallet_code","wallet_name", "wallet_reporting_name","wallet_status","actions"];
-  constructor(public service : RestaurantService,public route : ActivatedRoute) { 
+  constructor(public service : RestaurantService,public route : ActivatedRoute,public sidenav : SidenavToolbarComponent) { 
     this.route.queryParams.subscribe(params =>{
       this.restaurent_id = LoginComponent.rid;
     })
   }
 
   ngOnInit() {
+    this.sidenav.ShowSpinnerHandler(true);
     this.buttoncontent = "Save";
     this.service.getwallets(this.restaurent_id).subscribe((data :JsResponse )=>
       {
@@ -32,6 +34,7 @@ export class WalletsComponent implements OnInit {
         {
           this.emplist = data.Data;
         });
+        this.sidenav.ShowSpinnerHandler(false);
   }
   onclear()
   {
@@ -43,6 +46,7 @@ export class WalletsComponent implements OnInit {
   }
   onsave()
   {
+    this.sidenav.ShowSpinnerHandler(true);
     let a : Walletsmodel = {
       wallet_id :this.wallet_id,
       wallet_code:this.wallet_code,
@@ -56,12 +60,14 @@ export class WalletsComponent implements OnInit {
    {
      this.service.addwallets(a).subscribe(data =>
       {
+        this.sidenav.ShowSpinnerHandler(false);
         if(data.code ==200){
           alert(data.message);
           this.ngOnInit();
           this.onclear();
         }
         else{
+          this.sidenav.ShowSpinnerHandler(false);
           alert(data.message);
           this.ngOnInit();
           this.onclear();
@@ -72,6 +78,7 @@ export class WalletsComponent implements OnInit {
    {
      this.service.updatewallets(a).subscribe(data =>
       {
+        this.sidenav.ShowSpinnerHandler(false);
         if(data.code ==200){
           alert(data.message);
           this.ngOnInit();
@@ -79,6 +86,7 @@ export class WalletsComponent implements OnInit {
         }
         else
         {
+          this.sidenav.ShowSpinnerHandler(false);
           alert(data.message);
           this.ngOnInit();
           this.onclear();
