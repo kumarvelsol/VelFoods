@@ -197,6 +197,7 @@ export class TableStatusComponent implements OnInit {
         insert_date : this.datepipe.transform(date.toDateString(),'yyyy-MM-dd'),
         table_name : this.tname,
       }
+      //console.log(print_data);
       this.service.PrintInsert(print_data).subscribe((data : JsResponse) =>{
         if(data.code == 200){
           alert(data.message);
@@ -219,6 +220,11 @@ export class TableStatusComponent implements OnInit {
     this.Table_Id = null;
     this.OffId = null;
     this.AmountAfterDiscount = null;
+    this.Payment_disable = true;
+    this.availOffer_disable = true;
+    this.print_disable = true;
+    this.tables_disable = false;
+    this.offerappliedtext_disable = false;
   }
   Offer_Id : number = 0;
   OffId : number;
