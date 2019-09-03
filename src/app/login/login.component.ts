@@ -50,6 +50,7 @@ export class LoginComponent implements OnInit {
        LoginComponent.rool = data.passw;
        LoginComponent.na = data.rname;
        this.NavigateClick(LoginComponent.rid,LoginComponent.rool,LoginComponent.un,LoginComponent.na);
+      
       }
       else
       {
