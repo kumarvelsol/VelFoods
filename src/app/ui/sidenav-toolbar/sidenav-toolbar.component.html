@@ -1,3 +1,4 @@
+<div class="main_wrap">
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #sidenav mode = "over" class="sidenav">
   <!-- modes = "over,push,side" -->
@@ -120,3 +121,5 @@
     <router-outlet></router-outlet> 
   </mat-sidenav-content>
 </mat-sidenav-container>
+<app-loading-spinner *ngIf="showSpinner" class="loader_wrap"></app-loading-spinner>
+</div>

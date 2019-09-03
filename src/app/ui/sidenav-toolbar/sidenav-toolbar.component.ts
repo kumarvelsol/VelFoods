@@ -26,6 +26,7 @@ export class SidenavToolbarComponent implements OnInit {
   name:JsResponse[];
   restaurent_name :string;
   imageUrl : string = "assets/images/Profile.jpg";
+  showSpinner : boolean = false;
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
   .pipe(
     map(result => result.matches)
@@ -50,5 +51,8 @@ export class SidenavToolbarComponent implements OnInit {
   logoutClick(){
     this.router.navigate(['login']); 
     alert("Log Out");
+  }
+  ShowSpinnerHandler(value){
+    this.showSpinner = value;
   }
 }

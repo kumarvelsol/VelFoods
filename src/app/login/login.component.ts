@@ -21,9 +21,11 @@ export class LoginComponent implements OnInit {
   static un :string;
   static rool :string;
   static na :string;
+  showSpinner : boolean = false;
   ngOnInit() {
   }
   onsaveclick(){
+    this.showSpinner = true;
     let log :login ={
       username :this.username,
       password :this.password,
@@ -40,7 +42,8 @@ export class LoginComponent implements OnInit {
     //   console.log("roll",LoginComponent.rool); 
     //   console.log("resname",LoginComponent.na); 
     // })
-    this.service.login(this.username,this.password).subscribe(data =>{
+    this.service.login(this.username,this.password).subscribe( data => {
+      //this.showSpinner = false;
       if(data.code ==200){
        alert(data.message);
        this.username ="";
@@ -49,14 +52,15 @@ export class LoginComponent implements OnInit {
        LoginComponent.un = data.user;
        LoginComponent.rool = data.passw;
        LoginComponent.na = data.rname;
+       this.showSpinner = false;
        this.NavigateClick(LoginComponent.rid,LoginComponent.rool,LoginComponent.un,LoginComponent.na);
-      
       }
       else
       {
         this.username ="";
         this.password ="";
         alert(data.message);
+        this.showSpinner = false;
       }
     })
   }
