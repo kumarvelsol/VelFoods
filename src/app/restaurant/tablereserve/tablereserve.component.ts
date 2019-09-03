@@ -8,6 +8,7 @@ import { JsResponse } from '../../shared/js-response';
 import { Tablebooking } from 'src/app/shared/tablebooking';
 import { AmazingTimePickerService } from 'amazing-time-picker';
 import { LoginComponent } from 'src/app/login/login.component';
+import { SidenavToolbarComponent } from 'src/app/ui/sidenav-toolbar/sidenav-toolbar.component';
 
 export interface Restaurant {
   id: string;
@@ -18,9 +19,6 @@ export interface Restaurant {
   templateUrl: './tablereserve.component.html',
   styleUrls: ['./tablereserve.component.css']
 })
-
-
-
 export class TablereserveComponent implements OnInit {
   restaurents:Data[];
   rows: Array<{id:string,date:string,time:string,name:string,pax:string,phoneno:number,restaurant:string}> = [];
@@ -30,7 +28,7 @@ export class TablereserveComponent implements OnInit {
     tablebooking_pax : number;    tablebooking_mobile_no : number;
     tablebooking_advance : number;    tablebooking_time : string;
     tablebooking_splinstructions : string;    restaurent_id : number; tablebooking_date : string;
-  constructor(private router: Router,public service1 : RestaurantService,private atp: AmazingTimePickerService,private route: ActivatedRoute) {
+  constructor(private router: Router,public service1 : RestaurantService,private atp: AmazingTimePickerService,private route: ActivatedRoute,public sidenav : SidenavToolbarComponent) {
     this.route.queryParams.subscribe(params => {
       this.restaurent_id = LoginComponent.rid;
     });
@@ -43,12 +41,14 @@ export class TablereserveComponent implements OnInit {
     });
   }
   ngOnInit() {
-  this.buttoncontent = "Save";
-  this.service1.getrestaurent(this.restaurent_id).subscribe((data:Apiresponse) =>{
-    this.restaurents = data.Data;
-  });
-  this.gettablelist();
-}
+    this.buttoncontent = "Save";
+    this.sidenav.ShowSpinnerHandler(true);
+    this.service1.getrestaurent(this.restaurent_id).subscribe((data:Apiresponse) =>{
+      this.restaurents = data.Data;
+    });
+    this.gettablelist();
+    this.sidenav.ShowSpinnerHandler(false);
+  }
   gettablelist()
   {
     this.service1.gettablebooking(this.restaurent_id).subscribe((data:Apiresponse)=> {
@@ -58,13 +58,15 @@ export class TablereserveComponent implements OnInit {
   }
   public onsubmitclick() 
   {
+    this.sidenav.ShowSpinnerHandler(true);
     if(this.tablebookingf_name == "" || this.tablebooking_pax == null || this.tablebooking_mobile_no == null)
     {
       alert("Please fill all fields");
+      this.sidenav.ShowSpinnerHandler(false);
     }
     else if(this.buttoncontent == "Save")
     {
-       let a : Tablebooking = {
+      let a : Tablebooking = {
         table_booking_id : this.table_booking_id,
         tablebooking_advance : this.tablebooking_advance,
         tablebooking_date : this.tablebooking_date,
@@ -74,15 +76,15 @@ export class TablereserveComponent implements OnInit {
         tablebooking_time : this.tablebooking_time,
         tablebookingf_name : this.tablebookingf_name,
         restaurent_id : this.restaurent_id, 
-       }
+      }
       this.service1.createtablebooking(a).subscribe((data : JsResponse) => {
-
         this.jsRes = data;
+        this.sidenav.ShowSpinnerHandler(false);
         if(this.jsRes.code==200)
-            {
-              alert("Table Added Succesfully.!");
-              this.onclearclick();
-            }else{ alert("Failed to Insert data");}
+        {
+          alert("Table Added Succesfully.!");
+          this.onclearclick();
+        }else{ alert("Failed to Insert data");}
        });
     }
     else if(this.buttoncontent == "Update")
@@ -99,17 +101,16 @@ export class TablereserveComponent implements OnInit {
         restaurent_id : this.restaurent_id,
        }
       this.service1.updatetablebooking(a).subscribe((data : JsResponse) => {
-
         this.jsRes = data;
+        this.sidenav.ShowSpinnerHandler(false);
         if(this.jsRes.code==200)
-            {
-              alert("Table updated Succesfully.!");
-              this.onclearclick();
-            }else{ alert("Failed to update data");}
+        {
+          alert("Table updated Succesfully.!");
+          this.onclearclick();
+        }else{ alert("Failed to update data");}
        });
     }
   }
- 
   public RowSelected(j,table_booking_id:number,tablebooking_date:string,tablebooking_time:string,tablebookingf_name:string,tablebooking_pax:number,restaurent_id:number,tablebooking_mobile_no:number,tablebooking_advance:number,tablebooking_splinstructions:string)
   {
     this.buttoncontent = "Update";

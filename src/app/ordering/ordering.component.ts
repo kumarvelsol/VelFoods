@@ -11,6 +11,7 @@ import { Data, ActivatedRoute } from '@angular/router';
 import { Apiresponse } from '../shared/apiresponse';
 import { Tabledefinition } from '../shared/tabledefinition';
 import { LoginComponent } from '../login/login.component';
+import { SidenavToolbarComponent } from '../ui/sidenav-toolbar/sidenav-toolbar.component';
 
 export interface UsersData {
   order_id:number;
@@ -72,7 +73,7 @@ export class OrderingComponent implements OnInit {
   disableadd:boolean=true;disablesave:boolean=true;
   //textcolor : string;
   @ViewChild(MatTable) table: MatTable<any>; 
-  constructor(private service : RestaurantService,public dialog: MatDialog,public route : ActivatedRoute) {
+  constructor(private service : RestaurantService,public dialog: MatDialog,public route : ActivatedRoute,public sidenav : SidenavToolbarComponent) {
     this.route.queryParams.subscribe(params => {
       this.restaurent_id = LoginComponent.rid;
     });
@@ -80,6 +81,7 @@ export class OrderingComponent implements OnInit {
     this.resname =LoginComponent.na;
   }
   ngOnInit() {
+    this.sidenav.ShowSpinnerHandler(true);
     this.gettingtablenumbers();
     this.resname =LoginComponent.na;
     this.service.getorders(this.restaurent_id).subscribe((data : Responce) =>
@@ -89,6 +91,7 @@ export class OrderingComponent implements OnInit {
       console.log(data);
     });
     this.buttoncontent= "Save";
+    this.sidenav.ShowSpinnerHandler(false);
   }
   gettingtablenumbers()
   {
@@ -134,36 +137,39 @@ export class OrderingComponent implements OnInit {
   }
   onsaveclick()
   {
+    this.sidenav.ShowSpinnerHandler(true);
     if(this.dataSource == null || this.table_name == null || this.table_pax == null || this.table_capatain == "")
     {
       alert("Please fill all fields");
+      this.sidenav.ShowSpinnerHandler(false);
     }
     else 
     {
       if(this.buttoncontent== "Save")
       {
         //this.table_name=this.table_name;
-      //this.table_pax=this.table_pax;
-      this.order_captain = this.table_capatain;
-      for(let i=0;i<this.dataSource.length;i++)
-      {
-        this.itemnames.push(this.dataSource[i].order_itemname);
-        this.itemnameid.push(this.dataSource[i].itemname_id );
-        this.Rate.push(this.dataSource[i].order_rate);
-        this.quantity.push(this.dataSource[i].order_quantity);
-        this.total.push(this.dataSource[i].order_totalamount);
-        this.tax.push(this.dataSource[i].order_tax_amount);
-      }
-      this.restaurent_id=this.restaurent_id;
-      this.table_defination_id= this.table_name;
-      this.order_status="Running";
-      //this.insert_by="aaa";
-      //this.insert_date=this.insert_date;
-      //this.kot_id=this.kot_id;
-      this.service.addingorder(this.itemnames,this.Rate,this.quantity,this.total,this.tax,this.restaurent_id,this.itemnameid,
+        //this.table_pax=this.table_pax;
+        this.order_captain = this.table_capatain;
+        for(let i=0;i<this.dataSource.length;i++)
+        {
+          this.itemnames.push(this.dataSource[i].order_itemname);
+          this.itemnameid.push(this.dataSource[i].itemname_id );
+          this.Rate.push(this.dataSource[i].order_rate);
+          this.quantity.push(this.dataSource[i].order_quantity);
+          this.total.push(this.dataSource[i].order_totalamount);
+          this.tax.push(this.dataSource[i].order_tax_amount);
+        }
+        this.restaurent_id=this.restaurent_id;
+        this.table_defination_id= this.table_name;
+        this.order_status="Running";
+        //this.insert_by="aaa";
+        //this.insert_date=this.insert_date;
+        //this.kot_id=this.kot_id;
+        this.service.addingorder(this.itemnames,this.Rate,this.quantity,this.total,this.tax,this.restaurent_id,this.itemnameid,
                               this.table_defination_id,this.order_captain,this.order_status,
                               ).subscribe(data =>
         {
+          this.sidenav.ShowSpinnerHandler(false);
           if(data.code == 200)
           {
             this.quantity = [];this.total = [];
@@ -177,32 +183,33 @@ export class OrderingComponent implements OnInit {
             this.gettingtablenumbers();
             this.onclear();
           }
-       });
+        });
       }
       else if(this.buttoncontent== "Modify")
       {
         //this.table_name=this.table_name;
-      //this.table_pax=this.table_pax;
-      this.order_captain = this.table_capatain;
-      for(let i=0;i<this.dataSource.length;i++)
-      {
-        this.itemnames.push(this.dataSource[i].order_itemname);
-        this.itemnameid.push(this.dataSource[i].itemname_id );
-        this.Rate.push(this.dataSource[i].order_rate);
-        this.quantity.push(this.dataSource[i].order_quantity);
-        this.total.push(this.dataSource[i].order_totalamount);
-        this.tax.push(this.dataSource[i].order_tax_amount);
-      }
-      this.restaurent_id=this.restaurent_id;
-      this.table_defination_id= this.table_name;
-      this.order_status="Running";
-      //this.insert_by="aaa";
-      //this.insert_date=this.insert_date;
-      //this.kot_id=this.kot_id;
-      this.service.updateorder(this.quantity,this.total,this.restaurent_id,
+        //this.table_pax=this.table_pax;
+        this.order_captain = this.table_capatain;
+        for(let i=0;i<this.dataSource.length;i++)
+        {
+          this.itemnames.push(this.dataSource[i].order_itemname);
+          this.itemnameid.push(this.dataSource[i].itemname_id );
+          this.Rate.push(this.dataSource[i].order_rate);
+          this.quantity.push(this.dataSource[i].order_quantity);
+          this.total.push(this.dataSource[i].order_totalamount);
+          this.tax.push(this.dataSource[i].order_tax_amount);
+        }
+        this.restaurent_id=this.restaurent_id;
+        this.table_defination_id= this.table_name;
+        this.order_status="Running";
+        //this.insert_by="aaa";
+        //this.insert_date=this.insert_date;
+        //this.kot_id=this.kot_id;
+        this.service.updateorder(this.quantity,this.total,this.restaurent_id,
                               this.table_defination_id,this.order_status,
                               ).subscribe(data =>
         {
+          this.sidenav.ShowSpinnerHandler(false);
           if(data.code == 200)
           {
             this.quantity = [];this.total = [];
@@ -232,36 +239,38 @@ export class OrderingComponent implements OnInit {
     //this.gettingtablenumbers();
   }
   onbuttonclick($event,table_name,BACKGROUND_COLOR){
+    this.sidenav.ShowSpinnerHandler(true);
     this.dataSource = [];
     this.colorr = BACKGROUND_COLOR;
-   this.tname = table_name;
-   if(this.tname != null)
-   {
-     this.disableadd = false;
-     this.disablesave = false;
-   }
-   if(this.colorr == "Green")
-   {
-    this.order_status = "Active";
-    this.buttoncontent= "Save";
-    this.service.gettabledata(this.restaurent_id).subscribe((data : Responce) =>
+    this.tname = table_name;
+    if(this.tname != null)
+    {
+      this.disableadd = false;
+      this.disablesave = false;
+    }
+    if(this.colorr == "Green")
+    {
+      this.order_status = "Active";
+      this.buttoncontent= "Save";
+      this.service.gettabledata(this.restaurent_id).subscribe((data : Responce) =>
       {
         this.listcount = data.Data.length;
         for(let i = 1;i<=this.listcount;i++)
         {
-            if(i == this.tname)
-            {
-              this.table_name = table_name;
-              this.table_pax = data.Data[i-1].table_pax;
-              this.table_capatain = data.Data[i-1].table_capatain;
-            }
+          if(i == this.tname)
+          {
+            this.table_name = table_name;
+            this.table_pax = data.Data[i-1].table_pax;
+            this.table_capatain = data.Data[i-1].table_capatain;
+          }
         }
+        this.sidenav.ShowSpinnerHandler(false);
       });
-   }
-   else if(this.colorr == "Orange")
-   {
-     this.dataSource = [];
-     this.order_status = "Running";
+    }
+    else if(this.colorr == "Orange")
+    {
+      this.dataSource = [];
+      this.order_status = "Running";
       this.service.getorderitems(this.restaurent_id,this.tname).subscribe((data : Responce) =>
       {
         this.table_name = table_name;
@@ -272,15 +281,15 @@ export class OrderingComponent implements OnInit {
         //this.dataSource = [...this.dataSource];
         console.log(this.dataSource);
         this.buttoncontent = "Modify";
+        this.sidenav.ShowSpinnerHandler(false);
       });
-   }
-   else if(this.colorr == "Darkslategray")
-   {
-    alert("This table's Bill was not settled, Please select another table!");
-    this.onclear();
-   }
-   
-   
+    }
+    else if(this.colorr == "Darkslategray")
+    {
+      this.sidenav.ShowSpinnerHandler(false);
+      alert("This table's Bill was not settled, Please select another table!");
+      this.onclear();
+    }
   //  this.service.gettabledata(1).subscribe((data : Responce) =>
   //  {
   //   this.listcount = data.Data.length;
@@ -334,46 +343,46 @@ export class OrderingComponent implements OnInit {
     // }
     // {action:action ,order_id:++this.order_id,itemname_item_name: this.itemname_item_name,order_rate:this.order_rate, order_quantity: this.order_quantity,order_totalamount:this.order_totalamount}
    
-    openDialog(action,obj): void {
-      obj.action = action;
-      const dialogRef = this.dialog.open(DialogBoxComponent, {
-        width: '250px',
-        data: obj
-      });
-  
-      dialogRef.afterClosed().subscribe(result => {
-        if(result.action == 'Add')
-        {
-          console.log(result);
-          this.orders.push(result);
-          this.dataSource = this.orders; 
-          this.dataSource = [...this.dataSource];
-          console.log(this.dataSource);
-          this.buttoncontent = "Save";
-          this.table.renderRows();
-        }
-        else if(result.action == 'Update')
-        {
-          //this.updateRowData(result.data); 
-        }
-        else if(result.action == 'Delete')
-        {
-          debugger;
-          this.table_defination_id = this.table_name;
-          this.itemname_item_name = result.order_itemname
-          //this.deleteRowData(result.data);
-          this.service.deleteorder(this.restaurent_id,this.table_defination_id,this.itemname_item_name).subscribe((data : Responce) => {
-            if(data.code == 200)
+  openDialog(action,obj): void {
+    obj.action = action;
+    const dialogRef = this.dialog.open(DialogBoxComponent, {
+      width: '250px',
+      data: obj
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result.action == 'Add')
+      {
+        console.log(result);
+        this.orders.push(result);
+        this.dataSource = this.orders; 
+        this.dataSource = [...this.dataSource];
+        console.log(this.dataSource);
+        this.buttoncontent = "Save";
+        this.table.renderRows();
+      }
+      else if(result.action == 'Update')
+      {
+        //this.updateRowData(result.data); 
+      }
+      else if(result.action == 'Delete')
+      {
+        this.sidenav.ShowSpinnerHandler(true);
+        debugger;
+        this.table_defination_id = this.table_name;
+        this.itemname_item_name = result.order_itemname
+        //this.deleteRowData(result.data);
+        this.service.deleteorder(this.restaurent_id,this.table_defination_id,this.itemname_item_name).subscribe((data : Responce) => {
+          this.sidenav.ShowSpinnerHandler(false);
+          if(data.code == 200)
           {
             alert("Item Deleted Succesfully.!");
             this.gettingtablenumbers();
             this.onclear();
           }
-          });
-        }
-      });
-    }
-
+        });
+      }
+    });
+  }
   addRowData(row_obj){
     this.dataSource.push({
       order_id:++this.order_id,
@@ -383,8 +392,6 @@ export class OrderingComponent implements OnInit {
       order_totalamount:row_obj.order_totalamount
     });
     this.table.renderRows();
-    
-    
   }
   updateRowData(row_obj){
     this.dataSource = this.dataSource.filter((value,key)=>{

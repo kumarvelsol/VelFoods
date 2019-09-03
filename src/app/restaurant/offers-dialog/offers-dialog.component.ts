@@ -4,6 +4,7 @@ import { RestaurantService } from 'src/app/restaurant/restaurant.service';
 import { Responce, Data } from 'src/app/shared/js-response';
 import { OfferUp } from 'src/app/shared/interfaces/offers';
 import { DatePipe } from '@angular/common';
+import { SidenavToolbarComponent } from 'src/app/ui/sidenav-toolbar/sidenav-toolbar.component';
 
 export interface TableData {
   table_Name : number;
@@ -34,15 +35,17 @@ export class OffersDialogComponent implements OnInit {
   isCancelvisible : boolean = false;
   isdetailsvisible : boolean = false;
   constructor(public dialogRef: MatDialogRef<OffersDialogComponent>,public datepipe: DatePipe,
-    @Optional() @Inject(MAT_DIALOG_DATA) public data: TableData, public service:RestaurantService) {
+    @Optional() @Inject(MAT_DIALOG_DATA) public data: TableData, public service:RestaurantService,public sidenav : SidenavToolbarComponent) {
     console.log(data);
     this.local_data = data;
     this.table_Name = data.table_Name;
     this.total_amount = data.total_amount;
   }
   ngOnInit() {
+    this.sidenav.ShowSpinnerHandler(true);
     this.service.ActiveOffers(1).subscribe((data : Responce) =>
     {
+      this.sidenav.ShowSpinnerHandler(false);
       this.offers_count = data.Data.length;
       this.Offers = data.Data;
     });

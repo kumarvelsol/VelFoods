@@ -7,6 +7,7 @@ import { Apiresponse } from 'src/app/shared/apiresponse';
 import { ActivatedRoute } from '@angular/router';
 import { LoginComponent } from 'src/app/login/login.component';
 import { formatDate } from '@angular/common';
+import { SidenavToolbarComponent } from 'src/app/ui/sidenav-toolbar/sidenav-toolbar.component';
 
 @Component({
   selector: 'app-settledbills',
@@ -17,7 +18,7 @@ export class SettledbillsComponent implements OnInit {
   rows: Array<{billno:string, table:string,date:string,Total:string,Tax:string,Discounttype:string,Discount:number,Status:string}> = [];
   dataSource;restaurent_id:number;
   displayedColumns:string[] =['billment_id','table_defination_id','insert_date','amount','payment_status'];
-  constructor(public dialog: MatDialog,public service1 : RestaurantService,private route: ActivatedRoute) {
+  constructor(public dialog: MatDialog,public service1 : RestaurantService,private route: ActivatedRoute,public sidenav : SidenavToolbarComponent) {
     this.route.queryParams.subscribe(params => {
       this.restaurent_id = LoginComponent.rid;
     });
@@ -25,11 +26,12 @@ export class SettledbillsComponent implements OnInit {
   jsRes : JsResponse; insert_date : string; billment_id : number;
   
   ngOnInit() {
+    this.sidenav.ShowSpinnerHandler(true);
     this.service1.billsettleid(this.restaurent_id).subscribe((data:Apiresponse) =>
-      {
-        this.dataSource = data.Data; 
-      });
-    
+    {
+      this.sidenav.ShowSpinnerHandler(false);
+      this.dataSource = data.Data; 
+    });
   }
   // public onChange(event : number)
   // {
@@ -41,10 +43,12 @@ export class SettledbillsComponent implements OnInit {
   // }
   public onChangee()
   {
+    this.sidenav.ShowSpinnerHandler(true);
     this.billment_id = null;
     this.insert_date = formatDate(this.insert_date, 'yyyy-MM-dd', 'en-US', '+0530');
     this.service1.billsettle(this.restaurent_id,this.insert_date).subscribe((data:Apiresponse) =>
     {
+      this.sidenav.ShowSpinnerHandler(false);
       this.dataSource = data.Data;
     });
   }

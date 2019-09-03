@@ -7,6 +7,7 @@ import { Tabledefinition } from 'src/app/shared/tabledefinition';
 import { stringify } from '@angular/core/src/util';
 import { DatePipe,formatDate } from '@angular/common';
 import { LoginComponent } from 'src/app/login/login.component';
+import { SidenavToolbarComponent } from 'src/app/ui/sidenav-toolbar/sidenav-toolbar.component';
 
 @Component({
   selector: 'app-billpayment',
@@ -26,7 +27,7 @@ export class BillpaymentComponent implements OnInit {
   table_capatain : string;table_description : string;table_status : string;table_steward : string;table_view:string;
   name1 : string;name2:string;mobile_no1 : number;mobile_no2 : number; insert_date :string;today= new Date();
 
-  constructor(public service1 : RestaurantService,public datepipe: DatePipe,private route: ActivatedRoute) {
+  constructor(public service1 : RestaurantService,public datepipe: DatePipe,private route: ActivatedRoute,public sidenav : SidenavToolbarComponent) {
     this.route.queryParams.subscribe(params => {
       this.table_name = params["tablename"];
       this.table_pax = params["pax"];
@@ -39,28 +40,30 @@ export class BillpaymentComponent implements OnInit {
 
   ngOnInit() 
   {
-    for (let i = 0; i < 5; i++) 
-      {
-        this.am[i] = 0;
-      }
-      this.service1.getbanks(this.restaurent_id).subscribe(data =>
-        {
-          this.banklist = data.Data;
-        });
-        this.service1.getwallets(this.restaurent_id).subscribe(data =>
-          {
-            this.walletlist = data.Data;
-          });
-          this.service1.Getbillpayemnts(this.restaurent_id).subscribe((data : Responce) =>
-          {
-            this.count = data.Data.length;
-            this.billment_id = this.count + 1;
-            console.log(data);
-          });
-          this.service1.getprintid(this.restaurent_id,this.table_defination_id).subscribe((data: Responce) =>
-            {
-              this.print_id = data.Data[0].print_id;
-            });
+    this.sidenav.ShowSpinnerHandler(true);
+    // for (let i = 0; i < 5; i++) 
+    // {
+    //   this.am[i] = 0;
+    // }
+    this.service1.getbanks(this.restaurent_id).subscribe(data =>
+    {
+      this.banklist = data.Data;
+    });
+    this.service1.getwallets(this.restaurent_id).subscribe(data =>
+    {
+      this.walletlist = data.Data;
+    });
+    this.service1.Getbillpayemnts(this.restaurent_id).subscribe((data : Responce) =>
+    {
+      this.count = data.Data.length;
+      this.billment_id = this.count + 1;
+      console.log(data);
+    });
+    this.service1.getprintid(this.restaurent_id,this.table_defination_id).subscribe((data: Responce) =>
+    {
+      this.sidenav.ShowSpinnerHandler(false);
+      this.print_id = data.Data[0].print_id;
+    });
   }
   public onChange(event : number)
   {
@@ -331,6 +334,7 @@ export class BillpaymentComponent implements OnInit {
   }
   public onsubmitclick()
   {
+    this.sidenav.ShowSpinnerHandler(true);
     let a : Billpayment = {
       billment_id : this.billment_id,
       table_name : this.table_name,
@@ -360,18 +364,19 @@ export class BillpaymentComponent implements OnInit {
       table_status: this.table_status,
       table_steward: this.table_steward,
       table_view : this.table_view,
-  }
-  this.insert_date = formatDate(this.today, 'dd-MM-yyyy', 'en-US', '+0530');
+    }
+    this.insert_date = formatDate(this.today, 'dd-MM-yyyy', 'en-US', '+0530');
     this.service1.billinsert(a).subscribe((data : JsResponse) =>
     {
       this.jsRes = data;
+      this.sidenav.ShowSpinnerHandler(false);
       if(this.jsRes.code==200)
-          {
-            alert("BillPayment Added Succesfully.!");
-          }else{ alert("Failed to Insert data");}
-   });
-   console.log(this.insert_date);
-   this.onclearclick();
+      {
+        alert("BillPayment Added Succesfully.!");
+      }else{ alert("Failed to Insert data");}
+    });
+    console.log(this.insert_date);
+    this.onclearclick();
   }
   onclearclick()
   {

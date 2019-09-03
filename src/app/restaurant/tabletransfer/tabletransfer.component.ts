@@ -4,6 +4,7 @@ import { Responce, JsResponse } from 'src/app/shared/js-response';
 import { Tabletransfermodel } from 'src/app/shared/tabletransfermodel';
 import { ActivatedRoute } from '@angular/router';
 import { LoginComponent } from 'src/app/login/login.component';
+import { SidenavToolbarComponent } from 'src/app/ui/sidenav-toolbar/sidenav-toolbar.component';
 
 @Component({
   selector: 'app-tabletransfer',
@@ -19,39 +20,42 @@ export class TabletransferComponent implements OnInit {
   order_rate:any[] =[];order_totalamount:any[] =[];order_tax_amount:any[] =[];
   kot_idd:any[] =[];order_captain:any[] =[];itemname_idd:any[]=[];jsRes :JsResponse;
   vacanttablen:number;occupiedtablen:number;disable:boolean = false;
-  constructor(private service:RestaurantService,private route: ActivatedRoute) {
+  constructor(private service:RestaurantService,private route: ActivatedRoute,public sidenav : SidenavToolbarComponent) {
     this.route.queryParams.subscribe(params => {
       this.restaurent_id = LoginComponent.rid;
     });
    }
 
   ngOnInit() {
+    this.sidenav.ShowSpinnerHandler(true);
     this.service.gettingoccupiedtables(this.restaurent_id,"Orange").subscribe((data : Responce) =>{
       this.occupiedlist = data.Data;
     });
     this.service.gettingvacanttables(this.restaurent_id,"Green").subscribe((data : Responce) =>{
+      this.sidenav.ShowSpinnerHandler(false);
       this.vacantlist = data.Data;
     });
   }
   onOccupiedChange()
   {
+    this.sidenav.ShowSpinnerHandler(true);
     this.service.getorderitems(this.restaurent_id,this.occupiedtablen).subscribe((data : Responce) =>
+    {
+      for(let i=0;i<data.Data.length;i++)
       {
-        for(let i=0;i<data.Data.length;i++)
-        {
-          this.order_id.push(data.Data[i].order_id);
-          this.order_itemname.push(data.Data[i].order_itemname);
-          this.order_quantity.push(data.Data[i].order_quantity);
-          this.order_rate.push(data.Data[i].order_rate);
-          this.order_totalamount.push(data.Data[i].order_totalamount);
-          this.order_tax_amount.push(data.Data[i].order_tax_amount);
-          this.kot_idd.push(data.Data[i].kot_id);
-          this.order_captain.push(data.Data[i].order_captain);
-          this.itemname_idd.push(data.Data[i].itemname_id);
-          this.dataSource = data.Data; 
-        }
-        
-      });
+        this.order_id.push(data.Data[i].order_id);
+        this.order_itemname.push(data.Data[i].order_itemname);
+        this.order_quantity.push(data.Data[i].order_quantity);
+        this.order_rate.push(data.Data[i].order_rate);
+        this.order_totalamount.push(data.Data[i].order_totalamount);
+        this.order_tax_amount.push(data.Data[i].order_tax_amount);
+        this.kot_idd.push(data.Data[i].kot_id);
+        this.order_captain.push(data.Data[i].order_captain);
+        this.itemname_idd.push(data.Data[i].itemname_id);
+        this.dataSource = data.Data; 
+      }
+      this.sidenav.ShowSpinnerHandler(false);
+    });
   }
   onVacantChange()
   {
@@ -80,19 +84,21 @@ export class TabletransferComponent implements OnInit {
   }
   onsaveclick()
   {
+    this.sidenav.ShowSpinnerHandler(true);
     this.tid = this.vacanttablen;
     this.service.transferinsert(this.restaurent_id,this.occupiedtablen,"Running",this.tid).subscribe((data:JsResponse) =>{
       this.jsRes = data;
-        if(this.jsRes.code==200)
-        {
-          alert("Table Transfered Successfully");
-          this.onclear();
-        }
-        else
-        {
-          alert("Failed to transfer table");
-          this.onclear();
-        }
+      this.sidenav.ShowSpinnerHandler(false);
+      if(this.jsRes.code==200)
+      {
+        alert("Table Transfered Successfully");
+        this.onclear();
+      }
+      else
+      {
+        alert("Failed to transfer table");
+        this.onclear();
+      }
     });
     // console.log(this.dataSource2);
     // for(let i=0;i<this.dataSource2.length;i++)
