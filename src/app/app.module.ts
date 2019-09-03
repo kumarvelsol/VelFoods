@@ -24,6 +24,7 @@ import { EmployeeregistrationComponent } from './employeeregistration/employeere
 import { BillsettledailogComponent } from './restaurant/Billsettle/billsettledailog/billsettledailog.component';
 import { SidenavToolbarComponent } from './ui/sidenav-toolbar/sidenav-toolbar.component';
 import { TakeawaydialogComponent } from './restaurant/takeaway/takeawaydialog/takeawaydialog.component';
+import { LoadingSpinnerComponent } from './ui/loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [ 
@@ -38,6 +39,7 @@ import { TakeawaydialogComponent } from './restaurant/takeaway/takeawaydialog/ta
     EmployeedepartmentComponent,OffersDialogComponent,
     EmployeeregistrationComponent,
     SidenavToolbarComponent,
+    LoadingSpinnerComponent,
   ],
   imports: [
     MaterialModule,MatDialogModule,
