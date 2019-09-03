@@ -14,7 +14,7 @@
         <div class="col-md-6 mat-form-wrap">
           <mat-form-field class="col-md-12 mat-form-wrap" style="color :gray"  appearance="outline">
             <mat-label style="color :gray">Search based on Date</mat-label>
-            <input style="color :gray" [matDatepicker]="picker" [(ngModel)]="insert_date" name="insert_date" (dateChange)="onChangee($event)" matInput>
+            <input style="color :gray" [matDatepicker]="picker" [(ngModel)]="insert_date"  (dateChange)="onChangee()" matInput>
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
