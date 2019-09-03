@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { DatePipe } from '@angular/common';
 import { RestaurantService } from 'src/app/restaurant/restaurant.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 import { LoginComponent } from 'src/app/login/login.component';
 import { Data, JsResponse } from 'src/app/shared/js-response';
 @Component({
@@ -48,6 +48,7 @@ export class SidenavToolbarComponent implements OnInit {
     this.TodayTime = date.toTimeString().replace(/.*(\d{2}:\d{2}):\d{2}.*/, "$1");
   }
   logoutClick(){
+    this.router.navigate(['login']); 
     alert("Log Out");
   }
 }
