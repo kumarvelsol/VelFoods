@@ -40,19 +40,16 @@ export class DialogBoxComponent implements OnInit {
   }
   restaurent_id:number;
   ngOnInit() {
-    this.sidenav.ShowSpinnerHandler(true);
     if(this.action == "Update")
     {
       this.disable = true;
       this.disablecat = true;
     }
     this.service.getitemcate(this.restaurent_id).subscribe((data:Responce) =>{
-      this.sidenav.ShowSpinnerHandler(false);
       this.itemctg = data.Data;
     });
   }
   onnameChange() {  
-    this.sidenav.ShowSpinnerHandler(true);
     console.log(this.data.order_itemname);
     this.service.getitemnameswithcat(this.restaurent_id,this.itemcategory_id).subscribe((data:Responce)=> {
       this.orderlist = data;
@@ -67,16 +64,13 @@ export class DialogBoxComponent implements OnInit {
           break;
         }
       }
-      this.sidenav.ShowSpinnerHandler(false);
     });
   }
   oncatChange()
   {
-    this.sidenav.ShowSpinnerHandler(true);
     console.log(this.itemcategory_id);
     this.service.getitemnameswithcat(this.restaurent_id,this.itemcategory_id).subscribe((data:Responce)=> {
       this.itemnames = data.Data;
-      this.sidenav.ShowSpinnerHandler(false);
     });
   }
   totalwotax:number;
