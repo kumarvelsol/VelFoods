@@ -45,15 +45,15 @@ export class LoginComponent implements OnInit {
     this.service.login(this.username,this.password).subscribe( data => {
       //this.showSpinner = false;
       if(data.code ==200){
-       alert(data.message);
-       this.username ="";
-       this.password ="";
-       LoginComponent.rid = data.resid;
-       LoginComponent.un = data.user;
-       LoginComponent.rool = data.passw;
-       LoginComponent.na = data.rname;
-       this.showSpinner = false;
-       this.NavigateClick(LoginComponent.rid,LoginComponent.rool,LoginComponent.un,LoginComponent.na);
+        alert(data.message);
+        this.username ="";
+        this.password ="";
+        LoginComponent.rid = data.resid;
+        LoginComponent.un = data.user;
+        LoginComponent.rool = data.passw;
+        LoginComponent.na = data.rname;
+        this.showSpinner = false;
+        this.NavigateClick(LoginComponent.rid,LoginComponent.rool,LoginComponent.un,LoginComponent.na);
       }
       else
       {

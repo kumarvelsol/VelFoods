@@ -25,7 +25,7 @@ table {
 }
 .parent{
   text-align:center;
-  height:550px;
+  height:570px;
 }
 .block {
   width: 80%;
@@ -46,7 +46,7 @@ table {
   margin:auto;
 }
 .example-container {
-  height: 550px;
+  height: 570px;
   overflow: auto; 
   margin-top: 20px;
   border-radius: 5px;
