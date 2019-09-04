@@ -8,6 +8,7 @@ import { DatePipe } from '@angular/common';
 import { JsResponse } from 'src/app/shared/js-response';
 import { Takeawayplan } from 'src/app/shared/takeawayplan';
 import { LoginComponent } from 'src/app/login/login.component';
+import { SidenavToolbarComponent } from 'src/app/ui/sidenav-toolbar/sidenav-toolbar.component';
 
 @Component({
   selector: 'app-takeaway',
@@ -25,18 +26,19 @@ export class TakeawayComponent implements OnInit {
   AmountAfterDiscount : number;
   ActualAmount: number;percentage:number;
   OffId : number;planslist;
-  constructor(private router: Router,public datepipe: DatePipe,private service : RestaurantService,public dialog: MatDialog,private route: ActivatedRoute) { 
+  constructor(private router: Router,public datepipe: DatePipe,private service : RestaurantService,public dialog: MatDialog,private route: ActivatedRoute,public sidenav : SidenavToolbarComponent) { 
     this.route.queryParams.subscribe(params => {
       this.restaurent_id = LoginComponent.rid;
     });
   }
-
   ngOnInit() {
+    this.sidenav.ShowSpinnerHandler(true);
     this.openDialog('Add',{});
     // this.service.getplans(this.restaurent_id).subscribe(data =>{
     //   this.planslist = data.Data;
     // });
     this.service.ActiveOffers(this.restaurent_id).subscribe(data =>{
+      this.sidenav.ShowSpinnerHandler(false);
       this.planslist = data.Data;
     });
     console.log(this.planslist);
@@ -64,7 +66,6 @@ export class TakeawayComponent implements OnInit {
       width: '250px',
       data: obj
     });
-
     dialogRef.afterClosed().subscribe(result => {
       if(result.action == 'Add')
       {
@@ -106,9 +107,11 @@ export class TakeawayComponent implements OnInit {
   planpercentage:number;
   onplanchange()
   {
+    this.sidenav.ShowSpinnerHandler(true);
     this.service.ActiveOffers(this.restaurent_id).subscribe(data =>{
       this.planslist = data.Data;
       console.log(this.planslist);
+      this.sidenav.ShowSpinnerHandler(false);
       for(let i=0;i<data.Data.length;i++)
       {
         if(this.percentage == data.Data[i].percentage)
@@ -122,30 +125,32 @@ export class TakeawayComponent implements OnInit {
     });
     this.disable = true;
   }
-    public onpaymentclick()
-    {
-      let date: Date = new Date();
-      let print_data : Takeawayplan = {
-        total_amount : this.amount,
-        discount_amount : (this.gtotalamount * this.planpercentage) / 100,
-        print_status : "Printed",
-        restaurent_id : this.restaurent_id,
-        total_after_discount : this.gtotalamount,
-        parcel_charges : this.parcelamount,
-        status : "Takeaway",
-        insert_by : "velsol",
-        insert_date : this.datepipe.transform(date.toDateString(),'yyyy-MM-dd'),
-      }
-      this.service.PrintInserttakeaway(print_data).subscribe((data : JsResponse) =>{
-        if(data.code == 200){
-          alert(data.message);
-        }else{
-          alert(data.message);
-        }
-      });
-      this.NavigateClick(this.gtotalamount);
+  public onpaymentclick()
+  {
+    this.sidenav.ShowSpinnerHandler(true);
+    let date: Date = new Date();
+    let print_data : Takeawayplan = {
+      total_amount : this.amount,
+      discount_amount : (this.gtotalamount * this.planpercentage) / 100,
+      print_status : "Printed",
+      restaurent_id : this.restaurent_id,
+      total_after_discount : this.gtotalamount,
+      parcel_charges : this.parcelamount,
+      status : "Takeaway",
+      insert_by : "velsol",
+      insert_date : this.datepipe.transform(date.toDateString(),'yyyy-MM-dd'),
     }
-    restaurent_id:number;
+    this.service.PrintInserttakeaway(print_data).subscribe((data : JsResponse) =>{
+      this.sidenav.ShowSpinnerHandler(false);
+      if(data.code == 200){
+        alert(data.message);
+      }else{
+        alert(data.message);
+      }
+    });
+    this.NavigateClick(this.gtotalamount);
+  }
+  restaurent_id:number;
   public NavigateClick(gtotalamount:number)
   {
     let navigationExtras: NavigationExtras = {

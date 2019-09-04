@@ -9,6 +9,7 @@ import { MatDialog, MatTable, MatTableDataSource, MatDialogConfig } from '@angul
 import { Prints } from 'src/app/shared/interfaces/Prints';
 import { NavigationExtras, Router, ActivatedRoute } from '@angular/router';
 import { LoginComponent } from 'src/app/login/login.component';
+import { SidenavToolbarComponent } from 'src/app/ui/sidenav-toolbar/sidenav-toolbar.component';
 
 export interface PeriodicElement {
   ItemName : string;
@@ -36,7 +37,7 @@ export interface ParsingData {
 })
 export class TableStatusComponent implements OnInit {
   @ViewChild(MatTable) table: MatTable<any>; 
-  constructor(private service : RestaurantService,public datepipe: DatePipe,public dialog: MatDialog,private router: Router,private route: ActivatedRoute) {
+  constructor(private service : RestaurantService,public datepipe: DatePipe,public dialog: MatDialog,private router: Router,private route: ActivatedRoute,public sidenav : SidenavToolbarComponent) {
     this.route.queryParams.subscribe(params => {
       this.restaurent_id = LoginComponent.rid;
     });
@@ -72,6 +73,7 @@ export class TableStatusComponent implements OnInit {
     this.LoadingList();
   }
   LoadingList(){
+    this.sidenav.ShowSpinnerHandler(true);
     this.service.gettabledata(this.restaurent_id).subscribe((data : Responce) =>
     {
       this.count = data.Data.length;
@@ -86,6 +88,7 @@ export class TableStatusComponent implements OnInit {
           data.Data[i].textcolor = "black";
         }
       }
+      this.sidenav.ShowSpinnerHandler(false);
       this.tables = data.Data;
     });
   }
@@ -96,6 +99,7 @@ export class TableStatusComponent implements OnInit {
   {
     if(BACKGROUND_COLOR == "Darkslategray")
     {
+      this.sidenav.ShowSpinnerHandler(true);
       this.tname = table_name;
       this.table_defination_id = this.tname;
       this.service.getprintid(this.restaurent_id,this.table_defination_id).subscribe((data : Responce) =>
@@ -126,6 +130,7 @@ export class TableStatusComponent implements OnInit {
         this.availOffer_disable = true;
         this.Payment_disable = false;
       }
+      this.sidenav.ShowSpinnerHandler(false);
     }
     else if(BACKGROUND_COLOR == "Green")
     {
@@ -133,9 +138,11 @@ export class TableStatusComponent implements OnInit {
       this.availOffer_disable = true;
       this.Payment_disable = true;
       this.dataSource = null;
+      this.sidenav.ShowSpinnerHandler(false);
     }
     else if(BACKGROUND_COLOR == "Orange")
     {
+      this.sidenav.ShowSpinnerHandler(true);
       this.tname = table_name;
       this.print_disable = false;
       this.availOffer_disable = false;
@@ -154,8 +161,8 @@ export class TableStatusComponent implements OnInit {
           this.table_name = this.tname;
           this.table_defination_id = this.tname;
           console.log(this.table_pax);
-     });
-     this.service.gettabledata(this.restaurent_id).subscribe((data : Responce) =>
+      });
+      this.service.gettabledata(this.restaurent_id).subscribe((data : Responce) =>
       {
         this.listcount = data.Data.length;
         for(let i = 1;i<=this.listcount;i++)
@@ -167,6 +174,7 @@ export class TableStatusComponent implements OnInit {
             }
         }
       });
+      this.sidenav.ShowSpinnerHandler(false);
     }
     this.amount = 0;
     this.tname = table_name;
@@ -174,8 +182,10 @@ export class TableStatusComponent implements OnInit {
   }
   Parsing_data : ParsingData[];
   onsaveclick(){
+    this.sidenav.ShowSpinnerHandler(true);
     if(this.tname == null || this.Table_Id == null ){
       alert("Please Select the Table..!");
+      this.sidenav.ShowSpinnerHandler(false);
     }else{
       if(this.Offer_Id == 0){
         this.OffId = null;
@@ -199,6 +209,7 @@ export class TableStatusComponent implements OnInit {
       }
       //console.log(print_data);
       this.service.PrintInsert(print_data).subscribe((data : JsResponse) =>{
+        this.sidenav.ShowSpinnerHandler(false);
         if(data.code == 200){
           alert(data.message);
           this.LoadingList();
