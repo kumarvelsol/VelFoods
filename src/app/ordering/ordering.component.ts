@@ -366,13 +366,11 @@ export class OrderingComponent implements OnInit {
       }
       else if(result.action == 'Delete')
       {
-        this.sidenav.ShowSpinnerHandler(true);
         debugger;
         this.table_defination_id = this.table_name;
         this.itemname_item_name = result.order_itemname
         //this.deleteRowData(result.data);
         this.service.deleteorder(this.restaurent_id,this.table_defination_id,this.itemname_item_name).subscribe((data : Responce) => {
-          this.sidenav.ShowSpinnerHandler(false);
           if(data.code == 200)
           {
             alert("Item Deleted Succesfully.!");

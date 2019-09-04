@@ -4,8 +4,7 @@ import { RestaurantService } from '../restaurant/restaurant.service';
 import { Responce } from '../shared/js-response';
 import { Data, ActivatedRoute } from '@angular/router';
 import { LoginComponent } from '../login/login.component';
-import { SidenavToolbarComponent } from '../ui/sidenav-toolbar/sidenav-toolbar.component';
- 
+
 export interface UsersData {
   order_itemname:string;
   itemcategory_id:number;
@@ -27,7 +26,7 @@ export class DialogBoxComponent implements OnInit {
   order_tax:number;disable:boolean=false;disablecat:boolean = false;itemcategory_id:number;item_name:string;
   constructor(
     public dialogRef: MatDialogRef<DialogBoxComponent>,
-    @Optional() @Inject(MAT_DIALOG_DATA) public data: UsersData, public service:RestaurantService,public route : ActivatedRoute,public sidenav : SidenavToolbarComponent) {
+    @Optional() @Inject(MAT_DIALOG_DATA) public data: UsersData, public service:RestaurantService,public route : ActivatedRoute) {
     console.log(data);
     this.route.queryParams.subscribe(params => {
       this.restaurent_id = LoginComponent.rid;
