@@ -9,6 +9,7 @@ import { DateAdapter, MAT_DATE_FORMATS} from '@angular/material/core';
 import { AppDateAdapter, APP_DATE_FORMATS } from 'src/app/shared/format-datepicker';
 import { ActivatedRoute } from '@angular/router';
 import { LoginComponent } from 'src/app/login/login.component';
+import { SidenavToolbarComponent } from 'src/app/ui/sidenav-toolbar/sidenav-toolbar.component';
 @Component({
   selector: 'app-offers',
   templateUrl: './offers.component.html',
@@ -20,7 +21,7 @@ import { LoginComponent } from 'src/app/login/login.component';
 })
 export class OffersComponent implements OnInit {
   restaurent_id : number;
-  constructor(public service : RestaurantService,public datepipe: DatePipe,private atp: AmazingTimePickerService,public route : ActivatedRoute) {
+  constructor(public service : RestaurantService,public datepipe: DatePipe,private atp: AmazingTimePickerService,public route : ActivatedRoute,public sidenav : SidenavToolbarComponent) {
     this.route.queryParams.subscribe(params => {
       this.restaurent_id = LoginComponent.rid;
     })
@@ -75,6 +76,7 @@ export class OffersComponent implements OnInit {
   displayedColumns : string[] = ["offers_id","promo_code_name","promo_code","percentage","from_date","to_date","from_time","to_time","minbill_amount","maximum_bill_amount","actions"];
   dataSource;
   ngOnInit() {
+    this.sidenav.ShowSpinnerHandler(true);
     this.to_date_disable = true;
     this.from_date_disable = true;
     this.to_time_disable = true;
@@ -87,6 +89,7 @@ export class OffersComponent implements OnInit {
     this.offerstatus = "Active";
     this.disablecheckbox();
     this.LoadingList();
+    this.sidenav.ShowSpinnerHandler(false);
   }
   onDatesValid(){
     if(this.dates_slide == true){
