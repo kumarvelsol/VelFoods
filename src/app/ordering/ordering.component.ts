@@ -347,7 +347,7 @@ export class OrderingComponent implements OnInit {
     obj.action = action;
     const dialogRef = this.dialog.open(DialogBoxComponent, {
       width: '250px',
-      data: obj
+      data: obj 
     });
     dialogRef.afterClosed().subscribe(result => {
       if(result.action == 'Add')
