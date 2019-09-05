@@ -9,4 +9,5 @@ export interface Prints{
     insert_by : string;
     insert_date : string;
     table_name : number;
+    kot_id : number;
 }

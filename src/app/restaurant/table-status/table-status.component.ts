@@ -10,7 +10,6 @@ import { Prints } from 'src/app/shared/interfaces/Prints';
 import { NavigationExtras, Router, ActivatedRoute } from '@angular/router';
 import { LoginComponent } from 'src/app/login/login.component';
 import { SidenavToolbarComponent } from 'src/app/ui/sidenav-toolbar/sidenav-toolbar.component';
-
 export interface PeriodicElement {
   ItemName : string;
   Rate : number;
@@ -95,6 +94,7 @@ export class TableStatusComponent implements OnInit {
   Table_Id : number;
   Selected_Amount : number;
   PromoCode : string;
+  Selected_Kot : number;
   onbuttonclick($event,table_name,table_defination_id,BACKGROUND_COLOR)
   {
     if(BACKGROUND_COLOR == "Darkslategray")
@@ -131,9 +131,11 @@ export class TableStatusComponent implements OnInit {
         this.Payment_disable = false;
       }
       this.sidenav.ShowSpinnerHandler(false);
+      this.Selected_Kot = 0;
     }
     else if(BACKGROUND_COLOR == "Green")
     {
+      this.Selected_Kot = 0;
       this.print_disable = true;
       this.availOffer_disable = true;
       this.Payment_disable = true;
@@ -158,6 +160,7 @@ export class TableStatusComponent implements OnInit {
             this.amount = this.amount + this.totalamount;
             this.Selected_Amount = this.amount;
           }
+          this.Selected_Kot = data.Data[0].kot_id;
           this.table_name = this.tname;
           this.table_defination_id = this.tname;
           console.log(this.table_pax);
@@ -187,39 +190,44 @@ export class TableStatusComponent implements OnInit {
       alert("Please Select the Table..!");
       this.sidenav.ShowSpinnerHandler(false);
     }else{
-      if(this.Offer_Id == 0){
-        this.OffId = null;
-        this.AmountAfterDiscount = this.amount;
-        this.ActualAmount = this.amount;
+      if(this.Selected_Kot == 0){
+        alert("Please select the table Again..!");
       }else{
-        this.OffId = this.Offer_Id;
-      }
-      let date: Date = new Date();
-      let print_data : Prints = {
-        table_defination_id : this.Table_Id,
-        total_amount : this.ActualAmount,
-        offers_id : this.OffId,
-        discount_amount : this.Discount_amount,
-        print_status : "Printed",
-        restaurent_id : this.restaurent_id,
-        total_after_discount : this.AmountAfterDiscount,
-        insert_by : "velsol",
-        insert_date : this.datepipe.transform(date.toDateString(),'yyyy-MM-dd'),
-        table_name : this.tname,
-      }
-      //console.log(print_data);
-      this.service.PrintInsert(print_data).subscribe((data : JsResponse) =>{
-        this.sidenav.ShowSpinnerHandler(false);
-        if(data.code == 200){
-          alert(data.message);
-          this.LoadingList();
-          this.ClearList();
+        if(this.Offer_Id == 0){
+          this.OffId = null;
+          this.AmountAfterDiscount = this.amount;
+          this.ActualAmount = this.amount;
         }else{
-          alert(data.message);
-          this.LoadingList();
-          this.ClearList();
+          this.OffId = this.Offer_Id;
         }
-      })
+        let date: Date = new Date();
+        let print_data : Prints = {
+          table_defination_id : this.Table_Id,
+          total_amount : this.ActualAmount,
+          offers_id : this.OffId,
+          discount_amount : this.Discount_amount,
+          print_status : "Printed",
+          restaurent_id : this.restaurent_id,
+          total_after_discount : this.AmountAfterDiscount,
+          insert_by : "velsol",
+          insert_date : this.datepipe.transform(date.toDateString(),'yyyy-MM-dd'),
+          table_name : this.tname,
+          kot_id : this.Selected_Kot,
+        }
+        //console.log(print_data);
+        this.service.PrintInsert(print_data).subscribe((data : JsResponse) =>{
+          this.sidenav.ShowSpinnerHandler(false);
+          if(data.code == 200){
+            alert(data.message);
+            this.LoadingList();
+            this.ClearList();
+          }else{
+            alert(data.message);
+            this.LoadingList();
+            this.ClearList();
+          }
+        })
+      }
     }
   }
   ClearList(){
