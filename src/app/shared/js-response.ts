@@ -111,4 +111,5 @@ export interface Data {
     textcolor : string,
     username:string;
     resid : number;
+    billment_id: number,
 }

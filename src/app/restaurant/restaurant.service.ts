@@ -373,4 +373,10 @@ Baseurl = 'http://localhost:57649/';
    public getrestos(){
      return this.http.get(`${this.Baseurl+"Restaurents"}`);
    }
+   public getBillItems(restaurent_id : Number,billment_id:number){
+    let parms =new HttpParams();
+    parms =parms.append('restaurent_id', restaurent_id+"")
+    parms =parms.append('billment_id', billment_id+"")
+    return this.http.post<Responce>(`${this.Baseurl+"getbillitems"}`,parms);
+   }
  }
