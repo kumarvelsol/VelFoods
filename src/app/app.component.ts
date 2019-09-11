@@ -6,7 +6,7 @@ import { NavigationExtras, Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
-  
+   
   constructor(private router: Router) { }
   title = 'Velfoods';
   ngOnInit() {
