@@ -27,7 +27,7 @@ export class BillpaymentComponent implements OnInit {
   table_capatain : string;table_description : string;table_status : string;table_steward : string;table_view:string;
   name1 : string;name2:string;mobile_no1 : number;mobile_no2 : number; insert_date :string;today= new Date();
 
-  constructor(public service1 : RestaurantService,public datepipe: DatePipe,private route: ActivatedRoute,public sidenav : SidenavToolbarComponent) {
+  constructor(public service1 : RestaurantService,public datepipe: DatePipe,private route: ActivatedRoute,public sidenav : SidenavToolbarComponent,public router : Router) {
     this.route.queryParams.subscribe(params => {
       this.table_name = params["tablename"];
       this.table_pax = params["pax"];
@@ -373,10 +373,13 @@ export class BillpaymentComponent implements OnInit {
       if(this.jsRes.code==200)
       {
         alert("BillPayment Added Succesfully.!");
-      }else{ alert("Failed to Insert data");}
+        this.router.navigate(['/Home']); 
+      }
+      else{ alert("Failed to Insert data");}
     });
     console.log(this.insert_date);
     this.onclearclick();
+    
   }
   onclearclick()
   {
@@ -387,5 +390,6 @@ export class BillpaymentComponent implements OnInit {
     this.due_amount = null;this.bill_amount = null;
     this.name1 =""; this.mobile_no1 = null;this.reference = "";
     this.name2 =""; this.mobile_no2 = null; 
+    
   }
 }

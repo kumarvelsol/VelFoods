@@ -49,6 +49,8 @@ export class DialogBoxComponent implements OnInit {
     });
   }
   onnameChange() {  
+    this.data.order_rate = Number("");
+    this.data.order_quantity = Number("");
     console.log(this.data.order_itemname);
     this.service.getitemnameswithcat(this.restaurent_id,this.itemcategory_id).subscribe((data:Responce)=> {
       this.orderlist = data;
